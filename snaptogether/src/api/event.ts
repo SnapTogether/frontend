@@ -67,6 +67,10 @@ export interface Photo {
   _id: string;
   imageUrl: string;
 }
+export interface Guest {
+  _id: string;
+  guestName: string;
+}
 
 export interface EventResponse {
   status: number;
@@ -80,7 +84,7 @@ export interface EventResponse {
     eventDate: string;
     hostLink: string;
     guestLink: string;
-    guests: string[];
+    guests: Guest[];
     photos: Photo[]; // ✅ Define as array of objects, not strings
   };
   error?: string;

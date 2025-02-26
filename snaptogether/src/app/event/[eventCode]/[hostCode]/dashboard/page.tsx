@@ -118,15 +118,16 @@ export default function HostDashboard() {
 
       {/* Display Guests */}
       <h3 className="mt-6 text-xl font-semibold">👥 Guests</h3>
-      {eventData?.event?.guests && eventData?.event?.guests?.length > 0 ? (
+      {eventData?.event?.guests && eventData.event.guests.length > 0 ? (
         <ul className="list-disc ml-6">
-          {eventData.event.guests.map((guestId) => (
-            <li key={guestId}>Guest ID: {guestId}</li>
+          {eventData.event.guests.map((guest) => (
+            <li key={guest._id}>Guest: {guest.guestName}</li> 
           ))}
         </ul>
       ) : (
         <p className="mt-2 text-gray-600">No guests have joined yet.</p>
       )}
+
     </div>
   );
 }
