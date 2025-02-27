@@ -1,25 +1,18 @@
 import type { NextConfig } from "next";
-
 const withPWA = require("next-pwa")({
   dest: "public",
-  disable: process.env.NODE_ENV === "development", // Disable PWA in dev
-  buildExcludes: [/middleware-manifest\.json$/],
-  workboxOptions: {
-    clientsClaim: true,
-    skipWaiting: true,
-  },
+  disable: process.env.NODE_ENV === "development", // Disable PWA in development
+  buildExcludes: [/middleware-manifest\.json$/], // Exclude middleware manifest
+  clientsClaim: true, // ✅ Correct placement
+  skipWaiting: true, // ✅ Correct placement
 });
-
-module.exports = withPWA({
-  reactStrictMode: true,
-});
-
 
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+const nextConfig: NextConfig = {
+  reactStrictMode: true,
   images: {
     domains: ["res.cloudinary.com"], // ✅ Allow images from Cloudinary
   },
 };
 
-export default nextConfig;
+export default withPWA(nextConfig); // ✅ Correct export

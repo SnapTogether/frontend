@@ -1,7 +1,7 @@
 // src/components/ui/EventForm.tsx
 "use client";
 
-import { use, useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import Input from "../Input/Input";
 import { createEvent, CreateEventData } from "@/api/event";

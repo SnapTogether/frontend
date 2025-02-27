@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { fetchEventForHost, EventResponse } from "@/api/event";
 import { QRCodeCanvas } from "qrcode.react"; // ✅ Import QR Code Generator
+import Image from "next/image";
 
 export default function HostDashboard() {
   const params = useParams();
@@ -104,12 +105,14 @@ export default function HostDashboard() {
       {eventData?.event?.photos && eventData.event.photos.length > 0 ? (
         <div className="grid grid-cols-4 gap-4 mt-2">
         {eventData?.event?.photos?.map((photo) => (
-          <img
-            key={photo._id} // ✅ Unique key (_id from MongoDB)
-            src={photo.imageUrl} // ✅ Ensure it's a string URL
-            alt="Uploaded"
-            className="rounded-md shadow-md w-full object-cover"
-          />
+          <Image
+          key={photo._id}
+          src={photo.imageUrl}
+          alt="Uploaded"
+          width={300} // ✅ Define width & height for optimization
+          height={200}
+          className="rounded-md shadow-md w-full object-cover"
+        />
         ))}
       </div>
       ) : (

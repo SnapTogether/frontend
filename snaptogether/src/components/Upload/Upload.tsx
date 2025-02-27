@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { uploadPhotosForGuest } from "@/api/photo";
+import Image from "next/image";
 
 export default function Upload({ eventCode, guestId }: { eventCode: string; guestId: string }) {
   const [loading, setLoading] = useState(false);
@@ -47,7 +48,14 @@ export default function Upload({ eventCode, guestId }: { eventCode: string; gues
       {uploadedPhotos.length > 0 && (
         <div className="grid grid-cols-3 gap-2 mt-4">
           {uploadedPhotos.map((url, index) => (
-            <img key={index} src={url} alt="Uploaded" className="w-24 h-24 rounded-md shadow-md object-cover" />
+            <Image
+              key={index}
+              src={url}
+              alt="Uploaded"
+              width={96} // ✅ Provide width
+              height={96} // ✅ Provide height
+              className="rounded-md shadow-md object-cover"
+            />
           ))}
         </div>
       )}

@@ -1,5 +1,5 @@
 // src/components/ui/Input.tsx
-import { InputHTMLAttributes, forwardRef } from "react";
+import { forwardRef } from "react";
 import clsx from "clsx"; // Optional: For Tailwind class merging
 import { InputProps } from "./types";
 

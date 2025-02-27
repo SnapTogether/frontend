@@ -53,12 +53,12 @@ export const createEvent = async (
       hostLink: data.hostLink,
       guestLink: data.guestLink,
     };
-  } catch (error: any) {
-    console.error("❌ Network/Server Error:", error.message);
+  } catch (error) {
+    console.error("❌ Network/Server Error:", (error as Error).message);
     return {
       status: 500,
       message: "❌ Error creating event",
-      error: error.message || "Network error occurred.",
+      error: (error as Error).message || "Network error occurred.",
     };
   }
 };
@@ -136,12 +136,12 @@ export const fetchEventForHost = async (
         error: text,
       };
     }
-  } catch (error: any) {
-    console.error("❌ Network/Server Error:", error.message);
+  } catch (error) {
+    console.error("❌ Network/Server Error:", (error as Error).message);
     return {
       status: 500,
       message: "❌ Error fetching event details.",
-      error: error.message || "Network error occurred.",
+      error: (error as Error).message || "Network error occurred.",
     };
   }
 };

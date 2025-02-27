@@ -88,7 +88,7 @@ export default function GuestDashboard() {
 
 
                     {/* ✅ Upload Component Outside Grid */}
-                    <Upload eventCode={eventCode} guestId={guestData?.guestId || ""} />
+                    <Upload eventCode={eventCode} guestId={guestData?.guest?.guestId || ""} />
                 </div>
             )}
         </div>
