@@ -1,1 +1,10 @@
-{ "rewrites": [{ "source": "/(.*)", "destination": "/" }] }
+{
+    "redirects": [
+      {
+        "source": "/testnet/:path*",
+        "destination": "https://your-other-domain.com/:path*",
+        "permanent": true
+      }
+    ]
+  }
+  
