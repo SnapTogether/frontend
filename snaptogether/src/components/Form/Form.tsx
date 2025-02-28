@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import Input from "../Input/Input";
 import { createEvent, CreateEventData } from "@/api/event";
 import { useRouter } from "next/navigation";
+import Button from "../Button/Button";
 
 export default function EventForm() {
   const router = useRouter();
@@ -30,8 +31,11 @@ export default function EventForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="max-w-md mx-auto space-y-4 p-4 border rounded-lg shadow-md">
-      <h2 className="text-xl font-semibold">Create New Event</h2>
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 h-fit max-w-md w-full space-y-4 p-4 border rounded-lg shadow-md bg-white"
+      >
+      <h2 className="text-xl font-mulish text-center">Create New Event</h2>
 
       <Input label="Name" {...register("name", { required: "Name is required" })} error={errors.name?.message} />
       <Input label="Surname" {...register("surname", { required: "Surname is required" })} error={errors.surname?.message} />
@@ -39,9 +43,9 @@ export default function EventForm() {
       <Input label="Event Name" {...register("eventName", { required: "Event name is required" })} error={errors.eventName?.message} />
       <Input label="Event Date" type="date" {...register("eventDate", { required: "Event date is required" })} error={errors.eventDate?.message} />
 
-      <button type="submit" className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition">
+      <Button type="submit" variant="primary" className="w-full">
         Create Event
-      </button>
+      </Button>
 
       {eventResponse && <p className="text-sm text-center mt-2">{eventResponse}</p>}
     </form>

@@ -12,6 +12,12 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      fontFamily: {
+        sans: "var(--font-geist-sans), sans-serif",
+        mono: "var(--font-geist-mono), monospace",
+        rubik: "var(--font-rubik), sans-serif",
+        mulish: "var(--font-mulish), sans-serif",
+      },
     },
   },
   plugins: [],
