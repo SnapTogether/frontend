@@ -17,6 +17,6 @@ export default function FormPage() {
                 Snaptogether
             </div>
             <EventForm/>
-        </div>
+        </div> 
     );
 }
