@@ -5,7 +5,7 @@ export default function Homepage() {
 
     return (
         <div>
-            <Button variant="primary" onClick={() => console.log("Hello!")}>
+            <Button variant="primary">
                 Primary Button
             </Button>
         </div>

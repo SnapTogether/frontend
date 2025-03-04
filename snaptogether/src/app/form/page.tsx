@@ -1,7 +1,5 @@
 'use client'
-import Button from "@/components/Button/Button";
 import EventForm from "@/components/Form/Form";
-import { ParticlesBackground } from "@/components/ParticlesBackground/ParticlesBackground";
 import Gif from '../../../public/snaptogether.gif'
 import Image from "next/image";
 
