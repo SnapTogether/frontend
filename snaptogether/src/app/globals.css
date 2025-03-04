@@ -19,3 +19,42 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+h1,h2,h3,h4,h5,h6, label{
+  font-family: var(--font-mulish);
+  color: black;
+}
+ul li a{
+  text-decoration: none;
+}
+ul li a:hover{
+  text-decoration: underline;
+}
+
+@keyframes gradientAnimation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.gradient-background {
+  background: linear-gradient(270deg, #09203f, #3e5e77);
+  background-size: 400% 400%; /* Ensures smooth transition */
+  animation: gradientAnimation 10s ease infinite; /* Adjust speed */
+}
+
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.animate-typing {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  animation: typing 2s steps(15) forwards;
+}
