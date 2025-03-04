@@ -1,7 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import ConfettiBackground from "@/components/ConfettiBackground/FireworksBackground";
 import Button from "@/components/Button/Button";
 import Navbar from "@/components/Navbar/Navbar";
 import { PartyPopper } from "lucide-react";
