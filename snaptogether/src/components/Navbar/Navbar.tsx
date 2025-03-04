@@ -24,6 +24,11 @@ export default function Navbar() {
             Help
           </a>
         </li>
+        <li>
+          <a href="/contact" className="text-white hover:text-gray-300 transition">
+            Contact
+          </a>
+        </li>
       </ul>
 
       {/* ✅ Mobile Menu Button */}
@@ -37,7 +42,7 @@ export default function Navbar() {
 
       {/* ✅ Mobile Nav with Slide Down Animation */}
       <div
-        className={`sm:hidden bg-white/5 backdrop-blur-md absolute top-full left-0 w-full flex flex-col items-center space-y-4 py-4 transition-all duration-300 transform ${
+        className={`md:hidden bg-white/5 backdrop-blur-md absolute top-full left-0 w-full flex flex-col items-center space-y-4 py-4 transition-all duration-300 transform ${
           isOpen ? "translate-y-0 opacity-100" : "-translate-y-10 opacity-0 pointer-events-none"
         }`}
       >
@@ -67,6 +72,15 @@ export default function Navbar() {
               onClick={() => setIsOpen(false)}
             >
               Help
+            </a>
+          </li>
+          <li>
+            <a
+              href="/contact"
+              className="text-white hover:text-gray-300"
+              onClick={() => setIsOpen(false)}
+            >
+              Contact
             </a>
           </li>
         </ul>

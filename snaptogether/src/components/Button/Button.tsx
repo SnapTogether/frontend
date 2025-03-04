@@ -27,11 +27,11 @@ export default function Button({
   type = "button",
 }: ButtonProps) {
   const baseStyles =
-    "inline-flex items-center justify-center font-medium transition-all rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2";
+    "inline-flex items-center justify-center font-medium transition-all rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2";
 
   const variantStyles = {
     primary:
-      "bg-[rgba(120,128,181)] font-mulish rounded-full text-white hover:opacity-[90%] focus:ring-blue-500",
+      "bg-[rgba(120,128,181,0.2)] font-mulish rounded-full text-white hover:opacity-[90%] focus:ring-blue-500",
     secondary:
       "border border-blue-600 text-blue-600 hover:bg-blue-100 focus:ring-blue-500",
     tertiary: "text-blue-600 hover:underline focus:ring-blue-500",
@@ -39,7 +39,7 @@ export default function Button({
 
   const sizeStyles = {
     sm: "px-3 py-1 text-sm",
-    md: "px-4 py-2 text-base",
+    md: "px-4 py-2 text-lg",
     lg: "px-5 py-3 text-lg",
   };
 

@@ -1,5 +1,5 @@
 import Button from "@/components/Button/Button";
-import ConfettiBackground from "@/components/ConfettiBackground/ConfettiBackground";
+import ConfettiBackground from "@/components/ConfettiBackground/FireworksBackground";
 
 
 export default function Homepage() {

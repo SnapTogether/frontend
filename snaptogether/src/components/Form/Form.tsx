@@ -33,7 +33,7 @@ export default function EventForm() {
   return (
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 h-fit max-w-md w-full space-y-4 p-4 border rounded-lg shadow-md bg-white"
+        className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 h-fit max-w-md w-full space-y-4 p-6 rounded-lg shadow-md bg-white opacity-90"
       >
       <h2 className="text-xl font-mulish text-center">Create New Event</h2>
 
@@ -43,7 +43,7 @@ export default function EventForm() {
       <Input label="Event Name" {...register("eventName", { required: "Event name is required" })} error={errors.eventName?.message} />
       <Input label="Event Date" type="date" {...register("eventDate", { required: "Event date is required" })} error={errors.eventDate?.message} />
 
-      <Button type="submit" variant="primary" className="w-full">
+      <Button type="submit" variant="primary" className="w-full !bg-[rgba(120,128,181,1)]">
         Create Event
       </Button>
 
