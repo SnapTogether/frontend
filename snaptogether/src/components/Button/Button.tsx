@@ -9,7 +9,7 @@ type ButtonProps = {
   disabled?: boolean;
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   className?: string;
-  children: React.ReactNode;
+  children?: React.ReactNode;
   iconLeft?: React.ReactNode; // ✅ Left icon prop
   iconRight?: React.ReactNode; // ✅ Right icon prop
   type?: "button" | "submit" | "reset";
@@ -27,14 +27,14 @@ export default function Button({
   type = "button",
 }: ButtonProps) {
   const baseStyles =
-    "inline-flex items-center justify-center font-medium transition-all rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2";
+    "inline-flex items-center justify-center font-medium transition-all rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 ";
 
   const variantStyles = {
     primary:
-      "bg-[rgba(120,128,181,0.2)] font-mulish rounded-full text-white hover:opacity-[90%] focus:ring-blue-500",
+      "bg-[rgba(120,128,181,0.2)] font-mulish rounded-full text-white hover:opacity-[90%]  focus:ring-blue-500",
     secondary:
-      "border border-blue-600 text-blue-600 hover:bg-blue-100 focus:ring-blue-500",
-    tertiary: "text-blue-600 hover:underline focus:ring-blue-500",
+      "border border-blue-600 text-blue-600 focus:ring-slate-500",
+    tertiary: "bg-transparent text-blue-600 hover:underline hover:bg-transparent",
   };
 
   const sizeStyles = {
