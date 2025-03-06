@@ -8,6 +8,12 @@ export default function FireworksBackground() {
   const fireworksInstance = useRef<Fireworks | null>(null);
 
   useEffect(() => {
+    if (typeof document !== "undefined") {
+      // ✅ Now it's safe to use document
+    }
+  }, []);
+  
+  useEffect(() => {
     if (containerRef.current) {
       // Initialize fireworks
       fireworksInstance.current = new Fireworks(containerRef.current, {
