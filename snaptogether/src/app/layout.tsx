@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Rubik, Mulish, Fleur_De_Leah } from "next/font/google";
 import { PrimeReactProvider } from "primereact/api";
+import { Portal } from "@/components/Portal/Portal";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -29,7 +30,6 @@ const fleur_de_leah = Fleur_De_Leah({
   subsets: ["latin"],
 });
 
-
 export const metadata: Metadata = {
   title: "Snaptogether",
   description: "Create moments together",
@@ -46,10 +46,12 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </head>
-      <body className={`${fleur_de_leah.variable} ${mulish.variable}  ${geistSans.variable} ${rubik.variable} ${geistMono.variable} antialiased`}>
-        {/* ✅ Wrap the entire app with PrimeReactProvider */}
+      <body
+        className={`${fleur_de_leah.variable} ${mulish.variable} ${geistSans.variable} ${rubik.variable} ${geistMono.variable} antialiased`}
+      >
+        {/* ✅ Wrap the entire app inside Portal to prevent SSR issues */}
         <PrimeReactProvider>
-          {children}
+          <Portal>{children}</Portal>
         </PrimeReactProvider>
       </body>
     </html>
