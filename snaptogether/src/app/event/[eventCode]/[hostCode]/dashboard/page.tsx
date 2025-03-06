@@ -3,7 +3,11 @@
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { fetchEventForHost, EventResponse } from "@/api/event";
-import { QRCodeCanvas } from "qrcode.react"; // ✅ Import QR Code Generator
+import dynamic from "next/dynamic";
+const QRCodeCanvas = dynamic(async () => {
+  const mod = await import("qrcode.react");
+  return mod.QRCodeCanvas; // ✅ Correctly return named export
+}, { ssr: false });
 import Image from "next/image";
 import Button from "@/components/Button/Button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
