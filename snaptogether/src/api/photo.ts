@@ -8,12 +8,21 @@ export interface UploadResponse {
 // ✅ API Call: Upload Images for Guest
 export const uploadPhotosForGuest = async (
   eventCode: string,
-  guestId: string,
+  guestId: string, // ✅ Ensure guestId is required
   files: File[]
 ): Promise<UploadResponse> => {
   try {
+    if (!guestId) {
+      console.error("❌ Error: Guest ID is missing!");
+      return {
+        status: 400,
+        message: "❌ Guest ID is required for uploading.",
+        error: "Missing guestId",
+      };
+    }
+
     const formData = new FormData();
-    files.forEach((file) => formData.append("images", file)); // ✅ Ensure key matches backend field
+    files.forEach((file) => formData.append("images", file)); // ✅ Ensure key matches backend
 
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/api/photos/upload/${encodeURIComponent(eventCode)}/${encodeURIComponent(guestId)}`,
@@ -34,7 +43,6 @@ export const uploadPhotosForGuest = async (
         return { status: res.status, message: data.message, error: data.error };
       }
 
-      // ✅ Ensure response contains correct data
       return {
         status: res.status,
         message: data.message,
@@ -61,3 +69,4 @@ export const uploadPhotosForGuest = async (
     };
   }
 };
+

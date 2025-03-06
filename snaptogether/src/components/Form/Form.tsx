@@ -47,7 +47,7 @@ export default function EventForm() {
         Create Event
       </Button>
 
-      {eventResponse && <p className="text-sm text-center mt-2">{eventResponse}</p>}
+      {eventResponse && <p className="text-slate-700 text-sm text-center mt-2">{eventResponse}</p>}
     </form>
   );
 }
