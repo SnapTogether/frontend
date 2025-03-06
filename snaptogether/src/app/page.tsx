@@ -5,8 +5,7 @@ import Button from "@/components/Button/Button";
 import Navbar from "@/components/Navbar/Navbar";
 import { PartyPopper } from "lucide-react";
 import PageTransition from "@/components/PageTransition/PageTransition";
-// import dynamic from "next/dynamic";
-// const FireworksBackground = dynamic(() => import("@/components/ConfettiBackground/FireworksBackground"), { ssr: false });
+import FireworksBackground from "@/components/ConfettiBackground/FireworksBackground";
 
 export default function Home() {
   const router = useRouter();
@@ -38,7 +37,7 @@ export default function Home() {
         </Button>
       </div>
       {/* Background Particles */}
-      {/* <FireworksBackground  /> */}
+      <FireworksBackground  />
 
       {/* ✅ Loading animation with at least 2 seconds duration */}
       {transitioning && (
