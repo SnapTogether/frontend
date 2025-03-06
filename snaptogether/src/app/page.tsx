@@ -5,8 +5,8 @@ import Button from "@/components/Button/Button";
 import Navbar from "@/components/Navbar/Navbar";
 import { PartyPopper } from "lucide-react";
 import PageTransition from "@/components/PageTransition/PageTransition";
-import dynamic from "next/dynamic";
-const FireworksBackground = dynamic(() => import("@/components/ConfettiBackground/FireworksBackground"), { ssr: false });
+// import dynamic from "next/dynamic";
+// const FireworksBackground = dynamic(() => import("@/components/ConfettiBackground/FireworksBackground"), { ssr: false });
 
 export default function Home() {
   const router = useRouter();
