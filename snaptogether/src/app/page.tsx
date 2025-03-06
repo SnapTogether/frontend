@@ -38,7 +38,7 @@ export default function Home() {
         </Button>
       </div>
       {/* Background Particles */}
-      <FireworksBackground  />
+      {/* <FireworksBackground  /> */}
 
       {/* ✅ Loading animation with at least 2 seconds duration */}
       {transitioning && (
