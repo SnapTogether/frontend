@@ -5,7 +5,6 @@ const withPWA = require("next-pwa")({
   clientsClaim: true, // ✅ Correct placement
   skipWaiting: true, // ✅ Correct placement
   buildExcludes: [/middleware-manifest\.json$/, /.*\.gif$/],
-  experimental: { appDir: true }
 });
 
 /** @type {import('next').NextConfig} */
