@@ -27,13 +27,13 @@ export const verifyGuest = async (
       }
     );
 
-    const text = await res.text(); // ✅ Read response as text first
+    const text = await res.text(); // Read response as text first
 
     try {
       const data = JSON.parse(text);
       console.log("📨 Guest API Response:", data);
 
-      if (!res.ok || !data.guest) {
+      if (!res.ok) {
         console.error("❌ API Error:", data.message || "Guest not found.");
         return {
           status: res.status,
@@ -42,12 +42,21 @@ export const verifyGuest = async (
         };
       }
 
+      if (!data.guestId) {
+        console.warn("⚠️ Warning: Guest verification succeeded, but guestId is missing.");
+        return {
+          status: res.status,
+          message: "⚠️ Guest ID missing from response.",
+          error: "Guest data was not included in the response.",
+        };
+      }
+
       return {
         status: res.status,
         message: data.message,
         guest: {
-          guestId: data.guest._id, // ✅ Correctly map `_id` to `guestId`
-          guestName: data.guest.guestName,
+          guestId: data.guestId, // ✅ Corrected
+          guestName: guestName,  // ✅ Using input name since it's missing in response
         },
         photos: data.photos?.map((photo: { _id: string; imageUrl: string }) => ({
           photoId: photo._id, // ✅ Ensure proper mapping
