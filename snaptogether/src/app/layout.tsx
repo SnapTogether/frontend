@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Rubik, Mulish, Fleur_De_Leah } from "next/font/google";
+import { Geist, Geist_Mono, Rubik, Mulish, Fleur_De_Leah, Gochi_Hand } from "next/font/google";
 import { PrimeReactProvider } from "primereact/api";
 import { Portal } from "@/components/Portal/Portal";
 import "./globals.css";
@@ -22,6 +22,12 @@ const rubik = Rubik({
 const mulish = Mulish({
   variable: "--font-mulish",
   subsets: ["latin"],
+});
+
+const gochi_hand = Gochi_Hand({
+    weight: "400",
+    variable: "--font-gochi-hand",
+    subsets: ["latin"],
 });
 
 const fleur_de_leah = Fleur_De_Leah({
@@ -47,7 +53,7 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" />
       </head>
       <body
-        className={`${fleur_de_leah.variable} ${mulish.variable} ${geistSans.variable} ${rubik.variable} ${geistMono.variable} antialiased`}
+        className={`${gochi_hand.variable} ${fleur_de_leah.variable} ${mulish.variable} ${geistSans.variable} ${rubik.variable} ${geistMono.variable} antialiased`}
       >
         {/* ✅ Wrap the entire app inside Portal to prevent SSR issues */}
         <PrimeReactProvider>

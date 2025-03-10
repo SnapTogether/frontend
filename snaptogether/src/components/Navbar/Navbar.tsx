@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { Menu, X } from "lucide-react"; // X icon for closing menu
+import Link from "next/link";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -10,19 +11,22 @@ export default function Navbar() {
       {/* ✅ Desktop Nav */}
       <ul className="hidden md:flex space-x-6 text-lg gap-8 mb-0">
         <li>
-          <a href="/about" className="text-white hover:text-gray-300 transition">
+          <Link href="/" className="text-white hover:text-gray-300 transition">
+            Home
+          </Link>
+          <Link href="/about" className="text-white hover:text-gray-300 transition">
             About Us
-          </a>
+          </Link>
         </li>
         <li>
-          <a href="/pricing" className="text-white hover:text-gray-300 transition">
+          <Link href="/pricing" className="text-white hover:text-gray-300 transition">
             Pricing
-          </a>
+          </Link>
         </li>
         <li>
-          <a href="/help" className="text-white hover:text-gray-300 transition">
+          <Link href="/help" className="text-white hover:text-gray-300 transition">
             Help
-          </a>
+          </Link>
         </li>
         <li>
           <a href="/contact" className="text-white hover:text-gray-300 transition">
@@ -48,40 +52,40 @@ export default function Navbar() {
       >
         <ul className="flex flex-col items-center text-white space-y-4 p-0">
           <li>
-            <a
+            <Link
               href="/about"
               className="text-white hover:text-gray-300"
               onClick={() => setIsOpen(false)}
             >
               About Us
-            </a>
+            </Link>
           </li>
           <li>
-            <a
+            <Link
               href="/pricing"
               className="text-white hover:text-gray-300"
               onClick={() => setIsOpen(false)}
             >
               Pricing
-            </a>
+            </Link>
           </li>
           <li>
-            <a
+            <Link
               href="/help"
               className="text-white hover:text-gray-300"
               onClick={() => setIsOpen(false)}
             >
               Help
-            </a>
+            </Link>
           </li>
           <li>
-            <a
+            <Link
               href="/contact"
               className="text-white hover:text-gray-300"
               onClick={() => setIsOpen(false)}
             >
               Contact
-            </a>
+            </Link>
           </li>
         </ul>
       </div>

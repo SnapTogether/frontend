@@ -58,12 +58,12 @@ export default function Button({
       type={type}
     >
       {/* ✅ Left Icon */}
-      {iconLeft && <span className="mr-2">{iconLeft}</span>}
+      {iconLeft && <span className={clsx(children && "mr-2")}>{iconLeft}</span>}
       
       {children}
       
       {/* ✅ Right Icon */}
-      {iconRight && <span className="ml-2">{iconRight}</span>}
+      {iconRight && <span className={clsx(children && "ml-2")}>{iconRight}</span>}
     </button>
   );
 }
