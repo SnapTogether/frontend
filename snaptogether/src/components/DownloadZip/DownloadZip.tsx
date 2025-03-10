@@ -18,7 +18,8 @@ export default function DownloadZip({ eventCode }: DownloadZipProps) {
     try {
       await downloadPhotosForGuest(eventCode); // ✅ Correct function call
     } catch (err) {
-      setError("❌ Failed to download ZIP file.");
+        console.error("❌ ZIP Download Error:", err);
+        setError("❌ Failed to download ZIP file.");
     }
 
     setLoading(false);

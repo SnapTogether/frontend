@@ -1,7 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import Button from "@/components/Button/Button";
 import Navbar from "@/components/Navbar/Navbar";
 import { PartyPopper } from "lucide-react";
