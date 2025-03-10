@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { downloadPhotosForGuest } from "@/api/photo";
+import Button from "../Button/Button";
 
 interface DownloadZipProps {
   eventCode: string; // ✅ Accepts eventCode as a prop
@@ -27,13 +28,14 @@ export default function DownloadZip({ eventCode }: DownloadZipProps) {
 
   return (
     <div className="flex flex-col items-center gap-4">
-      <button
+      <Button
+      variant="tertiary"
         onClick={handleDownload}
         disabled={loading}
         className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 disabled:bg-gray-400"
       >
         {loading ? "Generating ZIP..." : "Download ZIP"}
-      </button>
+      </Button>
       {error && <p className="text-red-500">{error}</p>}
     </div>
   );
