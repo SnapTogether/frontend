@@ -34,7 +34,7 @@ export default function Upload({ eventCode, guestId }: { eventCode: string; gues
   };
 
   return (
-    <div className="p-4 border rounded-lg shadow-md max-w-lg mx-auto space-y-4">
+    <div className="w-full p-4 border rounded-lg shadow-md mx-auto space-y-4">
       <h2 className="text-lg font-semibold">📤 Upload Photos</h2>
       <input type="file" multiple accept="image/*" onChange={handleFileChange} className="hidden" id="file-upload" />
       <label htmlFor="file-upload" className="flex items-center justify-center w-full p-3 border border-dashed cursor-pointer rounded-md hover:bg-gray-100">

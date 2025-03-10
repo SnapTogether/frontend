@@ -85,15 +85,19 @@ export interface EventResponse {
     hostLink: string;
     guestLink: string;
     guests: Guest[];
+    pagination: {
+      totalPages: number;
+    };
     photos: Photo[]; // ✅ Define as array of objects, not strings
   };
   error?: string;
 }
 
-// ✅ API Call: Fetch Event Details for Host
 export const fetchEventForHost = async (
   eventCode: string,
-  hostCode: string
+  hostCode: string,
+  page: number = 1,  // Default: page 1
+  limit: number = 3 // Default: 20 photos per request
 ): Promise<EventResponse> => {
   try {
     const baseUrl = process.env.NEXT_PUBLIC_SERVER_BASE_URL;
@@ -107,11 +111,10 @@ export const fetchEventForHost = async (
       };
     }
 
-    const apiUrl = `${baseUrl}/api/event/${eventCode}/${hostCode}/dashboard`;
+    // ✅ Include `page` and `limit` in the API request
+    const apiUrl = `${baseUrl}/api/event/${eventCode}/${hostCode}/dashboard?page=${page}&limit=${limit}`;
 
     const res = await fetch(apiUrl);
-
-    // ✅ Log raw response before parsing JSON
     const text = await res.text();
 
     try {
@@ -145,3 +148,4 @@ export const fetchEventForHost = async (
     };
   }
 };
+

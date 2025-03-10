@@ -10,6 +10,9 @@ export default function Navbar() {
       {/* ✅ Desktop Nav */}
       <ul className="hidden md:flex space-x-6 text-lg gap-8 mb-0">
         <li>
+          <a href="/" className="text-white hover:text-gray-300 transition">
+            Home
+          </a>
           <a href="/about" className="text-white hover:text-gray-300 transition">
             About Us
           </a>
