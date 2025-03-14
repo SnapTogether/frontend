@@ -98,6 +98,7 @@ export default function GuestDashboard() {
                   {guestData.photos.map((photo, index) => (
                     <div key={photo.photoId} className="snap-center flex-shrink-0">
                       <Image
+                        key={index}
                         src={photo.imageUrl}
                         alt="Guest Upload"
                         width={300}

@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { uploadPhotosForGuest } from "@/api/photo";
-import Image from "next/image";
 
 export default function Upload({
   eventCode,
@@ -12,7 +11,6 @@ export default function Upload({
   onPhotosUploaded: (newPhotos: string[]) => void; // ✅ Callback prop
 }) {
   const [loading, setLoading] = useState(false);
-  const [uploadedPhotos, setUploadedPhotos] = useState<string[]>([]);
 
   console.log("📤 Upload Component: Event Code:", eventCode, "Guest ID:", guestId);
 
@@ -34,7 +32,6 @@ export default function Upload({
 
     if (response.status === 201) {
       const newPhotoUrls = response.photos!.map((photo) => photo.imageUrl);
-      setUploadedPhotos((prev) => [...prev, ...newPhotoUrls]);
 
       onPhotosUploaded(newPhotoUrls); // ✅ Update parent component
     } else {
