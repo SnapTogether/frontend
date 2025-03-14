@@ -15,7 +15,7 @@ interface PhotoGalleryProps {
 
 const PhotoGallery: React.FC<PhotoGalleryProps> = ({ photos }) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const photosPerPage = 6; // Adjusted to fit the Masonry layout
+  const photosPerPage = 20; // Adjusted to fit the Masonry layout
   const totalPages = Math.ceil(photos.length / photosPerPage);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -62,14 +62,15 @@ const PhotoGallery: React.FC<PhotoGalleryProps> = ({ photos }) => {
       </h3>
       {photos.length > 0 ? (
         <>
-          {/* ✅ Masonry Grid Layout */}
+          {/* ✅ Masonry Grid Layout with Repeating Pattern */}
           <div className="grid grid-cols-12 gap-2 mt-2">
             {currentPhotos.map((photo, index) => {
-              let colSpan = "col-span-12 sm:col-span-4"; // Default to 4 cols
+              const row = Math.floor(index / 3); // Every 3 images form a new row
+              let colSpan = "col-span-12 sm:col-span-4"; // Default 4-column layout
 
-              if (index >= 3) {
-                // Second Row Custom Layout
-                colSpan = index === 3 ? "col-span-12 sm:col-span-2" : "col-span-12 sm:col-span-5";
+              if (row % 2 === 1) {
+                // ✅ Second row (Repeating every 2 rows)
+                colSpan = index % 3 === 0 ? "col-span-12 sm:col-span-2" : "col-span-12 sm:col-span-5";
               }
 
               return (
