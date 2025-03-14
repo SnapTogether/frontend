@@ -24,7 +24,7 @@ export default function HostDashboard() {
   const [eventData, setEventData] = useState<EventResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string>("");
-  const [currentPage, setCurrentPage] = useState(1);
+  const currentPage = 1;
   const photosPerPage = 20;
 
   useEffect(() => {

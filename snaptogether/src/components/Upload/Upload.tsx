@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { uploadPhotosForGuest } from "@/api/photo";
 import Image from "next/image";
-import Button from "../Button/Button";
 
 export default function Upload({ eventCode, guestId }: { eventCode: string; guestId: string }) {
   const [loading, setLoading] = useState(false);
