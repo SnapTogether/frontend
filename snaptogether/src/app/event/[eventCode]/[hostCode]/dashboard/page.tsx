@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { fetchEventForHost, EventResponse } from "@/api/event";
-import dynamic from "next/dynamic";
 import Image from "next/image";
 import Button from "@/components/Button/Button";
 import { BadgeInfo, Calendar, Mail, SmilePlus } from "lucide-react";
