@@ -34,11 +34,14 @@ export default function Upload({ eventCode, guestId }: { eventCode: string; gues
   };
 
   return (
-    <div className="w-full p-4 border rounded-lg shadow-md mx-auto space-y-4">
-      <h2 className="text-lg font-semibold">📤 Upload Photos</h2>
+    <div className="w-full border rounded-lg shadow-md mx-auto space-y-4">
       <input type="file" multiple accept="image/*" onChange={handleFileChange} className="hidden" id="file-upload" />
-      <label htmlFor="file-upload" className="flex items-center justify-center w-full p-3 border border-dashed cursor-pointer rounded-md hover:bg-gray-100">
-        <span className="text-gray-600">{loading ? "Uploading..." : "Choose Images"}</span>
+      <label
+        htmlFor="file-upload"
+        className="text-md font-medium flex items-center justify-center w-full cursor-pointer rounded-md !m-0 p-4 
+                      bg-transparent hover:bg-white transition-all duration-300 ease-in-out"
+      >
+        <span className="w-full h-full !rounded-none">{loading ? "Uploading..." : "Choose Images"}</span>
       </label>
 
       {uploadedPhotos.length > 0 && (

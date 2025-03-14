@@ -4,11 +4,20 @@ export interface Guest {
   guestName: string;
 }
 
+export interface GuestPhoto {
+  _id: string;  // ✅ Ensure _id exists
+  photoId: string;
+
+  imageUrl: string;
+}
+
+
 export interface GuestResponse {
   status: number;
   message: string;
+  guestName?: string;
   guest?: Guest;
-  photos?: { photoId: string; imageUrl: string }[];
+  photos?: GuestPhoto[];
   error?: string;
 }
 
@@ -77,6 +86,65 @@ export const verifyGuest = async (
     return {
       status: 500,
       message: "❌ Error verifying guest.",
+      error: (error as Error).message || "Network error occurred.",
+    };
+  }
+};
+
+export const fetchGuestPhotos = async (
+  eventCode: string,
+  guestId: string
+): Promise<GuestResponse> => {
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/api/guest/${eventCode}/${guestId}/photos`,
+      {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+      }
+    );
+
+    const text = await res.text(); // Read response as text first
+
+    try {
+      const data = JSON.parse(text);
+      console.log("📨 Fetch Guest Photos API Response:", data);
+
+      if (!res.ok) {
+        console.error("❌ API Error:", data.message || "Failed to fetch guest photos.");
+        return {
+          status: res.status,
+          message: data.message || "Failed to fetch guest photos.",
+          error: "Error retrieving guest photos.",
+        };
+      }
+
+      return {
+        status: res.status,
+        message: data.message,
+        guest: {
+          guestId: guestId, // ✅ Using provided guestId
+          guestName: data.guestName || "", // ✅ If guestName is not included, default to empty
+        },
+        photos: data.photos?.map((photo: { _id: string; imageUrl: string }) => ({
+          photoId: photo._id,
+          imageUrl: photo.imageUrl,
+        })) || [],
+      };
+    } catch (jsonError) {
+      console.error("❌ JSON Parse Error:", jsonError);
+      console.error("📨 Raw Response (Not JSON):", text);
+      return {
+        status: 500,
+        message: "❌ Invalid JSON response from server.",
+        error: text,
+      };
+    }
+  } catch (error) {
+    console.error("❌ Network/Server Error:", (error as Error).message);
+    return {
+      status: 500,
+      message: "❌ Error fetching guest photos.",
       error: (error as Error).message || "Network error occurred.",
     };
   }

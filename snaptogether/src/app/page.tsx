@@ -22,7 +22,7 @@ export default function Home() {
   };
 
   return (
-    <div className="relative h-screen w-screen gradient-background">
+    <div className="relative h-screen w-screen home-background">
       <Navbar />
       {/* Centered Content */}
       <div className="absolute flex flex-col gap-6 items-center justify-center h-fit top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
