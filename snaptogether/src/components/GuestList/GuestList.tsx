@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Button from "@/components/Button/Button";
-import { ContactRound } from "lucide-react";
+import { ContactRound, Users } from "lucide-react";
 import Link from "next/link";
 
 interface Guest {
@@ -24,7 +24,7 @@ const GuestList: React.FC<GuestListProps> = ({ guests, eventCode }) => {
 
   return (
     <div className="guests text-center flex flex-col gap-4 w-full">
-      <h3 className="text-white text-2xl md:text-3xl font-semibold">👥 Guests</h3>
+      <h3 className="text-white text-2xl md:text-2xl font-semibold flex flex-row items-center justify-center gap-3"><Users size={20} /> Guests</h3>
       {guests.length > 0 ? (
         <>
           <ul className="w-full mx-auto container border border-slate-500/50 rounded-lg overflow-hidden">

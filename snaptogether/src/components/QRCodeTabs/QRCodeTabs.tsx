@@ -21,7 +21,7 @@ export default function QRCodeTabs({ eventData }: { eventData: EventData }) {
             <div className="flex w-full justify-around max-w-[50vh]">
                 <Button
                     className={`px-4 py-2 text-lg font-medium transition-all duration-300 ease-in-out ${
-                        activeTab === "host" ? " text-white" : "text-gray-500"
+                        activeTab === "host" ? " !text-white" : "!text-gray-500"
                     }`}
                     onClick={() => setActiveTab("host")}
                 >
@@ -29,7 +29,7 @@ export default function QRCodeTabs({ eventData }: { eventData: EventData }) {
                 </Button>
                 <Button
                     className={`px-4 py-2 text-lg font-medium transition-all duration-300 ease-in-out ${
-                        activeTab === "guest" ? " text-white" : "text-gray-500"
+                        activeTab === "guest" ? " !text-white" : "!text-gray-500"
                     }`}
                     onClick={() => setActiveTab("guest")}
                 >
