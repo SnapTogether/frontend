@@ -46,7 +46,7 @@ ul li a:hover{
   z-index: 1;
 }
 
-/* ✅ Create a semi-transparent background layer */
+/* ✅ Create a semi-transparent background layer with fade-in animation */
 .home-background::before {
   content: "";
   position: absolute;
@@ -54,12 +54,23 @@ ul li a:hover{
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('/bg1.jpg'); /* ✅ Use correct Next.js public path */
+  background: linear-gradient(to top, rgb(0 0 0 / 30%) 0%, rgb(0 0 0 / 50%) 100%), url(/home-bg.jpg);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  opacity: 0.6; /* ✅ Adjust transparency */
-  z-index: -1; /* ✅ Ensures background stays behind content */
+  z-index: -1;
+  animation: fadeInBg 1.5s ease-in-out forwards;
+}
+
+
+/* ✅ Keyframes for fade-in effect */
+@keyframes fadeInBg {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.6; /* Adjust transparency */
+  }
 }
 
 @keyframes typing {

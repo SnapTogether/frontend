@@ -25,7 +25,7 @@ export default function Home() {
     <div className="relative h-screen w-screen home-background">
       <Navbar />
       {/* Centered Content */}
-      <div className="absolute flex flex-col gap-6 items-center justify-center h-fit top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+      <div className="absolute flex flex-col gap-3 items-center justify-center h-fit top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
         <div className="logo flex flex-col items-center justify-center">
         <motion.div
           className="logo flex flex-col items-center justify-center"

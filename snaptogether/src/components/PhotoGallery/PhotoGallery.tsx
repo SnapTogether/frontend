@@ -57,7 +57,7 @@ const PhotoGallery: React.FC<PhotoGalleryProps> = ({ photos }) => {
 
   return (
     <div className="photos text-center container mx-auto">
-      <h3 className="text-white text-xl md:text-3xl font-semibold my-6 flex items-center justify-center gap-4 capitalize" style={{ fontFamily: "var(--font-gochi-hand)" }}>
+      <h3 className="text-white text-xl md:text-2xl font-semibold my-6 flex items-center justify-center gap-3 capitalize font-mulish">
         <Images size={20} /> Gallery
       </h3>
       {photos.length > 0 ? (
