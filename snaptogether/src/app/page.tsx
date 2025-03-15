@@ -25,7 +25,7 @@ export default function Home() {
     <div className="relative h-screen w-screen home-background">
       <Navbar />
       {/* Centered Content */}
-      <div className="absolute flex flex-col gap-3 items-center justify-center h-fit top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+      <div className="absolute z-20 flex flex-col gap-3 items-center justify-center h-fit top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
         <div className="logo flex flex-col items-center justify-center">
         <motion.div
           className="logo flex flex-col items-center justify-center"
@@ -35,7 +35,7 @@ export default function Home() {
         >
           <Image src={Logo} alt="logo" width={150} />
           <motion.h1
-            className="logo-footer select-none text-center text-[40px] sm:text-[46px] rounded-md m-0 bg-gradient-to-b from-white to-[#68838C] bg-clip-text text-transparent"
+            className="logo-footer select-none text-center text-white text-[40px] sm:text-[46px] rounded-md m-0 bg-gradient-to-b from-white to-[#68838C] bg-clip-text text-transparent"
             style={{ fontFamily: "var(--font-gochi-hand)" }}
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
