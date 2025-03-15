@@ -58,7 +58,7 @@ ul li a:hover{
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  z-index: -1;
+  z-index: -10;
   animation: fadeInBg 1.5s ease-in-out forwards;
 }
 
