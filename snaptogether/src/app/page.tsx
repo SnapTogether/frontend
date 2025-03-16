@@ -25,7 +25,7 @@ export default function Home() {
     <div className="relative h-screen w-screen home-background">
       <Navbar />
       {/* Centered Content */}
-      <div className="absolute z-20 flex flex-col gap-3 items-center justify-center h-fit top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+      <div className="absolute flex flex-col gap-3 items-center justify-center h-fit top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
         <div className="logo flex flex-col items-center justify-center">
         <motion.div
           className="logo flex flex-col items-center justify-center"
@@ -65,7 +65,7 @@ export default function Home() {
 
       {/* ✅ Loading animation with at least 2 seconds duration */}
       {transitioning && (
-        <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center">
+        <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center z-10">
           <PageTransition />
         </div>
       )}
