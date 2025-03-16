@@ -63,7 +63,7 @@ export default function HostDashboard() {
       <Navbar />
       <div className="relative mt-20 flex flex-col items-center gap-8 p-6">
         <DownloadZip className="absolute top-0 right-[10%]" eventCode={eventCode} />
-        <h2 className="flex flex-row items-center justify-center gap-3 text-white text-center text-3xl font-semibold"><PartyPopper size={20}/> Host Dashboard for <b>{eventData?.event?.eventName}</b></h2>
+        <h2 className="flex flex-col sm:flex-row items-center justify-center gap-3 text-white text-center text-xl sm:text-3xl font-semibold"><PartyPopper size={20}/> Host Dashboard for <b>{eventData?.event?.eventName}</b></h2>
         <div className="event-info relative rounded-lg bg-gray-800 w-full text-center flex flex-col items-start text-white max-w-[21em] gap-3">
           <Image src={CardImg} alt="logo" className="rounded-t-lg h-[10em] object-cover" />
           <h3 className="flex gap-3 font-bold text-lg text-white px-5"><BadgeInfo/> Event Details</h3>
