@@ -1,14 +1,15 @@
 import { useState } from "react";
+import imageCompression from "browser-image-compression"; // ✅ Install via `npm install browser-image-compression`
 import { uploadPhotosForGuest } from "@/api/photo";
 
 export default function Upload({
   eventCode,
   guestId,
-  onPhotosUploaded, // ✅ Callback function
+  onPhotosUploaded,
 }: {
   eventCode: string;
   guestId: string;
-  onPhotosUploaded: (newPhotos: string[]) => void; // ✅ Callback prop
+  onPhotosUploaded: (newPhotos: string[]) => void;
 }) {
   const [loading, setLoading] = useState(false);
 
@@ -27,12 +28,27 @@ export default function Upload({
     }
 
     setLoading(true);
-    const response = await uploadPhotosForGuest(eventCode, guestId, Array.from(files));
+
+    // ✅ Optimize images before upload
+    const optimizedImages = await Promise.all(
+      Array.from(files).map(async (file) => {
+        const options = {
+          maxSizeMB: 1, // Max size: 1MB
+          maxWidthOrHeight: 1080, // Resize if larger than 1080px
+          useWebWorker: true, // Speed up compression
+          fileType: "image/webp", // Convert to WebP
+        };
+        return await imageCompression(file, options);
+      })
+    );
+
+    console.log("✅ Optimized Images Ready to Upload:", optimizedImages);
+
+    const response = await uploadPhotosForGuest(eventCode, guestId, optimizedImages);
     setLoading(false);
 
     if (response.status === 201) {
       const newPhotoUrls = response.photos!.map((photo) => photo.imageUrl);
-
       onPhotosUploaded(newPhotoUrls); // ✅ Update parent component
     } else {
       alert("❌ Upload failed. Try again!");
@@ -49,7 +65,6 @@ export default function Upload({
       >
         <span className="w-full h-full !rounded-none">{loading ? "Uploading..." : "Choose Images"}</span>
       </label>
-
     </div>
   );
 }
