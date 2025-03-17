@@ -1,6 +1,6 @@
 "use client";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useRouter, usePathname } from "next/navigation";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Button from "@/components/Button/Button";
 import Navbar from "@/components/Navbar/Navbar";
@@ -8,25 +8,30 @@ import { PartyPopper } from "lucide-react";
 import PageTransition from "@/components/PageTransition/PageTransition";
 import FireworksBackground from "@/components/ConfettiBackground/FireworksBackground";
 import Image from "next/image";
-import Logo from '../../public/snaptogether-logo.png'
+import Logo from "../../public/snaptogether-logo.png";
 
 export default function Home() {
   const router = useRouter();
+  const pathname = usePathname(); // ✅ Detects when route changes
   const [transitioning, setTransitioning] = useState(false);
 
   const handleNavigation = () => {
-    setTransitioning(true); // Start transition
-    setTimeout(() => {
-      router.push("/form");
-    }, 1000); // ✅ Ensure at least 2 seconds before navigating
+    setTransitioning(true); // ✅ Start transition
+    router.push("/form"); // ✅ Navigate to /form
   };
+
+  // ✅ End transition when the pathname updates to `/form`
+  useEffect(() => {
+    if (pathname === "/form") {
+      setTransitioning(false);
+    }
+  }, [pathname]);
 
   return (
     <div className="relative h-screen w-screen home-background">
       <Navbar />
       {/* Centered Content */}
       <div className="absolute flex flex-col gap-3 items-center justify-center h-fit top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-        <div className="logo flex flex-col items-center justify-center">
         <motion.div
           className="logo flex flex-col items-center justify-center"
           initial={{ opacity: 0, scale: 0.8 }}
@@ -44,7 +49,7 @@ export default function Home() {
             Snaptogether
           </motion.h1>
         </motion.div>
-        </div>
+
         <motion.p
           className="font-mulish text-slate-200 text-lg rounded-md m-0 text-center"
           initial={{ opacity: 0, y: 10 }}
@@ -56,19 +61,21 @@ export default function Home() {
             <i>SnapTogether</i>
           </b>.
         </motion.p>
-        <Button variant="primary" iconRight={<PartyPopper size={20} />} onClick={handleNavigation}>
+
+        <Button
+          variant="primary"
+          className="!bg-[rgba(120,128,181,0.4)]"
+          iconRight={<PartyPopper size={20} />}
+          onClick={handleNavigation}
+        >
           Get Started
         </Button>
       </div>
       {/* Background Particles */}
-      <FireworksBackground  />
+      <FireworksBackground />
 
-      {/* ✅ Loading animation with at least 2 seconds duration */}
-      {transitioning && (
-        <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center z-10">
-          <PageTransition />
-        </div>
-      )}
+      {/* ✅ Show transition until `/form` is fully loaded */}
+      {transitioning && <PageTransition show={transitioning} />}
     </div>
   );
 }

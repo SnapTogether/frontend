@@ -25,7 +25,7 @@ export default function Navbar() {
   }, [lastScrollY]);
 
   return (
-    <div className="w-full">
+    <div className="w-full h-full max-h-[10vh]">
       <nav
         className={`container mx-auto border-b border-white/20 fixed top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/ w-full p-4 z-50 transition-transform duration-300 ${
           isScrollingUp ? "translate-y-0" : "-translate-y-full"
