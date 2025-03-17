@@ -103,7 +103,7 @@ export default function GuestDashboard() {
                         alt="Guest Upload"
                         width={300}
                         height={300}
-                        className="rounded-md shadow-md object-cover !h-full w-full object-cover"
+                        className="rounded-md shadow-md max-h-[30vh] !h-full w-full object-cover"
                         loading="lazy"
                         decoding="async"
                       />
