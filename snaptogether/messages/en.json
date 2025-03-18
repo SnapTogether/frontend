@@ -1,0 +1,44 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About Us",
+    "pricing": "Pricing",
+    "help": "Help",
+    "contact": "Contact"
+  },
+  "home": {
+    "everyMomentMatters": "Every moment matters.",
+    "getStarted": "Get Started"
+  },
+  "eventForm": {
+    "title": "Create New Event",
+    "name": "Name",
+    "surname": "Surname",
+    "email": "Email",
+    "eventName": "Event Name",
+    "eventDate": "Event Date",
+    "nameRequired": "Name is required",
+    "surnameRequired": "Surname is required",
+    "emailRequired": "Email is required",
+    "eventNameRequired": "Event name is required",
+    "eventDateRequired": "Event date is required",
+    "createEvent": "Create Event",
+    "failedMessage": "❌ Failed to create event. Please try again."
+  },
+  "dashboard": {
+    "title": "Host Dashboard for",
+    "subtitle": "Event Details"
+  },
+  "zipBtn":{
+    "title":"Download ZIP",
+    "subtitle": "Generating ZIP..."
+  },
+  "qrBtn": {
+    "host": "Host QR Code",
+    "guest": "Guest QR Code"
+  },
+  "photoGallery": {
+    "title": "Gallery",
+    "noPhotos": "No photos have been uploaded yet."
+  }
+}

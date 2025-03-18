@@ -1,0 +1,44 @@
+{
+  "nav": {
+    "home": "Дома",
+    "about": "За нас",
+    "pricing": "Цени",
+    "help": "Помош",
+    "contact": "Контакт"
+  },
+  "home": {
+    "everyMomentMatters": "Секој момент е важен.",
+    "getStarted": "Започни"
+  },
+  "eventForm": {
+    "title": "Креирај нов настан",
+    "name": "Име",
+    "surname": "Презиме",
+    "email": "Е-пошта",  
+    "eventName": "Име на настанот",
+    "eventDate": "Датум на настанот",
+    "nameRequired": "Името е задолжително",
+    "surnameRequired": "Презимето е задолжително",
+    "emailRequired": "Е-поштата е задолжителна",
+    "eventNameRequired": "Името на настанот е задолжително",
+    "eventDateRequired": "Датумот на настанот е задолжителен",
+    "createEvent": "Креирај настан",
+    "failedMessage": "❌ Не успеа да се креира настан. Обиди се повторно."
+  },
+  "dashboard": {
+    "title": "Почетна страна за домаќинот",
+    "subtitle": "Детали за настанот"
+  },
+  "zipBtn": {
+    "title": "Превземи ZIP",
+    "subtitle": "Генерирање ZIP..."
+  },
+  "qrBtn": {
+    "host": "QR код за домаќинот",
+    "guest": "QR код за гостите"
+  },
+  "photoGallery": {
+    "title": "Галерија",
+    "noPhotos": "Сè уште нема поставени фотографии."
+  }
+}

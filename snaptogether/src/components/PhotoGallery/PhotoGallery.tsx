@@ -3,6 +3,7 @@ import Image from "next/image";
 import Button from "../Button/Button";
 import { ChevronLeft, ChevronRight, Images } from "lucide-react";
 import Lightbox from "@/components/Lightbox/Lightbox";
+import { useTranslations } from "next-intl";
 
 interface Photo {
   _id: string;
@@ -55,10 +56,12 @@ const PhotoGallery: React.FC<PhotoGalleryProps> = ({ photos }) => {
     }
   };
 
+  const t = useTranslations("photoGallery");
+
   return (
     <div className="photos text-center container mx-auto">
       <h3 className="text-white text-xl md:text-2xl font-semibold my-6 flex items-center justify-center gap-3 capitalize font-mulish">
-        <Images size={20} /> Gallery
+        <Images size={20} /> {t("title")}
       </h3>
       {photos.length > 0 ? (
         <>
@@ -109,7 +112,7 @@ const PhotoGallery: React.FC<PhotoGalleryProps> = ({ photos }) => {
           </div>
         </>
       ) : (
-        <p className="mt-2 text-gray-400">No photos have been uploaded yet.</p>
+        <p className="mt-2 text-gray-400">{t("noPhotos")}</p>
       )}
 
       {/* ✅ Lightbox Component */}

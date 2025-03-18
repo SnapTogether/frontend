@@ -3,6 +3,10 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
+import {useTranslations} from 'next-intl';
+import LanguageSwitcher from "../LanguageSwitcher/LanguageSwitcher";
+import Logo from "../../../public/snaptogether-logo.png";
+import Image from "next/image";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -24,6 +28,8 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
 
+  const t = useTranslations('nav');
+
   return (
     <div className="w-full h-full max-h-[10vh]">
       <nav
@@ -31,39 +37,39 @@ export default function Navbar() {
           isScrollingUp ? "translate-y-0" : "-translate-y-full"
         }`}
       >
-        <div className="flex flex-col sm:flex-row items-center justify-center">
+        <div className="flex flex-row md:flex-row-reverse md:gap-12 items-center justify-center">
           {/* ✅ Desktop Nav */}
           <ul className="hidden md:flex space-x-6 text-lg gap-8 mb-0">
             <li>
               <Link href="/" className="text-white hover:text-gray-300 transition">
-                Home
+                {t('home')}
               </Link>
             </li>
             <li>
               <Link href="/about" className="text-white hover:text-gray-300 transition">
-                About Us
+                {t('about')}
               </Link>
             </li>
             <li>
               <Link href="/pricing" className="text-white hover:text-gray-300 transition">
-                Pricing
+                {t('pricing')}
               </Link>
             </li>
             <li>
               <Link href="/help" className="text-white hover:text-gray-300 transition">
-                Help
+                {t('help')}
               </Link>
             </li>
             <li>
               <Link href="/contact" className="text-white hover:text-gray-300 transition">
-                Contact
+                {t('contact')}
               </Link>
             </li>
           </ul>
-
+          <Image src={Logo} alt="logo" width={32} />
           {/* ✅ Mobile Menu Button */}
           <button
-            className="md:hidden p-2"
+            className="md:hidden p-2 ml-auto"
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle Menu"
           >
@@ -73,18 +79,28 @@ export default function Navbar() {
 
         {/* ✅ Mobile Nav with Slide Down Animation */}
         <div
-          className={`md:hidden bg-slate-900/60 backdrop-blur-3xl absolute top-full left-0 w-full flex flex-col items-center space-y-4 py-4 transition-all duration-300 transform ${
-            isOpen ? "translate-y-0 opacity-100" : "-translate-y-10 opacity-0 pointer-events-none"
+          className={`md:hidden h-[100vh] bg-slate-900/60 backdrop-blur-3xl absolute top-0 right-0 w-full flex flex-col items-center space-y-4 py-4 transition-all duration-300 transform ${
+            isOpen ? "translate-x-0 opacity-100" : "translate-x-full opacity-0 pointer-events-none"
           }`}
-        >
-          <ul className="flex flex-col items-center text-white space-y-4 p-0">
+        > 
+          <section className="w-full px-4 flex flex-row sm:flex-row items-center justify-between">
+            <Image src={Logo} alt="logo" width={32} />
+            <button
+              className="md:hidden p-2 ml-auto"
+              onClick={() => setIsOpen(!isOpen)}
+              aria-label="Toggle Menu"
+            >
+              {isOpen ? <X size={28} className="text-white" /> : <Menu size={28} className="text-white" />}
+            </button>
+          </section>
+          <ul className="flex flex-col items-center justify-start gap-3 h-full text-white space-y-4 p-0">
             <li>
               <Link
                 href="/"
                 className="text-white hover:text-gray-300"
                 onClick={() => setIsOpen(false)}
               >
-                Home
+                {t('home')}
               </Link>
             </li>
             <li>
@@ -93,7 +109,7 @@ export default function Navbar() {
                 className="text-white hover:text-gray-300"
                 onClick={() => setIsOpen(false)}
               >
-                About Us
+                {t('about')}
               </Link>
             </li>
             <li>
@@ -102,7 +118,7 @@ export default function Navbar() {
                 className="text-white hover:text-gray-300"
                 onClick={() => setIsOpen(false)}
               >
-                Pricing
+                {t('pricing')}
               </Link>
             </li>
             <li>
@@ -111,7 +127,7 @@ export default function Navbar() {
                 className="text-white hover:text-gray-300"
                 onClick={() => setIsOpen(false)}
               >
-                Help
+                {t('help')}
               </Link>
             </li>
             <li>
@@ -120,8 +136,11 @@ export default function Navbar() {
                 className="text-white hover:text-gray-300"
                 onClick={() => setIsOpen(false)}
               >
-                Contact
+                {t('contact')}
               </Link>
+            </li>
+            <li>
+              <LanguageSwitcher/>
             </li>
           </ul>
         </div>
