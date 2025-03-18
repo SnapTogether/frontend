@@ -11,15 +11,18 @@ interface LightboxProps {
   images: Photo[];
   selectedIndex: number;
   onClose: () => void;
-  onNext?: () => void; // ✅ Add this
-  onPrev?: () => void; // ✅ Add this
+  onNext?: () => void;
+  onPrev?: () => void;
 }
 
-
 const Lightbox: React.FC<LightboxProps> = ({ isOpen, images, selectedIndex, onClose }) => {
-  if (!isOpen || !images || images.length === 0) return null;
-
+  // ✅ Ensure Hook is Always Called
   const scrollRef = useRef<HTMLDivElement>(null);
+
+  // ✅ Avoid Rendering Instead of Returning Null Early
+  if (!isOpen || !images || images.length === 0) {
+    return <div className="hidden" />;
+  }
 
   const downloadImage = async () => {
     const imageUrl = images[selectedIndex].imageUrl;
@@ -43,7 +46,6 @@ const Lightbox: React.FC<LightboxProps> = ({ isOpen, images, selectedIndex, onCl
     }
   };
 
-  // Scroll to next/previous image smoothly
   const scrollNext = () => {
     if (scrollRef.current) {
       scrollRef.current.scrollBy({ left: scrollRef.current.clientWidth, behavior: "smooth" });
@@ -58,9 +60,7 @@ const Lightbox: React.FC<LightboxProps> = ({ isOpen, images, selectedIndex, onCl
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-80 z-50" onClick={onClose}>
-      {/* Prevents clicks inside from closing the modal */}
       <div className="relative flex flex-col items-center w-full max-w-screen-lg" onClick={(e) => e.stopPropagation()}>
-        {/* Close Button */}
         <button
           className="absolute top-5 right-5 text-white bg-gray-900/20 p-2 rounded-full hover:bg-gray-900/50 transition-all duration-300 ease-in-out"
           onClick={onClose}
@@ -68,7 +68,6 @@ const Lightbox: React.FC<LightboxProps> = ({ isOpen, images, selectedIndex, onCl
           <X size={30} />
         </button>
 
-        {/* Download Button */}
         <Button
           className="absolute bottom-full right-0 sm:left-full text-white rounded-full"
           onClick={downloadImage}
@@ -76,11 +75,10 @@ const Lightbox: React.FC<LightboxProps> = ({ isOpen, images, selectedIndex, onCl
           variant="tertiary"
         />
 
-        {/* Scrollable Image Container */}
         <div
           ref={scrollRef}
           className="flex overflow-x-auto snap-x snap-mandatory w-full max-w-screen-md"
-          style={{ scrollBehavior: "smooth" }} // Smooth scrolling
+          style={{ scrollBehavior: "smooth" }}
         >
           {images.map((image) => (
             <div key={image._id} className="flex-shrink-0 w-full flex justify-center snap-center">
@@ -95,7 +93,6 @@ const Lightbox: React.FC<LightboxProps> = ({ isOpen, images, selectedIndex, onCl
           ))}
         </div>
 
-        {/* Navigation Buttons */}
         <button
           className="absolute left-4 top-1/2 -translate-y-1/2 text-white bg-gray-800/80 p-3 rounded-full hover:bg-gray-700 transition-all duration-300 ease-in-out"
           onClick={scrollPrev}
@@ -109,7 +106,6 @@ const Lightbox: React.FC<LightboxProps> = ({ isOpen, images, selectedIndex, onCl
         >
           <ChevronRight size={30} />
         </button>
-
       </div>
     </div>
   );

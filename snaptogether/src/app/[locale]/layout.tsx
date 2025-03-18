@@ -4,7 +4,7 @@ import { PrimeReactProvider } from "primereact/api";
 import { Portal } from "@/components/Portal/Portal";
 import "./globals.css";
 
-import { NextIntlClientProvider, Locale, hasLocale } from 'next-intl';
+import { NextIntlClientProvider, hasLocale } from 'next-intl';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 

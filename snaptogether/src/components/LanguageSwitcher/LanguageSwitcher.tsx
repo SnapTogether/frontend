@@ -10,7 +10,6 @@ export default function LanguageSwitcher({ className }: LanguageSwitcherProps) {
 
   // ✅ Extract and remove the existing locale from the URL
   const segments = pathname.split("/").filter(Boolean); // Remove empty segments
-  const currentLocale = segments[0]; // First segment is the locale
   const pathWithoutLocale = `/${segments.slice(1).join("/")}`; // Remove locale from URL
 
   return (
