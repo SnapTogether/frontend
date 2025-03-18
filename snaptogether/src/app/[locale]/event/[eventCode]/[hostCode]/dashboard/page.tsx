@@ -8,12 +8,13 @@ import Button from "@/components/Button/Button";
 import { BadgeInfo, Calendar, Mail, PartyPopper, SmilePlus } from "lucide-react";
 import Navbar from "@/components/Navbar/Navbar";
 import DownloadZip from "@/components/DownloadZip/DownloadZip";
-import CardImg from '../../../../../../public/bg3.jpg'
+import CardImg from '../../../../../../../public/bg3.jpg'
 import PhotoGallery from "@/components/PhotoGallery/PhotoGallery";
 import GuestList from "@/components/GuestList/GuestList";
 import Loader from "@/components/Loader/Loader";
 import QRCodeTabs from "@/components/QRCodeTabs/QRCodeTabs";
 import { Divider } from "@/components/Divider/Divider";
+import { useTranslations } from "next-intl";
 
 export default function HostDashboard() {
   const params = useParams();
@@ -25,6 +26,8 @@ export default function HostDashboard() {
   const [error, setError] = useState<string>("");
   const currentPage = 1;
   const photosPerPage = 20;
+  
+  const t = useTranslations("dashboard");
 
   useEffect(() => {
     if (!eventCode || !hostCode) return;
@@ -57,16 +60,15 @@ export default function HostDashboard() {
     );
   if (error) return <p style={{ color: "red" }}>{error}</p>;
 
-
   return (
     <>
       <Navbar />
       <div className="relative mt-20 flex flex-col items-center gap-8 p-6">
         <DownloadZip className="absolute top-0 right-[10%]" eventCode={eventCode} />
-        <h2 className="flex flex-col sm:flex-row items-center justify-center gap-3 text-white text-center text-xl sm:text-3xl font-semibold"><PartyPopper size={20}/> Host Dashboard for <b>{eventData?.event?.eventName}</b></h2>
+        <h2 className="flex flex-col sm:flex-row items-center justify-center gap-3 text-white text-center text-xl sm:text-3xl font-semibold"><PartyPopper size={20}/> {t("title")} <b>{eventData?.event?.eventName}</b></h2>
         <div className="event-info relative rounded-lg bg-gray-800 w-full text-center flex flex-col items-start text-white max-w-[21em] gap-3">
           <Image src={CardImg} alt="logo" className="rounded-t-lg h-[10em] object-cover" />
-          <h3 className="flex gap-3 font-bold text-lg text-white px-5"><BadgeInfo/> Event Details</h3>
+          <h3 className="flex gap-3 font-bold text-lg text-white px-5"><BadgeInfo/>{t("subtitle")}</h3>
           <div className="info-text w-full flex flex-col items-start gap-2 px-5 pb-3">
 
             <section className="text-slate-50 text-md sm:text-md flex items-center justify-between"><Button className="pl-0" variant="tertiary" iconLeft={<Calendar color="white" size={18} />} /> {new Date(eventData?.event?.eventDate || "").toLocaleDateString()}</section>

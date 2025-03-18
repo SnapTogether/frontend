@@ -1,0 +1,44 @@
+{
+  "nav": {
+    "home": "Ballina",
+    "about": "Rreth nesh",
+    "pricing": "Çmimet",
+    "help": "Ndihmë",
+    "contact": "Kontakt"
+  },
+  "home": {
+    "everyMomentMatters": "Çdo moment ka rëndësi.",
+    "getStarted": "Filloni"
+  },
+  "eventForm": {
+    "title": "Krijo Ngjarje të Re",
+    "name": "Emri",
+    "surname": "Mbiemri",
+    "email": "Email",
+    "eventName": "Emri i Ngjarjes",
+    "eventDate": "Data e Ngjarjes",
+    "nameRequired": "Emri është i detyrueshëm",
+    "surnameRequired": "Mbiemri është i detyrueshëm",
+    "emailRequired": "Email-i është i detyrueshëm",
+    "eventNameRequired": "Emri i ngjarjes është i detyrueshëm",
+    "eventDateRequired": "Data e ngjarjes është e detyrueshme",
+    "createEvent": "Krijo Ngjarje",
+    "failedMessage": "❌ Krijimi i ngjarjes dështoi. Ju lutemi provoni përsëri."
+  },
+  "dashboard": {
+    "title": "Faqja kryesore për mikpritësin",
+    "subtitle": "Detajet e ngjarjes"
+  },
+  "zipBtn": {
+    "title": "Shkarko ZIP",
+    "subtitle": "Duke gjeneruar ZIP..."
+  },
+  "qrBtn": {
+    "host": "QR Kodi i mikpritësit",
+    "guest": "QR Kodi i mysafirëve"
+  },
+  "photoGallery": {
+    "title": "Galeria",
+    "noPhotos": "Asnjë foto nuk është ngarkuar ende."
+  }
+}

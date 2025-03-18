@@ -4,6 +4,7 @@ import { Download } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion"; // ✅ Import Framer Motion
 import Button from "../Button/Button"; // Replace with your actual Button component
 import { downloadQR } from "@/utils/qrCode";
+import { useTranslations } from "next-intl";
 
 interface EventData {
     event: {
@@ -14,6 +15,7 @@ interface EventData {
 
 export default function QRCodeTabs({ eventData }: { eventData: EventData }) {
     const [activeTab, setActiveTab] = useState<"host" | "guest">("host");
+    const t = useTranslations();
 
     return (
         <div className="container mx-auto w-full flex flex-col items-center gap-6">
@@ -21,19 +23,19 @@ export default function QRCodeTabs({ eventData }: { eventData: EventData }) {
             <div className="flex w-full justify-around max-w-[50vh]">
                 <Button
                     className={`px-4 py-2 text-lg font-medium transition-all duration-300 ease-in-out ${
-                        activeTab === "host" ? " !text-white" : "!text-gray-500"
+                        activeTab === "host" ? " !text-white" : "!text-gray-500 bg-slate-200/5"
                     }`}
                     onClick={() => setActiveTab("host")}
                 >
-                    Host QR Code
+                    {t("qrBtn.host")}
                 </Button>
                 <Button
                     className={`px-4 py-2 text-lg font-medium transition-all duration-300 ease-in-out ${
-                        activeTab === "guest" ? " !text-white" : "!text-gray-500"
+                        activeTab === "guest" ? " !text-white" : "!text-gray-500 bg-slate-200/5"
                     }`}
                     onClick={() => setActiveTab("guest")}
                 >
-                    Guest QR Code
+                    {t("qrBtn.guest")}
                 </Button>
             </div>
 

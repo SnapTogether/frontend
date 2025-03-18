@@ -4,6 +4,10 @@ import { PrimeReactProvider } from "primereact/api";
 import { Portal } from "@/components/Portal/Portal";
 import "./globals.css";
 
+import { NextIntlClientProvider, Locale, hasLocale } from 'next-intl';
+import { notFound } from 'next/navigation';
+import { routing } from '@/i18n/routing';
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -25,9 +29,9 @@ const mulish = Mulish({
 });
 
 const gochi_hand = Gochi_Hand({
-    weight: "400",
-    variable: "--font-gochi-hand",
-    subsets: ["latin"],
+  weight: "400",
+  variable: "--font-gochi-hand",
+  subsets: ["latin"],
 });
 
 const fleur_de_leah = Fleur_De_Leah({
@@ -41,11 +45,24 @@ export const metadata: Metadata = {
   description: "Create moments together",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
-}: Readonly<{ children: React.ReactNode }>) {
+  params
+}: Readonly<{
+  children: React.ReactNode;
+  params: Promise<{ locale: string }>;
+}>
+
+) {
+
+  // Ensure that the incoming `locale` is valid
+  const { locale } = await params;
+  if (!hasLocale(routing.locales, locale)) {
+    notFound();
+  }
+
   return (
-    <html lang="en">
+    <html lang={locale}>
       <head>
         {/* ✅ Meta Tags */}
         <meta charSet="UTF-8" />
@@ -57,7 +74,9 @@ export default function RootLayout({
       >
         {/* ✅ Wrap the entire app inside Portal to prevent SSR issues */}
         <PrimeReactProvider>
-          <Portal>{children}</Portal>
+          <NextIntlClientProvider>
+            <Portal>{children}</Portal>
+          </NextIntlClientProvider>
         </PrimeReactProvider>
       </body>
     </html>

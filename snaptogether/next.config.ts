@@ -1,18 +1,11 @@
-import type { NextConfig } from "next";
-const withPWA = require("next-pwa")({
-  dest: "public",
-  disable: process.env.NODE_ENV === "development", // Disable PWA in development
-  clientsClaim: true, // ✅ Correct placement
-  skipWaiting: true, // ✅ Correct placement
-  buildExcludes: [/middleware-manifest\.json$/, /.*\.gif$/],
-});
+import { NextConfig } from 'next';
+import createNextIntlPlugin from 'next-intl/plugin';
 
-/** @type {import('next').NextConfig} */
 const nextConfig: NextConfig = {
-  reactStrictMode: true,
   images: {
-    domains: ["res.cloudinary.com"], // ✅ Allow images from Cloudinary
+    domains: ['res.cloudinary.com'], // ✅ Allow Cloudinary images
   },
 };
 
-export default withPWA(nextConfig); // ✅ Correct export
+const withNextIntl = createNextIntlPlugin();
+export default withNextIntl(nextConfig);
