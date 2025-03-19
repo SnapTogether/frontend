@@ -29,8 +29,8 @@
     "title": "Host Dashboard for",
     "subtitle": "Event Details"
   },
-  "zipBtn":{
-    "title":"Download ZIP",
+  "zipBtn": {
+    "title": "Download ZIP",
     "subtitle": "Generating ZIP..."
   },
   "qrBtn": {
@@ -41,12 +41,30 @@
     "title": "Gallery",
     "noPhotos": "No photos have been uploaded yet."
   },
-  "template":{
-    "title":"Poster Templates"
+  "template": {
+    "title": "Poster Templates",
+    "requestBtn": "Choose Template"
   },
-  "guest-photos":{
-    "title":"Photos",
-    "noPhotos":"No photos uploaded by this guest.",
-    "back":"Back to Guests"
+  "guest-photos": {
+    "title": "Photos",
+    "noPhotos": "No photos uploaded by this guest.",
+    "back": "Back to Guests"
+  },
+  "templateRequest": {
+    "title": "Request a Custom Template",
+    "namePlaceholder": "Your Name",
+    "mobilePlaceholder": "Your Mobile",
+    "eventNamePlaceholder": "Event Name",
+    "addressPlaceholder": "Your Address",
+    "messagePlaceholder": "Message (Details about your template request)",
+    "submit": {
+      "loading": "Submitting...",
+      "default": "Request Template"
+    },
+    "options": {
+      "weddingClassic": "Wedding Classic",
+      "birthdayFun": "Birthday Fun",
+      "corporateEvent": "Corporate Event"
+    }
   }
 }

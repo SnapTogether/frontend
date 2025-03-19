@@ -4,6 +4,7 @@ import { useState } from "react";
 import { requestTemplate, RequestTemplateData } from "@/api/event";
 import { motion, AnimatePresence } from "framer-motion";
 import Button from "../Button/Button";
+import { useTranslations } from "next-intl";
 
 interface TemplateRequestModalProps {
   isOpen: boolean;
@@ -23,6 +24,8 @@ export default function TemplateRequestModal({ isOpen, onClose }: TemplateReques
   const [loading, setLoading] = useState(false);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
+  const t = useTranslations("templateRequest");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -75,13 +78,13 @@ export default function TemplateRequestModal({ isOpen, onClose }: TemplateReques
             exit={{ scale: 0.9, opacity: 0 }}
             onClick={(e) => e.stopPropagation()} // Prevent modal from closing on content click
           >
-            <h2 className="text-xl font-semibold text-center">Request a Custom Template</h2>
+            <h2 className="text-xl font-semibold text-center">{t("title")}</h2>
 
             <form onSubmit={handleSubmit} className="mt-4 space-y-3">
               <input
                 type="text"
                 name="name"
-                placeholder="Your Name"
+                placeholder={t("namePlaceholder")}
                 value={formData.name}
                 onChange={handleChange}
                 className="w-full p-2 border rounded-md"
@@ -90,7 +93,7 @@ export default function TemplateRequestModal({ isOpen, onClose }: TemplateReques
               <input
                 type="tel"
                 name="mobile"
-                placeholder="Your Mobile"
+                placeholder={t("mobilePlaceholder")}
                 value={formData.mobile}
                 onChange={handleChange}
                 className="w-full p-2 border rounded-md"
@@ -99,7 +102,7 @@ export default function TemplateRequestModal({ isOpen, onClose }: TemplateReques
               <input
                 type="text"
                 name="eventName"
-                placeholder="Event Name"
+                placeholder={t("eventNamePlaceholder")}
                 value={formData.eventName}
                 onChange={handleChange}
                 className="w-full p-2 border rounded-md"
@@ -108,7 +111,7 @@ export default function TemplateRequestModal({ isOpen, onClose }: TemplateReques
               <input
                 type="text"
                 name="address"
-                placeholder="Your Address"
+                placeholder={t("addressPlaceholder")}
                 value={formData.address}
                 onChange={handleChange}
                 className="w-full p-2 border rounded-md"
@@ -116,7 +119,7 @@ export default function TemplateRequestModal({ isOpen, onClose }: TemplateReques
               />
               <textarea
                 name="message"
-                placeholder="Message (Details about your template request)"
+                placeholder={t("messagePlaceholder")}
                 value={formData.message}
                 onChange={handleChange}
                 className="w-full p-2 border rounded-md"
@@ -130,9 +133,9 @@ export default function TemplateRequestModal({ isOpen, onClose }: TemplateReques
                 className="w-full p-2 border rounded-md"
                 required
               >
-                <option value="Wedding Classic">Wedding Classic</option>
-                <option value="Birthday Fun">Birthday Fun</option>
-                <option value="Corporate Event">Corporate Event</option>
+                <option value="Wedding Classic">{t("options.weddingClassic")}</option>
+                <option value="Birthday Fun">{t("options.birthdayFun")}</option>
+                <option value="Corporate Event">{t("options.corporateEvent")}</option>
               </select>
 
               {successMessage && <p className="text-green-600 text-center">{successMessage}</p>}
