@@ -66,7 +66,9 @@ export default function Navbar() {
               </Link>
             </li>
           </ul>
-          <Image src={Logo} alt="logo" width={32} />
+          <Link href="/">
+            <Image src={Logo} alt="logo" width={32} />
+          </Link>
           {/* ✅ Mobile Menu Button */}
           <button
             className="md:hidden p-2 ml-auto"
@@ -79,10 +81,11 @@ export default function Navbar() {
 
         {/* ✅ Mobile Nav with Slide Down Animation */}
         <div
-          className={`md:hidden h-[100vh] bg-slate-900/60 backdrop-blur-3xl absolute top-0 right-0 w-full flex flex-col items-center space-y-4 py-4 transition-all duration-300 transform ${
-            isOpen ? "translate-x-0 opacity-100" : "translate-x-full opacity-0 pointer-events-none"
-          }`}
-        > 
+            className={`md:hidden h-[100vh] bg-slate-900/60 backdrop-blur-3xl absolute top-0 right-0 w-full flex flex-col items-center space-y-4 py-4 transition-all duration-300 transform 
+              before:content-[''] before:absolute before:top-0 before:left-full before:w-screen before:h-full before:bg-slate-900/60 before:backdrop-blur-3xl
+              after:content-[''] after:absolute after:top-0 after:right-full after:w-screen after:h-full after:bg-slate-900/60 after:backdrop-blur-3xl
+              ${isOpen ? "translate-x-0 opacity-100" : "translate-x-full opacity-0 pointer-events-none"}`}
+          >
           <section className="w-full px-4 flex flex-row sm:flex-row items-center justify-between">
             <Image src={Logo} alt="logo" width={32} />
             <button

@@ -40,5 +40,13 @@
   "photoGallery": {
     "title": "Galeria",
     "noPhotos": "Asnjë foto nuk është ngarkuar ende."
+  },
+  "template":{
+    "title":"Modele të posterave"
+  },
+  "guest-photos": {
+    "title": "Fotografitë",
+    "noPhotos": "Asnjë fotografi nuk është ngarkuar nga ky mysafir.",
+    "back": "Kthehu te Mysafirët"
   }
 }

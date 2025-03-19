@@ -1,5 +1,9 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import albania from '../../../public/albania.png';
+import macedonia from '../../../public/republicofmacedonia.png';
+import uk from '../../../public/unitedkingdom.png';
+import Image from "next/image";
 
 interface LanguageSwitcherProps {
   className?: string;
@@ -14,9 +18,9 @@ export default function LanguageSwitcher({ className }: LanguageSwitcherProps) {
 
   return (
     <div className={`flex space-x-4 ${className || ""}`}>
-      <Link href={`/en${pathWithoutLocale}`} className="text-white">🇬🇧 EN</Link>
-      <Link href={`/mk${pathWithoutLocale}`} className="text-white">🇲🇰 MK</Link>
-      <Link href={`/sq${pathWithoutLocale}`} className="text-white">🇦🇱 SQ</Link>
+      <Link href={`/en${pathWithoutLocale}`} className="text-white text-center"><Image src={uk} alt="uk" width={32} height={32} /> EN</Link>
+      <Link href={`/mk${pathWithoutLocale}`} className="text-white text-center"><Image src={macedonia} alt="macedonia" width={32} height={32} /> MK</Link>
+      <Link href={`/sq${pathWithoutLocale}`} className="text-white text-center"><Image src={albania} alt="albania" width={32} height={32} /> SQ</Link>
     </div>
   );
 }
