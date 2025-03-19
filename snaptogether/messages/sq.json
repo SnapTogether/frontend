@@ -41,12 +41,30 @@
     "title": "Galeria",
     "noPhotos": "Asnjë foto nuk është ngarkuar ende."
   },
-  "template":{
-    "title":"Modele të posterave"
+  "template": {
+    "title": "Modele të posterave",
+    "requestBtn": "Zgjidh Shabllonin"
   },
   "guest-photos": {
     "title": "Fotografitë",
     "noPhotos": "Asnjë fotografi nuk është ngarkuar nga ky mysafir.",
     "back": "Kthehu te Mysafirët"
+  },
+  "templateRequest": {
+    "title": "Kërkoni një shabllon të personalizuar",
+    "namePlaceholder": "Emri juaj",
+    "mobilePlaceholder": "Numri i telefonit tuaj",
+    "eventNamePlaceholder": "Emri i eventit",
+    "addressPlaceholder": "Adresa juaj",
+    "messagePlaceholder": "Mesazh (Detajet për kërkesën tuaj për shabllon)",
+    "submit": {
+      "loading": "Duke dërguar...",
+      "default": "Kërko Shabllon"
+    },
+    "options": {
+      "weddingClassic": "Dasmë Klasike",
+      "birthdayFun": "Ditëlindje Argëtuese",
+      "corporateEvent": "Event Korporativ"
+    }
   }
 }

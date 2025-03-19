@@ -14,7 +14,7 @@
     "title": "Креирај нов настан",
     "name": "Име",
     "surname": "Презиме",
-    "email": "Е-пошта",  
+    "email": "Е-пошта",
     "eventName": "Име на настанот",
     "eventDate": "Датум на настанот",
     "nameRequired": "Името е задолжително",
@@ -41,13 +41,30 @@
     "title": "Галерија",
     "noPhotos": "Сè уште нема поставени фотографии."
   },
-  "template":{
-    "title":"Шаблони за постери"
+  "template": {
+    "title": "Шаблони за постери",
+    "requestBtn": "Избери шаблон"
   },
   "guest-photos": {
     "title": "Фотографии",
     "noPhotos": "Нема поставени фотографии од овој гостин.",
     "back": "Назад до гостите"
+  },
+  "templateRequest": {
+    "title": "Побарај прилагоден шаблон",
+    "namePlaceholder": "Вашето име",
+    "mobilePlaceholder": "Вашиот мобилен",
+    "eventNamePlaceholder": "Име на настанот",
+    "addressPlaceholder": "Вашата адреса",
+    "messagePlaceholder": "Порака (Детали за вашето барање за шаблон)",
+    "submit": {
+      "loading": "Испраќање...",
+      "default": "Избери шаблон"
+    },
+    "options": {
+      "weddingClassic": "Класичен свадбен",
+      "birthdayFun": "Забавен роденден",
+      "corporateEvent": "Корпоративен настан"
+    }
   }
-
 }
