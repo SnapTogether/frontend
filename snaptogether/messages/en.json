@@ -40,5 +40,13 @@
   "photoGallery": {
     "title": "Gallery",
     "noPhotos": "No photos have been uploaded yet."
+  },
+  "template":{
+    "title":"Poster Templates"
+  },
+  "guest-photos":{
+    "title":"Photos",
+    "noPhotos":"No photos uploaded by this guest.",
+    "back":"Back to Guests"
   }
 }

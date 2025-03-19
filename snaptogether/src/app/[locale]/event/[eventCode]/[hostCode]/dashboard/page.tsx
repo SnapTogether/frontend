@@ -15,6 +15,7 @@ import Loader from "@/components/Loader/Loader";
 import QRCodeTabs from "@/components/QRCodeTabs/QRCodeTabs";
 import { Divider } from "@/components/Divider/Divider";
 import { useTranslations } from "next-intl";
+import ImageCarousel from "@/components/ImageCarousel/ImageCarousel";
 
 export default function HostDashboard() {
   const params = useParams();
@@ -73,7 +74,7 @@ export default function HostDashboard() {
 
             <section className="text-slate-50 text-md sm:text-md flex items-center justify-between"><Button className="pl-0" variant="tertiary" iconLeft={<Calendar color="white" size={18} />} /> {new Date(eventData?.event?.eventDate || "").toLocaleDateString()}</section>
             <section className="text-slate-50 text-md sm:text-md flex items-center justify-between"><Button className="pl-0" variant="tertiary" iconLeft={<SmilePlus color="white" size={18} />} /> {eventData?.event?.hostFullName}</section>
-            <section className="text-slate-50 text-md sm:text-md flex items-center justify-between"><Button className="pl-0" variant="tertiary" iconLeft={<Mail color="white" size={18} />} /> {eventData?.event?.hostEmail}</section>
+            <section className="text-slate-50 text-sm sm:text-md flex items-center justify-between"><Button className="pl-0" variant="tertiary" iconLeft={<Mail color="white" size={18} />} /> {eventData?.event?.hostEmail}</section>
           </div>
         </div>
 
@@ -92,9 +93,18 @@ export default function HostDashboard() {
 
         <PhotoGallery photos={eventData?.event?.photos || []} />
 
-        <Divider width="quarter" border={false}/>
+        <Divider width="full" border={true}/>
 
         <GuestList guests={eventData?.event?.guests || []} eventCode={eventCode}/>
+
+        <Divider width="full" border={true}/>
+
+        <ImageCarousel 
+          images={[
+           '/wedding-poster.png',
+           '/birthday-poster.png'
+          ]}
+        />
 
       </div>
     </>
