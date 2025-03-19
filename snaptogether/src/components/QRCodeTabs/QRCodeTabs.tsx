@@ -20,9 +20,9 @@ export default function QRCodeTabs({ eventData }: { eventData: EventData }) {
     return (
         <div className="container mx-auto w-full flex flex-col items-center gap-6">
             {/* Tabs Navigation */}
-            <div className="flex w-full justify-around max-w-[50vh]">
+            <div className="flex w-full justify-around max-w-[50vh] gap-2">
                 <Button
-                    className={`px-4 py-2 text-lg font-medium transition-all duration-300 ease-in-out ${
+                    className={`px-4 py-2 text-base sm:text-lg font-medium transition-all duration-300 ease-in-out ${
                         activeTab === "host" ? " !text-white" : "!text-gray-500 bg-slate-200/5"
                     }`}
                     onClick={() => setActiveTab("host")}
@@ -30,7 +30,7 @@ export default function QRCodeTabs({ eventData }: { eventData: EventData }) {
                     {t("qrBtn.host")}
                 </Button>
                 <Button
-                    className={`px-4 py-2 text-lg font-medium transition-all duration-300 ease-in-out ${
+                    className={`px-4 py-2 text-base sm:text-lg font-medium transition-all duration-300 ease-in-out ${
                         activeTab === "guest" ? " !text-white" : "!text-gray-500 bg-slate-200/5"
                     }`}
                     onClick={() => setActiveTab("guest")}

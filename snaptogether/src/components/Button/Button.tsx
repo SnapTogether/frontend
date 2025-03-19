@@ -31,7 +31,7 @@ export default function Button({
 
   const variantStyles = {
     primary:
-      "bg-[rgba(120,128,181,0.2)] font-mulish rounded-full text-white hover:opacity-[90%]  focus:ring-blue-500",
+      "bg-[rgba(120,128,181,0.2)] font-mulish rounded-full text-white hover:opacity-[90%] focus:ring-blue-500",
     secondary:
       "border border-blue-600 text-blue-600 focus:ring-slate-500",
     tertiary: "bg-transparent text-blue-600 hover:underline hover:bg-transparent",
