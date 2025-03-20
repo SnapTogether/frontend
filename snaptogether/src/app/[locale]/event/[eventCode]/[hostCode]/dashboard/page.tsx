@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
-import { fetchEventForHost, EventResponse } from "@/api/event";
+import { fetchEventForHost, EventResponse, Photo } from "@/api/event";
 import Image from "next/image";
 import Button from "@/components/Button/Button";
 import { BadgeInfo, Calendar, Mail, PartyPopper, SmilePlus } from "lucide-react";
@@ -16,6 +16,7 @@ import QRCodeTabs from "@/components/QRCodeTabs/QRCodeTabs";
 import { Divider } from "@/components/Divider/Divider";
 import { useTranslations } from "next-intl";
 import ImageCarousel from "@/components/ImageCarousel/ImageCarousel";
+import socket from "@/utils/socket";
 
 export default function HostDashboard() {
   const params = useParams();
@@ -33,34 +34,85 @@ export default function HostDashboard() {
   useEffect(() => {
     if (!eventCode || !hostCode) return;
 
+    console.log("🔌 Connecting WebSocket...");
+
+    socket.on("connect", () => {
+        console.log("✅ WebSocket Connected:", socket.id);
+    });
+
+    socket.on("disconnect", () => {
+        console.log("❌ WebSocket Disconnected");
+    });
+
     const fetchEvent = async () => {
-      setLoading(true);
-      setError("");
+        setLoading(true);
+        setError("");
 
-      const response = await fetchEventForHost(eventCode, hostCode, currentPage, photosPerPage);
+        const response = await fetchEventForHost(eventCode, hostCode, currentPage, photosPerPage);
 
-      if (response.status !== 200) {
-        setError(response.message);
-      } else {
-        setEventData(response);
-        console.log("📨 Total Pages:", response.event?.pagination?.totalPages);
-      }
+        if (response.status !== 200) {
+            setError(response.message);
+        } else {
+            setEventData(response);
+            console.log("📨 Total Pages:", response.event?.pagination?.totalPages);
+            console.log("📸 Initial Photo Count:", response.event?.photos?.length); // ✅ Log initial number of photos
+        }
 
-      setLoading(false);
+        setLoading(false);
     };
 
+    socket.on("newImageUploaded", (data: { eventCode: string; images: { photoId: string; imageUrl: string }[] }) => {
+        if (data.eventCode === eventCode) {
+            console.log("📥 New images received via WebSocket:", data);
+
+            setEventData((prev) => {
+                if (!prev || !prev.event) return prev;
+
+                // ✅ Ensure images conform to `Photo` type
+                const formattedPhotos: Photo[] = data.images.map((img) => ({
+                    _id: img.photoId, // ✅ Convert `photoId` to `_id`
+                    imageUrl: img.imageUrl,
+                }));
+
+                const updatedPhotos = [...formattedPhotos, ...prev.event.photos];
+
+                console.log("📸 Updated Photo Count:", updatedPhotos.length); // ✅ Log updated number of photos
+
+                return {
+                    ...prev,
+                    event: {
+                        ...prev.event,
+                        photos: updatedPhotos, // ✅ Append new photos correctly
+                    },
+                } as EventResponse; // ✅ Ensure the return type matches EventResponse
+            });
+
+            // ✅ Force UI update (React sometimes doesn't re-render immediately)
+            setTimeout(() => {
+                setEventData((prev) => (prev ? { ...prev } : null));
+            }, 0);
+        }
+    });
+
     fetchEvent();
-  }, [eventCode, hostCode, currentPage]); // ✅ Now it refetches when `currentPage` changes!
+
+    return () => {
+        socket.off("newImageUploaded"); // ✅ Cleanup WebSocket listener when component unmounts
+        socket.off("connect");
+        socket.off("disconnect");
+    };
+}, [eventCode, hostCode, currentPage]); // ✅ Keeps dependencies the same
 
 
   if (loading)
     return (
-      <div className="absolute inset-0 flex items-center justify-center">
+      <div className="w-screen h-screen">
         <Loader />
       </div>
     );
   if (error) return <p style={{ color: "red" }}>{error}</p>;
 
+  
   return (
     <>
       <Navbar />

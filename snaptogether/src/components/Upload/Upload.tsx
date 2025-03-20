@@ -1,6 +1,7 @@
 import { useState } from "react";
 import imageCompression from "browser-image-compression"; // ✅ Install via `npm install browser-image-compression`
 import { uploadPhotosForGuest } from "@/api/photo";
+import socket from "@/utils/socket";
 
 export default function Upload({
   eventCode,
@@ -50,6 +51,14 @@ export default function Upload({
     if (response.status === 201) {
       const newPhotoUrls = response.photos!.map((photo) => photo.imageUrl);
       onPhotosUploaded(newPhotoUrls); // ✅ Update parent component
+
+      // ✅ Emit WebSocket Event (Tell Host a New Image is Uploaded)
+      socket.emit("photoUploaded", {
+        eventCode,
+        photos: response.photos, // Send uploaded photos
+      });
+      console.log("📡 WebSocket Event Sent: photoUploaded", response.photos);
+
     } else {
       alert("❌ Upload failed. Try again!");
     }
