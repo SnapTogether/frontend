@@ -30,6 +30,7 @@
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.54.2",
     "react-particles": "^2.12.2",
+    "socket.io-client": "^4.8.1",
     "tsparticles": "^3.8.1",
     "tsparticles-preset-fireworks": "^2.12.0"
   },
