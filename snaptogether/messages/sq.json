@@ -12,18 +12,16 @@
   },
   "eventForm": {
     "title": "Krijo Ngjarje të Re",
-    "name": "Emri",
-    "surname": "Mbiemri",
+    "name": "Emri i Plotë",
     "email": "Email",
     "eventName": "Emri i Ngjarjes",
     "eventDate": "Data e Ngjarjes",
-    "nameRequired": "Emri është i detyrueshëm",
-    "surnameRequired": "Mbiemri është i detyrueshëm",
+    "fullNameRequired": "Emri i plotë është i detyrueshëm",
     "emailRequired": "Email-i është i detyrueshëm",
     "eventNameRequired": "Emri i ngjarjes është i detyrueshëm",
     "eventDateRequired": "Data e ngjarjes është e detyrueshme",
     "createEvent": "Krijo Ngjarje",
-    "failedMessage": "❌ Krijimi i ngjarjes dështoi. Ju lutemi provoni përsëri."
+    "failedMessage": "❌ Dështoi krijimi i ngjarjes. Ju lutemi provoni përsëri."
   },
   "dashboard": {
     "title": "Faqja kryesore për mikpritësin",
