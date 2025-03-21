@@ -2,8 +2,7 @@
 
 // 📝 Interface for Creating an Event
 export interface CreateEventData {
-  name: string;
-  surname: string;
+  fullName: string;
   email: string;
   eventName: string;
   eventDate: string;
