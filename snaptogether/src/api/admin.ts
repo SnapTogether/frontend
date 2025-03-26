@@ -1,13 +1,5 @@
 const API_BASE_URL = `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/api/admin`;
 
-const getAuthHeader = () => {
-  const token = localStorage.getItem("adminToken");
-  return {
-    Authorization: `Bearer ${token}`,
-    "Content-Type": "application/json",
-  };
-};
-
 /**
  * Admin login to get JWT token
  */

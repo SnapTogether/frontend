@@ -4,9 +4,19 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { fetchAllEvents, approveEventPayment } from '@/api/admin';
 
+type AdminEvent = {
+    _id: string;
+    hostFullName: string;
+    hostEmail: string;
+    plan: 'free' | 'starter' | 'pro';
+    isPaymentConfirmed: boolean;
+    createdAt: string;
+    eventCode: string;
+  };
+
 export default function AdminDashboardPage() {
   const router = useRouter();
-  const [events, setEvents] = useState<any[]>([]);
+  const [events, setEvents] = useState<AdminEvent[]>([]);
   const [error, setError] = useState('');
   const [page, setPage] = useState(1);
   const [pagination, setPagination] = useState({
