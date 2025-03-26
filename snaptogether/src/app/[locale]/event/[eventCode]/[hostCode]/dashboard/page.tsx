@@ -107,7 +107,7 @@ export default function HostDashboard() {
   return (
     <>
       <Navbar />
-      <div className="relative mt-20 flex flex-col items-center gap-8 p-6">
+      <div className="relative mt-20 flex flex-col items-center gap-8 p-6 container mx-auto">
         <div className="flex flex-col items-center gap-1">
           <p className="text-sm text-white">
             {t("plan")}: <strong>{eventData?.event?.plan.toUpperCase()}</strong>
