@@ -21,6 +21,7 @@
     "eventNameRequired": "Emri i ngjarjes është i detyrueshëm",
     "eventDateRequired": "Data e ngjarjes është e detyrueshme",
     "createEvent": "Krijo Ngjarje",
+    "creatingEvent": "Креирање...",
     "failedMessage": "❌ Dështoi krijimi i ngjarjes. Ju lutemi provoni përsëri.",
     "plan": "Zgjidh Planin",
     "plans": {
@@ -29,17 +30,17 @@
       "pro": "Pro (10GB)"
     },
     "paymentInstructions": {
-    "starterTitle": "Plani Fillestar",
-    "proTitle": "Plani Pro",
-    "message": "Ju lutemi kryeni pagesën në këtë numër llogarie bankare:",
-    "bankName": "Emri i bankës: XYZ Bank",
-    "accountNumber": "Numri i llogarisë: 123-456-789",
-    "iban": "IBAN: MK07250120000012345",
-    "amountStarter": "Shuma: 20$",
-    "amountPro": "Shuma: 60$",
-    "purpose": "Qëllimi: Akses në ngjarjen SnapTogether",
-    "note": "Pasi të konfirmohet pagesa, do të keni qasje të plotë në panelin e kontrollit. Do të njoftoheni me email."
-  }
+      "starterTitle": "Plani Fillestar",
+      "proTitle": "Plani Pro",
+      "message": "Ju lutemi kryeni pagesën në këtë numër llogarie bankare:",
+      "bankName": "Emri i bankës: XYZ Bank",
+      "accountNumber": "Numri i llogarisë: 123-456-789",
+      "iban": "IBAN: MK07250120000012345",
+      "amountStarter": "Shuma: 20$",
+      "amountPro": "Shuma: 60$",
+      "purpose": "Qëllimi: Akses në ngjarjen SnapTogether",
+      "note": "Pasi të konfirmohet pagesa, do të keni qasje të plotë në panelin e kontrollit. Do të njoftoheni me email."
+    }
   },
   "dashboard": {
     "title": "Faqja kryesore për mikpritësin",
@@ -83,5 +84,36 @@
       "birthdayFun": "Ditëlindje Argëtuese",
       "corporateEvent": "Event Korporativ"
     }
-  }
+  },
+  "helpPage": {
+    "title": "Si mund t'ju ndihmojmë?",
+    "contactPrompt": "Ende keni nevojë për ndihmë?",
+    "contactEmail": "Na kontaktoni në snaptogether25@gmail.com"
+  },
+  "faq": [
+    {
+      "question": "Çfarë është SnapTogether?",
+      "answer": "SnapTogether është një platformë për ndarjen e fotove që u lejon të ftuarve të ngarkojnë foto të eventit duke skanuar një kod QR, duke e bërë të lehtë për organizatorët mbledhjen e kujtimeve."
+    },
+    {
+      "question": "Si të ngarkoj foto si i ftuar?",
+      "answer": "Skanoni kodin QR që ju është dhënë nga organizatori, shkruani emrin tuaj dhe ngarkoni fotot tuaja të preferuara nga eventi — pa nevojë për llogari."
+    },
+    {
+      "question": "A duhet të krijoj një llogari?",
+      "answer": "Jo. Të ftuarit nuk kanë nevojë për llogari. Organizatorët krijojnë një lidhje të vetme për eventin."
+    },
+    {
+      "question": "Ku ruhen fotot?",
+      "answer": "Të gjitha imazhet ruhen në mënyrë të sigurt në cloud dhe janë të qasshme vetëm për organizatorin."
+    },
+    {
+      "question": "Cila është diferenca mes planeve Free, Starter dhe Pro?",
+      "answer": "Free: Hapësirë e kufizuar, pa video. Starter: Më shumë hapësirë dhe mbështetje. Pro: Hapësirë maksimale, video dhe brendim personal."
+    },
+    {
+      "question": "Sa kohë janë të disponueshme fotot?",
+      "answer": "Fotot janë të disponueshme për 30 ditë pas eventit, përveç nëse jeni në një plan të paguar që ofron ruajtje më të gjatë."
+    }
+  ]
 }

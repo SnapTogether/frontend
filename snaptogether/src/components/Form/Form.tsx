@@ -14,13 +14,15 @@ export default function EventForm() {
   const router = useRouter();
   const [eventResponse, setEventResponse] = useState<string | null>(null);
   const [selectedPaidPlan, setSelectedPaidPlan] = useState<"starter" | "pro" | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const {
     register,
     handleSubmit,
-    formState: { errors }, 
+    formState: { errors },
   } = useForm<CreateEventData>();
 
   const onSubmit = async (data: CreateEventData) => {
+    setIsSubmitting(true); // Start loading
     try {
       const response = await createEvent(data);
 
@@ -36,6 +38,8 @@ export default function EventForm() {
     } catch (error: unknown) {
       console.error(error);
       setEventResponse("An error occurred. Please try again.");
+    } finally {
+      setIsSubmitting(false); // Stop loading
     }
   };
 
@@ -90,8 +94,13 @@ export default function EventForm() {
             {errors.plan && <p className="text-red-500 text-xs mt-1">{errors.plan.message}</p>}
           </div>
 
-          <Button type="submit" variant="primary" className="w-full !bg-[rgba(120,128,181,1)]">
-            {t("createEvent")}
+          <Button
+            type="submit"
+            variant="primary"
+            className="w-full !bg-[rgba(120,128,181,1)]"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? t("creatingEvent") : t("createEvent")}
           </Button>
 
           {eventResponse && <p className="text-slate-700 text-sm text-center mt-2">{eventResponse}</p>}

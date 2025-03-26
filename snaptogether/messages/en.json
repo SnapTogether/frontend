@@ -21,6 +21,7 @@
     "eventNameRequired": "Event name is required",
     "eventDateRequired": "Event date is required",
     "createEvent": "Create Event",
+    "creatingEvent": "Creating...",
     "failedMessage": "❌ Failed to create event. Please try again.",
     "plan": "Select Plan",
     "plans": {
@@ -29,17 +30,17 @@
       "pro": "Pro (10GB)"
     },
     "paymentInstructions": {
-    "starterTitle": "Starter Plan",
-    "proTitle": "Pro Plan",
-    "message": "Please complete the payment to the following bank account:",
-    "bankName": "Bank Name: Uni Bank",
-    "accountNumber": "Account Number: 123-456-789",
-    "iban": "IBAN: MK07250120000012345",
-    "amountStarter": "Amount: 20$",
-    "amountPro": "Amount: 60$",
-    "purpose": "Purpose: SnapTogether Event Access",
-    "note": "Once payment is received, you will gain full access to the dashboard. You’ll be notified by email."
-  }
+      "starterTitle": "Starter Plan",
+      "proTitle": "Pro Plan",
+      "message": "Please complete the payment to the following bank account:",
+      "bankName": "Bank Name: Uni Bank",
+      "accountNumber": "Account Number: 123-456-789",
+      "iban": "IBAN: MK07250120000012345",
+      "amountStarter": "Amount: 20$",
+      "amountPro": "Amount: 60$",
+      "purpose": "Purpose: SnapTogether Event Access",
+      "note": "Once payment is received, you will gain full access to the dashboard. You’ll be notified by email."
+    }
   },
   "dashboard": {
     "title": "Host Dashboard for",
@@ -83,5 +84,36 @@
       "birthdayFun": "Birthday Fun",
       "corporateEvent": "Corporate Event"
     }
-  }
+  },
+  "helpPage": {
+    "title": "How can we help you?",
+    "contactPrompt": "Still need help?",
+    "contactEmail": "Contact us at snaptogether25@gmail.com"
+  },
+  "faq": [
+    {
+      "question": "What is SnapTogether?",
+      "answer": "SnapTogether is a photo-sharing tool that allows guests to upload event photos by scanning a QR code, making it easy for hosts to collect memories."
+    },
+    {
+      "question": "How do I upload photos as a guest?",
+      "answer": "Scan the QR code given to you by the host, enter your name, and upload your favorite photos from the event — no account needed."
+    },
+    {
+      "question": "Do I need to create an account?",
+      "answer": "No. Guests don’t need an account. Hosts just create a one-time event link."
+    },
+    {
+      "question": "Where are the photos stored?",
+      "answer": "All images are securely uploaded and stored on the cloud, ensuring they’re safe and accessible for the host."
+    },
+    {
+      "question": "What's the difference between Free, Starter, and Pro plans?",
+      "answer": "Free: Limited storage, no videos. Starter: More storage & support. Pro: Max storage, videos, branding."
+    },
+    {
+      "question": "How long are my photos available?",
+      "answer": "Uploaded media is available for 30 days after the event unless you're on a paid plan."
+    }
+  ]
 }
