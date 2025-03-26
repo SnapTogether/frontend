@@ -1,7 +1,5 @@
 'use client'
 import EventForm from "@/components/Form/Form";
-import Gif from '../../../../public/snaptogether.gif'
-import Image from "next/image";
 import Link from "next/link";
 
 export default function FormPage() {
