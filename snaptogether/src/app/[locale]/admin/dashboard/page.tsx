@@ -32,10 +32,11 @@ export default function AdminDashboardPage() {
       setEvents(data.events);
       setPagination(data.pagination);
     } catch (err) {
-      setError('Unauthorized or failed to fetch events.');
-      localStorage.removeItem('adminToken');
-      router.push('/admin/login');
-    }
+        console.error('Failed to load events:', err);
+        setError('Unauthorized or failed to fetch events.');
+        localStorage.removeItem('adminToken');
+        router.push('/admin/login');
+      }      
   };
 
   useEffect(() => {
