@@ -17,7 +17,7 @@ export default function EventForm() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors }, 
   } = useForm<CreateEventData>();
 
   const onSubmit = async (data: CreateEventData) => {
@@ -33,7 +33,7 @@ export default function EventForm() {
       } else {
         setEventResponse("Something went wrong. Please try again.");
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error(error);
       setEventResponse("An error occurred. Please try again.");
     }
