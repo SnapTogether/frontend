@@ -21,11 +21,30 @@
     "eventNameRequired": "Emri i ngjarjes është i detyrueshëm",
     "eventDateRequired": "Data e ngjarjes është e detyrueshme",
     "createEvent": "Krijo Ngjarje",
-    "failedMessage": "❌ Dështoi krijimi i ngjarjes. Ju lutemi provoni përsëri."
+    "failedMessage": "❌ Dështoi krijimi i ngjarjes. Ju lutemi provoni përsëri.",
+    "plan": "Zgjidh Planin",
+    "plans": {
+      "free": "Falas (1GB)",
+      "starter": "Fillestar (3GB)",
+      "pro": "Pro (10GB)"
+    },
+    "paymentInstructions": {
+    "starterTitle": "Plani Fillestar",
+    "proTitle": "Plani Pro",
+    "message": "Ju lutemi kryeni pagesën në këtë numër llogarie bankare:",
+    "bankName": "Emri i bankës: XYZ Bank",
+    "accountNumber": "Numri i llogarisë: 123-456-789",
+    "iban": "IBAN: MK07250120000012345",
+    "amountStarter": "Shuma: 20$",
+    "amountPro": "Shuma: 60$",
+    "purpose": "Qëllimi: Akses në ngjarjen SnapTogether",
+    "note": "Pasi të konfirmohet pagesa, do të keni qasje të plotë në panelin e kontrollit. Do të njoftoheni me email."
+  }
   },
   "dashboard": {
     "title": "Faqja kryesore për mikpritësin",
-    "subtitle": "Detajet e ngjarjes"
+    "subtitle": "Detajet e ngjarjes",
+    "plan": "Plani"
   },
   "zipBtn": {
     "title": "Shkarko ZIP",

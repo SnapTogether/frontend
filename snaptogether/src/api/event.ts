@@ -6,6 +6,7 @@ export interface CreateEventData {
   email: string;
   eventName: string;
   eventDate: string;
+  plan: "free" | "starter" | "pro";
 }
 
 // 📝 Response Interface for Event Creation
@@ -88,6 +89,11 @@ export interface EventResponse {
       totalPages: number;
     };
     photos: Photo[]; // ✅ Define as array of objects, not strings
+    // 🔥 Add these 👇
+    plan: "free" | "starter" | "pro";
+    usedStorage: number;
+    storageLimit: number;
+    isPaymentConfirmed: boolean;
   };
   error?: string;
 }

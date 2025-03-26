@@ -68,24 +68,38 @@ const PhotoGallery: React.FC<PhotoGalleryProps> = ({ photos }) => {
           {/* ✅ Masonry Grid Layout with Repeating Pattern */}
           <div className="grid grid-cols-12 gap-2 mt-2">
             {currentPhotos.map((photo, index) => {
-              const row = Math.floor(index / 3); // Every 3 images form a new row
-              let colSpan = "col-span-12 sm:col-span-4"; // Default 4-column layout
+              const row = Math.floor(index / 3);
+              let colSpan = "col-span-4 sm:col-span-4";
 
               if (row % 2 === 1) {
-                // ✅ Second row (Repeating every 2 rows)
                 colSpan = index % 3 === 0 ? "col-span-12 sm:col-span-2" : "col-span-12 sm:col-span-5";
               }
 
+              const isVideo = photo.imageUrl.match(/\.(mp4|webm|mov)$/i);
+
               return (
-                <Image
+                <div
                   key={index}
-                  src={photo.imageUrl}
-                  alt="Uploaded"
-                  width={300}
-                  height={200}
-                  className={`cursor-pointer shadow-md h-full w-full max-h-[20em] object-cover rounded-lg ${colSpan}`}
+                  className={`relative cursor-pointer shadow-md h-full w-full max-h-[20em] rounded-lg overflow-hidden ${colSpan}`}
                   onClick={() => openModal(indexOfFirstPhoto + index)}
-                />
+                >
+                  {isVideo ? (
+                    <video
+                      className="h-full w-full object-cover"
+                      src={photo.imageUrl}
+                      controls
+                      preload="metadata"
+                    />
+                  ) : (
+                    <Image
+                      src={photo.imageUrl}
+                      alt="Uploaded"
+                      width={300}
+                      height={200}
+                      className="h-full w-full object-cover"
+                    />
+                  )}
+                </div>
               );
             })}
           </div>

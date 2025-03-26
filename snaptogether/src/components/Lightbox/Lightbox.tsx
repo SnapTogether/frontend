@@ -77,20 +77,33 @@ const Lightbox: React.FC<LightboxProps> = ({ isOpen, images, selectedIndex, onCl
 
         <div
           ref={scrollRef}
-          className="flex overflow-x-auto snap-x snap-mandatory w-full max-w-screen-md"
+          className="flex overflow-x-hidden snap-x snap-mandatory w-full max-w-screen-md"
           style={{ scrollBehavior: "smooth" }}
         >
-          {images.map((image) => (
-            <div key={image._id} className="flex-shrink-0 w-full flex justify-center snap-center">
-              <Image
-                src={image.imageUrl}
-                alt="Enlarged"
-                width={700}
-                height={500}
-                className="rounded-lg shadow-lg max-w-full max-h-[90vh]"
-              />
-            </div>
-          ))}
+          {images.map((image) => {
+            const isVideo = image.imageUrl.match(/\.(mp4|webm|mov)$/i);
+
+            return (
+              <div key={image._id} className="flex-shrink-0 w-full flex justify-center snap-center">
+                {isVideo ? (
+                  <video
+                    src={image.imageUrl}
+                    controls
+                    preload="metadata"
+                    className="rounded-lg shadow-lg max-w-full max-h-[90vh]"
+                  />
+                ) : (
+                  <Image
+                    src={image.imageUrl}
+                    alt="Enlarged"
+                    width={700}
+                    height={500}
+                    className="rounded-lg shadow-lg max-w-full max-h-[90vh]"
+                  />
+                )}
+              </div>
+            );
+          })}
         </div>
 
         <button

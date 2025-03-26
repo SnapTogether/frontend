@@ -21,11 +21,30 @@
     "eventNameRequired": "Event name is required",
     "eventDateRequired": "Event date is required",
     "createEvent": "Create Event",
-    "failedMessage": "❌ Failed to create event. Please try again."
+    "failedMessage": "❌ Failed to create event. Please try again.",
+    "plan": "Select Plan",
+    "plans": {
+      "free": "Free (1GB)",
+      "starter": "Starter (3GB)",
+      "pro": "Pro (10GB)"
+    },
+    "paymentInstructions": {
+    "starterTitle": "Starter Plan",
+    "proTitle": "Pro Plan",
+    "message": "Please complete the payment to the following bank account:",
+    "bankName": "Bank Name: Uni Bank",
+    "accountNumber": "Account Number: 123-456-789",
+    "iban": "IBAN: MK07250120000012345",
+    "amountStarter": "Amount: 20$",
+    "amountPro": "Amount: 60$",
+    "purpose": "Purpose: SnapTogether Event Access",
+    "note": "Once payment is received, you will gain full access to the dashboard. You’ll be notified by email."
+  }
   },
   "dashboard": {
     "title": "Host Dashboard for",
-    "subtitle": "Event Details"
+    "subtitle": "Event Details",
+    "plan": "Plan"
   },
   "zipBtn": {
     "title": "Download ZIP",

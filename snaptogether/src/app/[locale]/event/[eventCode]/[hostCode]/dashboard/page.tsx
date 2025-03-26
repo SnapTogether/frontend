@@ -17,6 +17,9 @@ import { Divider } from "@/components/Divider/Divider";
 import { useTranslations } from "next-intl";
 import ImageCarousel from "@/components/ImageCarousel/ImageCarousel";
 import socket from "@/utils/socket";
+import StorageBar from "@/components/StorageBar/StorageBar";
+import PendingPaymentNotice from "@/components/PendingPaymentNotice/PendingPaymentNotice";
+import Link from "next/link";
 
 export default function HostDashboard() {
   const params = useParams();
@@ -28,7 +31,7 @@ export default function HostDashboard() {
   const [error, setError] = useState<string>("");
   const currentPage = 1;
   const photosPerPage = 20;
-  
+
   const t = useTranslations("dashboard");
 
   useEffect(() => {
@@ -37,71 +40,46 @@ export default function HostDashboard() {
     console.log("🔌 Connecting WebSocket...");
 
     socket.on("connect", () => {
-        console.log("✅ WebSocket Connected:", socket.id);
+      console.log("✅ WebSocket Connected:", socket.id);
     });
 
     socket.on("disconnect", () => {
-        console.log("❌ WebSocket Disconnected");
+      console.log("❌ WebSocket Disconnected");
     });
 
     const fetchEvent = async () => {
-        setLoading(true);
-        setError("");
+      setLoading(true);
+      setError("");
 
-        const response = await fetchEventForHost(eventCode, hostCode, currentPage, photosPerPage);
+      const response = await fetchEventForHost(eventCode, hostCode, currentPage, photosPerPage);
 
-        if (response.status !== 200) {
-            setError(response.message);
-        } else {
-            setEventData(response);
-            console.log("📨 Total Pages:", response.event?.pagination?.totalPages);
-            console.log("📸 Initial Photo Count:", response.event?.photos?.length); // ✅ Log initial number of photos
-        }
+      if (response.status !== 200) {
+        setError(response.message);
+      } else {
+        setEventData(response);
+        console.log("📨 Total Pages:", response.event?.pagination?.totalPages);
+        console.log("📸 Initial Photo Count:", response.event?.photos?.length); // ✅ Log initial number of photos
+      }
 
-        setLoading(false);
+      setLoading(false);
     };
 
     socket.on("newImageUploaded", (data: { eventCode: string; images: { photoId: string; imageUrl: string }[] }) => {
-        if (data.eventCode === eventCode) {
-            console.log("📥 New images received via WebSocket:", data);
-
-            setEventData((prev) => {
-                if (!prev || !prev.event) return prev;
-
-                // ✅ Ensure images conform to `Photo` type
-                const formattedPhotos: Photo[] = data.images.map((img) => ({
-                    _id: img.photoId, // ✅ Convert `photoId` to `_id`
-                    imageUrl: img.imageUrl,
-                }));
-
-                const updatedPhotos = [...formattedPhotos, ...prev.event.photos];
-
-                console.log("📸 Updated Photo Count:", updatedPhotos.length); // ✅ Log updated number of photos
-
-                return {
-                    ...prev,
-                    event: {
-                        ...prev.event,
-                        photos: updatedPhotos, // ✅ Append new photos correctly
-                    },
-                } as EventResponse; // ✅ Ensure the return type matches EventResponse
-            });
-
-            // ✅ Force UI update (React sometimes doesn't re-render immediately)
-            setTimeout(() => {
-                setEventData((prev) => (prev ? { ...prev } : null));
-            }, 0);
-        }
+      if (data.eventCode === eventCode) {
+        console.log("📥 New images received via WebSocket:", data);
+        fetchEvent(); // ✅ Fetches updated photos + usedStorage from backend
+      }
     });
+
 
     fetchEvent();
 
     return () => {
-        socket.off("newImageUploaded"); // ✅ Cleanup WebSocket listener when component unmounts
-        socket.off("connect");
-        socket.off("disconnect");
+      socket.off("newImageUploaded"); // ✅ Cleanup WebSocket listener when component unmounts
+      socket.off("connect");
+      socket.off("disconnect");
     };
-}, [eventCode, hostCode, currentPage]); // ✅ Keeps dependencies the same
+  }, [eventCode, hostCode, currentPage]); // ✅ Keeps dependencies the same
 
 
   if (loading)
@@ -111,53 +89,82 @@ export default function HostDashboard() {
       </div>
     );
   if (error) return <p style={{ color: "red" }}>{error}</p>;
-
+  
+  if (
+    eventData?.event &&
+    !eventData.event.isPaymentConfirmed &&
+    (eventData.event.plan === "starter" || eventData.event.plan === "pro")
+  ) {
+    return (
+      <div>
+        <Link href='/' className="text-slate-200 logo-footer select-none absolute left-1/2 transform -translate-x-1/2 bottom-1 z-10 text-center text-[40px] sm:text-[46px] rounded-md m-0" style={{ fontFamily: "var(--font-gochi-hand)" }}>
+            Snaptogether
+        </Link>
+        <PendingPaymentNotice plan={eventData.event.plan} />
+      </div>)
+  }
   
   return (
     <>
       <Navbar />
       <div className="relative mt-20 flex flex-col items-center gap-8 p-6">
-        <DownloadZip className="absolute top-0 right-[10%]" eventCode={eventCode} />
-        <h2 className="flex flex-col sm:flex-row items-center justify-center gap-3 text-white text-center text-xl sm:text-3xl font-semibold"><PartyPopper size={20}/> {t("title")} <b>{eventData?.event?.eventName}</b></h2>
+        <div className="flex flex-col items-center gap-1">
+          <p className="text-sm text-white">
+            {t("plan")}: <strong>{eventData?.event?.plan.toUpperCase()}</strong>
+          </p>
+          <DownloadZip eventCode={eventCode} />
+          {eventData?.event && (
+            <>
+              {console.log("📦 Storage Data → used:", eventData.event.usedStorage, "limit:", eventData.event.storageLimit)}
+              <StorageBar used={eventData.event.usedStorage} limit={eventData.event.storageLimit} />
+            </>
+          )}
+        </div>
+  
+        <h2 className="flex flex-col sm:flex-row items-center justify-center gap-3 text-white text-center text-xl sm:text-3xl font-semibold">
+          <PartyPopper size={20} /> {t("title")} <b>{eventData?.event?.eventName}</b>
+        </h2>
+  
         <div className="event-info relative rounded-lg bg-gray-800 w-full text-center flex flex-col items-start text-white max-w-[21em] gap-3">
           <Image src={CardImg} alt="logo" className="rounded-t-lg h-[10em] object-cover" />
-          <h3 className="flex gap-3 font-bold text-lg text-white px-5"><BadgeInfo/>{t("subtitle")}</h3>
+          <h3 className="flex gap-3 font-bold text-lg text-white px-5">
+            <BadgeInfo />{t("subtitle")}
+          </h3>
           <div className="info-text w-full flex flex-col items-start gap-2 px-5 pb-3">
-
-            <section className="text-slate-50 text-md sm:text-md flex items-center justify-between"><Button className="pl-0" variant="tertiary" iconLeft={<Calendar color="white" size={18} />} /> {new Date(eventData?.event?.eventDate || "").toLocaleDateString()}</section>
-            <section className="text-slate-50 text-md sm:text-md flex items-center justify-between"><Button className="pl-0" variant="tertiary" iconLeft={<SmilePlus color="white" size={18} />} /> {eventData?.event?.hostFullName}</section>
-            <section className="text-slate-50 text-sm sm:text-md flex items-center justify-between"><Button className="pl-0" variant="tertiary" iconLeft={<Mail color="white" size={18} />} /> {eventData?.event?.hostEmail}</section>
+            <section className="text-slate-50 text-md flex items-center">
+              <Button className="pl-0" variant="tertiary" iconLeft={<Calendar color="white" size={18} />} />
+              {new Date(eventData?.event?.eventDate || "").toLocaleDateString()}
+            </section>
+            <section className="text-slate-50 text-md flex items-center">
+              <Button className="pl-0" variant="tertiary" iconLeft={<SmilePlus color="white" size={18} />} />
+              {eventData?.event?.hostFullName}
+            </section>
+            <section className="text-slate-50 text-sm flex items-center">
+              <Button className="pl-0" variant="tertiary" iconLeft={<Mail color="white" size={18} />} />
+              {eventData?.event?.hostEmail}
+            </section>
           </div>
         </div>
-
-        {/* <h3 className="text-white text-center text-3xl font-semibold">
-          <Button variant="tertiary" className="text-white focus:ring-0 focus:ring-offset-0 focus:outline-none" iconLeft={<Link size={20} color="white" />}>
-            Event Links
-          </Button>
-        </h3> */}
-        <Divider width="quarter" border={true}/>
-
+  
+        <Divider width="quarter" border={true} />
+  
         {eventData?.event && (
           <QRCodeTabs eventData={{ event: { hostLink: eventData.event.hostLink, guestLink: eventData.event.guestLink } }} />
         )}
-
-        <Divider width="quarter" border={true}/>
-
+  
+        <Divider width="quarter" border={true} />
+  
         <PhotoGallery photos={eventData?.event?.photos || []} />
-
-        <Divider width="full" border={true}/>
-
-        <GuestList guests={eventData?.event?.guests || []} eventCode={eventCode}/>
-
-        <Divider width="full" border={true}/>
-
-        <ImageCarousel 
-          images={[
-           '/wedding-poster.png',
-           '/birthday-poster.png'
-          ]}
+  
+        <Divider width="full" border={true} />
+  
+        <GuestList guests={eventData?.event?.guests || []} eventCode={eventCode} />
+  
+        <Divider width="full" border={true} />
+  
+        <ImageCarousel
+          images={["/wedding-poster.png", "/birthday-poster.png"]}
         />
-
       </div>
     </>
   );
