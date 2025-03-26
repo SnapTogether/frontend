@@ -31,7 +31,7 @@ export default function DownloadZip({ eventCode, className }: DownloadZipProps) 
   };
 
   return (
-    <div className="flex flex-col items-center gap-4">
+    <>
       <Button
         variant="tertiary"
         onClick={handleDownload}
@@ -42,6 +42,6 @@ export default function DownloadZip({ eventCode, className }: DownloadZipProps) 
       {loading ? t("zipBtn.subtitle") : t("zipBtn.title")}
       </Button>
       {error && <p className="text-red-500">{error}</p>}
-    </div>
+    </>
   );
 }

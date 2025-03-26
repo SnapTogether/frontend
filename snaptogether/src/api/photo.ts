@@ -1,7 +1,13 @@
+interface UploadedPhoto {
+  photoId: string;
+  url: string;
+  type: "image" | "video";
+}
+
 export interface UploadResponse {
   status: number;
   message: string;
-  photos?: { photoId: string; imageUrl: string }[];
+  photos?: UploadedPhoto[];
   error?: string;
 }
 
@@ -29,7 +35,7 @@ export const uploadPhotosForGuest = async (
     }
 
     const formData = new FormData();
-    files.forEach((file) => formData.append("images", file)); // ✅ Ensure key matches backend
+    files.forEach((file) => formData.append("media", file)); // ✅ Ensure key matches backend
 
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/api/photos/upload/${encodeURIComponent(eventCode)}/${encodeURIComponent(guestId)}`,
@@ -53,10 +59,11 @@ export const uploadPhotosForGuest = async (
       return {
         status: res.status,
         message: data.message,
-        photos: data.photos?.map((photo: { _id: string; imageUrl: string }) => ({
-          photoId: photo._id, // ✅ Ensure proper mapping
-          imageUrl: photo.imageUrl,
-        })) || [],
+        photos: data.photos?.map((photo: { _id: string; imageUrl?: string; videoUrl?: string }) => ({
+          photoId: photo._id,
+          url: photo.imageUrl || photo.videoUrl,
+          type: photo.imageUrl ? "image" : "video"
+        })) || [],        
       };
     } catch (jsonError) {
       console.error("❌ JSON Parse Error:", jsonError);

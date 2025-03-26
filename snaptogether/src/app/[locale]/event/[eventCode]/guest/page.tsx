@@ -91,22 +91,33 @@ export default function GuestDashboard() {
           <div className="flex flex-col gap-6 text-center">
             <h3 className="text-lg font-semibold text-slate-50">📸 Your Uploaded Photos</h3>
 
-            {/* ✅ Scrollable Image Grid */}
+            {/* ✅ Scrollable Image/Video Grid */}
             {guestData.photos && guestData.photos.length > 0 ? (
               <div className="relative w-full">
                 <div className="flex overflow-x-auto scroll-smooth snap-x snap-mandatory gap-3 p-2">
                   {guestData.photos.map((photo, index) => (
-                    <div key={photo.photoId} className="snap-center flex-shrink-0">
-                      <Image
-                        key={index}
-                        src={photo.imageUrl}
-                        alt="Guest Upload"
-                        width={300}
-                        height={300}
-                        className="rounded-md shadow-md max-h-[30vh] !h-full w-full object-cover"
-                        loading="lazy"
-                        decoding="async"
-                      />
+                    <div key={photo.photoId} className="snap-center flex-shrink-0 w-[300px] h-[300px]">
+                      {photo.imageUrl.match(/\.(mp4|webm|mov)$/i) ? (
+                        <video
+                          controls
+                          className="rounded-md shadow-md max-h-[30vh] !h-full w-full object-cover"
+                          key={index}
+                        >
+                          <source src={photo.imageUrl} type="video/mp4" />
+                          Your browser does not support the video tag.
+                        </video>
+                      ) : (
+                        <Image
+                          key={index}
+                          src={photo.imageUrl}
+                          alt="Guest Upload"
+                          width={300}
+                          height={300}
+                          className="rounded-md shadow-md max-h-[30vh] !h-full w-full object-cover"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      )}
                     </div>
                   ))}
                 </div>

@@ -31,25 +31,30 @@ export default function Upload({
     setLoading(true);
 
     // ✅ Optimize images before upload
-    const optimizedImages = await Promise.all(
+    const optimizedFiles = await Promise.all(
       Array.from(files).map(async (file) => {
-        const options = {
-          maxSizeMB: 1, // Max size: 1MB
-          maxWidthOrHeight: 1080, // Resize if larger than 1080px
-          useWebWorker: true, // Speed up compression
-          fileType: "image/webp", // Convert to WebP
-        };
-        return await imageCompression(file, options);
+        if (file.type.startsWith("image/")) {
+          const options = {
+            maxSizeMB: 1,
+            maxWidthOrHeight: 1080,
+            useWebWorker: true,
+            fileType: "image/webp",
+          };
+          return await imageCompression(file, options);
+        }
+        // Just return video files as-is
+        return file;
       })
     );
+    
 
-    console.log("✅ Optimized Images Ready to Upload:", optimizedImages);
+    console.log("✅ Optimized Images Ready to Upload:", optimizedFiles);
 
-    const response = await uploadPhotosForGuest(eventCode, guestId, optimizedImages);
+    const response = await uploadPhotosForGuest(eventCode, guestId, optimizedFiles);
     setLoading(false);
 
     if (response.status === 201) {
-      const newPhotoUrls = response.photos!.map((photo) => photo.imageUrl);
+      const newPhotoUrls = response.photos!.map((photo) => photo.url);
       onPhotosUploaded(newPhotoUrls); // ✅ Update parent component
 
       // ✅ Emit WebSocket Event (Tell Host a New Image is Uploaded)
@@ -66,7 +71,7 @@ export default function Upload({
 
   return (
     <div className="w-full border rounded-lg shadow-md mx-auto space-y-4">
-      <input type="file" multiple accept="image/*" onChange={handleFileChange} className="hidden" id="file-upload" />
+      <input type="file" multiple accept="image/*,video/*" onChange={handleFileChange} className="hidden" id="file-upload" />
       <label
         htmlFor="file-upload"
         className="text-md font-medium flex items-center justify-center w-full cursor-pointer rounded-md !m-0 p-4 
