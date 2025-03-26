@@ -101,12 +101,14 @@ export default function GuestDashboard() {
                         <video
                           controls
                           className="rounded-md shadow-md max-h-[30vh] !h-full w-full object-cover"
+                          key={index}
                         >
                           <source src={photo.imageUrl} type="video/mp4" />
                           Your browser does not support the video tag.
                         </video>
                       ) : (
                         <Image
+                          key={index}
                           src={photo.imageUrl}
                           alt="Guest Upload"
                           width={300}

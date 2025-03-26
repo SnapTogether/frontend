@@ -21,19 +21,22 @@ export default function EventForm() {
   } = useForm<CreateEventData>();
 
   const onSubmit = async (data: CreateEventData) => {
-    const response = await createEvent(data);
+    try {
+      const response = await createEvent(data);
 
-    if (response.status === 201) {
-      if (data.plan === "free") {
-        // Free plan = redirect directly
-        router.push(`/event/${response.eventCode}/${response.hostCode}/dashboard`);
+      if (response.status === 201) {
+        if (data.plan === "free") {
+          router.push(`/event/${response.eventCode}/${response.hostCode}/dashboard`);
+        } else {
+          setSelectedPaidPlan(data.plan);
+        }
       } else {
-        // Paid plan = show payment instructions
-        setSelectedPaidPlan(data.plan); // ⬅️ this will show payment info
+        setEventResponse("Something went wrong. Please try again.");
       }
+    } catch (error: any) {
+      console.error(error);
+      setEventResponse("An error occurred. Please try again.");
     }
-    
-
   };
 
   const t = useTranslations("eventForm");
