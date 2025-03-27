@@ -74,7 +74,7 @@ export default function AboutPage() {
     <div className="relative min-h-screen bg-gradient-to-br from-[#1c1c1c] to-[#2e2e2e] text-white px-4 py-8">
       <Navbar />
 
-      <div className="max-w-3xl mx-auto mt-16 text-center flex flex-col items-center justify-center gap-9">
+      <div className="max-w-3xl mx-auto pt-[10vh] text-center flex flex-col items-center justify-center gap-9">
         <h1 className="text-4xl font-bold text-white">{t("title")}</h1>
 
         <motion.div

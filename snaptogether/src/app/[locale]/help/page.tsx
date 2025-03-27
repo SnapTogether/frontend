@@ -18,8 +18,8 @@ export default function HelpPage() {
     <div className="relative min-h-screen bg-gradient-to-br from-[#1c1c1c] to-[#2e2e2e] text-white">
       <Navbar />
 
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 container md:max-w-[50vw] px-4">
-        <h1 className="text-3xl font-bold text-center mb-8 text-white">
+      <div className="pt-[10vh] container mx-auto md:max-w-[50vw] px-4">
+        <h1 className="text-3xl pt-[10vh] md:pt-0 font-bold text-center mb-8 text-white">
           {t("helpPage.title", { defaultValue: "How can we help you?" })}
         </h1>
 
@@ -56,7 +56,7 @@ export default function HelpPage() {
           })}
         </div>
 
-        <div className="mt-12 text-center">
+        <div className="mt-12 text-center pb-6">
           <p className="text-lg font-medium">{t("helpPage.contactPrompt", { defaultValue: "Still need help?" })}</p>
           <a href="mailto:support@snaptogether.app" className="text-blue-400 underline">
             {t("helpPage.contactEmail", { defaultValue: "Contact us at snaptogether25@gmail.com" })}
