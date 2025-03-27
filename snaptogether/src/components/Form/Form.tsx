@@ -3,6 +3,7 @@
 
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useLocale } from "next-intl";
 import Input from "../Input/Input";
 import { createEvent, CreateEventData } from "@/api/event";
 import { useRouter } from "next/navigation";
@@ -20,11 +21,16 @@ export default function EventForm() {
     handleSubmit,
     formState: { errors },
   } = useForm<CreateEventData>();
+  const locale = useLocale();
 
   const onSubmit = async (data: CreateEventData) => {
-    setIsSubmitting(true); // Start loading
+    setIsSubmitting(true);
     try {
-      const response = await createEvent(data);
+      const payloadWithLocale = {
+        ...data,
+        locale, //Add current locale, since it takes inputs from form in useForm
+      };
+      const response = await createEvent(payloadWithLocale);
 
       if (response.status === 201) {
         if (data.plan === "free") {
