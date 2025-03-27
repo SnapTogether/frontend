@@ -37,7 +37,7 @@ export function Divider({
     <hr
       data-component-id="C003"
       aria-hidden="true"
-      className={`smzh-divider ${resolvedBorderClass} ${resolvedWidthClass} ${className}`.trim()}
+      className={`snaptogether-divider ${resolvedBorderClass} ${resolvedWidthClass} ${className}`.trim()}
       {...rest}
     />
   );
