@@ -27,8 +27,25 @@ export default function Home() {
     }
   }, [pathname]);
 
+  
   const t = useTranslations('home');
-
+  
+  const messages = [
+    t('msg1'), // e.g. "Capture every angle of your special event."
+    t('msg2'), // e.g. "Guests share their favorite moments instantly."
+    t('msg3'), // e.g. "Relive the day through your guests' lenses."
+  ];
+  
+  const [currentIndex, setCurrentIndex] = useState(0);
+  
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % messages.length);
+    }, 3500); // change every 3.5s
+  
+    return () => clearInterval(interval);
+  }, []);
+  
   return (
     <div className="relative h-screen w-screen home-background">
       
@@ -54,13 +71,16 @@ export default function Home() {
         </motion.div>
 
         <motion.p
-          className="font-mulish text-slate-200 text-xl rounded-md m-0 text-center"
+          key={currentIndex} // <- important for animation
+          className="font-mulish text-slate-200 text-xl rounded-md m-0 text-center min-h-[32px]"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.4 }}
+          exit={{ opacity: 0, y: -10 }}
+          transition={{ duration: 0.6 }}
         >
-          {t('everyMomentMatters')}
+          {messages[currentIndex]}
         </motion.p>
+
 
         <Button
           variant="primary"

@@ -13,9 +13,13 @@ interface LightboxProps {
   onClose: () => void;
   onNext?: () => void;
   onPrev?: () => void;
+  disableNavigation?: boolean;
+  disablePrev?: boolean;
+  disableNext?: boolean;
 }
 
-const Lightbox: React.FC<LightboxProps> = ({ isOpen, images, selectedIndex, onClose }) => {
+
+const Lightbox: React.FC<LightboxProps> = ({ isOpen, images, selectedIndex, onClose, disablePrev, disableNext }) => {
   // ✅ Ensure Hook is Always Called
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -107,18 +111,23 @@ const Lightbox: React.FC<LightboxProps> = ({ isOpen, images, selectedIndex, onCl
         </div>
 
         <button
-          className="absolute left-4 top-1/2 -translate-y-1/2 text-white bg-gray-800/80 p-3 rounded-full hover:bg-gray-700 transition-all duration-300 ease-in-out"
-          onClick={scrollPrev}
+          className={`absolute left-4 top-1/2 -translate-y-1/2 text-white p-3 rounded-full transition-all duration-300 ease-in-out
+    ${disablePrev ? "bg-gray-800/30 opacity-30 cursor-not-allowed" : "bg-gray-800/80 hover:bg-gray-700"}`}
+          onClick={disablePrev ? undefined : scrollPrev}
+          disabled={disablePrev}
         >
           <ChevronLeft size={30} />
         </button>
 
         <button
-          className="absolute right-4 top-1/2 -translate-y-1/2 text-white bg-gray-800/80 p-3 rounded-full hover:bg-gray-700 transition-all duration-300 ease-in-out"
-          onClick={scrollNext}
+          className={`absolute right-4 top-1/2 -translate-y-1/2 text-white p-3 rounded-full transition-all duration-300 ease-in-out
+    ${disableNext ? "bg-gray-800/30 opacity-30 cursor-not-allowed" : "bg-gray-800/80 hover:bg-gray-700"}`}
+          onClick={disableNext ? undefined : scrollNext}
+          disabled={disableNext}
         >
           <ChevronRight size={30} />
         </button>
+
       </div>
     </div>
   );

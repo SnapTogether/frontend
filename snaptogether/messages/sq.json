@@ -7,7 +7,9 @@
     "contact": "Kontakt"
   },
   "home": {
-    "everyMomentMatters": "Çdo moment ka rëndësi.",
+    "msg1": "Ruani kujtimet tuaja, kapur nga njerëzit më të dashur.",
+    "msg2": "Lejojini mysafirët të ndajnë momentet e tyre të preferuara lehtësisht.",
+    "msg3": "Bashkoni çdo këndvështrim në një galeri të përbashkët.",
     "getStarted": "Filloni"
   },
   "eventForm": {
@@ -21,11 +23,11 @@
     "eventNameRequired": "Emri i ngjarjes është i detyrueshëm",
     "eventDateRequired": "Data e ngjarjes është e detyrueshme",
     "createEvent": "Krijo Ngjarje",
-    "creatingEvent": "Креирање...",
+    "creatingEvent": "Duke krijuar...",
     "failedMessage": "❌ Dështoi krijimi i ngjarjes. Ju lutemi provoni përsëri.",
     "plan": "Zgjidh Planin",
     "plans": {
-      "free": "Falas (1GB)",
+      "free": "Falas (500MB)",
       "starter": "Fillestar (3GB)",
       "pro": "Pro (10GB)"
     },
@@ -115,5 +117,53 @@
       "question": "Sa kohë janë të disponueshme fotot?",
       "answer": "Fotot janë të disponueshme për 30 ditë pas eventit, përveç nëse jeni në një plan të paguar që ofron ruajtje më të gjatë."
     }
-  ]
+  ],
+  "aboutPage": {
+    "title": "Rreth SnapTogether",
+    "sections": [
+      {
+        "title": "Ruani momentet",
+        "description": "SnapTogether është një mënyrë e thjeshtë për të mbledhur të gjitha momentet e veçanta nga eventi juaj — të kapura nga mysafirët tuaj."
+      },
+      {
+        "title": "Krijoni ngjarjen menjëherë",
+        "description": "Qoftë dasmë, ditëlindje, hapje biznesi apo ndonjë festë tjetër — mund të krijoni një ngjarje në faqen tonë dhe të merrni menjëherë një QR kod unik."
+      },
+      {
+        "title": "Shpërndarje e lehtë nga mysafirët",
+        "description": "Ndajeni QR kodin me mysafirët. Ata mund ta skanojnë dhe ngarkojnë lehtësisht fotot që marrin gjatë eventit — pa aplikacion, pa regjistrim."
+      },
+      {
+        "title": "Një galeri kujtimesh",
+        "description": "Si mikpritës, do t’i merrni të gjitha fotot në një vend — duke krijuar një koleksion të bukur kujtimesh nga çdo kënd i eventit tuaj."
+      }
+    ],
+    "guidanceTitle": "Hapat udhëzues",
+    "guidanceSteps": [
+      {
+        "title": "Zgjidhni gjuhën tuaj dhe filloni!",
+        "description": ""
+      },
+      {
+        "title": "Plotësoni formularin për të krijuar eventin dhe zgjidhni një nga planet",
+        "description": ""
+      },
+      {
+        "title": "Shkarkoni një Zip me të gjitha fotot dhe kontrolloni hapësirën e përdorur",
+        "description": ""
+      },
+      {
+        "title": "Filloni duke skanuar QR kodin dhe shikoni galerinë",
+        "description": ""
+      },
+      {
+        "title": "Pasi të skanojnë QR kodin, mysafirët duhet të fusin emrin e tyre",
+        "description": "Hyni përsëri herën tjetër me të njëjtin emër"
+      },
+      {
+        "title": "Ngarkoni fotot tuaja të preferuara nga eventi",
+        "description": ""
+      }
+    ]
+  }
 }

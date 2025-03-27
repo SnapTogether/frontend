@@ -8,7 +8,7 @@ import Button from "@/components/Button/Button";
 import { BadgeInfo, Calendar, Mail, PartyPopper, SmilePlus } from "lucide-react";
 import Navbar from "@/components/Navbar/Navbar";
 import DownloadZip from "@/components/DownloadZip/DownloadZip";
-import CardImg from '../../../../../../../public/bg3.jpg'
+import CardImg from '../../../../../../../public/bg4.jpg'
 import PhotoGallery from "@/components/PhotoGallery/PhotoGallery";
 import GuestList from "@/components/GuestList/GuestList";
 import Loader from "@/components/Loader/Loader";

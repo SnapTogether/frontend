@@ -26,6 +26,10 @@ const PhotoGallery: React.FC<PhotoGalleryProps> = ({ photos }) => {
   const indexOfFirstPhoto = indexOfLastPhoto - photosPerPage;
   const currentPhotos = photos.slice(indexOfFirstPhoto, indexOfLastPhoto);
 
+  const disablePrev = selectedImageIndex === 0;
+  const disableNext = selectedImageIndex === photos.length - 1;
+
+
   const nextPage = () => {
     if (currentPage < totalPages) setCurrentPage(currentPage + 1);
   };
@@ -89,9 +93,11 @@ const PhotoGallery: React.FC<PhotoGalleryProps> = ({ photos }) => {
                       src={photo.imageUrl}
                       controls
                       preload="metadata"
+                      key={index}
                     />
                   ) : (
                     <Image
+                      key={index}
                       src={photo.imageUrl}
                       alt="Uploaded"
                       width={300}
@@ -137,6 +143,9 @@ const PhotoGallery: React.FC<PhotoGalleryProps> = ({ photos }) => {
         onClose={closeModal}
         onNext={nextImage}
         onPrev={prevImage}
+        disableNavigation={photos.length <= 1}
+        disablePrev={disablePrev}
+        disableNext={disableNext}
       />
     </div>
   );

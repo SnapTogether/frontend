@@ -7,7 +7,9 @@
     "contact": "Contact"
   },
   "home": {
-    "everyMomentMatters": "Every moment matters.",
+    "msg1": "Keep your memories, captured by the people who matter most.",
+    "msg2": "Let your guests contribute their favorite moments effortlessly.",
+    "msg3": "Bring every perspective together in one shared gallery.",
     "getStarted": "Get Started"
   },
   "eventForm": {
@@ -25,7 +27,7 @@
     "failedMessage": "❌ Failed to create event. Please try again.",
     "plan": "Select Plan",
     "plans": {
-      "free": "Free (1GB)",
+      "free": "Free (500MB)",
       "starter": "Starter (3GB)",
       "pro": "Pro (10GB)"
     },
@@ -115,5 +117,53 @@
       "question": "How long are my photos available?",
       "answer": "Uploaded media is available for 30 days after the event unless you're on a paid plan."
     }
-  ]
+  ],
+  "aboutPage": {
+    "title": "About SnapTogether",
+    "sections": [
+      {
+        "title": "Capture Moments Easily",
+        "description": "SnapTogether is a simple way to collect all the special moments from your event — captured by your guests."
+      },
+      {
+        "title": "Create Your Event Instantly",
+        "description": "Whether it’s a wedding, birthday, business opening, or any kind of celebration — you can create an event on our website and instantly get a unique QR code."
+      },
+      {
+        "title": "Effortless Guest Sharing",
+        "description": "Share that QR code with your guests. When they scan it, they can easily upload the photos they take during your event — no apps, no sign-up, just quick and easy sharing."
+      },
+      {
+        "title": "A Gallery of Memories",
+        "description": "As the host, you’ll receive all the photos in one place, giving you a beautiful collection of memories from every angle — straight from your guests’ phones."
+      }
+    ],
+    "guidanceTitle": "Guidance Steps",
+    "guidanceSteps": [
+      {
+        "title": "Choose your language and Get Started!",
+        "description": ""
+      },
+      {
+        "title": "Fill the form to create your event and choose one of the plans",
+        "description": ""
+      },
+      {
+        "title": "Download Zip With All Photos and Track Used Storage",
+        "description": ""
+      },
+      {
+        "title": "Start by Scanning the QR Code and Check the Gallery",
+        "description": ""
+      },
+      {
+        "title": "After Scanning QR Code Guests Need to Enter Their Name",
+        "description": "Log in next time with the same name"
+      },
+      {
+        "title": "Upload Your Favorite Photos From Your Event",
+        "description": ""
+      }
+    ]
+  }
 }
