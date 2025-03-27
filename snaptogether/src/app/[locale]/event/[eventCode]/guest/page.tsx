@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useParams } from "next/navigation";
+import { v4 as uuidv4 } from 'uuid';
 import { verifyGuest, GuestResponse, GuestPhoto } from "@/api/guest";
 import Upload from "@/components/Upload/Upload";
 import Image from "next/image";
@@ -16,6 +17,9 @@ export default function GuestDashboard() {
 
   const [guestName, setGuestName] = useState<string>("");
   const [guestData, setGuestData] = useState<GuestResponse | null>(null);
+  const [usedStorage, setUsedStorage] = useState<number>(0);
+  const [storageLimit, setStorageLimit] = useState<number>(0);  
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string>("");
 
@@ -34,7 +38,10 @@ export default function GuestDashboard() {
 
     if (response.status === 200) {
       setGuestData(response);
-    } else {
+      setUsedStorage(Number(response.usedStorage) || 0); // ✅ safely parse
+      setStorageLimit(Number(response.storageLimit) || 0);
+    }
+    else {
       setError(response.message);
     }
 
@@ -53,14 +60,13 @@ export default function GuestDashboard() {
         photos: [
           ...(prevGuestData.photos || []),
           ...newPhotoUrls.map((url) => ({
-            photoId: Date.now().toString(),
+            photoId: uuidv4(),
             imageUrl: url,
           })) as GuestPhoto[],
         ],
       };
     });
   };
-
   return (
     <div className="guest-dashboard relative w-screen h-screen">
       <Navbar />
@@ -127,7 +133,13 @@ export default function GuestDashboard() {
             )}
 
             {/* ✅ Upload Component */}
-            <Upload eventCode={eventCode} guestId={guestData?.guest?.guestId || ""} onPhotosUploaded={handlePhotosUploaded} />
+            <Upload
+              eventCode={eventCode}
+              guestId={guestData?.guest?.guestId || ""}
+              onPhotosUploaded={handlePhotosUploaded}
+              usedStorage={usedStorage}
+              storageLimit={storageLimit}
+            />
           </div>
         )}
       </div>

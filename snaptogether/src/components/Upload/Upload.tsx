@@ -7,12 +7,18 @@ export default function Upload({
   eventCode,
   guestId,
   onPhotosUploaded,
+  usedStorage,
+  storageLimit,
 }: {
   eventCode: string;
   guestId: string;
   onPhotosUploaded: (newPhotos: string[]) => void;
+  usedStorage: number;
+  storageLimit: number;
 }) {
+
   const [loading, setLoading] = useState(false);
+  const isLimitReached = usedStorage >= storageLimit;
 
   console.log("📤 Upload Component: Event Code:", eventCode, "Guest ID:", guestId);
 
@@ -68,16 +74,32 @@ export default function Upload({
       alert("❌ Upload failed. Try again!");
     }
   };
+  console.log('isLimitReached', isLimitReached);
+  console.log('usedStorage', usedStorage);
+  console.log('storageLimit', storageLimit);
+
 
   return (
     <div className="w-full border rounded-lg shadow-md mx-auto space-y-4">
-      <input type="file" multiple accept="image/*,video/*" onChange={handleFileChange} className="hidden" id="file-upload" />
+     <input
+        type="file"
+        multiple
+        accept="image/*,video/*"
+        onChange={handleFileChange}
+        className="hidden"
+        id="file-upload"
+        disabled={isLimitReached}
+      />
+
       <label
         htmlFor="file-upload"
-        className="text-md font-medium flex items-center justify-center w-full cursor-pointer rounded-md !m-0 p-4 
-                      bg-transparent hover:bg-white text-white hover:text-black transition-all duration-300 ease-in-out"
+        className={`text-md font-medium flex items-center justify-center w-full cursor-pointer rounded-md !m-0 p-4 
+          ${isLimitReached ? "bg-gray-500 cursor-not-allowed" : "bg-transparent hover:bg-white text-white hover:text-black"} 
+          transition-all duration-300 ease-in-out`}
       >
-        <span className="w-full h-full !rounded-none">{loading ? "Uploading..." : "Choose Images"}</span>
+        <span className="w-full h-full !rounded-none">
+          {isLimitReached ? "Storage Full" : loading ? "Uploading..." : "Choose Images"}
+        </span>
       </label>
     </div>
   );
