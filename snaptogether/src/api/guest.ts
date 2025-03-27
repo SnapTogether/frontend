@@ -18,6 +18,8 @@ export interface GuestResponse {
   guestName?: string;
   guest?: Guest;
   photos?: GuestPhoto[];
+  usedStorage?: number;
+  storageLimit?:number;
   error?: string;
 }
 
@@ -64,14 +66,16 @@ export const verifyGuest = async (
         status: res.status,
         message: data.message,
         guest: {
-          guestId: data.guestId, // ✅ Corrected
-          guestName: guestName,  // ✅ Using input name since it's missing in response
+          guestId: data.guestId,
+          guestName: guestName,
         },
         photos: data.photos?.map((photo: { _id: string; imageUrl: string }) => ({
-          photoId: photo._id, // ✅ Ensure proper mapping
+          photoId: photo._id,
           imageUrl: photo.imageUrl,
         })) || [],
-      };
+        usedStorage: data.usedStorage || 0,         // ✅ Add this
+        storageLimit: data.storageLimit || 0,       // ✅ Add this
+      };      
     } catch (jsonError) {
       console.error("❌ JSON Parse Error:", jsonError);
       console.error("📨 Raw Response (Not JSON):", text);
