@@ -4,7 +4,7 @@ import { Card } from "@/components/Card/Card";
 import { Divider } from "@/components/Divider/Divider";
 import Navbar from "@/components/Navbar/Navbar";
 import { cardData } from "@/utils/cardData";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { useTranslations } from "next-intl";
@@ -14,6 +14,11 @@ import CircleImage from "../../../../public/about/about-avatar.png";
 import CircleImage2 from "../../../../public/about/scan-qr.png";
 import CircleImage3 from "../../../../public/about/about-avatar3.png";
 
+type Section = {
+    title: string;
+    description: string;
+  };
+  
 // Animation config
 const containerVariants = {
   hidden: {},
@@ -43,7 +48,7 @@ const AboutSection = ({
 }: {
   title: string;
   description: string;
-  image: any;
+  image: StaticImageData;
 }) => (
   <motion.div
     variants={fadeInUpItem}
@@ -79,14 +84,14 @@ export default function AboutPage() {
           initial="hidden"
           animate={isInView ? "show" : "hidden"}
         >
-          {t.raw("sections").map((section: any, index: number) => (
-            <AboutSection
-              key={index}
-              title={section.title}
-              description={section.description}
-              image={images[index]}
-            />
-          ))}
+        {(t.raw("sections") as Section[]).map((section, index) => (
+        <AboutSection
+            key={index}
+            title={section.title}
+            description={section.description}
+            image={images[index]}
+        />
+        ))}
         </motion.div>
       </div>
 
