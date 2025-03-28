@@ -1,7 +1,5 @@
-import { useState } from "react";
 import { QRCodeCanvas } from "qrcode.react";
 import { Download } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion"; // ✅ Import Framer Motion
 import Button from "../Button/Button"; // Replace with your actual Button component
 import { downloadQR } from "@/utils/qrCode";
 import { useTranslations } from "next-intl";
