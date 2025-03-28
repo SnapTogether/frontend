@@ -18,10 +18,10 @@ export default function QRCodeTabs({ eventData }: { eventData: EventData }) {
     const t = useTranslations();
 
     return (
-        <div className="container mx-auto w-full flex flex-col items-center gap-6">
+        <div className="container mx-auto w-full flex flex-col items-center">
             {/* Tabs Navigation */}
             <div className="flex w-full justify-around max-w-[50vh] gap-2">
-                <Button
+                {/* <Button
                     className={`px-4 py-2 text-base sm:text-lg font-medium transition-all duration-300 ease-in-out ${
                         activeTab === "host" ? " !text-white" : "!text-gray-500 bg-slate-200/5"
                     }`}
@@ -36,9 +36,11 @@ export default function QRCodeTabs({ eventData }: { eventData: EventData }) {
                     onClick={() => setActiveTab("guest")}
                 >
                     {t("qrBtn.guest")}
-                </Button>
+                </Button> */}
             </div>
-
+            <h3 className="text-white text-xl md:text-2xl font-semibold my-5 flex items-center justify-center gap-3 capitalize font-mulish"> 
+                {t("qrBtn.guest")}
+            </h3>
             {/* QR Code Content with Smooth Transition */}
             <div className="flex flex-col justify-center items-center gap-4 mt-4 w-full">
                 <AnimatePresence mode="wait">
