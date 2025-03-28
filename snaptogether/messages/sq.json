@@ -165,5 +165,10 @@
         "description": ""
       }
     ]
+  },
+  "StorageBar": {
+    "label": "Memorie",
+    "limitReached": "Limiti i memories është arritur. Përmirësoni planin tuaj për të ngarkuar më shumë.",
+    "halfUsed": "Është arritur gjysma e limitit të memories."
   }
 }

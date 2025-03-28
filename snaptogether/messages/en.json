@@ -165,5 +165,10 @@
         "description": ""
       }
     ]
+  },
+  "StorageBar": {
+    "label": "Storage",
+    "limitReached": "Storage limit reached. Upgrade your plan to upload more.",
+    "halfUsed": "Half storage limit reached."
   }
 }
