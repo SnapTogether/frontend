@@ -1,3 +1,8 @@
+import { useState } from "react";
+import { QRCodeCanvas } from "qrcode.react";
+import { Download } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion"; // ✅ Import Framer Motion
+import Button from "../Button/Button"; // Replace with your actual Button component
 import { downloadQR } from "@/utils/qrCode";
 import { useTranslations } from "next-intl";
 
@@ -33,10 +38,21 @@ export default function QRCodeTabs({ eventData }: { eventData: EventData }) {
                     {t("qrBtn.guest")}
                 </Button> */}
             </div>
-            <h3 className="text-white text-xl md:text-2xl font-semibold my-5 flex items-center justify-center gap-3 capitalize font-mulish"> 
+            <h3 className="text-white text-xl md:text-2xl font-semibold my-5 flex items-center justify-center gap-3 capitalize font-mulish">
                 {t("qrBtn.guest")}
             </h3>
             {/* QR Code Content with Smooth Transition */}
+            <div className="flex flex-col justify-center items-center gap-4 mt-4 w-full">
+
+                <div className="flex relative mt-2">
+                    <QRCodeCanvas id="guestQR" size={200} value={eventData?.event?.guestLink || ""} />
+                    <Button
+                        onClick={() => downloadQR(eventData?.event?.guestLink || "", "guestQR")}
+                        className="h-fit w-fit text-sm text-white bg-transparent px-2 py-1 rounded-md absolute left-full"
+                        iconRight={<Download size={20} />}
+                    />
+                </div>
+            </div>
         </div>
     );
 }
