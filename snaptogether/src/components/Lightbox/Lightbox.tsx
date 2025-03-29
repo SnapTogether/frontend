@@ -18,12 +18,29 @@ interface LightboxProps {
   disableNext?: boolean;
 }
 
-
-const Lightbox: React.FC<LightboxProps> = ({ isOpen, images, selectedIndex, onClose, disablePrev, disableNext }) => {
-  // ✅ Ensure Hook is Always Called
+const Lightbox: React.FC<LightboxProps> = ({
+  isOpen,
+  images,
+  selectedIndex,
+  onClose,
+  disablePrev,
+  disableNext
+}) => {
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  // ✅ Avoid Rendering Instead of Returning Null Early
+  // ✅ Always called, no early return before this
+  useEffect(() => {
+    if (!isOpen || !scrollRef.current) return;
+
+    const timeout = setTimeout(() => {
+      const scrollTo = scrollRef.current!.clientWidth * selectedIndex;
+      scrollRef.current!.scrollTo({ left: scrollTo, behavior: "auto" });
+    }, 0);
+
+    return () => clearTimeout(timeout);
+  }, [selectedIndex, isOpen]);
+
+  // ✅ Now safe to do early return
   if (!isOpen || !images || images.length === 0) {
     return <div className="hidden" />;
   }
@@ -62,21 +79,15 @@ const Lightbox: React.FC<LightboxProps> = ({ isOpen, images, selectedIndex, onCl
     }
   };
 
-  useEffect(() => {
-    if (!isOpen || !scrollRef.current) return;
-  
-    // Wait for layout to be ready
-    const timeout = setTimeout(() => {
-      const scrollTo = scrollRef.current!.clientWidth * selectedIndex;
-      scrollRef.current!.scrollTo({ left: scrollTo, behavior: "auto" });
-    }, 0); // delay until after paint
-  
-    return () => clearTimeout(timeout);
-  }, [selectedIndex, isOpen]);
-
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-80 z-50" onClick={onClose}>
-      <div className="relative flex flex-col items-center w-full max-w-screen-lg" onClick={(e) => e.stopPropagation()}>
+    <div
+      className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-80 z-50"
+      onClick={onClose}
+    >
+      <div
+        className="relative flex flex-col items-center w-full max-w-screen-lg"
+        onClick={(e) => e.stopPropagation()}
+      >
         <button
           className="absolute top-5 right-5 text-white bg-gray-900/20 p-2 rounded-full hover:bg-gray-900/50 transition-all duration-300 ease-in-out"
           onClick={onClose}
@@ -91,16 +102,17 @@ const Lightbox: React.FC<LightboxProps> = ({ isOpen, images, selectedIndex, onCl
           variant="tertiary"
         />
 
-      <div
-        ref={scrollRef}
-        className="flex overflow-x-hidden snap-x snap-mandatory w-full max-w-screen-md"
-      >
-
+        <div
+          ref={scrollRef}
+          className="flex overflow-x-hidden snap-x snap-mandatory w-full max-w-screen-md"
+        >
           {images.map((image) => {
             const isVideo = image.imageUrl.match(/\.(mp4|webm|mov)$/i);
-
             return (
-              <div key={image._id} className="flex-shrink-0 w-full flex justify-center snap-center">
+              <div
+                key={image._id}
+                className="flex-shrink-0 w-full flex justify-center snap-center"
+              >
                 {isVideo ? (
                   <video
                     src={image.imageUrl}
@@ -124,7 +136,7 @@ const Lightbox: React.FC<LightboxProps> = ({ isOpen, images, selectedIndex, onCl
 
         <button
           className={`absolute left-4 top-1/2 -translate-y-1/2 text-white p-3 rounded-full transition-all duration-300 ease-in-out
-    ${disablePrev ? "bg-gray-800/30 opacity-30 cursor-not-allowed" : "bg-gray-800/80 hover:bg-gray-700"}`}
+            ${disablePrev ? "bg-gray-800/30 opacity-30 cursor-not-allowed" : "bg-gray-800/80 hover:bg-gray-700"}`}
           onClick={disablePrev ? undefined : scrollPrev}
           disabled={disablePrev}
         >
@@ -133,13 +145,12 @@ const Lightbox: React.FC<LightboxProps> = ({ isOpen, images, selectedIndex, onCl
 
         <button
           className={`absolute right-4 top-1/2 -translate-y-1/2 text-white p-3 rounded-full transition-all duration-300 ease-in-out
-    ${disableNext ? "bg-gray-800/30 opacity-30 cursor-not-allowed" : "bg-gray-800/80 hover:bg-gray-700"}`}
+            ${disableNext ? "bg-gray-800/30 opacity-30 cursor-not-allowed" : "bg-gray-800/80 hover:bg-gray-700"}`}
           onClick={disableNext ? undefined : scrollNext}
           disabled={disableNext}
         >
           <ChevronRight size={30} />
         </button>
-
       </div>
     </div>
   );
