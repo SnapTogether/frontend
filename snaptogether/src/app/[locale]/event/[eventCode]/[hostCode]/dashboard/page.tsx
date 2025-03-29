@@ -5,7 +5,7 @@ import { useParams } from "next/navigation";
 import { fetchEventForHost, EventResponse } from "@/api/event";
 import Image from "next/image";
 import Button from "@/components/Button/Button";
-import { BadgeInfo, Calendar, Mail, PartyPopper, SmilePlus } from "lucide-react";
+import { BadgeInfo, Calendar, Hourglass, Mail, PartyPopper, SmilePlus } from "lucide-react";
 import Navbar from "@/components/Navbar/Navbar";
 import DownloadZip from "@/components/DownloadZip/DownloadZip";
 import CardImg from '../../../../../../../public/bg4.jpg'
@@ -29,9 +29,11 @@ export default function HostDashboard() {
   const [eventData, setEventData] = useState<EventResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string>("");
+  const [daysLeft, setDaysLeft] = useState<number | null>(null);
   const currentPage = 1;
   const photosPerPage = 20;
-
+  const plural = daysLeft !== 1 ? "s" : "";
+  
   const t = useTranslations("dashboard");
 
   useEffect(() => {
@@ -60,6 +62,15 @@ export default function HostDashboard() {
         console.log("📨 Total Pages:", response.event?.pagination?.totalPages);
         console.log("📸 Initial Photo Count:", response.event?.photos?.length); // ✅ Log initial number of photos
       }
+
+      if (response.event?.expirationDate) {
+        const expiration = new Date(response.event.expirationDate);
+        const now = new Date();
+        const timeDiff = expiration.getTime() - now.getTime();
+        const remainingDays = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+        setDaysLeft(Math.max(remainingDays, 0)); // never show negative
+      }
+      
 
       setLoading(false);
     };
@@ -112,15 +123,26 @@ export default function HostDashboard() {
           <p className="text-sm text-white">
             {t("plan")}: <strong>{eventData?.event?.plan.toUpperCase()}</strong>
           </p>
-          <DownloadZip eventCode={eventCode} />
+          <DownloadZip className="my-3" eventCode={eventCode} />
           {eventData?.event && (
             <>
               {console.log("📦 Storage Data → used:", eventData.event.usedStorage, "limit:", eventData.event.storageLimit)}
               <StorageBar used={eventData.event.usedStorage} limit={eventData.event.storageLimit} />
             </>
           )}
+          {daysLeft !== null && (
+            <p
+              className={`mt-2 text-xs font-semibold flex flex-col text-center md:flex-row gap-1 items-center ${
+                daysLeft <= 15 ? "text-yellow-400" : "text-white"
+              }`}
+            >
+              <Hourglass size={14} />
+              {t("countdown", { daysLeft, plural })}
+            </p>
+          )}
         </div>
-  
+        
+
         <h2 className="flex flex-col sm:flex-row items-center justify-center gap-3 text-white text-center text-xl sm:text-3xl font-semibold">
           <PartyPopper size={20} /> {t("title")} <b>{eventData?.event?.eventName}</b>
         </h2>

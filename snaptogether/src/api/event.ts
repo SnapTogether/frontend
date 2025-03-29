@@ -89,6 +89,7 @@ export interface EventResponse {
     pagination: {
       totalPages: number;
     };
+    expirationDate: string;
     photos: Photo[]; // ✅ Define as array of objects, not strings
     // 🔥 Add these 👇
     plan: "free" | "starter" | "pro";
