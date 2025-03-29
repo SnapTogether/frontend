@@ -137,6 +137,7 @@ const PhotoGallery: React.FC<PhotoGalleryProps> = ({ photos }) => {
 
       {/* ✅ Lightbox Component */}
       <Lightbox
+        key={selectedImageIndex} // 👈 add this line!
         isOpen={isModalOpen}
         images={photos}
         selectedIndex={selectedImageIndex ?? 0}
@@ -147,6 +148,7 @@ const PhotoGallery: React.FC<PhotoGalleryProps> = ({ photos }) => {
         disablePrev={disablePrev}
         disableNext={disableNext}
       />
+
     </div>
   );
 };
