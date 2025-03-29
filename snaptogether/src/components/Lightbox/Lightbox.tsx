@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { ChevronLeft, ChevronRight, X, Download } from "lucide-react";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import Button from "../Button/Button";
 import { Photo } from "@/api/event";
 
@@ -62,6 +62,18 @@ const Lightbox: React.FC<LightboxProps> = ({ isOpen, images, selectedIndex, onCl
     }
   };
 
+  useEffect(() => {
+    if (!isOpen || !scrollRef.current) return;
+  
+    // Wait for layout to be ready
+    const timeout = setTimeout(() => {
+      const scrollTo = scrollRef.current!.clientWidth * selectedIndex;
+      scrollRef.current!.scrollTo({ left: scrollTo, behavior: "auto" });
+    }, 0); // delay until after paint
+  
+    return () => clearTimeout(timeout);
+  }, [selectedIndex, isOpen]);
+
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-80 z-50" onClick={onClose}>
       <div className="relative flex flex-col items-center w-full max-w-screen-lg" onClick={(e) => e.stopPropagation()}>
@@ -79,11 +91,11 @@ const Lightbox: React.FC<LightboxProps> = ({ isOpen, images, selectedIndex, onCl
           variant="tertiary"
         />
 
-        <div
-          ref={scrollRef}
-          className="flex overflow-x-hidden snap-x snap-mandatory w-full max-w-screen-md"
-          style={{ scrollBehavior: "smooth" }}
-        >
+      <div
+        ref={scrollRef}
+        className="flex overflow-x-hidden snap-x snap-mandatory w-full max-w-screen-md"
+      >
+
           {images.map((image) => {
             const isVideo = image.imageUrl.match(/\.(mp4|webm|mov)$/i);
 
@@ -102,7 +114,7 @@ const Lightbox: React.FC<LightboxProps> = ({ isOpen, images, selectedIndex, onCl
                     alt="Enlarged"
                     width={700}
                     height={500}
-                    className="rounded-lg shadow-lg max-w-full max-h-[90vh]"
+                    className="rounded-lg shadow-lg max-w-full max-h-[90vh] object-cover"
                   />
                 )}
               </div>
