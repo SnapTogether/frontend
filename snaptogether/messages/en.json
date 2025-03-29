@@ -47,7 +47,8 @@
   "dashboard": {
     "title": "Host Dashboard for",
     "subtitle": "Event Details",
-    "plan": "Plan"
+    "plan": "Plan",
+    "countdown": "{daysLeft} day{plural} remaining until photos get auto deleted."
   },
   "zipBtn": {
     "title": "Download ZIP",
