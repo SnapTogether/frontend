@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { ChevronLeft, ChevronRight, X, Download } from "lucide-react";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Button from "../Button/Button";
 import { Photo } from "@/api/event";
 
@@ -22,18 +22,26 @@ const Lightbox: React.FC<LightboxProps> = ({
   isOpen,
   images,
   selectedIndex,
-  onClose,
-  disablePrev,
-  disableNext
+  onClose
 }) => {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const [currentIndex, setCurrentIndex] = useState(selectedIndex);
+
+  useEffect(() => {
+    if (isOpen) {
+      setCurrentIndex(selectedIndex);
+    }
+  }, [selectedIndex, isOpen]);
+
+  const disablePrev = currentIndex === 0;
+  const disableNext = currentIndex === images.length - 1;
 
   // ✅ Always called, no early return before this
   useEffect(() => {
     if (!isOpen || !scrollRef.current) return;
 
     const timeout = setTimeout(() => {
-      const scrollTo = scrollRef.current!.clientWidth * selectedIndex;
+      const scrollTo = scrollRef.current!.clientWidth * currentIndex;
       scrollRef.current!.scrollTo({ left: scrollTo, behavior: "auto" });
     }, 0);
 
@@ -68,17 +76,19 @@ const Lightbox: React.FC<LightboxProps> = ({
   };
 
   const scrollNext = () => {
-    if (scrollRef.current) {
+    if (scrollRef.current && currentIndex < images.length - 1) {
       scrollRef.current.scrollBy({ left: scrollRef.current.clientWidth, behavior: "smooth" });
+      setCurrentIndex(currentIndex + 1);
     }
   };
-
+  
   const scrollPrev = () => {
-    if (scrollRef.current) {
+    if (scrollRef.current && currentIndex > 0) {
       scrollRef.current.scrollBy({ left: -scrollRef.current.clientWidth, behavior: "smooth" });
+      setCurrentIndex(currentIndex - 1);
     }
   };
-
+  
   return (
     <div
       className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-80 z-50"
