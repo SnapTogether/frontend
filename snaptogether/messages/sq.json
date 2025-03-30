@@ -27,7 +27,7 @@
     "failedMessage": "❌ Dështoi krijimi i ngjarjes. Ju lutemi provoni përsëri.",
     "plan": "Zgjidh Planin",
     "plans": {
-      "free": "Falas (500MB)",
+      "free": "Falas (100MB)",
       "starter": "Fillestar (3GB)",
       "pro": "Pro (10GB)"
     },

@@ -27,7 +27,7 @@
     "failedMessage": "❌ Failed to create event. Please try again.",
     "plan": "Select Plan",
     "plans": {
-      "free": "Free (500MB)",
+      "free": "Free (100MB)",
       "starter": "Starter (3GB)",
       "pro": "Pro (10GB)"
     },
