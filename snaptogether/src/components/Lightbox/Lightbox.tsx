@@ -5,6 +5,7 @@ import { ChevronLeft, ChevronRight, X, Download } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import Button from "../Button/Button";
 import { Photo } from "@/api/event";
+import { downloadSinglePhotoByS3Key } from "@/api/photo";
 
 interface LightboxProps {
   isOpen: boolean;
@@ -54,26 +55,19 @@ const Lightbox: React.FC<LightboxProps> = ({
   }
 
   const downloadImage = async () => {
-    const imageUrl = images[selectedIndex].imageUrl;
-    const imageName = `photo_${images[selectedIndex]._id}.jpg`;
+    const image = images[currentIndex];
 
-    try {
-      const response = await fetch(imageUrl);
-      const blob = await response.blob();
-      const url = window.URL.createObjectURL(blob);
+    // Extract key from full URL
+    const getS3KeyFromUrl = (fullUrl: string): string => {
+      const url = new URL(fullUrl);
+      return url.pathname.slice(1); // remove leading slash
+    };
 
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = imageName;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
+    const s3Key = getS3KeyFromUrl(image.imageUrl); // or image.imageUrl
 
-      window.URL.revokeObjectURL(url);
-    } catch (error) {
-      console.error("❌ Failed to download image:", error);
-    }
+    await downloadSinglePhotoByS3Key(s3Key);
   };
+
 
   const scrollNext = () => {
     if (scrollRef.current && currentIndex < images.length - 1) {
@@ -81,14 +75,14 @@ const Lightbox: React.FC<LightboxProps> = ({
       setCurrentIndex(currentIndex + 1);
     }
   };
-  
+
   const scrollPrev = () => {
     if (scrollRef.current && currentIndex > 0) {
       scrollRef.current.scrollBy({ left: -scrollRef.current.clientWidth, behavior: "smooth" });
       setCurrentIndex(currentIndex - 1);
     }
   };
-  
+
   return (
     <div
       className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-80 z-50"
@@ -116,11 +110,13 @@ const Lightbox: React.FC<LightboxProps> = ({
           ref={scrollRef}
           className="flex overflow-x-hidden snap-x snap-mandatory w-full max-w-screen-md"
         >
-          {images.map((image) => {
+          {images.map((image, index) => {
             const isVideo = image.imageUrl.match(/\.(mp4|webm|mov)$/i);
+            const key = `${image.imageUrl}-${index}`;
+
             return (
               <div
-                key={image._id}
+                key={key}
                 className="flex-shrink-0 w-full flex justify-center snap-center"
               >
                 {isVideo ? (
@@ -128,7 +124,7 @@ const Lightbox: React.FC<LightboxProps> = ({
                     src={image.imageUrl}
                     controls
                     preload="metadata"
-                    className="rounded-lg shadow-lg max-w-full max-h-[90vh]"
+                    className="rounded-lg shadow-lg max-w-full max-h-[55vh] my-auto"
                   />
                 ) : (
                   <Image
@@ -136,12 +132,14 @@ const Lightbox: React.FC<LightboxProps> = ({
                     alt="Enlarged"
                     width={700}
                     height={500}
-                    className="rounded-lg shadow-lg max-w-full max-h-[90vh] object-cover"
+                    className="rounded-lg shadow-lg max-w-full max-h-[55vh] object-cover my-auto"
                   />
                 )}
               </div>
             );
           })}
+
+
         </div>
 
         <button
