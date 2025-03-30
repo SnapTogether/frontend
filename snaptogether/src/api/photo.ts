@@ -114,3 +114,43 @@ export const downloadPhotosForGuest = async (eventCode: string): Promise<void> =
     console.error("❌ Network/Server Error:", error);
   }
 };
+
+export const downloadSinglePhotoByS3Key = async (s3Key: string): Promise<DownloadResponse> => {
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/api/photos/download-photo/${encodeURIComponent(s3Key)}`
+    );
+
+    if (!res.ok) {
+      return {
+        status: res.status,
+        message: "❌ Failed to generate download link.",
+        error: await res.text(),
+      };
+    }
+
+    const { downloadUrl } = await res.json();
+
+    // Trigger download
+    const a = document.createElement("a");
+    a.href = downloadUrl;
+    a.download = s3Key.split("/").pop() || "download.jpg"; // get filename from key
+    a.target = "_blank";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+
+    return {
+      status: 200,
+      message: "✅ Download started.",
+      downloadUrl,
+    };
+  } catch (error) {
+    console.error("❌ Download error:", error);
+    return {
+      status: 500,
+      message: "❌ Could not download image.",
+      error: (error as Error).message,
+    };
+  }
+};
