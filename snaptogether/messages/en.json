@@ -217,5 +217,15 @@
     "emailLabel": "Contact us at",
     "supportPrompt": "For common questions, check out our FAQ page.",
     "goToFaq": "Go to FAQ"
+  },
+  "guestDashboard": {
+    "title": "🎟️ Guest Dashboard",
+    "instruction": "Enter your name to see your uploaded photos.",
+    "inputPlaceholder": "Full Name",
+    "verifyButton": "Verify Guest",
+    "verifying": "Verifying...",
+    "error": "❌ Please enter your full name.",
+    "photosTitle": "📸 Your Uploaded Photos",
+    "noPhotos": "No photos found for this guest."
   }
 }
