@@ -113,14 +113,16 @@ export const uploadPhotosForGuest = async (
           type: photo.imageUrl ? "image" : "video",
         })) || [],
     };
-  } catch (error: any) {
-    console.error("Upload error", error);
+  } catch (error: unknown) {
+    const err = error as Error & { message: string };
+    console.error("Upload error", err);
     return {
       status: 500,
       message: "Upload failed",
-      error: error.message,
+      error: err.message,
     };
   }
+  
   
 };
 
