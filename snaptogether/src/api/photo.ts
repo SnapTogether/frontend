@@ -17,6 +17,12 @@ export interface DownloadResponse {
   downloadUrl?: string;
   error?: string;
 }
+export interface RawPhoto {
+  _id: string;
+  imageUrl?: string;
+  videoUrl?: string;
+};
+
 
 import axios from "axios";
 
@@ -95,7 +101,7 @@ export const uploadPhotosForGuest = async (
     return {
       status: res.status,
       message: res.data.message,
-      photos: res.data.photos?.map((photo: any) => ({
+      photos: res.data.photos?.map((photo: RawPhoto) => ({
         photoId: photo._id,
         url: photo.imageUrl || photo.videoUrl,
         type: photo.imageUrl ? "image" : "video",
