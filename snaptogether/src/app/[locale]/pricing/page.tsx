@@ -1,7 +1,6 @@
 "use client";
 
 import Navbar from "@/components/Navbar/Navbar";
-import { Divider } from "@/components/Divider/Divider";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { useTranslations } from "next-intl";
