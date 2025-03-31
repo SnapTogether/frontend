@@ -121,6 +121,7 @@ export const uploadPhotosForGuest = async (
       error: error.message,
     };
   }
+  
 };
 
 // ✅ API Call: Request ZIP Download for Guest
