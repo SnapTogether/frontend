@@ -6,6 +6,7 @@ import Image from 'next/image';
 import Contact from '@/../public/contact.jpg';
 import { motion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
+import Link from 'next/link';
 
 export default function ContactPage() {
   const t = useTranslations('contactPage');
@@ -61,12 +62,12 @@ export default function ContactPage() {
           >
             snaptogether25@gmail.com
           </a>
-          <a
+          <Link
             href="tel:+38971863999"
             className="text-blue-400 underline break-all"
             >
             +38971863999
-          </a>
+          </Link>
         </motion.div>
 
         <motion.div
@@ -76,12 +77,12 @@ export default function ContactPage() {
           viewport={{ once: true }}
         >
           <p>{t('supportPrompt')}</p>
-          <a
+          <Link
             href="/help"
             className="mt-2 inline-block text-white bg-blue-500 hover:bg-blue-600 px-6 py-2 rounded-lg transition"
           >
             {t('goToFaq')}
-          </a>
+          </Link>
         </motion.div>
       </div>
 
