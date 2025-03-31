@@ -227,5 +227,10 @@
     "error": "❌ Ju lutem shkruani emrin e plotë.",
     "photosTitle": "📸 Fotot tuaja të ngarkuara",
     "noPhotos": "Nuk u gjetën foto për këtë mysafir."
-  }
+  },
+   "upload": { 
+    "storageFull": "Memorja është e mbushur",
+    "uploading": "Duke ngarkuar",
+    "chooseImages": "Zgjidh imazhe"
+    }
 }

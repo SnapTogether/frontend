@@ -18,68 +18,94 @@ export interface DownloadResponse {
   error?: string;
 }
 
-// ✅ API Call: Upload Images for Guest
-export const uploadPhotosForGuest = async (
+import axios from "axios";
+
+export const uploadSinglePhoto = async (
   eventCode: string,
-  guestId: string, // ✅ Ensure guestId is required
-  files: File[]
+  guestId: string,
+  file: File,
+  onProgress?: (percent: number) => void
 ): Promise<UploadResponse> => {
+  const formData = new FormData();
+  formData.append("media", file);
+
   try {
-    if (!guestId) {
-      console.error("❌ Error: Guest ID is missing!");
-      return {
-        status: 400,
-        message: "❌ Guest ID is required for uploading.",
-        error: "Missing guestId",
-      };
-    }
-
-    const formData = new FormData();
-    files.forEach((file) => formData.append("media", file)); // ✅ Ensure key matches backend
-
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/api/photos/upload/${encodeURIComponent(eventCode)}/${encodeURIComponent(guestId)}`,
+    const res = await axios.post(
+      `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/api/photos/upload/${eventCode}/${guestId}`,
+      formData,
       {
-        method: "POST",
-        body: formData,
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+        onUploadProgress: (progressEvent) => {
+          if (onProgress && progressEvent.total) {
+            const percent = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+            onProgress(percent);
+          }
+        },
       }
     );
 
-    const text = await res.text(); // ✅ Read response as text first
-
-    try {
-      const data = JSON.parse(text);
-      console.log("📨 Upload API Response:", data); // ✅ Log full response
-
-      if (!res.ok) {
-        console.error("❌ API Error:", data.message);
-        return { status: res.status, message: data.message, error: data.error };
-      }
-
-      return {
-        status: res.status,
-        message: data.message,
-        photos: data.photos?.map((photo: { _id: string; imageUrl?: string; videoUrl?: string }) => ({
-          photoId: photo._id,
-          url: photo.imageUrl || photo.videoUrl,
-          type: photo.imageUrl ? "image" : "video"
-        })) || [],        
-      };
-    } catch (jsonError) {
-      console.error("❌ JSON Parse Error:", jsonError);
-      console.error("📨 Raw Response (Not JSON):", text);
-      return {
-        status: 500,
-        message: "❌ Invalid JSON response from server.",
-        error: text,
-      };
-    }
-  } catch (error) {
-    console.error("❌ Network/Server Error:", (error as Error).message);
+    return res.data;
+  } catch (error: any) {
+    console.error("Upload error", error);
     return {
       status: 500,
-      message: "❌ Error uploading photos.",
-      error: (error as Error).message || "Network error occurred.",
+      message: "Upload failed",
+      error: error.message,
+    };
+  }
+};
+// ✅ API Call: Upload Images for Guest
+export const uploadPhotosForGuest = async (
+  eventCode: string,
+  guestId: string,
+  files: File[],
+  onProgress?: (progress: number) => void
+): Promise<UploadResponse> => {
+  if (!guestId) {
+    return {
+      status: 400,
+      message: "Guest ID is missing",
+      error: "Missing guestId",
+    };
+  }
+
+  const formData = new FormData();
+  files.forEach((file) => formData.append("media", file));
+
+  try {
+    const res = await axios.post(
+      `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/api/photos/upload/${encodeURIComponent(eventCode)}/${encodeURIComponent(guestId)}`,
+      formData,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+        onUploadProgress: (progressEvent) => {
+          if (onProgress) {
+            const total = progressEvent.total ?? 1; // fallback to prevent division by 0
+            const percent = Math.round((progressEvent.loaded * 100) / total);
+            onProgress(percent);
+          }
+        },
+      }
+    );
+
+    return {
+      status: res.status,
+      message: res.data.message,
+      photos: res.data.photos?.map((photo: any) => ({
+        photoId: photo._id,
+        url: photo.imageUrl || photo.videoUrl,
+        type: photo.imageUrl ? "image" : "video",
+      })) || [],
+    };
+  } catch (error: any) {
+    return {
+      status: error.response?.status || 500,
+      message: "Upload failed",
+      error: error.message,
     };
   }
 };

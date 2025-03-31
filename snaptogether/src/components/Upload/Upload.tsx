@@ -1,7 +1,8 @@
 import { useState } from "react";
-import imageCompression from "browser-image-compression"; // ✅ Install via `npm install browser-image-compression`
-import { uploadPhotosForGuest } from "@/api/photo";
+import imageCompression from "browser-image-compression";
+import { uploadSinglePhoto } from "@/api/photo";
 import socket from "@/utils/socket";
+import { useTranslations } from "next-intl";
 
 export default function Upload({
   eventCode,
@@ -16,72 +17,69 @@ export default function Upload({
   usedStorage: number;
   storageLimit: number;
 }) {
-
   const [loading, setLoading] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState<number>(0);
   const isLimitReached = usedStorage >= storageLimit;
-
-  console.log("📤 Upload Component: Event Code:", eventCode, "Guest ID:", guestId);
+  const t = useTranslations("upload");
 
   const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
     if (!files || files.length === 0) return;
 
-    console.log("📤 Sending Upload Request: Guest ID:", guestId);
-
     if (!guestId) {
-      console.error("❌ Error: guestId is missing!");
-      alert("❌ Error: Guest ID is required to upload images.");
+      alert("❌ Guest ID is required to upload images.");
       return;
     }
 
     setLoading(true);
+    setUploadProgress(0);
 
-    // ✅ Optimize images before upload
-    const optimizedFiles = await Promise.all(
-      Array.from(files).map(async (file) => {
-        if (file.type.startsWith("image/")) {
-          const options = {
+    const uploadedUrls: string[] = [];
+
+    const totalFiles = files.length;
+    let currentProgress = 0;
+
+    for (let i = 0; i < totalFiles; i++) {
+      const file = files[i];
+
+      // Compress image if needed
+      const optimizedFile = file.type.startsWith("image/")
+        ? await imageCompression(file, {
             maxSizeMB: 1,
             maxWidthOrHeight: 1080,
             useWebWorker: true,
             fileType: "image/webp",
-          };
-          return await imageCompression(file, options);
+          })
+        : file;
+
+      await uploadSinglePhoto(eventCode, guestId, optimizedFile, (percent) => {
+        // Calculate global progress
+        const avg = ((i + percent / 100) / totalFiles) * 100;
+        setUploadProgress(Math.round(avg));
+      }).then((res) => {
+        if (res.status === 201 && res.photos && res.photos.length > 0) {
+          uploadedUrls.push(res.photos[0].url);
         }
-        // Just return video files as-is
-        return file;
-      })
-    );
-    
-
-    console.log("✅ Optimized Images Ready to Upload:", optimizedFiles);
-
-    const response = await uploadPhotosForGuest(eventCode, guestId, optimizedFiles);
-    setLoading(false);
-
-    if (response.status === 201) {
-      const newPhotoUrls = response.photos!.map((photo) => photo.url);
-      onPhotosUploaded(newPhotoUrls); // ✅ Update parent component
-
-      // ✅ Emit WebSocket Event (Tell Host a New Image is Uploaded)
-      socket.emit("photoUploaded", {
-        eventCode,
-        photos: response.photos, // Send uploaded photos
       });
-      console.log("📡 WebSocket Event Sent: photoUploaded", response.photos);
-
-    } else {
-      alert("❌ Upload failed. Try again!");
     }
-  };
-  console.log('isLimitReached', isLimitReached);
-  console.log('usedStorage', usedStorage);
-  console.log('storageLimit', storageLimit);
 
+    onPhotosUploaded(uploadedUrls);
+
+    socket.emit("photoUploaded", {
+      eventCode,
+      photos: uploadedUrls.map((url) => ({
+        url,
+        type: url.match(/\.(mp4|webm|mov)$/i) ? "video" : "image",
+      })),
+    });
+
+    setLoading(false);
+    setUploadProgress(0);
+  };
 
   return (
     <div className="w-full border rounded-lg shadow-md mx-auto space-y-4">
-     <input
+      <input
         type="file"
         multiple
         accept="image/*,video/*"
@@ -97,10 +95,23 @@ export default function Upload({
           ${isLimitReached ? "bg-gray-500 cursor-not-allowed" : "bg-transparent hover:bg-white text-white hover:text-black"} 
           transition-all duration-300 ease-in-out`}
       >
-        <span className="w-full h-full !rounded-none">
-          {isLimitReached ? "Storage Full" : loading ? "Uploading..." : "Choose Images"}
-        </span>
+      <span className="w-full h-full !rounded-none">
+        {isLimitReached
+          ? t("storageFull")
+          : loading
+          ? `${t("uploading")}... ${uploadProgress}%`
+          : t("chooseImages")}
+      </span>
       </label>
+
+      {loading && (
+        <div className="w-full bg-white/20 rounded h-2 overflow-hidden">
+          <div
+            className="bg-blue-400 h-full transition-all duration-300"
+            style={{ width: `${uploadProgress}%` }}
+          />
+        </div>
+      )}
     </div>
   );
 }

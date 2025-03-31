@@ -98,7 +98,7 @@ export default function GuestDashboard() {
           </form>
         ) : (
           <div className="flex flex-col gap-6 text-center">
-            <h3 className="text-lg font-semibold text-slate-50">📸 {t("photosTitle")}</h3>
+            <h3 className="text-lg font-semibold text-slate-50">{t("photosTitle")}</h3>
 
             {/* ✅ Scrollable Image/Video Grid */}
             {guestData.photos && guestData.photos.length > 0 ? (
@@ -109,7 +109,7 @@ export default function GuestDashboard() {
                       {photo.imageUrl.match(/\.(mp4|webm|mov)$/i) ? (
                         <video
                           controls
-                          className="rounded-md shadow-md max-h-[30vh] !h-full w-full object-cover"
+                          className="rounded-md shadow-md !h-full w-full object-cover"
                           key={index}
                         >
                           <source src={photo.imageUrl} type="video/mp4" />
@@ -122,7 +122,7 @@ export default function GuestDashboard() {
                           alt="Guest Upload"
                           width={300}
                           height={300}
-                          className="rounded-md shadow-md max-h-[30vh] !h-full w-full object-cover"
+                          className="rounded-md shadow-md !h-full w-full object-contain"
                           loading="lazy"
                           decoding="async"
                         />

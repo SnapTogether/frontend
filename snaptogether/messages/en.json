@@ -227,5 +227,10 @@
     "error": "❌ Please enter your full name.",
     "photosTitle": "📸 Your Uploaded Photos",
     "noPhotos": "No photos found for this guest."
+  },
+  "upload": { 
+    "storageFull": "Storage Full",
+    "uploading": "Uploading",
+    "chooseImages": "Choose Images"
   }
 }
