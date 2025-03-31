@@ -121,6 +121,7 @@
   ],
   "aboutPage": {
     "title": "Rreth SnapTogether",
+    "subtitle": "SnapTogether është një mënyrë e thjeshtë për të mbledhur foto dhe video nga të ftuarit tuaj, duke e bërë çdo event më të paharrueshëm — pa asnjë aplikacion.",
     "sections": [
       {
         "title": "Ruani momentet",
@@ -171,5 +172,43 @@
     "label": "Memorie",
     "limitReached": "Limiti i memories është arritur. Përmirësoni planin tuaj për të ngarkuar më shumë.",
     "halfUsed": "Është arritur gjysma e limitit të memories."
+  },
+  "pricingPage": {
+    "title": "Zgjidh planin tënd",
+    "note": "Nuk kërkohet aplikacion. Mund ta ndryshoni planin në çdo kohë.",
+    "plans": {
+      "free": {
+        "name": "Falas",
+        "features": [
+          "Deri në 100MB hapësirë",
+          "Të ftuar të pakufizuar",
+          "Fshihet automatikisht pas 7 ditësh"
+        ]
+      },
+      "starter": {
+        "name": "Fillestar",
+        "features": [
+          "Deri në 3GB hapësirë",
+          "Të ftuar të pakufizuar",
+          "Fshihet automatikisht pas 30 ditësh"
+        ]
+      },
+      "pro": {
+        "name": "Pro",
+        "features": [
+          "Deri në 10GB hapësirë",
+          "Të ftuar të pakufizuar",
+          "Fshihet automatikisht pas 60 ditësh"
+        ]
+      }
+    }
+  },
+  "privacyPage": {
+    "title": "Politika e Privatësisë",
+    "content": "SnapTogether e vlerëson privatësinë tuaj. Ne mbledhim vetëm informacionin e nevojshëm për të ofruar shërbimet — si foto, video dhe emra. Nuk ndajmë të dhënat me palë të treta. Të gjitha ngarkesat fshihen automatikisht sipas periudhës së planit tuaj."
+  },
+  "termsPage": {
+    "title": "Kushtet e Përdorimit",
+    "content": "Duke përdorur SnapTogether, pranoni të mos ngarkoni përmbajtje të dëmshme apo të paligjshme. Ne ruajmë të drejtën të heqim çdo përmbajtje që shkel këto kushte. Të dhënat tuaja ruhen sipas planit të zgjedhur. Mund të përditësojmë kushtet herë pas here."
   }
 }
