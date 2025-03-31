@@ -35,7 +35,7 @@ export default function PrivacyPage() {
             </motion.div>
 
         </div>
-        <p className="text-left container mx-auto px-5">
+        <p className="text-left container mx-auto px-5 pb-[150px]">
             {t("content")}
         </p>
       </div>

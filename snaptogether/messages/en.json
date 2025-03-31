@@ -210,5 +210,12 @@
   "termsPage": {
     "title": "Terms of Use",
     "content": "By using SnapTogether, you agree not to upload harmful or illegal content. We reserve the right to remove any content that violates these terms. Your data will be retained according to the plan you choose. We may update these terms periodically."
+  },
+  "contactPage": {
+    "title": "Get in Touch",
+    "description": "Need help or have a question? We’d love to hear from you.",
+    "emailLabel": "Contact us at",
+    "supportPrompt": "For common questions, check out our FAQ page.",
+    "goToFaq": "Go to FAQ"
   }
 }

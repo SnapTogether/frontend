@@ -68,7 +68,7 @@ export default function PricingPage() {
     <div className="relative min-h-screen bg-gradient-to-br from-[#1c1c1c] to-[#2e2e2e] text-white">
       <Navbar />
 
-      <div className="mx-auto pt-[13vh] text-center flex flex-col items-center justify-center gap-10 pb-16 px-4">
+      <div className="mx-auto pt-[13vh] text-center flex flex-col items-center justify-center gap-10 pb-[150px] px-4">
         <motion.h1
           className="text-3xl font-bold text-white"
           initial={{ opacity: 0, y: 30 }}
