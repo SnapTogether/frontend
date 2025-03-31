@@ -21,8 +21,7 @@ export interface RawPhoto {
   _id: string;
   imageUrl?: string;
   videoUrl?: string;
-};
-
+}
 
 import axios from "axios";
 
@@ -45,7 +44,9 @@ export const uploadSinglePhoto = async (
         },
         onUploadProgress: (progressEvent) => {
           if (onProgress && progressEvent.total) {
-            const percent = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+            const percent = Math.round(
+              (progressEvent.loaded * 100) / progressEvent.total
+            );
             onProgress(percent);
           }
         },
@@ -59,7 +60,7 @@ export const uploadSinglePhoto = async (
       status: 500,
       message: "Upload failed",
       error: err.message,
-    };  
+    };
   }
 };
 // ✅ API Call: Upload Images for Guest
@@ -82,7 +83,11 @@ export const uploadPhotosForGuest = async (
 
   try {
     const res = await axios.post(
-      `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/api/photos/upload/${encodeURIComponent(eventCode)}/${encodeURIComponent(guestId)}`,
+      `${
+        process.env.NEXT_PUBLIC_SERVER_BASE_URL
+      }/api/photos/upload/${encodeURIComponent(eventCode)}/${encodeURIComponent(
+        guestId
+      )}`,
       formData,
       {
         headers: {
@@ -101,15 +106,17 @@ export const uploadPhotosForGuest = async (
     return {
       status: res.status,
       message: res.data.message,
-      photos: res.data.photos?.map((photo: RawPhoto) => ({
-        photoId: photo._id,
-        url: photo.imageUrl || photo.videoUrl,
-        type: photo.imageUrl ? "image" : "video",
-      })) || [],
+      photos:
+        res.data.photos?.map((photo: RawPhoto) => ({
+          photoId: photo._id,
+          url: photo.imageUrl || photo.videoUrl,
+          type: photo.imageUrl ? "image" : "video",
+        })) || [],
     };
   } catch (error: any) {
+    console.error("Upload error", error);
     return {
-      status: error.response?.status || 500,
+      status: 500,
       message: "Upload failed",
       error: error.message,
     };
@@ -117,10 +124,14 @@ export const uploadPhotosForGuest = async (
 };
 
 // ✅ API Call: Request ZIP Download for Guest
-export const downloadPhotosForGuest = async (eventCode: string): Promise<void> => {
+export const downloadPhotosForGuest = async (
+  eventCode: string
+): Promise<void> => {
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/api/photos/download/${encodeURIComponent(eventCode)}`,
+      `${
+        process.env.NEXT_PUBLIC_SERVER_BASE_URL
+      }/api/photos/download/${encodeURIComponent(eventCode)}`,
       {
         method: "GET",
       }
@@ -147,10 +158,14 @@ export const downloadPhotosForGuest = async (eventCode: string): Promise<void> =
   }
 };
 
-export const downloadSinglePhotoByS3Key = async (s3Key: string): Promise<DownloadResponse> => {
+export const downloadSinglePhotoByS3Key = async (
+  s3Key: string
+): Promise<DownloadResponse> => {
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/api/photos/download-photo/${encodeURIComponent(s3Key)}`
+      `${
+        process.env.NEXT_PUBLIC_SERVER_BASE_URL
+      }/api/photos/download-photo/${encodeURIComponent(s3Key)}`
     );
 
     if (!res.ok) {
