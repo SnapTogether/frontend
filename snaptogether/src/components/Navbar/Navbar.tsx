@@ -87,7 +87,9 @@ export default function Navbar() {
               ${isOpen ? "translate-x-0 opacity-100" : "translate-x-full opacity-0 pointer-events-none"}`}
           >
           <section className="w-full px-4 flex flex-row sm:flex-row items-center justify-between">
-            <Image src={Logo} alt="logo" width={32} />
+            <Link href="/" className="text-white hover:text-gray-300">
+              <Image src={Logo} alt="logo" width={32} />
+            </Link>
             <button
               className="md:hidden p-2 ml-auto"
               onClick={() => setIsOpen(!isOpen)}
