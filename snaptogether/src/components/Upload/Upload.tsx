@@ -37,7 +37,6 @@ export default function Upload({
     const uploadedUrls: string[] = [];
 
     const totalFiles = files.length;
-    let currentProgress = 0;
 
     for (let i = 0; i < totalFiles; i++) {
       const file = files[i];

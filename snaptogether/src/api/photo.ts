@@ -47,13 +47,13 @@ export const uploadSinglePhoto = async (
     );
 
     return res.data;
-  } catch (error: any) {
-    console.error("Upload error", error);
+  } catch (error: unknown) {
+    const err = error as Error;
     return {
       status: 500,
       message: "Upload failed",
-      error: error.message,
-    };
+      error: err.message,
+    };  
   }
 };
 // ✅ API Call: Upload Images for Guest
