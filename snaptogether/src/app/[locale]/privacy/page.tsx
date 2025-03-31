@@ -7,12 +7,6 @@ import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import Mockup from "@/../public/logo/mockup.png";
 
-const fadeIn = {
-  initial: { opacity: 0, y: 30 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 1, ease: [0.25, 0.1, 0.25, 1] },
-};
-
 export default function PrivacyPage() {
   const t = useTranslations("privacyPage");
 

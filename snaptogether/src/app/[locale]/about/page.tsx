@@ -1,7 +1,6 @@
 "use client";
 
 import { Card } from "@/components/Card/Card";
-import { Divider } from "@/components/Divider/Divider";
 import Navbar from "@/components/Navbar/Navbar";
 import { cardData } from "@/utils/cardData";
 import Image, { StaticImageData } from "next/image";
