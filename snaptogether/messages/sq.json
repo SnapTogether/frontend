@@ -217,5 +217,15 @@
     "emailLabel": "Na kontaktoni në",
     "supportPrompt": "Për pyetje të shpeshta, kontrolloni faqen tonë të FAQ.",
     "goToFaq": "Shko te FAQ"
+  },
+  "guestDashboard": {
+    "title": "🎟️ Paneli i Mysafirit",
+    "instruction": "Shkruani emrin tuaj për të parë fotot që keni ngarkuar.",
+    "inputPlaceholder": "Emri dhe mbiemri",
+    "verifyButton": "Verifiko Mysafirin",
+    "verifying": "Duke verifikuar...",
+    "error": "❌ Ju lutem shkruani emrin e plotë.",
+    "photosTitle": "📸 Fotot tuaja të ngarkuara",
+    "noPhotos": "Nuk u gjetën foto për këtë mysafir."
   }
 }

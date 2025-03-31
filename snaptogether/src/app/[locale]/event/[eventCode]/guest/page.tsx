@@ -10,6 +10,7 @@ import Navbar from "@/components/Navbar/Navbar";
 import Button from "@/components/Button/Button";
 import Link from "next/link";
 import "./guest.css";
+import { useTranslations } from "next-intl";
 
 export default function GuestDashboard() {
   const params = useParams();
@@ -22,6 +23,8 @@ export default function GuestDashboard() {
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string>("");
+
+  const t = useTranslations("guestDashboard");
 
   const handleVerifyGuest = async (e?: React.FormEvent) => {
     e?.preventDefault();
@@ -71,14 +74,14 @@ export default function GuestDashboard() {
     <div className="guest-dashboard relative w-screen h-screen">
       <Navbar />
       <div className="absolute w-[95%] sm:w-full max-w-[30em] left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 p-6 mx-auto space-y-4 border border-slate-500 border-opacity-65 rounded-lg shadow-md bg-white/10 backdrop-blur-lg">
-        <h2 className="text-white text-2xl font-semibold text-center">🎟️ Guest Dashboard</h2>
+        <h2 className="text-white text-2xl font-semibold text-center">{t("title")}</h2>
 
         {!guestData ? (
           <form onSubmit={handleVerifyGuest} className="space-y-3">
-            <p className="text-gray-300 text-center">Enter your name to see your uploaded photos.</p>
+            <p className="text-gray-300 text-center">{t("instruction")}</p>
             <input
               type="text"
-              placeholder="Full Name"
+              placeholder={t("inputPlaceholder")}
               value={guestName}
               onChange={(e) => setGuestName(e.target.value)}
               className="w-full px-3 py-2 border rounded-md text-black"
@@ -89,13 +92,13 @@ export default function GuestDashboard() {
               disabled={loading}
               variant="primary"
             >
-              {loading ? "Verifying..." : "Verify Guest"}
+              {loading ? t("verifying") : t("verifyButton")}
             </Button>
             {error && <p className="text-red-500 text-sm">{error}</p>}
           </form>
         ) : (
           <div className="flex flex-col gap-6 text-center">
-            <h3 className="text-lg font-semibold text-slate-50">📸 Your Uploaded Photos</h3>
+            <h3 className="text-lg font-semibold text-slate-50">📸 {t("photosTitle")}</h3>
 
             {/* ✅ Scrollable Image/Video Grid */}
             {guestData.photos && guestData.photos.length > 0 ? (
@@ -129,7 +132,7 @@ export default function GuestDashboard() {
                 </div>
               </div>
             ) : (
-              <p className="text-gray-300">No photos found for this guest.</p>
+              <p className="text-gray-300">{t("noPhotos")}</p>
             )}
 
             {/* ✅ Upload Component */}

@@ -7,6 +7,7 @@ import Contact from '@/../public/contact.jpg';
 import { motion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
+import { Mail, Phone } from 'lucide-react';
 
 export default function ContactPage() {
   const t = useTranslations('contactPage');
@@ -58,15 +59,15 @@ export default function ContactPage() {
           <h2 className="text-xl font-semibold text-white">{t('emailLabel')}</h2>
           <a
             href="mailto:snaptogether25@gmail.com"
-            className="text-blue-400 underline break-all"
+            className="text-blue-400 underline break-all flex gap-1 items-center justify-center"
           >
-            snaptogether25@gmail.com
+            snaptogether25@gmail.com <Mail size={16} color='white'/>
           </a>
           <Link
             href="tel:+38971863999"
-            className="text-blue-400 underline break-all"
+            className="text-blue-400 underline break-all flex gap-1 items-center justify-center"
             >
-            +38971863999
+            +38971863999 <Phone size={16} color='white'/>
           </Link>
         </motion.div>
 
