@@ -210,5 +210,12 @@
   "termsPage": {
     "title": "Kushtet e Përdorimit",
     "content": "Duke përdorur SnapTogether, pranoni të mos ngarkoni përmbajtje të dëmshme apo të paligjshme. Ne ruajmë të drejtën të heqim çdo përmbajtje që shkel këto kushte. Të dhënat tuaja ruhen sipas planit të zgjedhur. Mund të përditësojmë kushtet herë pas here."
+  },
+  "contactPage": {
+    "title": "Na Kontaktoni",
+    "description": "Keni një pyetje apo ju duhet ndihmë? Do të ishim të lumtur t'ju ndihmojmë.",
+    "emailLabel": "Na kontaktoni në",
+    "supportPrompt": "Për pyetje të shpeshta, kontrolloni faqen tonë të FAQ.",
+    "goToFaq": "Shko te FAQ"
   }
 }
