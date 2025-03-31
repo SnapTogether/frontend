@@ -121,6 +121,7 @@
   ],
   "aboutPage": {
     "title": "About SnapTogether",
+    "subtitle": "SnapTogether is a simple way to collect photos and videos from your guests, making every event more memorable — all without an app.",
     "sections": [
       {
         "title": "Capture Moments Easily",
@@ -171,5 +172,43 @@
     "label": "Storage",
     "limitReached": "Storage limit reached. Upgrade your plan to upload more.",
     "halfUsed": "Half storage limit reached."
+  },
+  "pricingPage": {
+    "title": "Choose your plan",
+    "note": "No app required. Change your plan anytime.",
+    "plans": {
+      "free": {
+        "name": "Free",
+        "features": [
+          "Up to 100MB storage",
+          "Unlimited guests",
+          "Auto-delete after 7 days"
+        ]
+      },
+      "starter": {
+        "name": "Starter",
+        "features": [
+          "Up to 3GB storage",
+          "Unlimited guests",
+          "Auto-delete after 30 days"
+        ]
+      },
+      "pro": {
+        "name": "Pro",
+        "features": [
+          "Up to 10GB storage",
+          "Unlimited guests",
+          "Auto-delete after 60 days"
+        ]
+      }
+    }
+  },
+  "privacyPage": {
+    "title": "Privacy Policy",
+    "content": "SnapTogether values your privacy. We collect only the necessary information to deliver our services — such as photos, videos, and names. We do not share your data with third parties. All uploads are automatically deleted based on your plan’s retention period."
+  },
+  "termsPage": {
+    "title": "Terms of Use",
+    "content": "By using SnapTogether, you agree not to upload harmful or illegal content. We reserve the right to remove any content that violates these terms. Your data will be retained according to the plan you choose. We may update these terms periodically."
   }
 }
