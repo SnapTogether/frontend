@@ -30,7 +30,7 @@ export default function GuestDashboard() {
     e?.preventDefault();
 
     if (!guestName.trim()) {
-      setError("❌ Please enter your full name.");
+      setError(t("error"));
       return;
     }
 
