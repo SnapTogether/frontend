@@ -53,7 +53,7 @@
     "title": "Faqja kryesore për mikpritësin",
     "subtitle": "Detajet e ngjarjes",
     "plan": "Plani",
-    "countdown": "{daysLeft} dit{plural} të mbetura deri sa fotot të fshihen automatikisht."
+    "countdown": "{daysLeft} ditë të mbetura deri sa fotot të fshihen automatikisht."
   },
   "zipBtn": {
     "title": "Shkarko ZIP",

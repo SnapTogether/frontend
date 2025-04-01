@@ -16,7 +16,7 @@ interface PhotoGalleryProps {
 
 const PhotoGallery: React.FC<PhotoGalleryProps> = ({ photos }) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const photosPerPage = 20; // Adjusted to fit the Masonry layout
+  const photosPerPage = 10; // Adjusted to fit the Masonry layout
   const totalPages = Math.ceil(photos.length / photosPerPage);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -76,7 +76,7 @@ const PhotoGallery: React.FC<PhotoGalleryProps> = ({ photos }) => {
               let colSpan = "col-span-4 sm:col-span-4";
 
               if (row % 2 === 1) {
-                colSpan = index % 3 === 0 ? "col-span-12 sm:col-span-2" : "col-span-12 sm:col-span-5";
+                colSpan = index % 3 === 0 ? "col-span-4 sm:col-span-2" : "col-span-4 sm:col-span-5";
               }
 
               const isVideo = photo.imageUrl.match(/\.(mp4|webm|mov)$/i);
@@ -84,12 +84,12 @@ const PhotoGallery: React.FC<PhotoGalleryProps> = ({ photos }) => {
               return (
                 <div
                   key={index}
-                  className={`relative cursor-pointer shadow-md h-full w-full max-h-[20em] rounded-lg overflow-hidden ${colSpan}`}
+                  className={`relative cursor-pointer shadow-md h-full w-full rounded-lg overflow-hidden ${colSpan}`}
                   onClick={() => openModal(indexOfFirstPhoto + index)}
                 >
                   {isVideo ? (
                     <video
-                      className="h-full w-full object-cover"
+                      className="h-full w-full object-cover aspect-square md:aspect-3/2"
                       src={photo.imageUrl}
                       controls
                       preload="metadata"
@@ -102,7 +102,7 @@ const PhotoGallery: React.FC<PhotoGalleryProps> = ({ photos }) => {
                       alt="Uploaded"
                       width={300}
                       height={200}
-                      className="h-full w-full object-cover"
+                      className="h-full w-full object-cover aspect-square md:aspect-3/2"
                     />
                   )}
                 </div>
