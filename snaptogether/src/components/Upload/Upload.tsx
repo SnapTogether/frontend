@@ -72,7 +72,7 @@ export default function Upload({
   
 
   return (
-    <div className="w-full border rounded-lg shadow-md mx-auto space-y-4">
+    <div className="w-full border rounded-lg mx-auto space-y-4">
       <input
         type="file"
         multiple
