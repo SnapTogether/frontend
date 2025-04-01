@@ -25,45 +25,7 @@ export interface RawPhoto {
 
 import axios from "axios";
 
-export const uploadSinglePhoto = async (
-  eventCode: string,
-  guestId: string,
-  file: File,
-  onProgress?: (percent: number) => void
-): Promise<UploadResponse> => {
-  const formData = new FormData();
-  formData.append("media", file);
-
-  try {
-    const res = await axios.post(
-      `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/api/photos/upload/${eventCode}/${guestId}`,
-      formData,
-      {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-        onUploadProgress: (progressEvent) => {
-          if (onProgress && progressEvent.total) {
-            const percent = Math.round(
-              (progressEvent.loaded * 100) / progressEvent.total
-            );
-            onProgress(percent);
-          }
-        },
-      }
-    );
-
-    return res.data;
-  } catch (error: unknown) {
-    const err = error as Error;
-    return {
-      status: 500,
-      message: "Upload failed",
-      error: err.message,
-    };
-  }
-};
-// ✅ API Call: Upload Images for Guest
+// ✅ API Call: Upload Images for Guest and return progress
 export const uploadPhotosForGuest = async (
   eventCode: string,
   guestId: string,

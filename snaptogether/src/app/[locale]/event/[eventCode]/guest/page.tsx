@@ -57,7 +57,7 @@ export default function GuestDashboard() {
 
     setGuestData((prevGuestData) => {
       if (!prevGuestData) return null;
-
+      console.log("new photos", newPhotoUrls);
       return {
         ...prevGuestData,
         photos: [
