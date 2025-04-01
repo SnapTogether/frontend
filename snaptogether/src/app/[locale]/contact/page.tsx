@@ -19,8 +19,8 @@ export default function ContactPage() {
       <div className="relative h-[100vh] w-full">
           <Image src={Contact} alt="Mockup" width={400} height={400} className="object-cover absolute h-full w-full" />
           <motion.div
-              className="absolute -translate-x-1/2 bottom-10 flex flex-col gap-5 text-left w-full container px-5 md:px-0 left-1/2"
-            >
+            className="absolute -translate-x-1/2 bottom-10 flex flex-col gap-5 text-left w-full container px-5 md:px-0 left-1/2 bg-[#404040]/20 backdrop-blur-xs py-3"
+          >
               <motion.h1
                 className="text-3xl font-bold text-white w-full uppercase"
                 initial={{ opacity: 0, y: 30 }}
@@ -80,7 +80,7 @@ export default function ContactPage() {
           <p>{t('supportPrompt')}</p>
           <Link
             href="/help"
-            className="mt-2 inline-block text-white bg-blue-500 hover:bg-blue-600 px-6 py-2 rounded-lg transition"
+            className="mt-2 inline-block text-[#262626] bg-[#c5c5c5] hover:opacity-75 px-6 py-2 rounded-lg transition"
           >
             {t('goToFaq')}
           </Link>

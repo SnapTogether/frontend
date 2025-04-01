@@ -16,13 +16,18 @@ export default function EventForm() {
   const [eventResponse, setEventResponse] = useState<string | null>(null);
   const [selectedPaidPlan, setSelectedPaidPlan] = useState<"starter" | "pro" | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
+    watch
   } = useForm<CreateEventData>();
   const locale = useLocale();
 
+  const selectedPlan = watch("plan", "free");
+
+  
   const onSubmit = async (data: CreateEventData) => {
     setIsSubmitting(true);
     try {
@@ -91,14 +96,30 @@ export default function EventForm() {
             <select
               {...register("plan", { required: "Please select a plan" })}
               className="w-full border border-gray-300 rounded px-3 py-2 text-sm"
-              defaultValue="free" // optional default
+              defaultValue="free"
             >
               <option value="free">{t("plans.free")}</option>
               <option value="starter">{t("plans.starter")} 20$</option>
               <option value="pro">{t("plans.pro")} 60$</option>
             </select>
-            {errors.plan && <p className="text-red-500 text-xs mt-1">{errors.plan.message}</p>}
+
+            {/* Show error if plan not selected */}
+            {errors.plan && (
+              <p className="text-red-500 text-xs mt-1">{errors.plan.message}</p>
+            )}
+
+            {/* ✅ Show description dynamically based on selected plan */}
+            {selectedPlan === "free" && (
+              <p className="text-sm text-gray-500 mt-1">{t("plansDescriptions.free")}</p>
+            )}
+            {selectedPlan === "starter" && (
+              <p className="text-sm text-gray-500 mt-1">{t("plansDescriptions.starter")}</p>
+            )}
+            {selectedPlan === "pro" && (
+              <p className="text-sm text-gray-500 mt-1">{t("plansDescriptions.pro")}</p>
+            )}
           </div>
+
 
           <Button
             type="submit"

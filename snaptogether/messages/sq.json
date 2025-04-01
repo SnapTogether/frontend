@@ -42,6 +42,11 @@
       "amountPro": "Shuma: 60$",
       "purpose": "Qëllimi: Akses në ngjarjen SnapTogether",
       "note": "Pasi të konfirmohet pagesa, do të keni qasje të plotë në panelin e kontrollit. Do të njoftoheni me email."
+    },
+    "plansDescriptions": {
+      "free": "Më i përshtatshëm për ngjarje të thjeshta si një mbrëmje me miqtë.",
+      "starter": "I shkëlqyer për ditëlindje apo hapje solemne.",
+      "pro": "Ideal për dasma, konferenca apo festa të mëdha."
     }
   },
   "dashboard": {
