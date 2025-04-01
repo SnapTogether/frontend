@@ -42,6 +42,11 @@
       "amountPro": "Amount: 60$",
       "purpose": "Purpose: SnapTogether Event Access",
       "note": "Once payment is received, you will gain full access to the dashboard. You’ll be notified by email."
+    },
+    "plansDescriptions": {
+      "free": "Best for casual events like a night out.",
+      "starter": "Great for birthdays or grand openings.",
+      "pro": "Perfect for weddings, conferences, or large parties."
     }
   },
   "dashboard": {
@@ -228,7 +233,7 @@
     "photosTitle": "📸 Your Uploaded Photos",
     "noPhotos": "No photos found for this guest."
   },
-  "upload": { 
+  "upload": {
     "storageFull": "Storage Full",
     "uploading": "Uploading",
     "chooseImages": "Choose Images"
