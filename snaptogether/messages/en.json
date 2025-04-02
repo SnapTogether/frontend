@@ -187,7 +187,8 @@
         "features": [
           "Up to 100MB storage",
           "Unlimited guests",
-          "Auto-delete after 7 days"
+          "Auto-delete after 7 days",
+          "Store around 100 photos"
         ]
       },
       "starter": {
@@ -195,7 +196,8 @@
         "features": [
           "Up to 3GB storage",
           "Unlimited guests",
-          "Auto-delete after 30 days"
+          "Auto-delete after 30 days",
+          "Store around 3,000 photos"
         ]
       },
       "pro": {
@@ -203,7 +205,8 @@
         "features": [
           "Up to 10GB storage",
           "Unlimited guests",
-          "Auto-delete after 60 days"
+          "Auto-delete after 60 days",
+          "Store around 10,000 photos"
         ]
       }
     }

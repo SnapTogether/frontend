@@ -186,24 +186,27 @@
         "name": "Falas",
         "features": [
           "Deri në 100MB hapësirë",
-          "Të ftuar të pakufizuar",
-          "Fshihet automatikisht pas 7 ditësh"
+          "Mysafirë të pakufizuar",
+          "Fshihet automatikisht pas 7 ditësh",
+          "Ruani rreth 100 foto"
         ]
       },
       "starter": {
         "name": "Fillestar",
         "features": [
           "Deri në 3GB hapësirë",
-          "Të ftuar të pakufizuar",
-          "Fshihet automatikisht pas 30 ditësh"
+          "Mysafirë të pakufizuar",
+          "Fshihet automatikisht pas 30 ditësh",
+          "Ruani rreth 3.000 foto"
         ]
       },
       "pro": {
         "name": "Pro",
         "features": [
           "Deri në 10GB hapësirë",
-          "Të ftuar të pakufizuar",
-          "Fshihet automatikisht pas 60 ditësh"
+          "Mysafirë të pakufizuar",
+          "Fshihet automatikisht pas 60 ditësh",
+          "Ruani rreth 10.000 foto"
         ]
       }
     }
@@ -233,9 +236,9 @@
     "photosTitle": "📸 Fotot tuaja të ngarkuara",
     "noPhotos": "Nuk u gjetën foto për këtë mysafir."
   },
-   "upload": { 
+  "upload": {
     "storageFull": "Memorja është e mbushur",
     "uploading": "Duke ngarkuar",
     "chooseImages": "Zgjidh imazhe"
-    }
+  }
 }
