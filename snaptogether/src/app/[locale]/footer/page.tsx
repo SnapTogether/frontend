@@ -24,7 +24,7 @@ export default function Footer() {
             Contact
           </Link>
           <a
-            href="https://www.instagram.com/snaptogether"
+            href="https://www.instagram.com/snaptogether25"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-white transition"
