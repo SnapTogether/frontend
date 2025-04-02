@@ -34,7 +34,7 @@ export default function PricingPage() {
   const plans = [
     {
       name: t("plans.free.name"),
-      price: "0€",
+      price: "0$",
       features: [
         t("plans.free.features.0"),
         t("plans.free.features.1"),
@@ -44,7 +44,7 @@ export default function PricingPage() {
     },
     {
       name: t("plans.starter.name"),
-      price: "19.99€",
+      price: "19.99$",
       features: [
         t("plans.starter.features.0"),
         t("plans.starter.features.1"),
@@ -54,7 +54,7 @@ export default function PricingPage() {
     },
     {
       name: t("plans.pro.name"),
-      price: "59.99€",
+      price: "59.99$",
       features: [
         t("plans.pro.features.0"),
         t("plans.pro.features.1"),

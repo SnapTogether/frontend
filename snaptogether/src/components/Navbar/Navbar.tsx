@@ -67,7 +67,7 @@ export default function Navbar() {
             </li>
           </ul>
           <Link href="/" className="pl-2">
-            <Image src={Logo} alt="logo" width={28} />
+            <Image src={Logo} alt="logo" width={32} height={40} />
           </Link>
           {/* ✅ Mobile Menu Button */}
           <button
