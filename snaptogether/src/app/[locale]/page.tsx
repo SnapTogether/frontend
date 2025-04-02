@@ -53,14 +53,14 @@ export default function Home() {
       
       <Navbar />
       {/* Centered Content */}
-      <div className="absolute flex flex-col gap-4 items-center justify-center h-fit top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+      <div className="absolute flex flex-col gap-4 items-center justify-center h-fit top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[70vw]">
         <motion.div
           className="logo flex flex-col items-center justify-center"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, ease: "easeOut" }}
         >
-          <Image src={Logo} alt="logo" width={250} />
+          <Image src={Logo} alt="logo" width={150} />
           {/* <motion.h1
             className="logo-footer select-none text-center text-white text-[52px] sm:text-[46px] rounded-md m-0 bg-gradient-to-b from-white to-[#68838C] bg-clip-text text-transparent"
             style={{ fontFamily: "var(--font-gochi-hand)" }}
