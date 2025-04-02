@@ -39,24 +39,27 @@ export default function PricingPage() {
         t("plans.free.features.0"),
         t("plans.free.features.1"),
         t("plans.free.features.2"),
+        t("plans.free.features.3"),
       ],
     },
     {
       name: t("plans.starter.name"),
-      price: "4.99€",
+      price: "19.99€",
       features: [
         t("plans.starter.features.0"),
         t("plans.starter.features.1"),
         t("plans.starter.features.2"),
+        t("plans.starter.features.3"),
       ],
     },
     {
       name: t("plans.pro.name"),
-      price: "9.99€",
+      price: "59.99€",
       features: [
         t("plans.pro.features.0"),
         t("plans.pro.features.1"),
         t("plans.pro.features.2"),
+        t("plans.pro.features.3"),
       ],
     },
   ];
