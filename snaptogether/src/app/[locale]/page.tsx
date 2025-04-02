@@ -53,7 +53,7 @@ export default function Home() {
       
       <Navbar />
       {/* Centered Content */}
-      <div className="absolute flex flex-col gap-4 items-center justify-center h-fit top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[70vw]">
+      <div className="absolute flex flex-col gap-4 items-center justify-center h-fit top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[91vw]">
         <motion.div
           className="logo flex flex-col items-center justify-center"
           initial={{ opacity: 0, scale: 0.8 }}
