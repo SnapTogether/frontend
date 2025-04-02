@@ -9,6 +9,8 @@ import PageTransition from "@/components/PageTransition/PageTransition";
 import FireworksBackground from "@/components/ConfettiBackground/FireworksBackground";
 import {useTranslations} from 'next-intl';
 import LanguageSwitcher from "@/components/LanguageSwitcher/LanguageSwitcher";
+import Logo from "../../../public/logo/snaptogether-logo-text-peach.svg";
+import Image from "next/image";
 
 export default function Home() {
   const router = useRouter();
@@ -58,8 +60,8 @@ export default function Home() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, ease: "easeOut" }}
         >
-          {/* <Image src={Logo} alt="logo" width={150} /> */}
-          <motion.h1
+          <Image src={Logo} alt="logo" width={250} />
+          {/* <motion.h1
             className="logo-footer select-none text-center text-white text-[52px] sm:text-[46px] rounded-md m-0 bg-gradient-to-b from-white to-[#68838C] bg-clip-text text-transparent"
             style={{ fontFamily: "var(--font-gochi-hand)" }}
             initial={{ opacity: 0, y: -10 }}
@@ -67,12 +69,12 @@ export default function Home() {
             transition={{ duration: 1, delay: 0.2 }}
           >
             Snaptogether
-          </motion.h1>
+          </motion.h1> */}
         </motion.div>
 
         <motion.p
           key={currentIndex} // <- important for animation
-          className="font-mulish text-slate-200 text-xl rounded-md m-0 text-center min-h-[32px]"
+          className="font-mulish text-slate-200 text-md rounded-md m-0 text-center min-h-[32px]"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -10 }}

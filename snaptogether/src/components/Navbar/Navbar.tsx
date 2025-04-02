@@ -5,7 +5,7 @@ import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import {useTranslations} from 'next-intl';
 import LanguageSwitcher from "../LanguageSwitcher/LanguageSwitcher";
-import Logo from "../../../public/snaptogether-logo.png";
+import Logo from "../../../public/logo/snaptogether-logo-svg.svg";
 import Image from "next/image";
 
 export default function Navbar() {
@@ -66,8 +66,8 @@ export default function Navbar() {
               </Link>
             </li>
           </ul>
-          <Link href="/">
-            <Image src={Logo} alt="logo" width={32} />
+          <Link href="/" className="pl-2">
+            <Image src={Logo} alt="logo" width={28} />
           </Link>
           {/* ✅ Mobile Menu Button */}
           <button
