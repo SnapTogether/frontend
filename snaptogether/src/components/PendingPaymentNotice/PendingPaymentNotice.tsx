@@ -20,7 +20,7 @@ export default function PendingPaymentNotice({ plan }: PendingPaymentNoticeProps
       <div className="bg-gray-100 rounded p-4 text-sm font-mono flex flex-col gap-4">
         <p className="text-slate-700">{t("bankName")}</p>
         <p className="text-slate-700">{t("accountNumber")}</p>
-        <p className="text-slate-700">{t("iban")}</p>
+        {/* <p className="text-slate-700">{t("iban")}</p> */}
         <strong className="text-black">
           {plan === "starter" ? t("amountStarter") : t("amountPro")}
         </strong>
