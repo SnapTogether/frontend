@@ -12,7 +12,7 @@ import { useTranslations } from "next-intl";
 import CircleImage from "../../../../public/about/about-avatar.png";
 import CircleImage2 from "../../../../public/about/scan-qr.png";
 import CircleImage3 from "../../../../public/about/about-avatar3.png";
-import Mockup from "../../../../public/logo/mockup.png";
+import Mockup from "../../../../public/logo/mockup-gold.png";
 import Footer from "../footer/page";
 
 

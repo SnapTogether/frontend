@@ -61,9 +61,14 @@ export default function Upload({
         eventCode,
         photos: response.photos,
       });
+    
+    } else if (response.status === 200 && response.photos?.length === 0 && (response.skippedDuplicates?.length ?? 0) > 0
+  ) {
+      console.log('found doplicate')
     } else {
       alert("❌ Upload failed. Try again!");
     }
+    
     
   
     setLoading(false);
