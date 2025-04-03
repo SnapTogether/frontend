@@ -42,8 +42,24 @@ const fleur_de_leah = Fleur_De_Leah({
 
 export const metadata: Metadata = {
   title: "Snaptogether",
-  description: "Create moments together",
+  description: "Let your guests contribute their favorite moments effortlessly. Get Started.",
+  openGraph: {
+    title: "Snaptogether",
+    description: "Let your guests contribute their favorite moments effortlessly. Get Started.",
+    url: "https://www.snaptogether.cloud",
+    siteName: "Snaptogether",
+    images: [
+      {
+        url: "https://www.snaptogether.cloud/og.png", // Ensure this image exists in /public
+        width: 1200,
+        height: 630,
+        alt: "Snaptogether Preview",
+      },
+    ],
+    type: "website",
+  },
 };
+
 
 export default async function RootLayout({
   children,
