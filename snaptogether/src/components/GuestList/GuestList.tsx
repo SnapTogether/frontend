@@ -43,18 +43,20 @@ const GuestList: React.FC<GuestListProps> = ({ guests, eventCode }) => {
             ))}
           </ul>
 
-          {/* Pagination Controls with Dots */}
-          <div className="mt-4 flex justify-center items-center gap-2">
-            {Array.from({ length: totalPages }).map((_, index) => (
-              <span
-                key={index}
-                className={`w-3 h-3 rounded-full inline-block cursor-pointer transition-all duration-300 ${
-                  currentPage === index + 1 ? "bg-white" : "bg-gray-500"
-                }`}
-                onClick={() => setCurrentPage(index + 1)}
-              />
-            ))}
-          </div>
+          {guests.length > guestsPerPage && 
+            <div className="mt-4 flex justify-center items-center gap-2">
+
+              {Array.from({ length: totalPages }).map((_, index) => (
+                <span
+                  key={index}
+                  className={`w-3 h-3 rounded-full inline-block cursor-pointer transition-all duration-300 ${
+                    currentPage === index + 1 ? "bg-white" : "bg-gray-500"
+                  }`}
+                  onClick={() => setCurrentPage(index + 1)}
+                />
+              ))}
+            </div>
+          }
         </>
       ) : (
         <p className="mt-2 text-gray-400">No guests have joined yet.</p>

@@ -9,7 +9,9 @@ export interface UploadResponse {
   message: string;
   photos?: UploadedPhoto[];
   error?: string;
+  skippedDuplicates?: string[];
 }
+
 
 export interface DownloadResponse {
   status: number;
@@ -73,8 +75,10 @@ export const uploadPhotosForGuest = async (
           photoId: photo._id,
           url: photo.imageUrl || photo.videoUrl,
           type: photo.imageUrl ? "image" : "video",
-        })) || [],
+        })) || res.data.uploaded || [],
+      skippedDuplicates: res.data.skippedDuplicates || [],
     };
+    
   } catch (error: unknown) {
     const err = error as Error & { message: string };
     console.error("Upload error", err);

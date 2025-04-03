@@ -20,6 +20,7 @@ import socket from "@/utils/socket";
 import StorageBar from "@/components/StorageBar/StorageBar";
 import PendingPaymentNotice from "@/components/PendingPaymentNotice/PendingPaymentNotice";
 import Link from "next/link";
+import EventStats from "@/components/EventStats/EventStats";
 
 export default function HostDashboard() {
   const params = useParams();
@@ -182,6 +183,13 @@ export default function HostDashboard() {
   
         <GuestList guests={eventData?.event?.guests || []} eventCode={eventCode} />
   
+        <Divider width="full" border={true} />
+
+        <EventStats
+          totalGuests={eventData?.event?.guests?.length || 0}
+          totalPhotos={eventData?.event?.photos?.length || 0}
+        />  
+        
         <Divider width="full" border={true} />
   
         <ImageCarousel
