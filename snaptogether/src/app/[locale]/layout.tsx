@@ -83,6 +83,7 @@ export default async function RootLayout({
         {/* ✅ Meta Tags */}
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta property="og:image" content="https://www.snaptogether.cloud/logo/og.png" />
         <link rel="icon" href="/favicon.png" />
       </head>
       <body
