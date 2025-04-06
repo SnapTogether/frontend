@@ -5,7 +5,6 @@ import { useParams } from "next/navigation";
 import { v4 as uuidv4 } from 'uuid';
 import { verifyGuest, GuestResponse, GuestPhoto } from "@/api/guest";
 import Upload from "@/components/Upload/Upload";
-import Image from "next/image";
 import Navbar from "@/components/Navbar/Navbar";
 import Button from "@/components/Button/Button";
 import Link from "next/link";
