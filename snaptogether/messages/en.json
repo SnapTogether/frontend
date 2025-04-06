@@ -213,11 +213,15 @@
   },
   "privacyPage": {
     "title": "Privacy Policy",
-    "content": "SnapTogether values your privacy. We collect only the necessary information to deliver our services — such as photos, videos, and names. We do not share your data with third parties. All uploads are automatically deleted based on your plan’s retention period."
+    "content": "SnapTogether values your privacy. We collect only the necessary information to deliver our services — such as photos, videos, and names. We do not share your data with third parties. All uploads are automatically deleted based on your plan’s retention period.",
+    "refundPolicy": "Refund Policy",
+    "refundContent": "SnapTogether offers a full refund if requested within 7 days of your initial payment, provided that your event has not yet started or no uploads have been made by guests. Once uploads have commenced or the event date has passed, refunds are not available. If you encounter technical issues, please contact support immediately for assistance."
   },
   "termsPage": {
-    "title": "Terms of Use",
-    "content": "By using SnapTogether, you agree not to upload harmful or illegal content. We reserve the right to remove any content that violates these terms. Your data will be retained according to the plan you choose. We may update these terms periodically."
+    "title": "Terms of Service",
+    "content": "By using SnapTogether, you agree to use the service responsibly, uploading only appropriate and lawful content. You must not upload content that infringes copyrights, privacy, or other applicable laws. SnapTogether reserves the right to remove any content deemed inappropriate.",
+    "usagePolicy": "Acceptable Use Policy",
+    "usageContent": "You must not misuse the SnapTogether services. Misuse includes uploading offensive, unlawful, or harmful material, or interfering with the service's functionality. Violations of this policy may result in immediate suspension or termination of your access without refund."
   },
   "contactPage": {
     "title": "Get in Touch",
