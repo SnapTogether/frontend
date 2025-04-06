@@ -14,7 +14,7 @@ export default function EventStats({ totalPhotos, totalGuests, mostActiveGuest }
 
 
     return (
-        <div className="w-full max-w-md bg-gray-900 text-white rounded-xl shadow-md p-6 flex flex-col gap-4 items-start">
+        <div className="border w-full max-w-md bg-gray-900 text-white rounded-xl shadow-md p-6 flex flex-col gap-4 items-start">
             <h3 className="text-white text-2xl md:text-2xl font-semibold flex flex-row items-center justify-center gap-3">📊 Event Statistics</h3>
 
             <div className="flex items-start gap-3">

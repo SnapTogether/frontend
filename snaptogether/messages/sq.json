@@ -213,11 +213,15 @@
   },
   "privacyPage": {
     "title": "Politika e Privatësisë",
-    "content": "SnapTogether e vlerëson privatësinë tuaj. Ne mbledhim vetëm informacionin e nevojshëm për të ofruar shërbimet — si foto, video dhe emra. Nuk ndajmë të dhënat me palë të treta. Të gjitha ngarkesat fshihen automatikisht sipas periudhës së planit tuaj."
+    "content": "SnapTogether e vlerëson privatësinë tuaj. Ne mbledhim vetëm informacionin e nevojshëm për të ofruar shërbimet — si foto, video dhe emra. Nuk ndajmë të dhënat me palë të treta. Të gjitha ngarkesat fshihen automatikisht sipas periudhës së planit tuaj.",
+    "refundPolicy": "Politika e Rimbursimit",
+    "refundContent": "SnapTogether ofron rimbursim të plotë nëse kërkohet brenda 7 ditëve nga pagesa juaj fillestare, me kusht që eventi juaj të mos ketë filluar ende ose të mos ketë ngarkime nga mysafirët. Sapo të fillojnë ngarkimet ose të ketë kaluar data e eventit, rimbursimet nuk janë të mundura. Nëse hasni probleme teknike, ju lutemi kontaktoni menjëherë mbështetjen për asistencë."
   },
   "termsPage": {
-    "title": "Kushtet e Përdorimit",
-    "content": "Duke përdorur SnapTogether, pranoni të mos ngarkoni përmbajtje të dëmshme apo të paligjshme. Ne ruajmë të drejtën të heqim çdo përmbajtje që shkel këto kushte. Të dhënat tuaja ruhen sipas planit të zgjedhur. Mund të përditësojmë kushtet herë pas here."
+    "title": "Kushtet e Shërbimit",
+    "content": "Duke përdorur SnapTogether, ju pranoni ta përdorni shërbimin me përgjegjësi, duke ngarkuar vetëm përmbajtje të përshtatshme dhe të ligjshme. Ju nuk duhet të ngarkoni përmbajtje që shkel të drejtat e autorit, privatësinë ose ligje të tjera. SnapTogether rezervon të drejtën për të hequr çdo përmbajtje që konsiderohet e papërshtatshme.",
+    "usagePolicy": "Politika e Përdorimit të Pranueshëm",
+    "usageContent": "Nuk duhet t'i keqpërdorni shërbimet e SnapTogether. Keqpërdorimi përfshin ngarkimin e materialit ofensiv, të paligjshëm ose të dëmshëm, ose ndërhyrjen në funksionimin e shërbimit. Shkelja e kësaj politike mund të rezultojë në pezullimin ose përfundimin e menjëhershëm të aksesit tuaj pa rimbursim."
   },
   "contactPage": {
     "title": "Na Kontaktoni",

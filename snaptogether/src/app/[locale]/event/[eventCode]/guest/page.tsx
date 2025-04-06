@@ -5,12 +5,12 @@ import { useParams } from "next/navigation";
 import { v4 as uuidv4 } from 'uuid';
 import { verifyGuest, GuestResponse, GuestPhoto } from "@/api/guest";
 import Upload from "@/components/Upload/Upload";
-import Image from "next/image";
 import Navbar from "@/components/Navbar/Navbar";
 import Button from "@/components/Button/Button";
 import Link from "next/link";
 import "./guest.css";
 import { useTranslations } from "next-intl";
+import PhotoGallery from "@/components/PhotoGallery/PhotoGallery";
 
 export default function GuestDashboard() {
   const params = useParams();
@@ -73,7 +73,7 @@ export default function GuestDashboard() {
   return (
     <div className="guest-dashboard relative w-screen h-screen">
       <Navbar />
-      <div className="absolute w-[95%] sm:w-full max-w-[30em] left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 p-6 mx-auto space-y-4 border border-slate-500 border-opacity-65 rounded-lg shadow-md bg-white/10 backdrop-blur-lg">
+      <div className="w-[95%] sm:w-full max-w-[30em] p-6 mx-auto space-y-4 border border-slate-500 border-opacity-65 rounded-lg shadow-md bg-white/10 backdrop-blur-lg">
         <h2 className="text-white text-2xl font-semibold text-center">{t("title")}</h2>
 
         {!guestData ? (
@@ -104,31 +104,11 @@ export default function GuestDashboard() {
             {guestData.photos && guestData.photos.length > 0 ? (
               <div className="relative w-full">
                 <div className="flex overflow-x-auto scroll-smooth snap-x snap-mandatory gap-3 p-2">
-                  {guestData.photos.map((photo, index) => (
-                    <div key={photo.photoId} className="snap-center flex-shrink-0 w-[300px] h-[300px]">
-                      {photo.imageUrl.match(/\.(mp4|webm|mov)$/i) ? (
-                        <video
-                          controls
-                          className="rounded-md shadow-md !h-full w-full object-cover"
-                          key={index}
-                        >
-                          <source src={photo.imageUrl} type="video/mp4" />
-                          Your browser does not support the video tag.
-                        </video>
-                      ) : (
-                        <Image
-                          key={index}
-                          src={photo.imageUrl}
-                          alt="Guest Upload"
-                          width={300}
-                          height={300}
-                          className="rounded-md shadow-md !h-full w-full object-contain"
-                          loading="lazy"
-                          decoding="async"
-                        />
-                      )}
-                    </div>
-                  ))}
+                {guestData.photos && guestData.photos.length > 0 ? (
+                  <PhotoGallery photos={guestData.photos} />
+                ) : (
+                  <p className="text-gray-300">{t("noPhotos")}</p>
+                )}
                 </div>
               </div>
             ) : (

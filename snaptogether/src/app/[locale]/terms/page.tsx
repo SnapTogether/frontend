@@ -7,8 +7,8 @@ import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import Mockup from "@/../public/logo/mockup.png";
 
-export default function PrivacyPage() {
-  const t = useTranslations("privacyPage");
+export default function TermsPage() {
+  const t = useTranslations("termsPage");
 
   return (
     <div className="relative min-h-screen bg-gradient-to-br from-[#1c1c1c] to-[#2e2e2e] text-white">
@@ -43,8 +43,8 @@ export default function PrivacyPage() {
 
         <div className="container mx-auto text-left pb-[150px] space-y-6">
           <p>{t("content")}</p>
-          <h2 className="text-2xl text-white font-semibold">{t("refundPolicy")}</h2>
-          <p>{t("refundContent")}</p>
+          <h2 className="text-2xl text-white font-semibold">{t("usagePolicy")}</h2>
+          <p>{t("usageContent")}</p>
         </div>
       </div>
 
