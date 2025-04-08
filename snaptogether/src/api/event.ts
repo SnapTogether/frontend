@@ -71,6 +71,7 @@ export interface Photo {
 export interface Guest {
   _id: string;
   guestName: string;
+  messages: string[];
 }
 
 export interface EventResponse {

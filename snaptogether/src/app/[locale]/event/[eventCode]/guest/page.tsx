@@ -1,16 +1,18 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { v4 as uuidv4 } from 'uuid';
-import { verifyGuest, GuestResponse, GuestPhoto } from "@/api/guest";
+import { verifyGuest, GuestResponse, GuestPhoto, submitGuestMessage, fetchGuestMessages } from "@/api/guest";
 import Upload from "@/components/Upload/Upload";
 import Navbar from "@/components/Navbar/Navbar";
 import Button from "@/components/Button/Button";
-import Link from "next/link";
 import "./guest.css";
 import { useTranslations } from "next-intl";
 import PhotoGallery from "@/components/PhotoGallery/PhotoGallery";
+import GuestMessages, { Message } from "@/components/GuestMessages/GuestMessages";
+import socket from "@/utils/socket";
+import { Divider } from "@/components/Divider/Divider";
 
 export default function GuestDashboard() {
   const params = useParams();
@@ -19,10 +21,14 @@ export default function GuestDashboard() {
   const [guestName, setGuestName] = useState<string>("");
   const [guestData, setGuestData] = useState<GuestResponse | null>(null);
   const [usedStorage, setUsedStorage] = useState<number>(0);
-  const [storageLimit, setStorageLimit] = useState<number>(0);  
+  const [storageLimit, setStorageLimit] = useState<number>(0);
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string>("");
+
+  const [message, setMessage] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+  const [guestMessages, setGuestMessages] = useState<Message[]>([]);
 
   const t = useTranslations("guestDashboard");
 
@@ -40,16 +46,40 @@ export default function GuestDashboard() {
     const response = await verifyGuest(eventCode, guestName);
 
     if (response.status === 200) {
+      if (!response.guest?.guestId) {
+        setError("Guest ID not found.");
+        setLoading(false);
+        return;
+      }
+
       setGuestData(response);
-      setUsedStorage(Number(response.usedStorage) || 0); // ✅ safely parse
+      setUsedStorage(Number(response.usedStorage) || 0);
       setStorageLimit(Number(response.storageLimit) || 0);
+
+      // 🔥 Fetch guest messages
+      const messagesRes = await fetchGuestMessages(eventCode, response.guest.guestId);
+      if (messagesRes.status === 200 && messagesRes.messages) {
+        setGuestMessages(
+          messagesRes.messages.map((msg, idx) => ({
+            _id: String(idx),
+            text: msg,
+          }))
+        );
+      }
+
     }
+
     else {
       setError(response.message);
     }
 
     setLoading(false);
   };
+
+  const handleDeleteMessage = (text: string) => {
+    setGuestMessages((prev) => prev.filter((msg) => msg.text !== text));
+  };
+
 
   // ✅ Function to update guestData when new photos are uploaded
   const handlePhotosUploaded = (newPhotoUrls: string[]) => {
@@ -70,14 +100,39 @@ export default function GuestDashboard() {
       };
     });
   };
+
+  useEffect(() => {
+    if (!guestData?.guest?.guestId || !eventCode) return;
+
+    const room = `${eventCode}-${guestData.guest.guestId}`;
+    socket.emit("join", room);
+
+    socket.on("newMessage", ({ message }) => {
+      setGuestMessages((prev) => [
+        ...prev,
+        { _id: String(Date.now()), text: message },
+      ]);
+    });
+
+    socket.on("messageDeleted", ({ text }) => {
+      setGuestMessages((prev) => prev.filter((msg) => msg.text !== text));
+    });
+
+    return () => {
+      socket.emit("leave", room);
+      socket.off("newMessage");
+      socket.off("messageDeleted");
+    };
+  }, [eventCode, guestData?.guest?.guestId]);
+
   return (
-    <div className="guest-dashboard relative w-screen h-screen">
+    <div className="guest-dashboard relative h-full flex flex-col">
       <Navbar />
-      <div className="w-[95%] sm:w-full max-w-[30em] p-6 mx-auto space-y-4 border border-slate-500 border-opacity-65 rounded-lg shadow-md bg-white/10 backdrop-blur-lg">
+      <div className="w-[95%] mb-[10vh] sm:w-full flex flex-col items-center justify-center pt-[10vh] mx-auto space-y-4">
         <h2 className="text-white text-2xl font-semibold text-center">{t("title")}</h2>
 
         {!guestData ? (
-          <form onSubmit={handleVerifyGuest} className="space-y-3">
+          <form onSubmit={handleVerifyGuest} className="max-w-[40em] container mx=auto space-y-3 p-6 border border-slate-500 border-opacity-65 rounded-lg shadow-md bg-white/10 backdrop-blur-lg">
             <p className="text-gray-300 text-center">{t("instruction")}</p>
             <input
               type="text"
@@ -97,42 +152,85 @@ export default function GuestDashboard() {
             {error && <p className="text-red-500 text-sm">{error}</p>}
           </form>
         ) : (
-          <div className="flex flex-col gap-6 text-center">
-            <h3 className="text-lg font-semibold text-slate-50">{t("photosTitle")}</h3>
+          <div className="flex flex-col items-center justify-center gap-6 text-center container mx-auto max-w-[40em]">
+            <div className="flex flex-col gap-6 text-center p-4 border border-slate-500 border-opacity-65 rounded-lg shadow-md bg-white/10 backdrop-blur-lg w-full">
+              <h3 className="text-lg font-semibold text-slate-50">{t("photosTitle")}</h3>
 
-            {/* ✅ Scrollable Image/Video Grid */}
-            {guestData.photos && guestData.photos.length > 0 ? (
-              <div className="relative w-full">
-                <div className="flex overflow-x-auto scroll-smooth snap-x snap-mandatory gap-3 p-2">
-                {guestData.photos && guestData.photos.length > 0 ? (
-                  <PhotoGallery photos={guestData.photos} />
-                ) : (
-                  <p className="text-gray-300">{t("noPhotos")}</p>
-                )}
+              {/* ✅ Scrollable Image/Video Grid */}
+              {guestData.photos && guestData.photos.length > 0 ? (
+                <div className="relative w-full">
+                  <div className="flex overflow-x-auto scroll-smooth snap-x snap-mandatory gap-3 p-2">
+                    {guestData.photos && guestData.photos.length > 0 ? (
+                      <PhotoGallery photos={guestData.photos} />
+                    ) : (
+                      <p className="text-gray-300">{t("noPhotos")}</p>
+                    )}
+                  </div>
                 </div>
-              </div>
-            ) : (
-              <p className="text-gray-300">{t("noPhotos")}</p>
-            )}
+              ) : (
+                <p className="text-gray-300">{t("noPhotos")}</p>
+              )}
 
-            {/* ✅ Upload Component */}
-            <Upload
+              {/* ✅ Upload Component */}
+              <Upload
+                eventCode={eventCode}
+                guestId={guestData?.guest?.guestId || ""}
+                onPhotosUploaded={handlePhotosUploaded}
+                usedStorage={usedStorage}
+                storageLimit={storageLimit}
+              />
+            </div>
+
+            <Divider width="full" border={true} />
+
+            <div className="mx-auto w-full box-border p-4 border border-slate-500 border-opacity-65 rounded-lg shadow-md bg-white/10 backdrop-blur-lg">
+              <h2 className="text-white text-md font-medium mb-2">{t("leaveMessage")}</h2>
+              <textarea
+                className="w-full rounded-md p-3 bg-gray-800 text-white border border-gray-600 focus:outline-none focus:ring focus:border-blue-500 min-h-[100px]"
+                placeholder={t("messagePlaceholder")}
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+              />
+              <Button
+                className="mt-3 w-full !bg-[rgba(120,128,181,0.8)]"
+                variant="primary"
+                disabled={submitting || !message.trim()}
+                onClick={async () => {
+                  setSubmitting(true);
+
+                  const res = await submitGuestMessage(eventCode.toString(), guestData?.guest?.guestId || "", message.trim());
+
+                  if (res.status === 200) {
+                    setMessage(""); // Clear input
+
+                    setGuestMessages((prev) => [
+                      ...prev,
+                      {
+                        _id: String(Date.now()),
+                        text: message.trim(),
+                      },
+                    ]);
+                  }
+
+
+                  setSubmitting(false);
+                }}
+              >
+                {submitting ? t("sending") : t("send")}
+              </Button>
+
+            </div>
+
+            <GuestMessages
+              messages={guestMessages}
               eventCode={eventCode}
               guestId={guestData?.guest?.guestId || ""}
-              onPhotosUploaded={handlePhotosUploaded}
-              usedStorage={usedStorage}
-              storageLimit={storageLimit}
+              onDeleteMessage={handleDeleteMessage}
             />
+
           </div>
         )}
       </div>
-      <Link
-        href="/"
-        className="text-slate-200 logo-footer select-none absolute left-1/2 transform -translate-x-1/2 bottom-4 z-10 text-center text-[40px] sm:text-[46px] rounded-md m-0"
-        style={{ fontFamily: "var(--font-gochi-hand)" }}
-      >
-        Snaptogether
-      </Link>
     </div>
   );
 }

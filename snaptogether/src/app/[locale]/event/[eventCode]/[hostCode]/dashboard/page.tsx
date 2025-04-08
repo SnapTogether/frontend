@@ -5,7 +5,7 @@ import { useParams } from "next/navigation";
 import { fetchEventForHost, EventResponse } from "@/api/event";
 import Image from "next/image";
 import Button from "@/components/Button/Button";
-import { BadgeInfo, Calendar, Hourglass, Mail, PartyPopper, SmilePlus } from "lucide-react";
+import { BadgeInfo, Calendar, ChevronDown, FolderClosed, Hourglass, Mail, PartyPopper, SmilePlus } from "lucide-react";
 import Navbar from "@/components/Navbar/Navbar";
 import DownloadZip from "@/components/DownloadZip/DownloadZip";
 import CardImg from '../../../../../../../public/bg4.jpg'
@@ -21,6 +21,9 @@ import StorageBar from "@/components/StorageBar/StorageBar";
 import PendingPaymentNotice from "@/components/PendingPaymentNotice/PendingPaymentNotice";
 import Link from "next/link";
 import EventStats from "@/components/EventStats/EventStats";
+import clsx from "clsx";
+import Footer from "@/app/[locale]/footer/page";
+import GuestMessagesTable from "@/components/GuestMessagesTable/GuestMessagesTable";
 
 export default function HostDashboard() {
   const params = useParams();
@@ -34,13 +37,12 @@ export default function HostDashboard() {
   const currentPage = 1;
   const photosPerPage = 20;
   const plural = daysLeft !== 1 ? "s" : "";
-  
+  const [openOverview, setOpenOverview] = useState(false);
+
   const t = useTranslations("dashboard");
 
   useEffect(() => {
     if (!eventCode || !hostCode) return;
-
-    console.log("🔌 Connecting WebSocket...");
 
     socket.on("connect", () => {
       console.log("✅ WebSocket Connected:", socket.id);
@@ -49,6 +51,8 @@ export default function HostDashboard() {
     socket.on("disconnect", () => {
       console.log("❌ WebSocket Disconnected");
     });
+
+    socket.emit("join", `host-${eventCode}`);
 
     const fetchEvent = async () => {
       setLoading(true);
@@ -60,9 +64,12 @@ export default function HostDashboard() {
         setError(response.message);
       } else {
         setEventData(response);
-        console.log("📨 Total Pages:", response.event?.pagination?.totalPages);
-        console.log("📸 Initial Photo Count:", response.event?.photos?.length); // ✅ Log initial number of photos
-      }
+        // ✅ INSERT GUEST MESSAGE LOG HERE
+        response.event?.guests?.forEach((guest) => {
+          guest.messages.forEach((msg) => {
+            console.log(`- ${msg}`);
+          });
+        });      }
 
       if (response.event?.expirationDate) {
         const expiration = new Date(response.event.expirationDate);
@@ -71,7 +78,7 @@ export default function HostDashboard() {
         const remainingDays = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
         setDaysLeft(Math.max(remainingDays, 0)); // never show negative
       }
-      
+
 
       setLoading(false);
     };
@@ -82,12 +89,40 @@ export default function HostDashboard() {
         fetchEvent(); // ✅ Fetches updated photos + usedStorage from backend
       }
     });
+    
+    // 🧠 Add real-time message listener
+    socket.on("newMessage", (data: { guestId: string; guestName: string; message: string }) => {
+    
+      setEventData((prev) => {
+        if (!prev || !prev.event) return prev;
+    
+        const updatedGuests = prev.event.guests.map((guest) => {
+          if (guest._id === data.guestId) {
+            return {
+              ...guest,
+              messages: [...guest.messages, data.message], // 👈 append the message
+            };
+          }
+          return guest;
+        });
+    
+        return {
+          ...prev,
+          event: {
+            ...prev.event,
+            guests: updatedGuests,
+          },
+        };
+      });
+    });
+    
 
 
     fetchEvent();
 
     return () => {
       socket.off("newImageUploaded"); // ✅ Cleanup WebSocket listener when component unmounts
+      socket.off("newMessage");
       socket.off("connect");
       socket.off("disconnect");
     };
@@ -101,7 +136,7 @@ export default function HostDashboard() {
       </div>
     );
   if (error) return <p style={{ color: "red" }}>{error}</p>;
-  
+
   if (
     eventData?.event &&
     !eventData.event.isPaymentConfirmed &&
@@ -110,27 +145,49 @@ export default function HostDashboard() {
     return (
       <div>
         <Link href='/' className="text-slate-200 logo-footer select-none absolute left-1/2 transform -translate-x-1/2 bottom-1 z-10 text-center text-[40px] sm:text-[46px] rounded-md m-0" style={{ fontFamily: "var(--font-gochi-hand)" }}>
-            Snaptogether
+          Snaptogether
         </Link>
         <PendingPaymentNotice plan={eventData.event.plan} />
       </div>)
   }
-  
+
   return (
     <>
       <Navbar />
-      <div className="relative mt-20 flex flex-col items-center gap-8 p-6 container mx-auto">
+      <div className="relative mt-20 flex flex-col items-center gap-8 p-6 container mx-auto pb-[150px]">
+      <div className="w-full max-w-md">
+      <button
+        onClick={() => setOpenOverview((prev) => !prev)}
+        className="flex items-center justify-between w-full text-white bg-gray-700 px-4 py-2 rounded transition-colors"
+      >
+        <span className="flex flex-row gap-4 items-center"><FolderClosed size={20} /> {t("eventOverview")}</span>
+        <ChevronDown
+          className={clsx(
+            "transition-transform duration-300",
+            openOverview && "rotate-180"
+          )}
+        />
+      </button>
+
+      <div
+        className={clsx(
+          "transition-all duration-500 ease-in-out overflow-hidden",
+          openOverview ? "max-h-[500px] opacity-100 mt-3" : "max-h-0 opacity-0"
+        )}
+      >
         <div className="flex flex-col items-center gap-1">
           <p className="text-sm text-white">
             {t("plan")}: <strong>{eventData?.event?.plan.toUpperCase()}</strong>
           </p>
+
           <DownloadZip className="my-3" eventCode={eventCode} />
+
           {eventData?.event && (
             <>
-              {console.log("📦 Storage Data → used:", eventData.event.usedStorage, "limit:", eventData.event.storageLimit)}
               <StorageBar used={eventData.event.usedStorage} limit={eventData.event.storageLimit} />
             </>
           )}
+
           {daysLeft !== null && (
             <p
               className={`mt-2 text-xs font-semibold flex flex-col text-center md:flex-row gap-1 items-center ${
@@ -142,12 +199,13 @@ export default function HostDashboard() {
             </p>
           )}
         </div>
-        
+      </div>
+    </div>
 
-        <h2 className="flex flex-col sm:flex-row items-center justify-center gap-3 text-white text-center text-xl sm:text-3xl font-semibold">
+        <h2 className="flex flex-col md:flex-row items-center justify-center gap-3 text-white text-center text-xl sm:text-3xl font-semibold">
           <PartyPopper size={20} /> {t("title")} <b>{eventData?.event?.eventName}</b>
         </h2>
-  
+
         <div className="event-info relative rounded-lg bg-gray-800 w-full text-center flex flex-col items-start text-white max-w-[21em] gap-3">
           <Image src={CardImg} alt="logo" className="rounded-t-lg h-[10em] object-cover" />
           <h3 className="flex gap-3 font-bold text-lg text-white px-5">
@@ -168,33 +226,57 @@ export default function HostDashboard() {
             </section>
           </div>
         </div>
-  
-        <Divider width="quarter" border={true} />
-  
+
+        <Divider width="full" border={true} />
+
         {eventData?.event && (
           <QRCodeTabs eventData={{ event: { hostLink: eventData.event.hostLink, guestLink: eventData.event.guestLink } }} />
         )}
-  
-        <Divider width="quarter" border={true} />
-  
-        <PhotoGallery photos={eventData?.event?.photos || []} />
-  
+
         <Divider width="full" border={true} />
-  
+
+        <PhotoGallery photos={eventData?.event?.photos || []} />
+
+        <Divider width="full" border={true} />
+
         <GuestList guests={eventData?.event?.guests || []} eventCode={eventCode} />
-  
+
         <Divider width="full" border={true} />
 
         <EventStats
           totalGuests={eventData?.event?.guests?.length || 0}
           totalPhotos={eventData?.event?.photos?.length || 0}
-        />  
-        
+        />
+
         <Divider width="full" border={true} />
-  
+
+        <GuestMessagesTable
+          key={
+            eventData?.event?.guests
+              .map((g) => `${g._id}-${g.messages.join("").length}`) // includes message content
+              .join(",") || "default"
+          }
+          data={
+            eventData?.event?.guests
+              .filter((guest) => guest.messages && guest.messages.length > 0)
+              .map((guest) => ({
+                guestName: guest.guestName,
+                messages: guest.messages,
+              })) || []
+          }
+        />
+
+
+
+
+
+        <Divider width="full" border={true} />
+
         <ImageCarousel
           images={["/wedding-poster.png", "/birthday-poster.png"]}
         />
+        
+        <Footer/>
       </div>
     </>
   );

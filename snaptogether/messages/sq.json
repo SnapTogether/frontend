@@ -262,5 +262,9 @@
     "photos": "foto të ngarkuara gjithsej",
     "mvp": "Mysafiri më aktiv",
     "avg": "Mesatarja e fotove të ngarkuara për mysafir"
-  }  
+  },
+  "guestMessages": {
+    "deleteMessage": "Fshije",
+    "messages": "Mesazhe"
+  }
 }
