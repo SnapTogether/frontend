@@ -7,8 +7,8 @@ import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import Mockup from "@/../public/logo/mockup.png";
 
-export default function PrivacyPage() {
-  const t = useTranslations("privacyPage");
+export default function RefundPolicyPage() {
+  const t = useTranslations("refundPage");
 
   return (
     <div className="relative min-h-screen bg-gradient-to-br from-[#1c1c1c] to-[#2e2e2e] text-white">
@@ -42,10 +42,9 @@ export default function PrivacyPage() {
         </div>
 
         <div className="container mx-auto text-left pb-[150px] space-y-6 px-4 md:px-0">
-        {t.raw("content").split("\n\n").map((paragraph: string, i: number) => (
-          <p key={i}>{paragraph}</p>
-        ))}
-
+          {t.raw("content").split("\n\n").map((paragraph: string, i: number) => (
+            <p key={i}>{paragraph}</p>
+          ))}
         </div>
       </div>
 
