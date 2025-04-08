@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Inbox, Mail } from "lucide-react";
+import { Inbox, } from "lucide-react";
 import { Divider } from "../Divider/Divider";
 
 export interface GuestMessageItem {

@@ -25,7 +25,7 @@ const GuestMessages: React.FC<GuestMessagesProps> = ({
 }) => {
   const [localMessages, setLocalMessages] = useState<Message[]>(messages);
   const [deletingText, setDeletingText] = useState<string | null>(null);
-  const t = useTranslations("guestDashboard");
+  const t = useTranslations("guestMessages");
 
   useEffect(() => {
     setLocalMessages(messages); // sync on messages change

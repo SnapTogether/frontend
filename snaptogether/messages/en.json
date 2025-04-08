@@ -262,6 +262,9 @@
     "photos": "total photos uploaded",
     "mvp": "MVP Guest",
     "avg": "Average Uploaded Photos Per Guest"
+  },
+  "guestMessages": {
+    "deleteMessage": "Delete",
+    "messages": "Messages"
   }
-
 }

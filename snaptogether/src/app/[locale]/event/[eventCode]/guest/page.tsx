@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { v4 as uuidv4 } from 'uuid';
-import { verifyGuest, GuestResponse, GuestPhoto, submitGuestMessage, fetchGuestMessages, GuestMessagesResponse } from "@/api/guest";
+import { verifyGuest, GuestResponse, GuestPhoto, submitGuestMessage, fetchGuestMessages } from "@/api/guest";
 import Upload from "@/components/Upload/Upload";
 import Navbar from "@/components/Navbar/Navbar";
 import Button from "@/components/Button/Button";
@@ -28,7 +28,6 @@ export default function GuestDashboard() {
 
   const [message, setMessage] = useState("");
   const [submitting, setSubmitting] = useState(false);
-  const [messageStatus, setMessageStatus] = useState<null | "success" | "error">(null);
   const [guestMessages, setGuestMessages] = useState<Message[]>([]);
 
   const t = useTranslations("guestDashboard");
@@ -198,12 +197,10 @@ export default function GuestDashboard() {
                 disabled={submitting || !message.trim()}
                 onClick={async () => {
                   setSubmitting(true);
-                  setMessageStatus(null);
 
                   const res = await submitGuestMessage(eventCode.toString(), guestData?.guest?.guestId || "", message.trim());
 
                   if (res.status === 200) {
-                    setMessageStatus("success");
                     setMessage(""); // Clear input
 
                     setGuestMessages((prev) => [
@@ -213,8 +210,6 @@ export default function GuestDashboard() {
                         text: message.trim(),
                       },
                     ]);
-                  } else {
-                    setMessageStatus("error");
                   }
 
 
