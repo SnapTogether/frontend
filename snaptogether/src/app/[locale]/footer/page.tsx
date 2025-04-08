@@ -23,6 +23,9 @@ export default function Footer() {
           <Link href="/contact" className="hover:text-white transition">
             Contact
           </Link>
+          <Link href="/refund-policy" className="hover:text-white transition">
+            Refund Policy
+          </Link>
           <a
             href="https://www.instagram.com/snaptogether25"
             target="_blank"
