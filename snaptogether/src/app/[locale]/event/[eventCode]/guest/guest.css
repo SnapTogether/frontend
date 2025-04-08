@@ -6,15 +6,16 @@
   /* ✅ Create a semi-transparent background layer */
   .guest-dashboard::before {
     content: "";
-    position: absolute;
+    position: fixed; /* changed from absolute to fixed */
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
-    background-image: url('/bg4.jpg'); /* ✅ Use correct Next.js public path */
+    height: 100vh; /* ensures it always covers the full screen */
+    background-image: url('/bg4.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    opacity: 0.6; /* ✅ Adjust transparency */
-    z-index: -1; /* ✅ Ensures background stays behind content */
+    opacity: 0.6;
+    z-index: -1;
   }
+  

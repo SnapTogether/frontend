@@ -2,48 +2,58 @@
 
 import React from "react";
 import { Users, Image as ImageIcon, Star } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 type EventStatsProps = {
-    totalPhotos: number;
-    totalGuests: number;
-    mostActiveGuest?: string; // optional, for future flexing
+  totalPhotos: number;
+  totalGuests: number;
+  mostActiveGuest?: string;
 };
 
-export default function EventStats({ totalPhotos, totalGuests, mostActiveGuest }: EventStatsProps) {
-    const avgPhotos = totalGuests > 0 ? (totalPhotos / totalGuests).toFixed(1) : 0;
+export default function EventStats({
+  totalPhotos,
+  totalGuests,
+  mostActiveGuest,
+}: EventStatsProps) {
+  const t = useTranslations("eventStats");
+  const avgPhotos =
+    totalGuests > 0 ? (totalPhotos / totalGuests).toFixed(1) : 0;
 
+  return (
+    <div className="border w-full max-w-md bg-gray-900 text-white rounded-xl shadow-md p-6 flex flex-col gap-4 items-center">
+      <h3 className="text-white text-2xl font-semibold flex items-center gap-3">
+        📊 {t("title")}
+      </h3>
 
-    return (
-        <div className="border w-full max-w-md bg-gray-900 text-white rounded-xl shadow-md p-6 flex flex-col gap-4 items-start">
-            <h3 className="text-white text-2xl md:text-2xl font-semibold flex flex-row items-center justify-center gap-3">📊 Event Statistics</h3>
+      <div className="flex items-center gap-1">
+        <Users size={24} />
+        <span className="text-md w-fit">
+          <strong>{totalGuests}</strong> {t("guests")}
+        </span>
+      </div>
 
-            <div className="flex items-start gap-3">
-                <Users size={24} />
-                <span className="text-md">
-                    <strong>{totalGuests}</strong> guests contributed
-                </span>
-            </div>
+      <div className="flex items-center gap-1">
+        <ImageIcon size={24} />
+        <span className="text-md w-fit">
+          <strong>{totalPhotos}</strong> {t("photos")}
+        </span>
+      </div>
 
-            <div className="flex items-start gap-3">
-                <ImageIcon size={24} />
-                <span className="text-md">
-                    <strong>{totalPhotos}</strong> total photos uploaded
-                </span>
-            </div>
-
-            {mostActiveGuest && (
-                <div className="flex items-start gap-3">
-                    <Star size={24} />
-                    <span className="text-md">MVP Guest: {mostActiveGuest}</span>
-                </div>
-            )}
-
-            <div className="flex items-start gap-3">
-                <Star size={24} />
-                <span className="text-md text-left">
-                    <strong>{avgPhotos}</strong> Average Uploaded Photos Per Guest
-                </span>
-            </div>
+      {mostActiveGuest && (
+        <div className="flex items-center gap-1">
+          <Star size={24} />
+          <span className="text-md w-fit">
+            {t("mvp")}: {mostActiveGuest}
+          </span>
         </div>
-    );
+      )}
+
+      <div className="flex items-start gap-0">
+        <Star size={24} />
+        <span className="text-md text-center w-fit">
+          <strong>{avgPhotos}</strong> {t("avg")}
+        </span>
+      </div>
+    </div>
+  );
 }
