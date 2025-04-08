@@ -53,7 +53,8 @@
     "title": "Host Dashboard for",
     "subtitle": "Event Details",
     "plan": "Plan",
-    "countdown": "{daysLeft} day{plural} remaining until photos get auto deleted."
+    "countdown": "{daysLeft} day{plural} remaining until photos get auto deleted.",
+    "eventOverview": "Event Overview"
   },
   "zipBtn": {
     "title": "Download ZIP",
@@ -213,15 +214,19 @@
   },
   "privacyPage": {
     "title": "Privacy Policy",
-    "content": "SnapTogether values your privacy. We collect only the necessary information to deliver our services — such as photos, videos, and names. We do not share your data with third parties. All uploads are automatically deleted based on your plan’s retention period.",
-    "refundPolicy": "Refund Policy",
-    "refundContent": "SnapTogether offers a full refund if requested within 7 days of your initial payment, provided that your event has not yet started or no uploads have been made by guests. Once uploads have commenced or the event date has passed, refunds are not available. If you encounter technical issues, please contact support immediately for assistance."
+    "content": "SnapTogether is committed to protecting your privacy.\n\nWe collect and store only the personal information required to provide our services, including names, event identifiers, and uploaded media (photos or videos). We do not sell or share your personal data with any third parties.\n\nUploaded content is stored securely and automatically deleted according to your plan’s retention period. You retain ownership of your content and may contact us to request data deletion.\n\nWe use secure protocols and encryption where appropriate, and your data is hosted in secure cloud infrastructure.\n\nIf you have any questions about our privacy practices, please reach out at: support@snaptogether.cloud."
   },
   "termsPage": {
     "title": "Terms of Service",
-    "content": "By using SnapTogether, you agree to use the service responsibly, uploading only appropriate and lawful content. You must not upload content that infringes copyrights, privacy, or other applicable laws. SnapTogether reserves the right to remove any content deemed inappropriate.",
+    "content": "By using SnapTogether, you agree to use the service responsibly and in accordance with the law. You must not upload or share content that:\n\n- Infringes copyrights, privacy, or any other applicable laws\n- Is offensive, harmful, or illegal\n- Violates the rights of others\n\nSnapTogether reserves the right to remove any content deemed inappropriate, and to suspend or terminate accounts that violate these terms.\n\nYou are responsible for ensuring that all uploaded content complies with applicable data protection laws and that you have the necessary rights or permissions to share it.",
     "usagePolicy": "Acceptable Use Policy",
-    "usageContent": "You must not misuse the SnapTogether services. Misuse includes uploading offensive, unlawful, or harmful material, or interfering with the service's functionality. Violations of this policy may result in immediate suspension or termination of your access without refund."
+    "usageContent": "You must not misuse SnapTogether’s services. Misuse includes but is not limited to:\n\n- Uploading offensive, unlawful, or harmful material\n- Tampering with, disrupting, or reverse-engineering the service’s functionality\n- Abusing the platform’s purpose or engaging in fraudulent activities\n\nViolations may result in the immediate suspension or termination of your access without a refund.",
+    "paddleNoticeTitle": "Paddle Disclaimer",
+    "paddleNoticeContent": "Our order process is conducted by our online reseller Paddle.com. Paddle.com is the Merchant of Record for all our orders. Paddle provides all customer service inquiries and handles returns."
+  },
+  "refundPage": {
+    "title": "Refund Policy",
+    "content": "SnapTogether offers a full refund if requested within 7 days of your original payment, provided that:\n\n- Your event has not yet started, and\n- No uploads have been made by your guests.\n\nOnce uploads have begun or the event date has passed, refunds are no longer available.\n\nIf you experience any technical issues, please contact us as soon as possible at support@snaptogether.cloud.\n\nWe aim to process refunds within 5–7 business days from the date of approval."
   },
   "contactPage": {
     "title": "Get in Touch",
@@ -238,11 +243,25 @@
     "verifying": "Verifying...",
     "error": "❌ Please enter your full name.",
     "photosTitle": "📸 Your Uploaded Photos",
-    "noPhotos": "No photos found for this guest."
+    "noPhotos": "No photos found for this guest.",
+    "leaveMessage": "Leave a message for the host",
+    "messagePlaceholder": "Write something nice…",
+    "send": "Send",
+    "sending": "Sending...",
+    "messageSuccess": "✅ Message sent successfully!",
+    "messageError": "❌ Failed to send message. Try again later."
   },
   "upload": {
     "storageFull": "Storage Full",
     "uploading": "Uploading",
     "chooseImages": "Choose Images"
+  },
+  "eventStats": {
+    "title": "Event Statistics",
+    "guests": "guests contributed",
+    "photos": "total photos uploaded",
+    "mvp": "MVP Guest",
+    "avg": "Average Uploaded Photos Per Guest"
   }
+
 }

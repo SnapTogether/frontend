@@ -53,7 +53,8 @@
     "title": "Faqja kryesore për mikpritësin",
     "subtitle": "Detajet e ngjarjes",
     "plan": "Plani",
-    "countdown": "{daysLeft} ditë të mbetura deri sa fotot të fshihen automatikisht."
+    "countdown": "{daysLeft} ditë të mbetura deri sa fotot të fshihen automatikisht.",
+    "eventOverview": "Përmbledhje e ngjarjes"
   },
   "zipBtn": {
     "title": "Shkarko ZIP",
@@ -213,15 +214,19 @@
   },
   "privacyPage": {
     "title": "Politika e Privatësisë",
-    "content": "SnapTogether e vlerëson privatësinë tuaj. Ne mbledhim vetëm informacionin e nevojshëm për të ofruar shërbimet — si foto, video dhe emra. Nuk ndajmë të dhënat me palë të treta. Të gjitha ngarkesat fshihen automatikisht sipas periudhës së planit tuaj.",
-    "refundPolicy": "Politika e Rimbursimit",
-    "refundContent": "SnapTogether ofron rimbursim të plotë nëse kërkohet brenda 7 ditëve nga pagesa juaj fillestare, me kusht që eventi juaj të mos ketë filluar ende ose të mos ketë ngarkime nga mysafirët. Sapo të fillojnë ngarkimet ose të ketë kaluar data e eventit, rimbursimet nuk janë të mundura. Nëse hasni probleme teknike, ju lutemi kontaktoni menjëherë mbështetjen për asistencë."
+    "content": "SnapTogether është e përkushtuar për të mbrojtur privatësinë tuaj.\n\nNe mbledhim dhe ruajmë vetëm informacionin e nevojshëm për të ofruar shërbimet tona, duke përfshirë emra, identifikues të eventeve dhe media të ngarkuara (foto ose video). Ne nuk i shesim apo ndajmë të dhënat tuaja me palë të treta.\n\nPërmbajtja e ngarkuar ruhet në mënyrë të sigurt dhe fshihet automatikisht sipas periudhës së ruajtjes së planit tuaj. Ju mbani të drejtat e pronësisë së përmbajtjes dhe mund të na kontaktoni për fshirjen e saj.\n\nNe përdorim protokolle të sigurta dhe enkriptim kur është e nevojshme, dhe të dhënat tuaja ruhen në një infrastrukturë të sigurt cloud.\n\nNëse keni pyetje në lidhje me praktikat tona të privatësisë, na kontaktoni në: support@snaptogether.cloud."
   },
   "termsPage": {
     "title": "Kushtet e Shërbimit",
-    "content": "Duke përdorur SnapTogether, ju pranoni ta përdorni shërbimin me përgjegjësi, duke ngarkuar vetëm përmbajtje të përshtatshme dhe të ligjshme. Ju nuk duhet të ngarkoni përmbajtje që shkel të drejtat e autorit, privatësinë ose ligje të tjera. SnapTogether rezervon të drejtën për të hequr çdo përmbajtje që konsiderohet e papërshtatshme.",
+    "content": "Duke përdorur SnapTogether, ju pranoni të përdorni shërbimin në mënyrë të përgjegjshme dhe në përputhje me ligjin. Nuk duhet të ngarkoni ose shpërndani përmbajtje që:\n\n- Shkel të drejtat e autorit, privatësinë ose ligje të tjera në fuqi\n- Është ofenduese, e dëmshme ose e paligjshme\n- Shkel të drejtat e palëve të tjera\n\nSnapTogether rezervon të drejtën të heqë çdo përmbajtje që konsiderohet e papërshtatshme dhe të pezullojë ose ndërpresë llogaritë që shkelin këto kushte.\n\nJu jeni përgjegjës që përmbajtja e ngarkuar të jetë në përputhje me ligjet për mbrojtjen e të dhënave dhe të keni të gjitha të drejtat ose lejet për shpërndarjen e saj.",
     "usagePolicy": "Politika e Përdorimit të Pranueshëm",
-    "usageContent": "Nuk duhet t'i keqpërdorni shërbimet e SnapTogether. Keqpërdorimi përfshin ngarkimin e materialit ofensiv, të paligjshëm ose të dëmshëm, ose ndërhyrjen në funksionimin e shërbimit. Shkelja e kësaj politike mund të rezultojë në pezullimin ose përfundimin e menjëhershëm të aksesit tuaj pa rimbursim."
+    "usageContent": "Ju nuk duhet të keqpërdorni shërbimet e SnapTogether. Keqpërdorimi përfshin, por nuk kufizohet në:\n\n- Ngarkimin e përmbajtjeve ofenduese, të paligjshme ose të dëmshme\n- Ndërhyrjen ose dëmtimin e funksionalitetit të shërbimit\n- Përdorimin mashtrues ose keqinterpretimin e qëllimit të platformës\n\nShkeljet mund të çojnë në pezullim ose ndërprerje të menjëhershme të aksesit pa rimbursim.",
+    "paddleNoticeTitle": "Përgjegjësia e Paddle",
+    "paddleNoticeContent": "Procesi ynë i porosisë kryhet nga shitësi ynë online Paddle.com. Paddle.com është Tregtari i Regjistruar për të gjitha porositë tona. Paddle ofron mbështetje për klientët dhe menaxhon kërkesat për rimbursim."
+  },
+  "refundPage": {
+    "title": "Politika e Rimbursimeve",
+    "content": "SnapTogether ofron një rimbursim të plotë nëse kërkohet brenda 7 ditëve nga pagesa fillestare, me kusht që:\n\n- Ngjarja juaj nuk ka filluar ende, dhe\n- Nuk janë bërë ngarkime nga mysafirët.\n\nPasi të fillojnë ngarkimet ose të kalojë data e ngjarjes, rimbursimet nuk janë më të disponueshme.\n\nNëse hasni ndonjë problem teknik, ju lutemi na kontaktoni sa më shpejt në support@snaptogether.cloud.\n\nNe synojmë të përpunojmë rimbursimet brenda 5–7 ditëve pune nga data e aprovimit."
   },
   "contactPage": {
     "title": "Na Kontaktoni",
@@ -238,11 +243,24 @@
     "verifying": "Duke verifikuar...",
     "error": "❌ Ju lutem shkruani emrin e plotë.",
     "photosTitle": "📸 Fotot tuaja të ngarkuara",
-    "noPhotos": "Nuk u gjetën foto për këtë mysafir."
+    "noPhotos": "Nuk u gjetën foto për këtë mysafir.",
+    "leaveMessage": "Lë një mesazh për mikpritësin",
+    "messagePlaceholder": "Shkruaj diçka të bukur…",
+    "send": "Dërgo",
+    "sending": "Duke dërguar...",
+    "messageSuccess": "✅ Mesazhi u dërgua me sukses!",
+    "messageError": "❌ Dështoi dërgimi i mesazhit. Provo përsëri më vonë."
   },
   "upload": {
     "storageFull": "Memorja është e mbushur",
     "uploading": "Duke ngarkuar",
     "chooseImages": "Zgjidh imazhe"
-  }
+  },
+  "eventStats": {
+    "title": "Statistika e Ngjarjes",
+    "guests": "të ftuar kontribuan",
+    "photos": "foto të ngarkuara gjithsej",
+    "mvp": "Mysafiri më aktiv",
+    "avg": "Mesatarja e fotove të ngarkuara për mysafir"
+  }  
 }

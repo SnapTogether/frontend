@@ -41,10 +41,20 @@ export default function TermsPage() {
           </motion.div>
         </div>
 
-        <div className="container mx-auto text-left pb-[150px] space-y-6">
-          <p>{t("content")}</p>
+        <div className="container mx-auto text-left pb-[150px] space-y-6 px-4 md:px-0">
+          {t.raw("content").split("\n\n").map((paragraph: string, i: number) => (
+            <p key={i}>{paragraph}</p>
+          ))}
+
           <h2 className="text-2xl text-white font-semibold">{t("usagePolicy")}</h2>
-          <p>{t("usageContent")}</p>
+          {t.raw("usageContent").split("\n\n").map((paragraph: string, i: number) => (
+            <p key={i}>{paragraph}</p>
+          ))}
+
+          <h2 className="text-2xl text-white font-semibold">{t("paddleNoticeTitle")}</h2>
+          {t.raw("paddleNoticeContent").split("\n\n").map((paragraph: string, i: number) => (
+            <p key={i}>{paragraph}</p>
+          ))}
         </div>
       </div>
 
