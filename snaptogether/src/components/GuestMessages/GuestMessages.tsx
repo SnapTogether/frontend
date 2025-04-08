@@ -63,7 +63,7 @@ const GuestMessages: React.FC<GuestMessagesProps> = ({
 
   return (
     <div className="flex flex-col gap-2 items-center justify-center w-full">
-      <h2 className="text-white text-xl">Messages</h2>
+      <h2 className="text-white text-xl">{t("messages")}</h2>
       <div className="guest-messages w-full h-full flex flex-col gap-2">
         {localMessages.map((message) => (
           <div
