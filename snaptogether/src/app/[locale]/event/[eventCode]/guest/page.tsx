@@ -129,7 +129,7 @@ export default function GuestDashboard() {
     <div className="guest-dashboard relative h-full flex flex-col">
       <Navbar />
       <div className="w-[95%] mb-[10vh] sm:w-full flex flex-col items-center justify-center pt-[10vh] mx-auto space-y-4">
-        <h2 className="text-white text-2xl font-semibold text-center">{t("title")}</h2>
+        <h2 className="text-white text-2xl font-semibold text-center flex flex-col items-center justify-center"><p>{t("title")}</p> <p>{guestData?.guest?.guestName}</p></h2>
 
         {!guestData ? (
           <form onSubmit={handleVerifyGuest} className="max-w-[40em] container mx=auto space-y-3 p-6 border border-slate-500 border-opacity-65 rounded-lg shadow-md bg-white/10 backdrop-blur-lg">
