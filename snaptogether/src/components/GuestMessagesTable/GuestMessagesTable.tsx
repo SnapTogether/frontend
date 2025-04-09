@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Inbox,ChevronDown, ChevronUp } from "lucide-react";
+import { Inbox, ChevronDown, ChevronUp } from "lucide-react";
 import { Divider } from "../Divider/Divider";
 
 export interface GuestMessageItem {
@@ -11,9 +11,13 @@ export interface GuestMessageItem {
 
 interface GuestMessagesTableProps {
   data: GuestMessageItem[];
+  eventCode: string;
+  guestIdMap: Record<string, string>; // guestName -> guestId
 }
 
-const GuestMessagesTable: React.FC<GuestMessagesTableProps> = ({ data }) => {
+const GuestMessagesTable: React.FC<GuestMessagesTableProps> = ({
+  data,
+}) => {
   const [panelOpen, setPanelOpen] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [openGuestIndex, setOpenGuestIndex] = useState<number | null>(null);
@@ -33,13 +37,17 @@ const GuestMessagesTable: React.FC<GuestMessagesTableProps> = ({ data }) => {
     setPanelOpen(!panelOpen);
     setOpenGuestIndex(null); // reset open guest when collapsing the whole panel
   };
-
+  
   if (!data.length) {
     return <p className="text-gray-300 text-center">No guest messages yet.</p>;
   }
-
+  
   return (
-    <div className={`w-full container mx-auto flex flex-col transition-all duration-300 ${panelOpen ? "gap-8" : "gap-0"} bg-white/5 rounded-lg border border-slate-500 border-opacity-60 p-6 backdrop-blur-sm shadow-md`}>
+    <div
+      className={`w-full container mx-auto flex flex-col transition-all duration-300 ${
+        panelOpen ? "gap-8" : "gap-0"
+      } bg-white/5 rounded-lg border border-slate-500 border-opacity-60 p-6 backdrop-blur-sm shadow-md`}
+    >
       <button
         onClick={togglePanel}
         className="w-full flex items-center justify-between text-white text-md font-semibold"
@@ -85,13 +93,15 @@ const GuestMessagesTable: React.FC<GuestMessagesTableProps> = ({ data }) => {
                         <div
                           key={i}
                           className="message relative bg-gray-700 min-h-[3em] p-1 rounded-lg flex items-center text-center justify-center shadow-md"
-                          >
+                        >
                           <p className="text-white text-md">{msg}</p>
                         </div>
                       ))}
                     </ul>
                   ) : (
-                    <p className="text-sm text-gray-400 mt-2">No messages from this guest.</p>
+                    <p className="text-center text-sm text-gray-400 mt-2">
+                      No messages from this guest.
+                    </p>
                   )}
                   <Divider className="my-4 mx-auto" width="half" border={true} />
                 </div>
