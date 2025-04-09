@@ -28,8 +28,16 @@ const GuestMessages: React.FC<GuestMessagesProps> = ({
   const t = useTranslations("guestMessages");
 
   useEffect(() => {
-    setLocalMessages(messages); // sync on messages change
+    setLocalMessages((prev) => {
+      const newMessages = messages.filter(
+        (msg) =>
+          !prev.some((existing) => existing.text === msg.text) // prevent same text
+      );
+      return [...prev, ...newMessages];
+    });
   }, [messages]);
+  
+  
 
   const handleDelete = async (messageText: string) => {
     setDeletingText(messageText);
@@ -37,6 +45,7 @@ const GuestMessages: React.FC<GuestMessagesProps> = ({
 
     if (res.status === 200) {
       setLocalMessages((prev) => prev.filter((msg) => msg.text !== messageText));
+      console.log(localMessages);
       onDeleteMessage(messageText); // ✅ update parent state too
     } else {
       console.error("❌ Failed to delete message:", res.message);
@@ -61,11 +70,13 @@ const GuestMessages: React.FC<GuestMessagesProps> = ({
     };
   }, [eventCode, guestId]);
 
+  console.table(localMessages);
+
   return (
     <div className="flex flex-col gap-2 items-center justify-center w-full">
       <h2 className="text-white text-xl">{t("messages")}</h2>
       <div className="guest-messages w-full h-full flex flex-col gap-2">
-        {localMessages.map((message) => (
+      {Array.from(new Map(localMessages.map((msg) => [msg.text, msg])).values()).map((message) => (
           <div
             key={message._id}
             className="message relative bg-gray-800 min-h-[3em] p-1 rounded-full flex items-center text-center justify-center shadow-md"
