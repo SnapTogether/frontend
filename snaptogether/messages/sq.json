@@ -266,5 +266,21 @@
   "guestMessages": {
     "deleteMessage": "Fshije",
     "messages": "Mesazhe"
+  },
+  "guestMessagesTable": {
+    "noMessages": "Nuk ka mesazhe nga të ftuarit.",
+    "guestMessages": "Mesazhet e të ftuarve",
+    "noMessagesFromGuest": "Ky i ftuar nuk ka lënë mesazhe."
+  },
+  "guestList": {
+    "title": "Të ftuarit",
+    "noGuests": "Ende nuk ka të ftuar."
+  },
+  "footer": {
+    "rights": "Të gjitha të drejtat e rezervuara.",
+    "privacy": "Politika e privatësisë",
+    "terms": "Kushtet e përdorimit",
+    "contact": "Kontakti",
+    "refund": "Politika e rimbursimit"
   }
 }

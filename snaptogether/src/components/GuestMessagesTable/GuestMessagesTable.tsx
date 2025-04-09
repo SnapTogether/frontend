@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { Inbox, ChevronDown, ChevronUp } from "lucide-react";
 import { Divider } from "../Divider/Divider";
+import { useTranslations } from "next-intl";
 
 export interface GuestMessageItem {
   guestName: string;
@@ -37,11 +38,14 @@ const GuestMessagesTable: React.FC<GuestMessagesTableProps> = ({
     setPanelOpen(!panelOpen);
     setOpenGuestIndex(null); // reset open guest when collapsing the whole panel
   };
-  
+
+  const t = useTranslations("guestMessagesTable");
+
   if (!data.length) {
-    return <p className="text-gray-300 text-center">No guest messages yet.</p>;
+    return <p className="text-gray-300 text-center">{t("noMessages")}</p>;
   }
   
+
   return (
     <div
       className={`w-full container mx-auto flex flex-col transition-all duration-300 ${
@@ -53,7 +57,7 @@ const GuestMessagesTable: React.FC<GuestMessagesTableProps> = ({
         className="w-full flex items-center justify-between text-white text-md font-semibold"
       >
         <div className="flex items-center gap-2">
-          <Inbox size={20} /> ({data.length}) Guest Messages
+          <Inbox size={20} /> ({data.length}) {t("guestMessages")}
         </div>
         {panelOpen ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
       </button>
@@ -100,7 +104,7 @@ const GuestMessagesTable: React.FC<GuestMessagesTableProps> = ({
                     </ul>
                   ) : (
                     <p className="text-center text-sm text-gray-400 mt-2">
-                      No messages from this guest.
+                      {t("noMessagesFromGuest")}
                     </p>
                   )}
                   <Divider className="my-4 mx-auto" width="half" border={true} />
