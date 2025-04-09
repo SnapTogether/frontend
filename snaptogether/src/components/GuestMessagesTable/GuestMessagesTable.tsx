@@ -37,11 +37,11 @@ const GuestMessagesTable: React.FC<GuestMessagesTableProps> = ({
     setPanelOpen(!panelOpen);
     setOpenGuestIndex(null); // reset open guest when collapsing the whole panel
   };
-
-
-  {!data.length && <p>No guest messages yet</p>}
-
-
+  
+  if (!data.length) {
+    return <p className="text-gray-300 text-center">No guest messages yet.</p>;
+  }
+  
   return (
     <div
       className={`w-full container mx-auto flex flex-col transition-all duration-300 ${
