@@ -1,9 +1,8 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Inbox, ChevronDown, ChevronUp } from "lucide-react";
 import { Divider } from "../Divider/Divider";
-import socket from "@/utils/socket"; // adjust if your socket path differs
 
 export interface GuestMessageItem {
   guestName: string;
@@ -18,8 +17,6 @@ interface GuestMessagesTableProps {
 
 const GuestMessagesTable: React.FC<GuestMessagesTableProps> = ({
   data,
-  eventCode,
-  guestIdMap,
 }) => {
   const [panelOpen, setPanelOpen] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
