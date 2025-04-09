@@ -25,8 +25,6 @@ const GuestMessagesTable: React.FC<GuestMessagesTableProps> = ({ data }) => {
   const indexOfFirstGuest = indexOfLastGuest - guestsPerPage;
   const currentGuests = data.slice(indexOfFirstGuest, indexOfLastGuest);
 
-  const scrollRef = useRef<HTMLDivElement>(null);
-
   const toggleGuest = (index: number) => {
     setOpenGuestIndex(openGuestIndex === index ? null : index);
   };
