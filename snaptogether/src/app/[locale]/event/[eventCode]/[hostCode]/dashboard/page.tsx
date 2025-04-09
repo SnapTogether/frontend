@@ -39,6 +39,16 @@ export default function HostDashboard() {
   const plural = daysLeft !== 1 ? "s" : "";
   const [openOverview, setOpenOverview] = useState(false);
 
+  const guestIdMap: Record<string, string> =
+    eventData?.event?.guests?.reduce((acc, guest) => {
+      acc[guest.guestName] = guest._id;
+      return acc;
+    }, {} as Record<string, string>) || {};
+
+
+  const guestsWithMessages =
+    eventData?.event?.guests?.filter((guest) => guest.messages?.length > 0) || [];
+
   const t = useTranslations("dashboard");
 
   useEffect(() => {
@@ -69,7 +79,8 @@ export default function HostDashboard() {
           guest.messages.forEach((msg) => {
             console.log(`- ${msg}`);
           });
-        });      }
+        });
+      }
 
       if (response.event?.expirationDate) {
         const expiration = new Date(response.event.expirationDate);
@@ -89,18 +100,43 @@ export default function HostDashboard() {
         fetchEvent(); // ✅ Fetches updated photos + usedStorage from backend
       }
     });
-    
+
     // 🧠 Add real-time message listener
     socket.on("newMessage", (data: { guestId: string; guestName: string; message: string }) => {
-    
+
       setEventData((prev) => {
         if (!prev || !prev.event) return prev;
-    
+
         const updatedGuests = prev.event.guests.map((guest) => {
           if (guest._id === data.guestId) {
             return {
               ...guest,
               messages: [...guest.messages, data.message], // 👈 append the message
+            };
+          }
+          return guest;
+        });
+
+        return {
+          ...prev,
+          event: {
+            ...prev.event,
+            guests: updatedGuests,
+          },
+        };
+      });
+    });
+
+
+    socket.on("messageDeleted", ({ guestId, text }) => {
+      setEventData((prev) => {
+        if (!prev?.event) return prev;
+    
+        const updatedGuests = prev.event.guests.map((guest) => {
+          if (guest._id === guestId) {
+            return {
+              ...guest,
+              messages: guest.messages.filter((msg) => msg !== text),
             };
           }
           return guest;
@@ -116,7 +152,6 @@ export default function HostDashboard() {
       });
     });
     
-
 
     fetchEvent();
 
@@ -155,52 +190,51 @@ export default function HostDashboard() {
     <>
       <Navbar />
       <div className="relative mt-20 flex flex-col items-center gap-8 p-6 container mx-auto pb-[150px]">
-      <div className="w-full max-w-md">
-      <button
-        onClick={() => setOpenOverview((prev) => !prev)}
-        className="flex items-center justify-between w-full text-white bg-gray-700 px-4 py-2 rounded transition-colors"
-      >
-        <span className="flex flex-row gap-4 items-center"><FolderClosed size={20} /> {t("eventOverview")}</span>
-        <ChevronDown
-          className={clsx(
-            "transition-transform duration-300",
-            openOverview && "rotate-180"
-          )}
-        />
-      </button>
+        <div className="w-full max-w-md">
+          <button
+            onClick={() => setOpenOverview((prev) => !prev)}
+            className="flex items-center justify-between w-full text-white bg-gray-700 px-4 py-2 rounded transition-colors"
+          >
+            <span className="flex flex-row gap-4 items-center"><FolderClosed size={20} /> {t("eventOverview")}</span>
+            <ChevronDown
+              className={clsx(
+                "transition-transform duration-300",
+                openOverview && "rotate-180"
+              )}
+            />
+          </button>
 
-      <div
-        className={clsx(
-          "transition-all duration-500 ease-in-out overflow-hidden",
-          openOverview ? "max-h-[500px] opacity-100 mt-3" : "max-h-0 opacity-0"
-        )}
-      >
-        <div className="flex flex-col items-center gap-1">
-          <p className="text-sm text-white">
-            {t("plan")}: <strong>{eventData?.event?.plan.toUpperCase()}</strong>
-          </p>
+          <div
+            className={clsx(
+              "transition-all duration-500 ease-in-out overflow-hidden",
+              openOverview ? "max-h-[500px] opacity-100 mt-3" : "max-h-0 opacity-0"
+            )}
+          >
+            <div className="flex flex-col items-center gap-1">
+              <p className="text-sm text-white">
+                {t("plan")}: <strong>{eventData?.event?.plan.toUpperCase()}</strong>
+              </p>
 
-          <DownloadZip className="my-3" eventCode={eventCode} />
+              <DownloadZip className="my-3" eventCode={eventCode} />
 
-          {eventData?.event && (
-            <>
-              <StorageBar used={eventData.event.usedStorage} limit={eventData.event.storageLimit} />
-            </>
-          )}
+              {eventData?.event && (
+                <>
+                  <StorageBar used={eventData.event.usedStorage} limit={eventData.event.storageLimit} />
+                </>
+              )}
 
-          {daysLeft !== null && (
-            <p
-              className={`mt-2 text-xs font-semibold flex flex-col text-center md:flex-row gap-1 items-center ${
-                daysLeft <= 15 ? "text-yellow-400" : "text-white"
-              }`}
-            >
-              <Hourglass size={14} />
-              {t("countdown", { daysLeft, plural })}
-            </p>
-          )}
+              {daysLeft !== null && (
+                <p
+                  className={`mt-2 text-xs font-semibold flex flex-col text-center md:flex-row gap-1 items-center ${daysLeft <= 15 ? "text-yellow-400" : "text-white"
+                    }`}
+                >
+                  <Hourglass size={14} />
+                  {t("countdown", { daysLeft, plural })}
+                </p>
+              )}
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
 
         <h2 className="flex flex-col md:flex-row items-center justify-center gap-3 text-white text-center text-xl sm:text-3xl font-semibold">
           <PartyPopper size={20} /> {t("title")} <b>{eventData?.event?.eventName}</b>
@@ -252,19 +286,18 @@ export default function HostDashboard() {
 
         <GuestMessagesTable
           key={
-            eventData?.event?.guests
-              .map((g) => `${g._id}-${g.messages.join("").length}`) // includes message content
+            guestsWithMessages
+              .map((g) => `${g._id}-${g.messages.join("").length}`)
               .join(",") || "default"
           }
-          data={
-            eventData?.event?.guests
-              .filter((guest) => guest.messages && guest.messages.length > 0)
-              .map((guest) => ({
-                guestName: guest.guestName,
-                messages: guest.messages,
-              })) || []
-          }
+          data={guestsWithMessages.map((guest) => ({
+            guestName: guest.guestName,
+            messages: guest.messages,
+          }))}
+          eventCode={eventCode}
+          guestIdMap={guestIdMap}
         />
+
 
 
 
@@ -275,8 +308,8 @@ export default function HostDashboard() {
         <ImageCarousel
           images={["/wedding-poster.png", "/birthday-poster.png"]}
         />
-        
-        <Footer/>
+
+        <Footer />
       </div>
     </>
   );

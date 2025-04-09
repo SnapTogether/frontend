@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Button from "../Button/Button";
-import { Delete } from "lucide-react";
+import {  X } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { deleteGuestMessageByText } from "@/api/guest";
 import socket from "@/utils/socket";
@@ -83,7 +83,7 @@ const GuestMessages: React.FC<GuestMessagesProps> = ({
           >
             <Button
               className="absolute right-1 -translate-y-auto bg-slate-20 !p-3 w-8 h-8 bg-slate-300/20 shadow-md"
-              iconRight={<Delete size={18} />}
+              iconRight={<X size={18} />}
               onClick={() => handleDelete(message.text)}
               disabled={deletingText === message.text}
             />
