@@ -189,7 +189,7 @@ export default function HostDashboard() {
   return (
     <>
       <Navbar />
-      <div className="relative mt-20 flex flex-col items-center gap-8 p-6 container mx-auto pb-[150px]">
+      <div className="relative mt-20 flex flex-col items-center gap-8 p-6 container mx-auto pb-[180px]">
         <div className="w-full max-w-md">
           <button
             onClick={() => setOpenOverview((prev) => !prev)}

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Button from "@/components/Button/Button";
 import { ContactRound, Users } from "lucide-react";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 interface Guest {
   _id: string;
@@ -22,9 +23,11 @@ const GuestList: React.FC<GuestListProps> = ({ guests, eventCode }) => {
   const indexOfFirstGuest = indexOfLastGuest - guestsPerPage;
   const currentGuests = guests.slice(indexOfFirstGuest, indexOfLastGuest);
 
+  const t = useTranslations("guestList");
+
   return (
     <div className="guests text-center flex flex-col gap-4 w-full">
-      <h3 className="text-white text-2xl md:text-2xl font-semibold flex flex-row items-center justify-center gap-3"><Users size={20} /> Guests</h3>
+      <h3 className="text-white text-2xl md:text-2xl font-semibold flex flex-row items-center justify-center gap-3"><Users size={20} /> {t("title")}</h3>
       {guests.length > 0 ? (
         <>
           <ul className="w-full mx-auto container border border-slate-500/50 rounded-lg overflow-hidden">
@@ -59,7 +62,7 @@ const GuestList: React.FC<GuestListProps> = ({ guests, eventCode }) => {
           }
         </>
       ) : (
-        <p className="mt-2 text-gray-400">No guests have joined yet.</p>
+        <p className="mt-2 text-gray-400">{t("noGuests")}</p>
       )}
     </div>
   );

@@ -266,5 +266,21 @@
   "guestMessages": {
     "deleteMessage": "Избриши",
     "messages": "Пораки"
+  },
+  "guestMessagesTable": {
+    "noMessages": "Нема пораки од гости.",
+    "guestMessages": "Пораки од гости",
+    "noMessagesFromGuest": "Овој гостин нема оставено пораки."
+  },
+  "guestList": {
+    "title": "Гости",
+    "noGuests": "Сè уште нема гости."
+  },
+  "footer": {
+    "rights": "Сите права се задржани.",
+    "privacy": "Политика за приватност",
+    "terms": "Услови на користење",
+    "contact": "Контакт",
+    "refund": "Политика за рефундирање"
   }
 }

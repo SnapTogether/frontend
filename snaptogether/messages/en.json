@@ -266,5 +266,21 @@
   "guestMessages": {
     "deleteMessage": "Delete",
     "messages": "Messages"
+  },
+  "guestMessagesTable": {
+    "noMessages": "No guest messages yet.",
+    "guestMessages": "Guest Messages",
+    "noMessagesFromGuest": "No messages from this guest."
+  },
+  "guestList":{
+    "title": "Guests",
+    "noGuests": "No guests yet."
+  },
+  "footer": {
+    "rights": "All rights reserved.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Use",
+    "contact": "Contact",
+    "refund": "Refund Policy"
   }
 }
