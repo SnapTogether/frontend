@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useRef, useState } from "react";
-import { Inbox, ChevronDown, ChevronUp } from "lucide-react";
+import React, { useState } from "react";
+import { Inbox,ChevronDown, ChevronUp } from "lucide-react";
 import { Divider } from "../Divider/Divider";
 
 export interface GuestMessageItem {
