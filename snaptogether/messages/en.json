@@ -36,7 +36,7 @@
       "proTitle": "Pro Plan",
       "message": "Please complete the payment to the following bank account:",
       "bankName": "Bank Name: Uni Bank",
-      "accountNumber": "Account Number: 240197111431684",
+      "accountNumber": "Account Number:",
       "iban": "IBAN: MK07250120000012345",
       "amountStarter": "Amount: 20$",
       "amountPro": "Amount: 60$",
