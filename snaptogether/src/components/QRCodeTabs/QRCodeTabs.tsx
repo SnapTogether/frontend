@@ -1,8 +1,9 @@
-import { QRCodeCanvas } from "qrcode.react";
 import { Download } from "lucide-react";
 import Button from "../Button/Button"; // Replace with your actual Button component
-import { downloadQR } from "@/utils/qrCode";
 import { useTranslations } from "next-intl";
+import QRCodeWithLogo from "./QRCodeWithLogo";
+import { useRef } from "react";
+import type { QRCodeWithLogoRef } from "./QRCodeWithLogo";
 
 interface EventData {
     event: {
@@ -14,6 +15,7 @@ interface EventData {
 export default function QRCodeTabs({ eventData }: { eventData: EventData }) {
     // const [activeTab, setActiveTab] = useState<"host" | "guest">("host");
     const t = useTranslations();
+    const qrRef = useRef<QRCodeWithLogoRef>(null);
 
     return (
         <div className="container mx-auto w-full flex flex-col items-center">
@@ -43,12 +45,18 @@ export default function QRCodeTabs({ eventData }: { eventData: EventData }) {
             <div className="flex flex-col justify-center items-center gap-4 mt-4 w-full">
 
                 <div className="flex relative mt-2">
-                    <QRCodeCanvas id="guestQR" size={200} value={eventData?.event?.guestLink || ""} />
-                    <Button
-                        onClick={() => downloadQR(eventData?.event?.guestLink || "", "guestQR")}
-                        className="h-fit w-fit text-sm text-white bg-transparent px-2 py-1 rounded-md absolute left-full"
-                        iconRight={<Download size={20} />}
-                    />
+                <QRCodeWithLogo
+                ref={qrRef}
+                value={eventData?.event?.guestLink || ""}
+                logoImage="/logo/snaptogether-peach-logo.png"
+                />
+
+                <Button
+                onClick={() => qrRef.current?.download("guestQR")}
+                className="h-fit w-fit text-sm text-white bg-transparent px-2 py-1 rounded-md absolute left-full"
+                iconRight={<Download size={20} />}
+                />
+
                 </div>
             </div>
         </div>
