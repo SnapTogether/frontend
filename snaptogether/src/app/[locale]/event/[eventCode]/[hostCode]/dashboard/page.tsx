@@ -306,7 +306,7 @@ export default function HostDashboard() {
         <Divider width="full" border={true} />
 
         <ImageCarousel
-          images={["/wedding-poster.png", "/birthday-poster.png"]}
+          images={["/wedding.png", "/birthday-poster.png"]}
         />
 
         <Footer />
