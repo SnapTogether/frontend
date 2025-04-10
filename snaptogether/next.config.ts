@@ -10,10 +10,6 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  i18n: {
-    locales: ['en', 'mk', 'sq'],
-    defaultLocale: 'en',
-  }  
 };
 
 const withNextIntl = createNextIntlPlugin();
