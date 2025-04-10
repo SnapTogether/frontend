@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { PartyPopper } from 'lucide-react';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 
 import Button from '@/components/Button/Button';
 import Navbar from '@/components/Navbar/Navbar';
@@ -24,10 +24,11 @@ const Home = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const messages = [t('msg1'), t('msg2'), t('msg3')];
+  const locale = useLocale();
 
   const handleNavigation = () => {
     setTransitioning(true);
-    router.push('/form');
+    router.push(`/${locale}/form`);
   };
 
   useEffect(() => {
