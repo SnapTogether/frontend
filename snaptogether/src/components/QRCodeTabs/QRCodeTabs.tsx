@@ -4,7 +4,6 @@ import { useTranslations } from "next-intl";
 import QRCodeWithLogo from "./QRCodeWithLogo";
 import { useRef } from "react";
 import type { QRCodeWithLogoRef } from "./QRCodeWithLogo";
-import Logo from '../../../public/logo/og.png'
 
 interface EventData {
     event: {
