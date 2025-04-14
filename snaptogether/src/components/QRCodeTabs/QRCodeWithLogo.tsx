@@ -63,4 +63,6 @@ const QRCodeWithLogo = forwardRef<QRCodeWithLogoRef, QRCodeWithLogoProps>(
         }
 );
 
+QRCodeWithLogo.displayName = "QRCodeWithLogo";
+
 export default QRCodeWithLogo;
