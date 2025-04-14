@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { fetchAllEvents, approveEventPayment } from '@/api/admin';
+import { useLocale } from 'next-intl';
 
 type AdminEvent = {
     _id: string;
@@ -25,6 +26,9 @@ export default function AdminDashboardPage() {
     totalEvents: 0,
     limit: 10,
   });
+
+  const locale = useLocale(); // ✅ clean and reliable
+
 
   const loadEvents = async (pageToLoad = 1) => {
     try {
@@ -49,8 +53,8 @@ export default function AdminDashboardPage() {
   }, [router, page]);
 
   const handleApprove = async (eventCode: string) => {
-    await approveEventPayment(eventCode);
-    loadEvents(page); // refresh current page
+    await approveEventPayment(eventCode, locale);
+    loadEvents(page);
   };
 
   return (

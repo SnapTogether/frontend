@@ -39,13 +39,14 @@ export const fetchAllEvents = async (page = 1) => {
 /**
  * Approve payment for a specific event by ID (requires Authorization)
  */
-export const approveEventPayment = async (eventCode: string) => {
+export const approveEventPayment = async (eventCode: string, locale = 'en') => {
     const res = await fetch(`${API_BASE_URL}/events/${eventCode}/confirm-payment`, {
       method: "PATCH",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("adminToken")}`,
         "Content-Type": "application/json",
       },
+      body: JSON.stringify({ locale }),
     });
   
     if (!res.ok) {
