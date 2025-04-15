@@ -1,4 +1,3 @@
-// QRCodeWithLogo.tsx
 import { useEffect, useRef, forwardRef, useImperativeHandle } from "react";
 import QRCodeStyling from "qr-code-styling";
 
@@ -14,25 +13,26 @@ export interface QRCodeWithLogoRef {
 const QRCodeWithLogo = forwardRef<QRCodeWithLogoRef, QRCodeWithLogoProps>(
   ({ value, logoImage }, ref) => {
     const qrRef = useRef<HTMLDivElement>(null);
+
     const qrInstance = useRef(
       new QRCodeStyling({
-        width: 200,
-        height: 200,
+        width: 300, // ✅ improved size
+        height: 300,
         data: value,
         image: logoImage,
         dotsOptions: {
-          color: "#000",
+          color: "#1a1a1a", // ✅ more contrast
           type: "rounded",
         },
         imageOptions: {
-            crossOrigin: "anonymous",
-            margin: 0, // less margin = larger logo
-            imageSize: 0.45 // logo takes up 35% of the QR code width
-          },          
+          crossOrigin: "anonymous",
+          margin: 0,
+          imageSize: 0.5, // ✅ slightly bigger
+          hideBackgroundDots: true, // ✅ clears dots behind logo
+        },
       })
     );
 
-    // Update QR code on props change
     useEffect(() => {
       qrInstance.current.update({
         data: value,
@@ -45,7 +45,6 @@ const QRCodeWithLogo = forwardRef<QRCodeWithLogoRef, QRCodeWithLogoProps>(
       }
     }, [value, logoImage]);
 
-    // Expose download method via ref
     useImperativeHandle(ref, () => ({
       download: (filename = "qr-code") => {
         qrInstance.current.download({ name: filename, extension: "png" });
@@ -53,16 +52,15 @@ const QRCodeWithLogo = forwardRef<QRCodeWithLogoRef, QRCodeWithLogoProps>(
     }));
 
     return (
-        <div
-          className="rounded-xl overflow-hidden border border-gray-200 shadow-md"
-          style={{ width: 200, height: 200 }}
-        >
-          <div ref={qrRef} />
-        </div>
-      );
-        }
+      <div
+        className="rounded-xl overflow-hidden border border-gray-200 shadow-md"
+        style={{ width: 300, height: 300 }}
+      >
+        <div ref={qrRef} />
+      </div>
+    );
+  }
 );
 
 QRCodeWithLogo.displayName = "QRCodeWithLogo";
-
 export default QRCodeWithLogo;
