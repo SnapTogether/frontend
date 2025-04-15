@@ -1,4 +1,4 @@
-import { useEffect, useRef, forwardRef, useImperativeHandle } from "react";
+import { useEffect, useRef, forwardRef } from "react";
 import QRCodeStyling from "qr-code-styling";
 
 export interface QRCodeWithLogoProps {
@@ -11,7 +11,7 @@ export interface QRCodeWithLogoRef {
 }
 
 const QRCodeWithLogo = forwardRef<QRCodeWithLogoRef, QRCodeWithLogoProps>(
-  ({ value, logoImage }, ref) => {
+  ({ value, logoImage }) => {
     const qrRef = useRef<HTMLDivElement>(null);
 
     const qrInstance = useRef(
