@@ -48,12 +48,12 @@ export default function QRCodeTabs({ eventData }: { eventData: EventData }) {
                 <QRCodeWithLogo
                 ref={qrRef}
                 value={eventData?.event?.guestLink || ""}
-                logoImage="/logo/snaptogether-peach-logo.png"
+                logoImage="/logo/snaptogether-logo-black.png"
                 />
 
                 <Button
                 onClick={() => qrRef.current?.download("guestQR")}
-                className="h-fit w-fit text-sm text-white bg-transparent px-2 py-1 rounded-md absolute left-full"
+                className="h-fit w-fit text-sm text-white bg-transparent px-2 py-1 rounded-md absolute bottom-full right-0 sm:left-full"
                 iconRight={<Download size={20} />}
                 />
 

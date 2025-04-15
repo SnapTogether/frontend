@@ -1,4 +1,4 @@
-import { useEffect, useRef, forwardRef, useImperativeHandle } from "react";
+import { useEffect, useRef, forwardRef } from "react";
 import QRCodeStyling from "qr-code-styling";
 
 export interface QRCodeWithLogoProps {
@@ -11,7 +11,7 @@ export interface QRCodeWithLogoRef {
 }
 
 const QRCodeWithLogo = forwardRef<QRCodeWithLogoRef, QRCodeWithLogoProps>(
-  ({ value, logoImage }, ref) => {
+  ({ value, logoImage }) => {
     const qrRef = useRef<HTMLDivElement>(null);
 
     const qrInstance = useRef(
@@ -38,23 +38,25 @@ const QRCodeWithLogo = forwardRef<QRCodeWithLogoRef, QRCodeWithLogoProps>(
         data: value,
         image: logoImage,
       });
-
+    
       if (qrRef.current) {
         qrRef.current.innerHTML = "";
         qrInstance.current.append(qrRef.current);
+    
+        // Fix: Manually apply CSS to the canvas
+        const canvas = qrRef.current.querySelector("canvas");
+        if (canvas) {
+          canvas.style.width = "230px";
+          canvas.style.height = "230px";
+        }
       }
     }, [value, logoImage]);
-
-    useImperativeHandle(ref, () => ({
-      download: (filename = "qr-code") => {
-        qrInstance.current.download({ name: filename, extension: "png" });
-      },
-    }));
+    
+    
 
     return (
       <div
         className="rounded-xl overflow-hidden border border-gray-200 shadow-md"
-        style={{ width: 300, height: 300 }}
       >
         <div ref={qrRef} />
       </div>
