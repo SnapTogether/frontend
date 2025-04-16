@@ -50,7 +50,7 @@ export default function EventStats({
 
       <div className="flex items-start gap-1">
         <Star size={24} />
-        <span className="text-md text-center w-fit">
+        <span className="text-md text-left w-fit">
           <strong>{avgPhotos}</strong> {t("avg")}
         </span>
       </div>
