@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
-import {useTranslations} from 'next-intl';
+import {useLocale, useTranslations} from 'next-intl';
 import LanguageSwitcher from "../LanguageSwitcher/LanguageSwitcher";
 import Logo from "../../../public/logo/snaptogether-logo-svg.svg";
 import Image from "next/image";
@@ -12,6 +12,8 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrollingUp, setIsScrollingUp] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+
+  const locale = useLocale();
 
   // ✅ Detect Scroll Direction
   useEffect(() => {
@@ -41,32 +43,32 @@ export default function Navbar() {
           {/* ✅ Desktop Nav */}
           <ul className="hidden md:flex space-x-6 text-lg gap-8 mb-0">
             <li>
-              <Link href="/" className="text-white hover:text-gray-300 transition">
+              <Link href={{ pathname: "/" }} locale={locale} className="text-white hover:text-gray-300 transition">
                 {t('home')}
               </Link>
             </li>
             <li>
-              <Link href="/about" className="text-white hover:text-gray-300 transition">
+              <Link href={{ pathname: "/about" }} locale={locale} className="text-white hover:text-gray-300 transition">
                 {t('about')}
               </Link>
             </li>
             <li>
-              <Link href="/pricing" className="text-white hover:text-gray-300 transition">
+              <Link href={{ pathname: "/pricing" }} locale={locale} className="text-white hover:text-gray-300 transition">
                 {t('pricing')}
               </Link>
             </li>
             <li>
-              <Link href="/help" className="text-white hover:text-gray-300 transition">
+              <Link href={{ pathname: "/help" }} locale={locale} className="text-white hover:text-gray-300 transition">
                 {t('help')}
               </Link>
             </li>
             <li>
-              <Link href="/contact" className="text-white hover:text-gray-300 transition">
+              <Link href={{ pathname: "/contact" }} locale={locale} className="text-white hover:text-gray-300 transition">
                 {t('contact')}
               </Link>
             </li>
           </ul>
-          <Link href="/" className="pl-2">
+          <Link className="pl-2" href={{ pathname: "/" }} locale={locale}>
             <Image src={Logo} alt="logo" width={32} height={40} />
           </Link>
           {/* ✅ Mobile Menu Button */}
@@ -87,7 +89,7 @@ export default function Navbar() {
               ${isOpen ? "translate-x-0 opacity-100" : "translate-x-full opacity-0 pointer-events-none"}`}
           >
           <section className="w-full px-4 flex flex-row sm:flex-row items-center justify-between">
-            <Link href="/" className="text-white hover:text-gray-300">
+            <Link className="text-white hover:text-gray-300" href={{ pathname: "/" }} locale={locale}>
               <Image src={Logo} alt="logo" width={32} />
             </Link>
             <button
@@ -110,16 +112,18 @@ export default function Navbar() {
             </li>
             <li>
               <Link
-                href="/about"
-                className="text-white hover:text-gray-300"
-                onClick={() => setIsOpen(false)}
+                 href={{ pathname: "/about" }} 
+                 locale={locale}
+                 className="text-white hover:text-gray-300"
+                 onClick={() => setIsOpen(false)}
               >
                 {t('about')}
               </Link>
             </li>
             <li>
               <Link
-                href="/pricing"
+                href={{ pathname: "/pricing" }} 
+                locale={locale}
                 className="text-white hover:text-gray-300"
                 onClick={() => setIsOpen(false)}
               >
@@ -128,7 +132,8 @@ export default function Navbar() {
             </li>
             <li>
               <Link
-                href="/help"
+                href={{ pathname: "/help" }} 
+                locale={locale}                
                 className="text-white hover:text-gray-300"
                 onClick={() => setIsOpen(false)}
               >
@@ -137,7 +142,8 @@ export default function Navbar() {
             </li>
             <li>
               <Link
-                href="/contact"
+                href={{ pathname: "/contact" }} 
+                locale={locale}                
                 className="text-white hover:text-gray-300"
                 onClick={() => setIsOpen(false)}
               >
