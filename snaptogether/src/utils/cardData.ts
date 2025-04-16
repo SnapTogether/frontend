@@ -1,26 +1,26 @@
 export const cardData = [
   {
-    imageSrc: "/steps/page-1.png",
+    imageSrc: "/steps/mockup1.png",
     badgeText: "1"
   },
   {
-    imageSrc: "/steps/page-2.png",
+    imageSrc: "/steps/mockup2.png",
     badgeText: "2"
   },
   {
-    imageSrc: "/steps/page-3.png",
+    imageSrc: "/steps/mockup3.png",
     badgeText: "3"
   },
   {
-    imageSrc: "/steps/page-4.png",
+    imageSrc: "/steps/mockup4.png",
     badgeText: "4"
   },
   {
-    imageSrc: "/steps/page-5.png",
+    imageSrc: "/steps/mockup5.png",
     badgeText: "5"
   },
   {
-    imageSrc: "/steps/page-6.png",
+    imageSrc: "/steps/mockup6.png",
     badgeText: "6"
   }
 ];

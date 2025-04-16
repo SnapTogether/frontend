@@ -4,13 +4,13 @@
 
 @media (prefers-color-scheme: light) {
   :root {
-    background: rgb(7, 18, 40);
+    background: #C8C6C4;
   }
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    background: rgb(7, 18, 40);
+    background: #C8C6C4;
   }
 }
 
@@ -48,7 +48,7 @@ ul li a:hover{
   z-index: 1;
 }
 
-/* ✅ Create a semi-transparent background layer with fade-in animation */
+/* ✅ Create a semi-transparent background layer with fade-in animation
 .home-background::before {
   content: "";
   position: absolute;
@@ -62,7 +62,7 @@ ul li a:hover{
   background-repeat: no-repeat;
   z-index: -10;
   animation: fadeInBg 1.5s ease-in-out forwards;
-}
+} */
 
 
 /* ✅ Keyframes for fade-in effect */

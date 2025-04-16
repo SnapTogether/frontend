@@ -7,10 +7,10 @@
     "contact": "Kontakt"
   },
   "home": {
-    "msg1": "Ruani kujtimet tuaja, kapur nga njerëzit më të dashur.",
-    "msg2": "Lejojini mysafirët të ndajnë momentet e tyre të preferuara lehtësisht.",
-    "msg3": "Bashkoni çdo këndvështrim në një galeri të përbashkët.",
-    "getStarted": "Filloni"
+    "msg1": "Вашите гости. Нивните спомени. Една незаборавна приказна.",
+    "msg2": "Претворете ги вашите гости во раскажувачи на приказни.",
+    "msg3": "Забележете секоја перспектива од вашиот посебен ден.",
+    "getStarted": "Креирај Настан"
   },
   "eventForm": {
     "title": "Krijo Ngjarje të Re",

@@ -145,10 +145,10 @@ export default function AboutPage() {
             viewport={{ once: true, amount: 0.2 }}
         >
             <Card
-            imageSrc={card.imageSrc}
-            badgeText={card.badgeText}
-            title={steps[idx]?.title || ""}
-            description={steps[idx]?.description || ""}
+              imageSrc={card.imageSrc}
+              badgeText={card.badgeText}
+              title={steps[idx]?.title || ""}
+              description={steps[idx]?.description || ""}
             />
         </motion.div>
         ))}

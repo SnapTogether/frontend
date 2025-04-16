@@ -23,7 +23,7 @@ export function Card({
     {...rest}
     >
       {/* Background Image */}
-      <div className="absolute inset-0 z-0 bg-gradient-to-t from-slate-600/100 to-black/0">
+      <div className="absolute inset-0 z-0">
         <Image
             src={imageSrc}
             alt={title}
@@ -41,7 +41,7 @@ export function Card({
       )}
 
       {/* Content */}
-      <div className="relative text-center z-20 p-4 h-fit flex flex-col justify-end bg-gradient-to-t from-slate-400/40 via-slate-400/30 to-transparent">
+      <div className="relative text-center z-20 p-4 h-fit flex flex-col justify-end bg-gradient-to-t from-slate-400/40 via-slate-400/30 to-transparent rounded-3xl">
         <h3 className="text-md text-white font-semibold mb-1">{title}</h3>
         <p className="text-sm text-white/90">{description}</p>
       </div>
