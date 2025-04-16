@@ -13,6 +13,8 @@ import FireworksBackground from '@/components/ConfettiBackground/FireworksBackgr
 import LanguageSwitcher from '@/components/LanguageSwitcher/LanguageSwitcher';
 
 import Logo from '../../../public/logo/snaptogether-logo-text-peach.svg';
+import { cardData } from '@/utils/cardData';
+import { Card } from '@/components/Card/Card';
 
 const Home = () => {
   const router = useRouter();
@@ -50,64 +52,94 @@ const Home = () => {
     '/carousel/carousel-3.png',
   ];
 
+
+  const tr = useTranslations("aboutPage");
+
+  const steps = tr.raw("guidanceSteps");
+
   return (
-    <div className="relative h-[100vh] w-screen home-background">
+    <section className='w-full'>
+      <div className="relative h-[100vh] home-background">
 
-      <Navbar />
+        <Navbar />
 
-      {/* Carousel Background */}
-      {backgroundImages.map((src, index) => (
-        <motion.div
-          key={index}
-          className="absolute inset-0 w-full h-full"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: currentIndex === index ? 1 : 0 }}
-          transition={{ duration: 1.2, ease: 'easeInOut' }}
-          style={{
-            backgroundImage: `url(${src})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat',
-            zIndex: -10,
-          }}
-        />
-      ))}
-      {/* Centered content */}
-      <div className="absolute flex flex-col gap-4 items-center justify-center h-fit top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[91vw]">
+        {/* Carousel Background */}
+        {backgroundImages.map((src, index) => (
+          <motion.div
+            key={index}
+            className="absolute inset-0 w-full h-full"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: currentIndex === index ? 1 : 0 }}
+            transition={{ duration: 1.2, ease: 'easeInOut' }}
+            style={{
+              backgroundImage: `url(${src})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat',
+              zIndex: -10,
+            }}
+          />
+        ))}
+        {/* Centered content */}
+        <div className="absolute flex flex-col gap-4 items-center justify-center h-fit top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[91vw]">
 
-        <motion.div
-          className="logo flex flex-col items-center justify-center"
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, ease: 'easeOut' }}
-        >
-          <Image src={Logo} alt="SnapTogether Logo" width={150} />
-        </motion.div>
+          <motion.div
+            className="logo flex flex-col items-center justify-center"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, ease: 'easeOut' }}
+          >
+            <Image src={Logo} alt="SnapTogether Logo" width={150} />
+          </motion.div>
 
-        <motion.p
-          key={currentIndex}
-          className="font-mulish text-slate-200 text-md rounded-md m-0 text-center min-h-[32px]"
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -10 }}
-          transition={{ duration: 0.6 }}
-        >
-          {messages[currentIndex]}
-        </motion.p>
+          <motion.p
+            key={currentIndex}
+            className="font-mulish text-slate-200 text-md rounded-md m-0 text-center min-h-[32px]"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.6 }}
+          >
+            {messages[currentIndex]}
+          </motion.p>
 
-        <Button
-          variant="primary"
-          className="!bg-[rgba(120,128,181,0.4)]"
-          onClick={handleNavigation}
-        >
-          {t('getStarted')}
-        </Button>
+          <Button
+            variant="primary"
+            className="!bg-[rgba(120,128,181,0.4)]"
+            onClick={handleNavigation}
+          >
+            {t('getStarted')}
+          </Button>
+        </div>
+
+        <FireworksBackground />
+        <LanguageSwitcher className="absolute bottom-4 left-1/2 transform -translate-x-1/2" />
+        {transitioning && <PageTransition show={transitioning} />}
       </div>
-
-      <FireworksBackground />
-      <LanguageSwitcher className="absolute bottom-4 left-1/2 transform -translate-x-1/2" />
-      {transitioning && <PageTransition show={transitioning} />}
-    </div>
+      <section className="flex flex-wrap gap-6 justify-center items-center pb-[150px] pt-10 w-full">
+        {cardData.map((card, idx) => (
+        <motion.div
+            key={idx}
+            className=""
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{
+            duration: 0.8,
+            ease: [0.25, 0.1, 0.25, 1],
+            delay: idx * 0.2, // stagger per index
+            }}
+            viewport={{ once: true, amount: 0.2 }}
+        >
+            <Card
+              imageSrc={card.imageSrc}
+              badgeText={card.badgeText}
+              title={steps[idx]?.title || ""}
+              description={steps[idx]?.description || ""}
+            />
+        </motion.div>
+        ))}
+      </section>
+    </section>
   );
 };
 

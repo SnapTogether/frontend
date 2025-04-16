@@ -8,7 +8,7 @@ export default function Footer() {
   const t = useTranslations("footer");
 
   return (
-    <footer className="mt-[180px] absolute bottom-0 w-full border-t border-white/10 py-8 bg-[#1c1c1c] text-white text-sm">
+    <footer className="mt-[200px] absolute bottom-0 w-full border-t border-white/10 py-8 bg-[#1c1c1c] text-white text-sm">
       <div className="max-w-6xl mx-auto px-4 flex flex-col items-center md:flex-row justify-between gap-4">
         {/* Left side: copyright */}
         <p className="text-white/60 text-center md:text-left flex gap-4">

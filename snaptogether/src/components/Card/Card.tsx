@@ -19,7 +19,7 @@ export function Card({
   return (
     <div
     data-component-id="C004"
-    className={`snaptogether-card relative overflow-hidden rounded-xl shadow-lg w-[13em] h-[24em] text-white flex flex-col justify-end ${className}`}
+    className={`snaptogether-card relative overflow-hidden rounded-xl w-[13em] h-[24em] text-white flex flex-col justify-end ${className}`}
     {...rest}
     >
       {/* Background Image */}
@@ -29,7 +29,7 @@ export function Card({
             alt={title}
             fill
             priority
-            className="object-fill mix-blend-overlay"
+            className="object-fill mix-blend-overlay !h-fit"
         />
         </div>
 
