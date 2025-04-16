@@ -7,10 +7,10 @@
     "contact": "Contact"
   },
   "home": {
-    "msg1": "Keep your memories, captured by the people who matter most.",
-    "msg2": "Let your guests contribute their favorite moments effortlessly.",
-    "msg3": "Bring every perspective together in one shared gallery.",
-    "getStarted": "Get Started"
+    "msg1": "Your guests. Their memories. One unforgettable story.",
+    "msg2": "Turn your guests into storytellers.",
+    "msg3": "Capture every POV of your special day.",
+    "getStarted": "Create Event"
   },
   "eventForm": {
     "title": "Create New Event",

@@ -45,12 +45,37 @@ const Home = () => {
     return () => clearInterval(interval);
   }, [messages.length]);
 
+  const backgroundImages = [
+    '/carousel/carousel-1.png',
+    '/carousel/carousel-2.png',
+    '/carousel/carousel-3.png',
+  ];
+
   return (
-    <div className="relative h-screen w-screen home-background">
+    <div className="relative h-[100vh] w-screen home-background">
+
       <Navbar />
-      
+
+      {/* Carousel Background */}
+      {backgroundImages.map((src, index) => (
+        <motion.div
+          key={index}
+          className="absolute inset-0 w-full h-full"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: currentIndex === index ? 1 : 0 }}
+          transition={{ duration: 1.2, ease: 'easeInOut' }}
+          style={{
+            backgroundImage: `url(${src})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            zIndex: -10,
+          }}
+        />
+      ))}
       {/* Centered content */}
       <div className="absolute flex flex-col gap-4 items-center justify-center h-fit top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[91vw]">
+
         <motion.div
           className="logo flex flex-col items-center justify-center"
           initial={{ opacity: 0, scale: 0.8 }}
@@ -74,7 +99,6 @@ const Home = () => {
         <Button
           variant="primary"
           className="!bg-[rgba(120,128,181,0.4)]"
-          iconRight={<PartyPopper size={20} />}
           onClick={handleNavigation}
         >
           {t('getStarted')}
