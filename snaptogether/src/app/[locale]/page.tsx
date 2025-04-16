@@ -4,7 +4,6 @@ import { useRouter, usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { PartyPopper } from 'lucide-react';
 import { useLocale, useTranslations } from 'next-intl';
 
 import Button from '@/components/Button/Button';
