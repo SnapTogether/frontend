@@ -130,7 +130,7 @@ export default function AboutPage() {
         <h1 className="text-3xl font-bold text-white text-center">
           {t("guidanceTitle")}
         </h1>
-        <div className="flex flex-wrap gap-6 justify-center items-center pb-[120px]">
+        <div className="flex flex-wrap gap-6 justify-center items-center pb-[150px]">
         {cardData.map((card, idx) => (
         <motion.div
             key={idx}
