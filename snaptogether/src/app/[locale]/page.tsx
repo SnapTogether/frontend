@@ -118,25 +118,25 @@ const Home = () => {
       </div>
       <section className="flex flex-wrap gap-6 justify-center items-center pb-[150px] pt-10 w-full">
         {cardData.map((card, idx) => (
-        <motion.div
+          <motion.div
             key={idx}
             className=""
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{
-            duration: 0.8,
-            ease: [0.25, 0.1, 0.25, 1],
-            delay: idx * 0.2, // stagger per index
+              duration: 0.8,
+              ease: [0.25, 0.1, 0.25, 1],
+              delay: idx * 0.2, // stagger per index
             }}
             viewport={{ once: true, amount: 0.2 }}
-        >
+          >
             <Card
               imageSrc={card.imageSrc}
               badgeText={card.badgeText}
               title={steps[idx]?.title || ""}
               description={steps[idx]?.description || ""}
             />
-        </motion.div>
+          </motion.div>
         ))}
       </section>
     </section>
