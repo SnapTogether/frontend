@@ -7,6 +7,7 @@ import "./globals.css";
 import { NextIntlClientProvider, hasLocale } from 'next-intl';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
+import Script from "next/script";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -85,6 +86,18 @@ export default async function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta property="og:image" content="https://www.snaptogether.cloud/logo/og.png" />
         <link rel="icon" href="/favicon.png" />
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=G-X779N7P2T8`}
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-X779N7P2T8');
+          `}
+        </Script>
       </head>
       <body
         className={`${gochi_hand.variable} ${fleur_de_leah.variable} ${mulish.variable} ${geistSans.variable} ${rubik.variable} ${geistMono.variable} antialiased`}
