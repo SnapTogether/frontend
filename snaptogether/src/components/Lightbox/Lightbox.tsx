@@ -132,7 +132,7 @@ const Lightbox: React.FC<LightboxProps> = ({
                     alt="Enlarged"
                     width={700}
                     height={500}
-                    className="rounded-lg shadow-lg max-w-full max-h-[55vh] object-cover my-auto"
+                    className="rounded-lg shadow-lg max-w-full max-h-[55vh] object-contain my-auto"
                   />
                 )}
               </div>
