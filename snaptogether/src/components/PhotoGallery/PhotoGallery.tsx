@@ -19,10 +19,10 @@ interface PhotoGalleryProps {
 }
 
 const PhotoGallery: React.FC<PhotoGalleryProps> = ({ photos,
-    currentPage,
-    setCurrentPage 
-  ,totalPages}
-  ) => {
+  currentPage,
+  setCurrentPage
+  , totalPages }
+) => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
