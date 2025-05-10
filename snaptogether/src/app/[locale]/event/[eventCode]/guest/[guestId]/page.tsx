@@ -18,6 +18,13 @@ export default function GuestPhotosPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const photosPerPage = 20;
+
+  const totalPages = Math.ceil(photos.length / photosPerPage);
+  const totalPhotos = photos.length;
+
+
   const t = useTranslations("guest-photos");
 
   useEffect(() => {
@@ -67,7 +74,13 @@ export default function GuestPhotosPage() {
         {!loading && !error && (
           <>
             {photos.length > 0 ? (
-              <PhotoGallery photos={photos} />
+              <PhotoGallery
+                photos={photos}
+                currentPage={currentPage}
+                setCurrentPage={setCurrentPage}
+                totalPages={totalPages}
+                totalPhotos={totalPhotos}
+              />
             ) : (
               <p className="text-gray-400 text-center">{t("noPhotos")}</p>
             )}

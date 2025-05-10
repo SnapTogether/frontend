@@ -19,7 +19,7 @@ export default function EventStats({
   const avgPhotos =
     totalGuests > 0 ? (totalPhotos / totalGuests).toFixed(1) : 0;
 
-  return (
+    return (
     <div className="border w-full max-w-md bg-gray-900 text-white rounded-xl shadow-md p-6 flex flex-col gap-4 items-baseline">
       <h3 className="text-white text-2xl font-semibold flex items-center gap-3">
         📊 {t("title")}
