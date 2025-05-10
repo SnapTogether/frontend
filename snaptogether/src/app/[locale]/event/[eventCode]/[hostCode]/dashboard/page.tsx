@@ -34,8 +34,13 @@ export default function HostDashboard() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string>("");
   const [daysLeft, setDaysLeft] = useState<number | null>(null);
-  const currentPage = 1;
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1)
+  const [totalPhotos, setTotalPhotos] = useState(1);
+
   const photosPerPage = 20;
+
   const plural = daysLeft !== 1 ? "s" : "";
   const [openOverview, setOpenOverview] = useState(false);
 
@@ -75,6 +80,9 @@ export default function HostDashboard() {
       } else {
         setEventData(response);
         // ✅ INSERT GUEST MESSAGE LOG HERE
+        setTotalPages(response.event?.pagination?.totalPages || 1);
+        setTotalPhotos(response.event?.pagination?.totalPhotos || 1);
+
         response.event?.guests?.forEach((guest) => {
           guest.messages.forEach((msg) => {
             console.log(`- ${msg}`);
@@ -89,7 +97,6 @@ export default function HostDashboard() {
         const remainingDays = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
         setDaysLeft(Math.max(remainingDays, 0)); // never show negative
       }
-
 
       setLoading(false);
     };
@@ -269,7 +276,13 @@ export default function HostDashboard() {
 
         <Divider width="full" border={true} />
 
-        <PhotoGallery photos={eventData?.event?.photos || []} />
+        <PhotoGallery
+          photos={eventData?.event?.photos || []}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          totalPages={totalPages}
+          totalPhotos={totalPhotos}
+        />
 
         <Divider width="full" border={true} />
 
@@ -279,7 +292,7 @@ export default function HostDashboard() {
 
         <EventStats
           totalGuests={eventData?.event?.guests?.length || 0}
-          totalPhotos={eventData?.event?.photos?.length || 0}
+          totalPhotos={totalPhotos}
         />
 
         <Divider width="full" border={true} />

@@ -89,6 +89,7 @@ export interface EventResponse {
     guests: Guest[];
     pagination: {
       totalPages: number;
+      totalPhotos: number;
     };
     expirationDate: string;
     photos: Photo[]; // ✅ Define as array of objects, not strings

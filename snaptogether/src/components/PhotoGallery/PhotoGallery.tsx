@@ -12,19 +12,22 @@ interface Photo {
 
 interface PhotoGalleryProps {
   photos: Photo[];
+  currentPage: number;
+  setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
+  totalPages: number;
+  totalPhotos: number;
 }
 
-const PhotoGallery: React.FC<PhotoGalleryProps> = ({ photos }) => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const photosPerPage = 10; // Adjusted to fit the Masonry layout
-  const totalPages = Math.ceil(photos.length / photosPerPage);
+const PhotoGallery: React.FC<PhotoGalleryProps> = ({ photos,
+    currentPage,
+    setCurrentPage 
+  ,totalPages}
+  ) => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
 
-  const indexOfLastPhoto = currentPage * photosPerPage;
-  const indexOfFirstPhoto = indexOfLastPhoto - photosPerPage;
-  const currentPhotos = photos.slice(indexOfFirstPhoto, indexOfLastPhoto);
+  const currentPhotos = photos;
 
   const disablePrev = selectedImageIndex === 0;
   const disableNext = selectedImageIndex === photos.length - 1;
@@ -85,7 +88,7 @@ const PhotoGallery: React.FC<PhotoGalleryProps> = ({ photos }) => {
                 <div
                   key={index}
                   className={`relative cursor-pointer shadow-md h-full w-full rounded-lg overflow-hidden ${colSpan}`}
-                  onClick={() => openModal(indexOfFirstPhoto + index)}
+                  onClick={() => openModal(index)}
                 >
                   {isVideo ? (
                     <video
