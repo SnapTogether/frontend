@@ -30,6 +30,13 @@ export default function GuestDashboard() {
   const [submitting, setSubmitting] = useState(false);
   const [guestMessages, setGuestMessages] = useState<Message[]>([]);
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const photosPerPage = 20;
+
+  const totalPages = Math.ceil((guestData?.photos?.length || 0) / photosPerPage);
+  const totalPhotos = guestData?.photos?.length || 0;
+  
+
   const t = useTranslations("guestDashboard");
 
   const handleVerifyGuest = async (e?: React.FormEvent) => {
@@ -161,7 +168,12 @@ export default function GuestDashboard() {
                 <div className="relative w-full">
                   <div className="flex overflow-x-auto scroll-smooth snap-x snap-mandatory gap-3 p-2">
                     {guestData.photos && guestData.photos.length > 0 ? (
-                      <PhotoGallery photos={guestData.photos} />
+                      <PhotoGallery photos={guestData.photos}
+                        currentPage={currentPage}
+                        setCurrentPage={setCurrentPage}
+                        totalPages={totalPages}
+                        totalPhotos={totalPhotos}
+                      />
                     ) : (
                       <p className="text-gray-300">{t("noPhotos")}</p>
                     )}
