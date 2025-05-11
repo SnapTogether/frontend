@@ -34,6 +34,8 @@ const Lightbox: React.FC<LightboxProps> = ({
     }
   }, [selectedIndex, isOpen]);
 
+  console.log("images", images);
+
   const disablePrev = currentIndex === 0;
   const disableNext = currentIndex === images.length - 1;
 
@@ -69,19 +71,29 @@ const Lightbox: React.FC<LightboxProps> = ({
   };
 
 
+  const scrollToIndex = (index: number) => {
+    if (scrollRef.current) {
+      const scrollTo = scrollRef.current.clientWidth * index;
+      scrollRef.current.scrollTo({ left: scrollTo, behavior: "smooth" });
+      setCurrentIndex(index);
+    }
+  };
+  
   const scrollNext = () => {
-    if (scrollRef.current && currentIndex < images.length - 1) {
-      scrollRef.current.scrollBy({ left: scrollRef.current.clientWidth, behavior: "smooth" });
-      setCurrentIndex(currentIndex + 1);
+    if (currentIndex < images.length - 1) {
+      console.log("Next from", currentIndex, "to", currentIndex + 1);
+      scrollToIndex(currentIndex + 1);
     }
   };
-
+  
   const scrollPrev = () => {
-    if (scrollRef.current && currentIndex > 0) {
-      scrollRef.current.scrollBy({ left: -scrollRef.current.clientWidth, behavior: "smooth" });
-      setCurrentIndex(currentIndex - 1);
+    if (currentIndex > 0) {
+      console.log("Prev from", currentIndex, "to", currentIndex - 1);
+      scrollToIndex(currentIndex - 1);
     }
   };
+  
+  
 
   return (
     <div
