@@ -12,7 +12,6 @@ interface DownloadZipProps {
 }
 
 export default function DownloadZip({ eventCode, className }: DownloadZipProps) {
-  const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const t = useTranslations();
 
