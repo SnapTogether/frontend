@@ -31,8 +31,10 @@ const Lightbox: React.FC<LightboxProps> = ({ isOpen, images, selectedIndex, onCl
   useEffect(() => {
     if (isOpen && instanceRef.current) {
       instanceRef.current.moveToIdx(selectedIndex, true);
+      setCurrentSlide(selectedIndex); // ✅ force update currentSlide as well
     }
   }, [isOpen, selectedIndex, instanceRef]);
+  
 
   if (!isOpen || !images.length) return null;
 
@@ -47,7 +49,7 @@ const Lightbox: React.FC<LightboxProps> = ({ isOpen, images, selectedIndex, onCl
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80" onClick={onClose}>
       <div className="relative w-full max-w-screen-lg" onClick={(e) => e.stopPropagation()}>
         <button
-          className="absolute top-5 right-5 text-white bg-gray-900/20 p-2 rounded-full hover:bg-gray-900/50 transition"
+          className="absolute top-5 z-10 right-5 text-white bg-gray-900/20 p-2 rounded-full hover:bg-gray-900/50 transition"
           onClick={onClose}
         >
           <X size={30} />
@@ -61,29 +63,30 @@ const Lightbox: React.FC<LightboxProps> = ({ isOpen, images, selectedIndex, onCl
         />
 
         <div ref={sliderRef} className="keen-slider max-w-screen-md mx-auto">
-          {images.map((image, idx) => {
-            const isVideo = image.imageUrl.match(/\.(mp4|webm|mov)$/i);
-            return (
-              <div key={image._id} className="keen-slider__slide flex justify-center">
-                {isVideo ? (
-                  <video
-                    src={image.imageUrl}
-                    controls
-                    preload="metadata"
-                    className="rounded-lg shadow-lg max-w-full max-h-[55vh] my-auto"
-                  />
-                ) : (
-                  <Image
-                    src={image.imageUrl}
-                    alt={`Image ${idx + 1}`}
-                    width={700}
-                    height={500}
-                    className="rounded-lg shadow-lg max-w-full max-h-[55vh] object-contain my-auto"
-                  />
-                )}
-              </div>
-            );
-          })}
+        {images.map((image, idx) => {
+          const isVideo = image.imageUrl.match(/\.(mp4|webm|mov)$/i);
+          return (
+            <div key={idx} className="keen-slider__slide flex justify-center">
+              {isVideo ? (
+                <video
+                  src={image.imageUrl}
+                  controls
+                  preload="metadata"
+                  className="rounded-lg shadow-lg max-w-full max-h-[55vh] my-auto"
+                />
+              ) : (
+                <Image
+                  src={image.imageUrl}
+                  alt={`Image ${idx + 1}`}
+                  width={700}
+                  height={500}
+                  className="rounded-lg shadow-lg max-w-full max-h-[55vh] object-contain my-auto"
+                />
+              )}
+            </div>
+          );
+        })}
+
         </div>
 
         <button

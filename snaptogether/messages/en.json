@@ -58,7 +58,9 @@
   },
   "zipBtn": {
     "title": "Download ZIP",
-    "subtitle": "Generating ZIP..."
+    "subtitle": "Generating ZIP...",
+    "downloading": "Downloading...",
+    "generating": "Generating ZIP... please wait"
   },
   "qrBtn": {
     "host": "Host QR Code",
@@ -272,7 +274,7 @@
     "guestMessages": "Guest Messages",
     "noMessagesFromGuest": "No messages from this guest."
   },
-  "guestList":{
+  "guestList": {
     "title": "Guests",
     "noGuests": "No guests yet."
   },
