@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { downloadPhotosForGuest } from "@/api/photo";
 import Button from "../Button/Button";
 import { Download } from "lucide-react";
 import { useTranslations } from "next-intl";
@@ -82,11 +81,11 @@ export default function DownloadZip({ eventCode, className }: DownloadZipProps) 
       <Button
         variant="primary"
         onClick={handleDownload}
-        disabled={loading}
+        disabled={status === "generating" || status === "downloading"}
         className={`${className} bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 disabled:bg-gray-400`}
         iconLeft={<Download/>}
       >
-      {loading ? t("zipBtn.subtitle") : t("zipBtn.title")}
+      {t("zipBtn.title")}
       </Button>
       {error && <p className="text-red-500">{error}</p>}
     </>
