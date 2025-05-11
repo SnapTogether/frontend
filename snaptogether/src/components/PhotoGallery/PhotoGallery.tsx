@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Button from "../Button/Button";
 import { ChevronLeft, ChevronRight, Images } from "lucide-react";
-import Lightbox from "@/components/Lightbox/Lightbox";
 import { useTranslations } from "next-intl";
+import Lightbox from "../Lightbox/Lightbox";
 
 interface Photo {
   _id: string;
@@ -29,10 +29,6 @@ const PhotoGallery: React.FC<PhotoGalleryProps> = ({ photos,
 
   const currentPhotos = photos;
 
-  const disablePrev = selectedImageIndex === 0;
-  const disableNext = selectedImageIndex === photos.length - 1;
-
-
   const nextPage = () => {
     if (currentPage < totalPages) setCurrentPage(currentPage + 1);
   };
@@ -49,18 +45,6 @@ const PhotoGallery: React.FC<PhotoGalleryProps> = ({ photos,
   const closeModal = () => {
     setIsModalOpen(false);
     setSelectedImageIndex(null);
-  };
-
-  const nextImage = () => {
-    if (selectedImageIndex !== null && photos.length) {
-      setSelectedImageIndex((prev) => (prev! + 1) % photos.length);
-    }
-  };
-
-  const prevImage = () => {
-    if (selectedImageIndex !== null && photos.length) {
-      setSelectedImageIndex((prev) => (prev! - 1 < 0 ? photos.length - 1 : prev! - 1));
-    }
   };
 
   const t = useTranslations("photoGallery");
@@ -140,17 +124,12 @@ const PhotoGallery: React.FC<PhotoGalleryProps> = ({ photos,
 
       {/* ✅ Lightbox Component */}
       <Lightbox
-        key={selectedImageIndex} // 👈 add this line!
         isOpen={isModalOpen}
         images={photos}
         selectedIndex={selectedImageIndex ?? 0}
         onClose={closeModal}
-        onNext={nextImage}
-        onPrev={prevImage}
-        disableNavigation={photos.length <= 1}
-        disablePrev={disablePrev}
-        disableNext={disableNext}
       />
+
 
     </div>
   );
