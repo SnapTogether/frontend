@@ -58,7 +58,9 @@
   },
   "zipBtn": {
     "title": "Превземи ZIP",
-    "subtitle": "Генерирање ZIP..."
+    "subtitle": "Генерирање ZIP...",
+    "downloading": "Се презема...",
+    "generating": "Генерирање ZIP... почекајте"
   },
   "qrBtn": {
     "host": "QR код за домаќинот",

@@ -58,7 +58,9 @@
   },
   "zipBtn": {
     "title": "Shkarko ZIP",
-    "subtitle": "Duke gjeneruar ZIP..."
+    "subtitle": "Duke gjeneruar ZIP...",
+    "downloading": "Duke shkarkuar...",
+    "generating": "Gjenerimi i ZIP... ju lutem prisni"
   },
   "qrBtn": {
     "host": "QR Kodi i mikpritësit",

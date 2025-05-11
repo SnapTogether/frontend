@@ -123,12 +123,16 @@ const PhotoGallery: React.FC<PhotoGalleryProps> = ({ photos,
       )}
 
       {/* ✅ Lightbox Component */}
-      <Lightbox
-        isOpen={isModalOpen}
-        images={photos}
-        selectedIndex={selectedImageIndex ?? 0}
-        onClose={closeModal}
-      />
+      {isModalOpen && selectedImageIndex !== null && (
+        <Lightbox
+          key={selectedImageIndex} // ✅ force remount when a new image is selected
+          isOpen={isModalOpen}
+          images={photos}
+          selectedIndex={selectedImageIndex}
+          onClose={closeModal}
+        />
+      )}
+
 
 
     </div>

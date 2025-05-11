@@ -17,6 +17,7 @@ export default function StorageBar({ used, limit }: StorageBarProps) {
   const percent = Math.min((used / limit) * 100, 100);
   const isLimitReached = used >= limit;
   const isHalfUsed = used >= limit / 2 && !isLimitReached;
+  console.log("💾 Saving usedStorage:", used);
 
   return (
     <div className="w-full flex flex-col gap-2">

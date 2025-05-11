@@ -93,39 +93,26 @@ export const uploadPhotosForGuest = async (
 };
 
 // ✅ API Call: Request ZIP Download for Guest
-export const downloadPhotosForGuest = async (
-  eventCode: string
-): Promise<void> => {
+export const downloadPhotosForGuest = async (eventCode: string): Promise<void> => {
   try {
     const res = await fetch(
-      `${
-        process.env.NEXT_PUBLIC_SERVER_BASE_URL
-      }/api/photos/download/${encodeURIComponent(eventCode)}`,
-      {
-        method: "GET",
-      }
+      `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/api/photos/generate-zip/${encodeURIComponent(eventCode)}`,
+      { method: "POST" }
     );
 
-    if (!res.ok) {
-      throw new Error(`❌ API Error: ${res.status} ${res.statusText}`);
+    const data = await res.json();
+
+    if (!res.ok || !data.downloadUrl) {
+      throw new Error(data.message || "Failed to get download URL.");
     }
 
-    // ✅ Read response as a binary ZIP file
-    const blob = await res.blob();
-    const url = URL.createObjectURL(blob);
-
-    // ✅ Create a temporary link & trigger download
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = `snapTogether-${eventCode}.zip`;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
+    window.location.href = data.downloadUrl;
   } catch (error) {
-    console.error("❌ Network/Server Error:", error);
+    console.error("❌ ZIP Download Error:", error);
   }
 };
+
+
 
 export const downloadSinglePhotoByS3Key = async (
   s3Key: string
