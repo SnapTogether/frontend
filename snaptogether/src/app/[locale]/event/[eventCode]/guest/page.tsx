@@ -191,6 +191,8 @@ export default function GuestDashboard() {
                 usedStorage={usedStorage}
                 storageLimit={storageLimit}
               />
+            <p className="text-gray-300 text-center">{t("maxFiles")}</p>
+
             </div>
 
             <Divider width="full" border={true} />

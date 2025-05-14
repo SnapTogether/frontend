@@ -22,19 +22,26 @@ export default function Upload({
   const isLimitReached = usedStorage >= storageLimit;
   const t = useTranslations("upload");
 
+  const MAX_FILES = 10;
+
   const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
     if (!files || files.length === 0) return;
   
-    if (!guestId) {
-      alert("❌ Guest ID is required to upload images.");
+    const remainingSlots = Math.min(MAX_FILES, storageLimit - usedStorage);
+    if (files.length > remainingSlots) {
+      alert(t("maxFiles") // ✅ should work
+    );
       return;
     }
-  
+    
+    if (!guestId) {
+      alert(t("missingGuestId"));
+      return;
+    }
     setLoading(true);
     setUploadProgress(0);
   
-    // ✅ Compress images
     const optimizedFiles = await Promise.all(
       Array.from(files).map(async (file) =>
         file.type.startsWith("image/")
@@ -48,32 +55,24 @@ export default function Upload({
       )
     );
   
-    // ✅ Upload all files at once
     const response = await uploadPhotosForGuest(eventCode, guestId, optimizedFiles, (percent) =>
       setUploadProgress(percent)
     );
   
-    if (response.status === 201 && response.photos && response.photos.length > 0) {
+    if (response.status === 201 && response.photos && response.photos?.length > 0) {
       const uploadedUrls = response.photos.map((p) => p.url);
       onPhotosUploaded(uploadedUrls);
-    
-      socket.emit("photoUploaded", {
-        eventCode,
-        photos: response.photos,
-      });
-    
-    } else if (response.status === 200 && response.photos?.length === 0 && (response.skippedDuplicates?.length ?? 0) > 0
-  ) {
-      console.log('found doplicate')
+      socket.emit("photoUploaded", { eventCode, photos: response.photos });
+    } else if (response.status === 200 && response.photos?.length === 0 && (response.skippedDuplicates?.length ?? 0) > 0) {
+      console.log("found duplicate");
     } else {
       alert("❌ Upload failed. Try again!");
     }
-    
-    
   
     setLoading(false);
     setUploadProgress(0);
   };
+  
   
 
   return (

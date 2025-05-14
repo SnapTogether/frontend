@@ -251,12 +251,16 @@
     "send": "Dërgo",
     "sending": "Duke dërguar...",
     "messageSuccess": "✅ Mesazhi u dërgua me sukses!",
-    "messageError": "❌ Dështoi dërgimi i mesazhit. Provo përsëri më vonë."
+    "messageError": "❌ Dështoi dërgimi i mesazhit. Provo përsëri më vonë.",
+    "maxFiles": "Mund të ngarkoni vetëm 10 foto/video njëkohësisht."
   },
   "upload": {
     "storageFull": "Memorja është e mbushur",
     "uploading": "Duke ngarkuar",
-    "chooseImages": "Zgjidh imazhe"
+    "chooseImages": "Zgjidh imazhe",
+    "maxFiles": "Mund të ngarkoni vetëm 10 foto/video njëkohësisht.",
+    "missingGuestId": "❌ Guest ID kërkohet për të ngarkuar imazhe.",
+    "uploadFailed": "❌ Ngarkimi dështoi. Provo përsëri!"
   },
   "eventStats": {
     "title": "Statistika e Ngjarjes",
