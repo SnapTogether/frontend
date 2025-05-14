@@ -81,7 +81,7 @@ export default function HostDashboard() {
         setEventData(response);
         // ✅ INSERT GUEST MESSAGE LOG HERE
         setTotalPages(response.event?.pagination?.totalPages || 1);
-        setTotalPhotos(response.event?.pagination?.totalPhotos || 1);
+        setTotalPhotos(response.event?.pagination?.totalPhotos || 0);
 
         response.event?.guests?.forEach((guest) => {
           guest.messages.forEach((msg) => {
