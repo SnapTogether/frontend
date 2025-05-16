@@ -13,8 +13,6 @@ import FireworksBackground from '@/components/ConfettiBackground/FireworksBackgr
 import LanguageSwitcher from '@/components/LanguageSwitcher/LanguageSwitcher';
 
 import Logo from '../../../public/logo/snaptogether-logo-text-peach.svg';
-import { cardData } from '@/utils/cardData';
-import { Card } from '@/components/Card/Card';
 import AnimatedStepsWrapper from '@/components/AnimatedStepsWrapper/AnimatedStepsWrapper';
 
 const Home = () => {
@@ -55,8 +53,6 @@ const Home = () => {
 
 
   const tr = useTranslations("aboutPage");
-
-  const steps = tr.raw("guidanceSteps");
 
   return (
     <section className='w-full'>
