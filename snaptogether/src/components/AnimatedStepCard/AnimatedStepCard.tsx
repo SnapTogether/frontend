@@ -58,14 +58,16 @@ export const AnimatedStepCard = ({
         opacity: 0,
         scale: 0.8,
         ease: 'none',
+        immediateRender: false,
         scrollTrigger: {
           trigger: wrapperRef.current,
-          start: `${start + scrollPerSection / 2}vh top`,
-          end: `${end + window.innerHeight * 0.25}vh top`,
+          start: `${start + scrollPerSection / 2}px top`,
+          end: `${end + window.innerHeight * 0.25}px top`,
           scrub: true,
         },
       }
     );
+    
 
     if (mask) {
       gsap.fromTo(

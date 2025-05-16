@@ -97,3 +97,16 @@ strong{
 p{
   color: white;
 }
+@keyframes bounceUpDown {
+  0%, 100% {
+    transform: translateX(-50%) translateY(0); /* keep horizontal center */
+  }
+  50% {
+    transform: translateX(-50%) translateY(-5px); /* keep center + bounce */
+  }
+}
+
+.bounce-animation {
+  animation: bounceUpDown 2s ease-in-out infinite;
+}
+

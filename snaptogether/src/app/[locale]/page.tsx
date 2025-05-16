@@ -14,6 +14,7 @@ import LanguageSwitcher from '@/components/LanguageSwitcher/LanguageSwitcher';
 
 import Logo from '../../../public/logo/snaptogether-logo-text-peach.svg';
 import AnimatedStepsWrapper from '@/components/AnimatedStepsWrapper/AnimatedStepsWrapper';
+import { ChevronDown } from 'lucide-react';
 
 const Home = () => {
   const router = useRouter();
@@ -110,7 +111,10 @@ const Home = () => {
         </div>
 
         <FireworksBackground />
-        <LanguageSwitcher className="absolute bottom-4 left-1/2 transform -translate-x-1/2" />
+        <LanguageSwitcher className="absolute bottom-10 left-1/2 transform -translate-x-1/2" />
+        <div className="absolute bottom-1 left-1/2 transform -translate-x-1/2 text-slate-200 hover:text-white bounce-animation">
+          <ChevronDown size={32} className="text-slate-200 hover:text-white" />
+        </div>        
         {transitioning && <PageTransition show={transitioning} />}
       </div>
       <AnimatedStepsWrapper />
