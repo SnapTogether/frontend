@@ -15,6 +15,7 @@ import LanguageSwitcher from '@/components/LanguageSwitcher/LanguageSwitcher';
 import Logo from '../../../public/logo/snaptogether-logo-text-peach.svg';
 import { cardData } from '@/utils/cardData';
 import { Card } from '@/components/Card/Card';
+import AnimatedStepsWrapper from '@/components/AnimatedStepsWrapper/AnimatedStepsWrapper';
 
 const Home = () => {
   const router = useRouter();
@@ -71,15 +72,18 @@ const Home = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: currentIndex === index ? 1 : 0 }}
             transition={{ duration: 1.2, ease: 'easeInOut' }}
-            style={{
-              backgroundImage: `url(${src})`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              backgroundRepeat: 'no-repeat',
-              zIndex: -10,
-            }}
-          />
+            style={{ zIndex: -10 }}
+          >
+            <Image
+              src={src}
+              alt={`Carousel background ${index + 1}`}
+              fill
+              priority={index === 0} // preload first image
+              className="object-cover object-center"
+            />
+          </motion.div>
         ))}
+
         {/* Centered content */}
         <div className="absolute flex flex-col gap-4 items-center justify-center h-fit top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[91vw]">
 
@@ -89,7 +93,7 @@ const Home = () => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, ease: 'easeOut' }}
           >
-            <Image src={Logo} alt="SnapTogether Logo" width={150} />
+            <Image src={Logo} alt="SnapTogether Logo" width={150} priority />
           </motion.div>
 
           <motion.p
@@ -116,29 +120,8 @@ const Home = () => {
         <LanguageSwitcher className="absolute bottom-4 left-1/2 transform -translate-x-1/2" />
         {transitioning && <PageTransition show={transitioning} />}
       </div>
-      <section className="flex flex-wrap gap-6 justify-center items-center pb-[150px] pt-10 w-full">
-        {cardData.map((card, idx) => (
-          <motion.div
-            key={idx}
-            className=""
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{
-              duration: 0.8,
-              ease: [0.25, 0.1, 0.25, 1],
-              delay: idx * 0.2, // stagger per index
-            }}
-            viewport={{ once: true, amount: 0.2 }}
-          >
-            <Card
-              imageSrc={card.imageSrc}
-              badgeText={card.badgeText}
-              title={steps[idx]?.title || ""}
-              description={steps[idx]?.description || ""}
-            />
-          </motion.div>
-        ))}
-      </section>
+      <AnimatedStepsWrapper />
+
     </section>
   );
 };
