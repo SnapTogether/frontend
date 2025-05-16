@@ -51,9 +51,6 @@ const Home = () => {
     '/carousel/carousel-3.png',
   ];
 
-
-  const tr = useTranslations("aboutPage");
-
   return (
     <section className='w-full'>
       <div className="relative h-[100vh] home-background">
