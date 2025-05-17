@@ -46,7 +46,7 @@ export default function Upload({
       Array.from(files).map(async (file) =>
         file.type.startsWith("image/")
           ? await imageCompression(file, {
-              maxSizeMB: 1,
+              maxSizeMB: 2,
               maxWidthOrHeight: 1080,
               useWebWorker: true,
               fileType: "image/webp",
