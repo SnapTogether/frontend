@@ -89,6 +89,7 @@ const PhotoGallery: React.FC<PhotoGalleryProps> = ({ photos,
                       alt="Uploaded"
                       width={300}
                       height={200}
+                      unoptimized
                       className="h-full w-full object-cover aspect-square md:aspect-3/2"
                     />
                   )}

@@ -80,6 +80,7 @@ const Lightbox: React.FC<LightboxProps> = ({ isOpen, images, selectedIndex, onCl
                   alt={`Image ${idx + 1}`}
                   width={700}
                   height={500}
+                  unoptimized
                   className="rounded-lg shadow-lg max-w-full max-h-[55vh] object-contain my-auto"
                 />
               )}
