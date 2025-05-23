@@ -2,8 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
-import { v4 as uuidv4 } from 'uuid';
-import { verifyGuest, GuestResponse, GuestPhoto, submitGuestMessage, fetchGuestMessages } from "@/api/guest";
+import { verifyGuest, GuestResponse, submitGuestMessage, fetchGuestMessages } from "@/api/guest";
 import Upload from "@/components/Upload/Upload";
 import Navbar from "@/components/Navbar/Navbar";
 import Button from "@/components/Button/Button";
@@ -89,24 +88,23 @@ export default function GuestDashboard() {
 
 
   // ✅ Function to update guestData when new photos are uploaded
-  const handlePhotosUploaded = (newPhotoUrls: string[]) => {
+  const handlePhotosUploaded = (newPhotos: { _id: string; url: string }[]) => {
     if (!guestData) return;
-
-    setGuestData((prevGuestData) => {
-      if (!prevGuestData) return null;
-      console.log("new photos", newPhotoUrls);
+  
+    setGuestData((prev) => {
+      if (!prev) return null;
+  
       return {
-        ...prevGuestData,
-        photos: [
-          ...(prevGuestData.photos || []),
-          ...newPhotoUrls.map((url) => ({
-            photoId: uuidv4(),
-            imageUrl: url,
-          })) as GuestPhoto[],
-        ],
+        ...prev,
+        photos: newPhotos.map((photo) => ({
+          _id: photo._id,
+          imageUrl: photo.url,
+        })),
       };
     });
   };
+  
+  
 
   useEffect(() => {
     if (!guestData?.guest?.guestId || !eventCode) return;
@@ -131,6 +129,7 @@ export default function GuestDashboard() {
       socket.off("messageDeleted");
     };
   }, [eventCode, guestData?.guest?.guestId]);
+  
 
   return (
     <div className="guest-dashboard relative h-full flex flex-col">
@@ -173,6 +172,8 @@ export default function GuestDashboard() {
                         setCurrentPage={setCurrentPage}
                         totalPages={totalPages}
                         totalPhotos={totalPhotos}
+                        eventCode={eventCode}
+                        guestId={guestData?.guest?.guestId}
                       />
                     ) : (
                       <p className="text-gray-300">{t("noPhotos")}</p>

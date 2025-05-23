@@ -101,7 +101,7 @@ export default function HostDashboard() {
       setLoading(false);
     };
 
-    socket.on("newImageUploaded", (data: { eventCode: string; images: { photoId: string; imageUrl: string }[] }) => {
+    socket.on("photoUploaded", (data: { eventCode: string; images: { photoId: string; imageUrl: string }[] }) => {
       if (data.eventCode === eventCode) {
         console.log("📥 New images received via WebSocket:", data);
         fetchEvent(); // ✅ Fetches updated photos + usedStorage from backend
@@ -163,7 +163,7 @@ export default function HostDashboard() {
     fetchEvent();
 
     return () => {
-      socket.off("newImageUploaded"); // ✅ Cleanup WebSocket listener when component unmounts
+      socket.off("photoUploaded"); // ✅ Cleanup WebSocket listener when component unmounts
       socket.off("newMessage");
       socket.off("connect");
       socket.off("disconnect");

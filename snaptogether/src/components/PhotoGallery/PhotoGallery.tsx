@@ -16,19 +16,27 @@ interface PhotoGalleryProps {
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
   totalPages: number;
   totalPhotos: number;
+  eventCode?: string;
+  guestId?: string;
+  onDelete?: (photoId: string) => void;
 }
 
-const PhotoGallery: React.FC<PhotoGalleryProps> = ({ photos,
+const PhotoGallery: React.FC<PhotoGalleryProps> = ({
+  photos,
   currentPage,
-  setCurrentPage
-  , totalPages }
-) => {
+  setCurrentPage,
+  totalPages,
+}) => {
+
+
+  console.log("Photos", photos);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
 
-  const currentPhotos = photos;
-
+  // const pathname = usePathname();
+  // const isGuestView = pathname.includes("guest");
+  
   const nextPage = () => {
     if (currentPage < totalPages) setCurrentPage(currentPage + 1);
   };
@@ -47,6 +55,30 @@ const PhotoGallery: React.FC<PhotoGalleryProps> = ({ photos,
     setSelectedImageIndex(null);
   };
 
+
+  // const handleDelete = async (photoId: string) => {
+  //   if (!eventCode || !guestId) {
+  //     console.warn("⚠️ Missing eventCode or guestId for deletion");
+  //     return;
+  //   }
+  
+  //   const res = await deletePhotoForGuest(eventCode, guestId, photoId);
+  
+  //   if (res.status === 200) {
+    
+  //     if (onDelete) {
+  //       console.log("📤 Calling onDelete callback");
+  //       onDelete(photoId);
+  //     }
+  //   }
+    
+  //   else {
+  //     console.error("❌ Delete failed:", res.message);
+  //   }
+  // };
+  
+
+
   const t = useTranslations("photoGallery");
 
   return (
@@ -58,7 +90,7 @@ const PhotoGallery: React.FC<PhotoGalleryProps> = ({ photos,
         <>
           {/* ✅ Masonry Grid Layout with Repeating Pattern */}
           <div className="grid grid-cols-12 gap-2 mt-2">
-            {currentPhotos.map((photo, index) => {
+            {photos.map((photo, index) => {
               const row = Math.floor(index / 3);
               let colSpan = "col-span-4 sm:col-span-4";
 
@@ -83,15 +115,43 @@ const PhotoGallery: React.FC<PhotoGalleryProps> = ({ photos,
                       key={index}
                     />
                   ) : (
-                    <Image
-                      key={index}
-                      src={photo.imageUrl}
-                      alt="Uploaded"
-                      width={300}
-                      height={200}
-                      unoptimized
-                      className="h-full w-full object-cover aspect-square md:aspect-3/2"
-                    />
+                    <div className="relative">
+                      <Image
+                        key={index}
+                        src={photo.imageUrl}
+                        alt="Uploaded"
+                        width={300}
+                        height={200}
+                        unoptimized
+                        className="h-full w-full object-cover aspect-square md:aspect-3/2"
+                      />
+                      {/* {isGuestView && (
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            const id = (photo as any).photoId || (photo as any)._id;
+
+                            if (!id) {
+                              console.warn("❌ Missing photoId in photo object:", photo);
+                              return;
+                            }
+
+                            console.log("🧪 Delete button clicked:", {
+                              id,
+                              eventCode,
+                              guestId,
+                            });
+
+                            handleDelete(id); // ✅ pass the correct id
+                          }}
+                          className="absolute top-2 right-2 bg-slate-500 text-white text-sm p-2 rounded-full z-10"
+                        >
+                          <X size={14} />
+                        </button>
+
+                      )} */}
+
+                    </div>
                   )}
                 </div>
               );
