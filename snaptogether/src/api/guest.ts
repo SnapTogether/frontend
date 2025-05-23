@@ -13,6 +13,7 @@ export interface GuestPhoto {
 
 
 export interface GuestResponse {
+  eventName?: string;
   status: number;
   message: string;
   guestName?: string;
@@ -65,6 +66,7 @@ export const verifyGuest = async (
       return {
         status: res.status,
         message: data.message,
+        eventName: data.eventName,
         guest: {
           guestId: data.guestId,
           guestName: guestName,
