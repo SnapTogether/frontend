@@ -5,7 +5,6 @@ import { ChevronLeft, ChevronRight, Images } from "lucide-react";
 import { useTranslations } from "next-intl";
 import Lightbox from "../Lightbox/Lightbox";
 import { usePathname } from "next/navigation";
-import { deletePhotoForGuest } from "@/api/photo";
 
 interface Photo {
   _id: string;
@@ -28,9 +27,6 @@ const PhotoGallery: React.FC<PhotoGalleryProps> = ({
   currentPage,
   setCurrentPage,
   totalPages,
-  eventCode,
-  guestId,
-  onDelete
 }) => {
 
 
@@ -39,7 +35,7 @@ const PhotoGallery: React.FC<PhotoGalleryProps> = ({
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
 
-  const pathname = usePathname();
+  // const pathname = usePathname();
   // const isGuestView = pathname.includes("guest");
   
   const nextPage = () => {
