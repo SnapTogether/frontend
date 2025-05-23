@@ -4,7 +4,6 @@ import Button from "../Button/Button";
 import { ChevronLeft, ChevronRight, Images } from "lucide-react";
 import { useTranslations } from "next-intl";
 import Lightbox from "../Lightbox/Lightbox";
-import { usePathname } from "next/navigation";
 
 interface Photo {
   _id: string;
