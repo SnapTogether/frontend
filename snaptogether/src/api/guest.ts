@@ -6,7 +6,7 @@ export interface Guest {
 
 export interface GuestPhoto {
   _id: string;  // ✅ Ensure _id exists
-  photoId: string;
+  photoId?: string;
 
   imageUrl: string;
 }

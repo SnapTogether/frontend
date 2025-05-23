@@ -1,8 +1,9 @@
 import { useState } from "react";
 import imageCompression from "browser-image-compression";
-import { uploadPhotosForGuest } from "@/api/photo";
+import { getPresignedUrl, uploadPhotosForGuest, uploadToS3 } from "@/api/photo";
 import socket from "@/utils/socket";
 import { useTranslations } from "next-intl";
+import { fetchGuestPhotos } from "@/api/guest";
 
 export default function Upload({
   eventCode,
@@ -13,7 +14,7 @@ export default function Upload({
 }: {
   eventCode: string;
   guestId: string;
-  onPhotosUploaded: (newPhotos: string[]) => void;
+  onPhotosUploaded: (newPhotos: { _id: string; url: string }[]) => void;
   usedStorage: number;
   storageLimit: number;
 }) {
@@ -30,15 +31,15 @@ export default function Upload({
   
     const remainingSlots = Math.min(MAX_FILES, storageLimit - usedStorage);
     if (files.length > remainingSlots) {
-      alert(t("maxFiles") // ✅ should work
-    );
+      alert(t("maxFiles"));
       return;
     }
-    
+  
     if (!guestId) {
       alert(t("missingGuestId"));
       return;
     }
+  
     setLoading(true);
     setUploadProgress(0);
   
@@ -55,23 +56,58 @@ export default function Upload({
       )
     );
   
-    const response = await uploadPhotosForGuest(eventCode, guestId, optimizedFiles, (percent) =>
-      setUploadProgress(percent)
-    );
+    const uploadedFiles: { imageUrl: string; s3Key: string; fileSize: number }[] = [];
   
-    if (response.status === 201 && response.photos && response.photos?.length > 0) {
-      const uploadedUrls = response.photos.map((p) => p.url);
-      onPhotosUploaded(uploadedUrls);
-      socket.emit("photoUploaded", { eventCode, photos: response.photos });
-    } else if (response.status === 200 && response.photos?.length === 0 && (response.skippedDuplicates?.length ?? 0) > 0) {
-      console.log("found duplicate");
-    } else {
-      alert("❌ Upload failed. Try again!");
+    for (let i = 0; i < optimizedFiles.length; i++) {
+      const file = optimizedFiles[i];
+  
+      try {
+        const { url, publicUrl, key: s3Key } = await getPresignedUrl(file, eventCode, guestId);
+        await uploadToS3(file, url);
+  
+        uploadedFiles.push({
+          imageUrl: publicUrl,
+          s3Key,
+          fileSize: file.size, // ✅ This is crucial for usedStorage
+        });
+  
+        setUploadProgress(Math.round(((i + 1) / optimizedFiles.length) * 100));
+      } catch (err) {
+        console.error("Upload failed:", err);
+        alert(t("uploadFailed"));
+        break;
+      }
+    }
+  
+    console.log("📦 Sending uploadedFiles to backend:", uploadedFiles);
+  
+    if (uploadedFiles.length > 0) {
+      const saveRes = await fetch(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/api/photos/save`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          eventCode,
+          guestId,
+          files: uploadedFiles, // ✅ Includes fileSize
+        }),
+      });
+  
+      if (saveRes.ok) {
+        const updatedPhotos = await fetchGuestPhotos(eventCode, guestId);
+        onPhotosUploaded(updatedPhotos.photos?.map((p) => ({ _id: p._id, url: p.imageUrl })) || []);
+  
+        // ❌ REMOVE this because socket emit is handled by the server
+        // socket.emit("photoUploaded", { eventCode, photos: updatedPhotos });
+      } else {
+        alert(t("uploadFailed"));
+        console.error("❌ Saving photo metadata failed");
+      }
     }
   
     setLoading(false);
     setUploadProgress(0);
   };
+  
   
   
 

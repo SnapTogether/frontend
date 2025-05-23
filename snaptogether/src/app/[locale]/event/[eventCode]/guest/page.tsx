@@ -89,24 +89,23 @@ export default function GuestDashboard() {
 
 
   // ✅ Function to update guestData when new photos are uploaded
-  const handlePhotosUploaded = (newPhotoUrls: string[]) => {
+  const handlePhotosUploaded = (newPhotos: { _id: string; url: string }[]) => {
     if (!guestData) return;
-
-    setGuestData((prevGuestData) => {
-      if (!prevGuestData) return null;
-      console.log("new photos", newPhotoUrls);
+  
+    setGuestData((prev) => {
+      if (!prev) return null;
+  
       return {
-        ...prevGuestData,
-        photos: [
-          ...(prevGuestData.photos || []),
-          ...newPhotoUrls.map((url) => ({
-            photoId: uuidv4(),
-            imageUrl: url,
-          })) as GuestPhoto[],
-        ],
+        ...prev,
+        photos: newPhotos.map((photo) => ({
+          _id: photo._id,
+          imageUrl: photo.url,
+        })),
       };
     });
   };
+  
+  
 
   useEffect(() => {
     if (!guestData?.guest?.guestId || !eventCode) return;
@@ -131,6 +130,7 @@ export default function GuestDashboard() {
       socket.off("messageDeleted");
     };
   }, [eventCode, guestData?.guest?.guestId]);
+  
 
   return (
     <div className="guest-dashboard relative h-full flex flex-col">
@@ -173,6 +173,8 @@ export default function GuestDashboard() {
                         setCurrentPage={setCurrentPage}
                         totalPages={totalPages}
                         totalPhotos={totalPhotos}
+                        eventCode={eventCode}
+                        guestId={guestData?.guest?.guestId}
                       />
                     ) : (
                       <p className="text-gray-300">{t("noPhotos")}</p>

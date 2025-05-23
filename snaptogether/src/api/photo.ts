@@ -112,6 +112,32 @@ export const downloadPhotosForGuest = async (eventCode: string): Promise<void> =
   }
 };
 
+export const getPresignedUrl = async (file: File, eventCode: string, guestId: string) => {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/api/s3/presigned-url`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      fileName: file.name,
+      fileType: file.type,
+      eventCode,
+      guestId,
+    }),
+  });
+
+  return res.json(); // contains { url, publicUrl, key }
+};
+
+
+export const uploadToS3 = async (file: File, signedUrl: string) => {
+  const res = await fetch(signedUrl, {
+    method: "PUT",
+    headers: { "Content-Type": file.type },
+    body: file,
+  });
+
+  if (!res.ok) throw new Error("Upload to S3 failed");
+};
+
 
 
 export const downloadSinglePhotoByS3Key = async (
@@ -157,3 +183,51 @@ export const downloadSinglePhotoByS3Key = async (
     };
   }
 };
+
+export const deletePhotoForGuest = async (
+  eventCode: string,
+  guestId: string,
+  photoId: string
+): Promise<{
+  status: number;
+  message: string;
+  photoId?: string;
+  error?: string;
+}> => {
+  try {
+    const url = `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/api/photos/delete-photo/${encodeURIComponent(
+      eventCode
+    )}/${encodeURIComponent(guestId)}/${encodeURIComponent(photoId)}`;
+
+    console.log("📡 DELETE Photo API Call:", {
+      url,
+      eventCode,
+      guestId,
+      photoId,
+    });
+
+    const res = await fetch(url, {
+      method: "DELETE",
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      throw new Error(data.message || "Failed to delete photo.");
+    }
+
+    return {
+      status: res.status,
+      message: data.message,
+      photoId: data.photoId,
+    };
+  } catch (error) {
+    console.error("❌ Delete photo error:", error);
+    return {
+      status: 500,
+      message: "❌ Failed to delete photo",
+      error: (error as Error).message,
+    };
+  }
+};
+
