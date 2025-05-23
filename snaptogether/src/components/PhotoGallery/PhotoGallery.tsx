@@ -40,7 +40,7 @@ const PhotoGallery: React.FC<PhotoGalleryProps> = ({
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
 
   const pathname = usePathname();
-  const isGuestView = pathname.includes("guest"); // or more specific like "guest/photos"
+  // const isGuestView = pathname.includes("guest");
   
   const nextPage = () => {
     if (currentPage < totalPages) setCurrentPage(currentPage + 1);
@@ -61,26 +61,26 @@ const PhotoGallery: React.FC<PhotoGalleryProps> = ({
   };
 
 
-  const handleDelete = async (photoId: string) => {
-    if (!eventCode || !guestId) {
-      console.warn("⚠️ Missing eventCode or guestId for deletion");
-      return;
-    }
+  // const handleDelete = async (photoId: string) => {
+  //   if (!eventCode || !guestId) {
+  //     console.warn("⚠️ Missing eventCode or guestId for deletion");
+  //     return;
+  //   }
   
-    const res = await deletePhotoForGuest(eventCode, guestId, photoId);
+  //   const res = await deletePhotoForGuest(eventCode, guestId, photoId);
   
-    if (res.status === 200) {
+  //   if (res.status === 200) {
     
-      if (onDelete) {
-        console.log("📤 Calling onDelete callback");
-        onDelete(photoId);
-      }
-    }
+  //     if (onDelete) {
+  //       console.log("📤 Calling onDelete callback");
+  //       onDelete(photoId);
+  //     }
+  //   }
     
-    else {
-      console.error("❌ Delete failed:", res.message);
-    }
-  };
+  //   else {
+  //     console.error("❌ Delete failed:", res.message);
+  //   }
+  // };
   
 
 

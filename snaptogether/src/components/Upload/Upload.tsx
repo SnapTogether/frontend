@@ -1,7 +1,6 @@
 import { useState } from "react";
 import imageCompression from "browser-image-compression";
-import { getPresignedUrl, uploadPhotosForGuest, uploadToS3 } from "@/api/photo";
-import socket from "@/utils/socket";
+import { getPresignedUrl, uploadToS3 } from "@/api/photo";
 import { useTranslations } from "next-intl";
 import { fetchGuestPhotos } from "@/api/guest";
 

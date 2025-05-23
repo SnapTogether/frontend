@@ -2,8 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
-import { v4 as uuidv4 } from 'uuid';
-import { verifyGuest, GuestResponse, GuestPhoto, submitGuestMessage, fetchGuestMessages } from "@/api/guest";
+import { verifyGuest, GuestResponse, submitGuestMessage, fetchGuestMessages } from "@/api/guest";
 import Upload from "@/components/Upload/Upload";
 import Navbar from "@/components/Navbar/Navbar";
 import Button from "@/components/Button/Button";
