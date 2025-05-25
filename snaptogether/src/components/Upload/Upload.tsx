@@ -62,8 +62,11 @@ export default function Upload({
   
       try {
         const { url, publicUrl, key: s3Key } = await getPresignedUrl(file, eventCode, guestId);
-        await uploadToS3(file, url);
-  
+        await uploadToS3(file, url, (percent) => {
+          const totalProgress = ((i + percent / 100) / optimizedFiles.length) * 100;
+          setUploadProgress(Math.round(totalProgress));
+        });
+          
         uploadedFiles.push({
           imageUrl: publicUrl,
           s3Key,

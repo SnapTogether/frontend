@@ -128,14 +128,22 @@ export const getPresignedUrl = async (file: File, eventCode: string, guestId: st
 };
 
 
-export const uploadToS3 = async (file: File, signedUrl: string) => {
-  const res = await fetch(signedUrl, {
-    method: "PUT",
-    headers: { "Content-Type": file.type },
-    body: file,
+export const uploadToS3 = async (
+  file: File,
+  signedUrl: string,
+  onProgress?: (percent: number) => void
+) => {
+  await axios.put(signedUrl, file, {
+    headers: {
+      "Content-Type": file.type,
+    },
+    onUploadProgress: (progressEvent) => {
+      if (onProgress && progressEvent.total) {
+        const percent = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+        onProgress(percent);
+      }
+    },
   });
-
-  if (!res.ok) throw new Error("Upload to S3 failed");
 };
 
 
