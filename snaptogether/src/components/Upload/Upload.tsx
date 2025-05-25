@@ -1,6 +1,6 @@
 import { useState } from "react";
 import imageCompression from "browser-image-compression";
-import { getPresignedUrl, uploadToS3 } from "@/api/photo";
+import { getPresignedUrl, uploadPhotosForGuest, uploadToS3 } from "@/api/photo";
 import { useTranslations } from "next-intl";
 import { fetchGuestPhotos } from "@/api/guest";
 
@@ -57,22 +57,45 @@ export default function Upload({
   
     const uploadedFiles: { imageUrl: string; s3Key: string; fileSize: number }[] = [];
   
+    const MAX_DIRECT_UPLOAD_MB = 2.5;
+
     for (let i = 0; i < optimizedFiles.length; i++) {
       const file = optimizedFiles[i];
-  
+      const isLargeVideo = file.type.startsWith("video/") && file.size > MAX_DIRECT_UPLOAD_MB * 1024 * 1024;
+    
       try {
-        const { url, publicUrl, key: s3Key } = await getPresignedUrl(file, eventCode, guestId);
-        await uploadToS3(file, url, (percent) => {
-          const totalProgress = ((i + percent / 100) / optimizedFiles.length) * 100;
-          setUploadProgress(Math.round(totalProgress));
-        });
-          
-        uploadedFiles.push({
-          imageUrl: publicUrl,
-          s3Key,
-          fileSize: file.size, // ✅ This is crucial for usedStorage
-        });
-  
+        if (isLargeVideo) {
+          console.log(`📡 Uploading ${file.name} via BACKEND (size: ${(file.size / 1024 / 1024).toFixed(2)} MB)`);
+        
+          const { photos } = await uploadPhotosForGuest(eventCode, guestId, [file], (percent) => {
+            const totalProgress = ((i + percent / 100) / optimizedFiles.length) * 100;
+            setUploadProgress(Math.round(totalProgress));
+          });
+        
+          if (photos && photos.length > 0) {
+            uploadedFiles.push({
+              imageUrl: photos[0].url,
+              s3Key: photos[0].url.split(".amazonaws.com/")[1],
+              fileSize: file.size,
+            });
+          }
+        } else {
+          console.log(`☁️ Uploading ${file.name} DIRECTLY to S3 (size: ${(file.size / 1024 / 1024).toFixed(2)} MB)`);
+        
+          const { url, publicUrl, key: s3Key } = await getPresignedUrl(file, eventCode, guestId);
+          await uploadToS3(file, url, (percent) => {
+            const totalProgress = ((i + percent / 100) / optimizedFiles.length) * 100;
+            setUploadProgress(Math.round(totalProgress));
+          });
+        
+          uploadedFiles.push({
+            imageUrl: publicUrl,
+            s3Key,
+            fileSize: file.size,
+          });
+        }
+        
+    
         setUploadProgress(Math.round(((i + 1) / optimizedFiles.length) * 100));
       } catch (err) {
         console.error("Upload failed:", err);
@@ -80,6 +103,7 @@ export default function Upload({
         break;
       }
     }
+    
   
     console.log("📦 Sending uploadedFiles to backend:", uploadedFiles);
   
