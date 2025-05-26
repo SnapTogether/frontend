@@ -33,7 +33,7 @@ export default function Upload({
     if (percent < 100) return t("finishingUp");
     return t("done");
   };  
-
+ 
   const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
     if (!files || files.length === 0) return;
