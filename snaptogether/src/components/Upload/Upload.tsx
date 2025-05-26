@@ -24,6 +24,16 @@ export default function Upload({
 
   const MAX_FILES = 10;
 
+  const getProgressText = (percent: number) => {
+    if (percent === 0) return t("startingUpload");
+    if (percent < 20) return t("warmingUp");
+    if (percent < 40) return t("inProgress");
+    if (percent < 60) return t("almostThere");
+    if (percent < 80) return t("nearlyDone");
+    if (percent < 100) return t("finishingUp");
+    return t("done");
+  };  
+ 
   const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
     if (!files || files.length === 0) return;
@@ -159,7 +169,7 @@ export default function Upload({
         {isLimitReached
           ? t("storageFull")
           : loading
-          ? `${t("uploading")}... ${uploadProgress}%`
+          ? `${getProgressText(uploadProgress)} (${uploadProgress}%)`
           : t("chooseImages")}
       </span>
       </label>
