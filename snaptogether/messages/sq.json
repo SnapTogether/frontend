@@ -255,12 +255,19 @@
     "maxFiles": "Mund të ngarkoni vetëm 10 foto/video njëkohësisht."
   },
   "upload": {
-    "storageFull": "Memorja është e mbushur",
+    "storageFull": "Hapësira është e mbushur",
     "uploading": "Duke ngarkuar",
-    "chooseImages": "Zgjidh imazhe",
-    "maxFiles": "Mund të ngarkoni vetëm 10 foto/video njëkohësisht.",
-    "missingGuestId": "❌ Guest ID kërkohet për të ngarkuar imazhe.",
-    "uploadFailed": "❌ Ngarkimi dështoi. Provo përsëri!"
+    "chooseImages": "Zgjidh imazhet",
+    "maxFiles": "Mund të ngarkoni vetëm 10 skedarë njëherësh.",
+    "missingGuestId": "❌ Kërkohet ID e mysafirit për të ngarkuar imazhe.",
+    "uploadFailed": "❌ Dështoi ngarkimi. Provo përsëri!",
+    "startingUpload": "Po fillojmë...",
+    "warmingUp": "Po ngrohemi...",
+    "inProgress": "Ngarkimi në proces...",
+    "almostThere": "Edhe pak...",
+    "nearlyDone": "Pothuajse mbaroi!",
+    "finishingUp": "Duke përfunduar...",
+    "done": "U krye!"
   },
   "eventStats": {
     "title": "Statistika e Ngjarjes",

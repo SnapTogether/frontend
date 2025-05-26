@@ -260,7 +260,14 @@
     "chooseImages": "Choose Images",
     "maxFiles": "You can upload only 10 files at a time.",
     "missingGuestId": "❌ Guest ID is required to upload images.",
-    "uploadFailed": "❌ Upload failed. Try again!"
+    "uploadFailed": "❌ Upload failed. Try again!",
+    "startingUpload": "We’re starting now...",
+    "warmingUp": "Warming up...",
+    "inProgress": "Uploading in progress...",
+    "almostThere": "Just a little bit more...",
+    "nearlyDone": "Almost there!",
+    "finishingUp": "Wrapping things up...",
+    "done": "Done!"
   },
   "eventStats": {
     "title": "Event Statistics",
