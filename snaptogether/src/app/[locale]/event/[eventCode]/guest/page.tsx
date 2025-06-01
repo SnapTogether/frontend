@@ -177,7 +177,7 @@ export default function GuestDashboard() {
       <Navbar />
       <div className="w-[95%] mb-[10vh] sm:w-full flex flex-col items-center justify-center pt-[13vh] mx-auto space-y-4">
         <h2 className="text-white text-2xl font-semibold text-center flex flex-col items-center justify-center gap-3"><p>{t("title")}</p>{" "} <p>{guestData?.guest?.guestName}</p></h2>
-        <p className="text-center">{t("instruction")}</p>
+        <p className="text-center">{t("subtitle")}</p>
 
         <h2 className="text-white text-2xl font-semibold text-center flex flex-col items-center justify-center italic">{eventName}</h2>
 
