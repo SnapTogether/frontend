@@ -175,9 +175,9 @@ export default function GuestDashboard() {
   return (
     <div className="guest-dashboard relative h-full flex flex-col">
       <Navbar />
-      <div className="w-[95%] mb-[10vh] sm:w-full flex flex-col items-center justify-center pt-[10vh] mx-auto space-y-4">
+      <div className="w-[95%] mb-[10vh] sm:w-full flex flex-col items-center justify-center pt-[13vh] mx-auto space-y-4">
         <h2 className="text-white text-2xl font-semibold text-center flex flex-row items-center justify-center gap-3"><p>{t("title")}</p>{" "} <p>{guestData?.guest?.guestName}</p></h2>
-        <p>{t("instruction")}</p>
+        <p className="text-center">{t("instruction")}</p>
 
         <h2 className="text-white text-2xl font-semibold text-center flex flex-col items-center justify-center italic">{eventName}</h2>
 
