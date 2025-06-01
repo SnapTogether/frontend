@@ -162,10 +162,10 @@ export default function Upload({
       <label
         htmlFor="file-upload"
         className={`text-md font-medium flex items-center justify-center w-full cursor-pointer rounded-md !m-0 p-4 
-          ${isLimitReached ? "bg-gray-500 cursor-not-allowed" : "bg-transparent hover:bg-white text-white hover:text-black"} 
+          ${isLimitReached ? "bg-gray-500 cursor-not-allowed" : "bg-slate-100 font-bold hover:bg-slate-300 text-black hover:text-black hover:font-semibold"} 
           transition-all duration-300 ease-in-out`}
       >
-      <span className="w-full h-full !rounded-none">
+      <span className="w-full h-full !rounded-none font-semibold">
         {isLimitReached
           ? t("storageFull")
           : loading
