@@ -239,7 +239,7 @@
   },
   "guestDashboard": {
     "title": "🎟️ Guest Dashboard",
-    "instruction": "Enter your name to see your uploaded photos.",
+    "instruction": "✨ Enter your name and share your favorite memories from the event!",
     "inputPlaceholder": "Full Name",
     "verifyButton": "Verify Guest",
     "verifying": "Verifying...",
