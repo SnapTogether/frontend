@@ -42,8 +42,9 @@ export default function GuestDashboard() {
 
   useEffect(() => {
     const stored = getStoredGuestSession();
+  
     if (stored?.eventCode === eventCode && stored.guestName) {
-      setGuestName(stored.guestName); // useful in case you want to display it
+      setGuestName(stored.guestName);
   
       verifyGuest(stored.eventCode, stored.guestName).then(async (response) => {
         if (response.status === 200 && response.guest?.guestId) {
@@ -60,6 +61,17 @@ export default function GuestDashboard() {
                 text: msg,
               }))
             );
+          }
+  
+          // ✅ Only delete localStorage after expiration (do nothing else)
+          if (stored.expiresAt) {
+            const remainingTime = stored.expiresAt - Date.now();
+            if (remainingTime > 0) {
+              setTimeout(() => {
+                localStorage.removeItem("snaptogether-guest"); // 🧹 Just this
+                console.log("✅ Session expired: localStorage cleared");
+              }, remainingTime);
+            }
           }
         }
       });
@@ -164,9 +176,10 @@ export default function GuestDashboard() {
     <div className="guest-dashboard relative h-full flex flex-col">
       <Navbar />
       <div className="w-[95%] mb-[10vh] sm:w-full flex flex-col items-center justify-center pt-[10vh] mx-auto space-y-4">
-        <h2 className="text-white text-2xl font-semibold text-center flex flex-col items-center justify-center"><p>{t("title")}</p> <p>{guestData?.guest?.guestName}</p></h2>
+        <h2 className="text-white text-2xl font-semibold text-center flex flex-row items-center justify-center gap-3"><p>{t("title")}</p>{" "} <p>{guestData?.guest?.guestName}</p></h2>
+        <p>{t("instruction")}</p>
 
-        <h2 className="text-white text-2xl font-semibold text-center flex flex-col items-center justify-center">{eventName}</h2>
+        <h2 className="text-white text-2xl font-semibold text-center flex flex-col items-center justify-center italic">{eventName}</h2>
 
         {!guestData ? (
           <form onSubmit={handleVerifyGuest} className="max-w-[40em] container mx=auto space-y-3 p-6 border border-slate-500 border-opacity-65 rounded-lg shadow-md bg-white/10 backdrop-blur-lg">

@@ -22,6 +22,7 @@ export interface GuestResponse {
   usedStorage?: number;
   storageLimit?:number;
   error?: string;
+  expiresAt?: number;
 }
 
 // ✅ API Call: Verify Guest & Fetch Their Photos
@@ -63,21 +64,46 @@ export const verifyGuest = async (
         };
       }
 
-      return {
+      const result: GuestResponse = {
         status: res.status,
         message: data.message,
         eventName: data.eventName,
         guest: {
           guestId: data.guestId,
-          guestName: guestName,
+          guestName,
         },
         photos: data.photos?.map((photo: { _id: string; imageUrl: string }) => ({
           photoId: photo._id,
           imageUrl: photo.imageUrl,
         })) || [],
-        usedStorage: data.usedStorage || 0,         // ✅ Add this
-        storageLimit: data.storageLimit || 0,       // ✅ Add this
-      };      
+        usedStorage: data.usedStorage || 0,
+        storageLimit: data.storageLimit || 0,
+      };
+      
+      // ✅ Save to localStorage if we're in the browser
+      if (typeof window !== "undefined") {
+        const now = Date.now();
+        const oneHour = 1000;
+      
+        const expiresAt = now + oneHour;
+      
+        // ✅ Log human-readable expiration time
+        console.log("🕒 Guest session will expire at:", new Date(expiresAt).toLocaleString());
+      
+        localStorage.setItem("snaptogether-guest", JSON.stringify({
+          eventCode,
+          guestId: data.guestId,
+          guestName,
+          eventName: data.eventName,
+          usedStorage: data.usedStorage || 0,
+          storageLimit: data.storageLimit || 0,
+          expiresAt,
+        }));
+      }
+      
+
+      return result;
+          
     } catch (jsonError) {
       console.error("❌ JSON Parse Error:", jsonError);
       console.error("📨 Raw Response (Not JSON):", text);

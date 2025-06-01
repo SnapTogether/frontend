@@ -12,6 +12,7 @@ export const getStoredGuestSession = () => {
         eventName?: string;
         usedStorage?: number;
         storageLimit?: number;
+        expiresAt?: number;
       };
     } catch {
       return null;
