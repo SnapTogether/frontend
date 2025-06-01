@@ -171,7 +171,7 @@ export default function GuestDashboard() {
     };
   }, [eventCode, guestData?.guest?.guestId]);
   
-
+ 
   return (
     <div className="guest-dashboard relative h-full flex flex-col">
       <Navbar />
