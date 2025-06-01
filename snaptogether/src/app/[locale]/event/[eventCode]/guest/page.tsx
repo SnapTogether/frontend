@@ -12,6 +12,7 @@ import PhotoGallery from "@/components/PhotoGallery/PhotoGallery";
 import GuestMessages, { Message } from "@/components/GuestMessages/GuestMessages";
 import socket from "@/utils/socket";
 import { Divider } from "@/components/Divider/Divider";
+import { getStoredGuestSession } from "@/utils/getStoredGuestSession";
 
 export default function GuestDashboard() {
   const params = useParams();
@@ -38,6 +39,45 @@ export default function GuestDashboard() {
   
 
   const t = useTranslations("guestDashboard");
+
+  useEffect(() => {
+    const stored = getStoredGuestSession();
+  
+    if (stored?.eventCode === eventCode && stored.guestName) {
+      setGuestName(stored.guestName);
+  
+      verifyGuest(stored.eventCode, stored.guestName).then(async (response) => {
+        if (response.status === 200 && response.guest?.guestId) {
+          setGuestData(response);
+          setUsedStorage(Number(response.usedStorage) || 0);
+          setStorageLimit(Number(response.storageLimit) || 0);
+          setEventName(response.eventName || "");
+  
+          const messagesRes = await fetchGuestMessages(stored.eventCode, stored.guestId);
+          if (messagesRes.status === 200 && messagesRes.messages) {
+            setGuestMessages(
+              messagesRes.messages.map((msg, idx) => ({
+                _id: String(idx),
+                text: msg,
+              }))
+            );
+          }
+  
+          // ✅ Only delete localStorage after expiration (do nothing else)
+          if (stored.expiresAt) {
+            const remainingTime = stored.expiresAt - Date.now();
+            if (remainingTime > 0) {
+              setTimeout(() => {
+                localStorage.removeItem("snaptogether-guest"); // 🧹 Just this
+                console.log("✅ Session expired: localStorage cleared");
+              }, remainingTime);
+            }
+          }
+        }
+      });
+    }
+  }, [eventCode]);
+  
 
   const handleVerifyGuest = async (e?: React.FormEvent) => {
     e?.preventDefault();
@@ -106,8 +146,6 @@ export default function GuestDashboard() {
       };
     });
   };
-  
-  
 
   useEffect(() => {
     if (!guestData?.guest?.guestId || !eventCode) return;
@@ -133,14 +171,15 @@ export default function GuestDashboard() {
     };
   }, [eventCode, guestData?.guest?.guestId]);
   
-
+ 
   return (
     <div className="guest-dashboard relative h-full flex flex-col">
       <Navbar />
       <div className="w-[95%] mb-[10vh] sm:w-full flex flex-col items-center justify-center pt-[10vh] mx-auto space-y-4">
-        <h2 className="text-white text-2xl font-semibold text-center flex flex-col items-center justify-center"><p>{t("title")}</p> <p>{guestData?.guest?.guestName}</p></h2>
+        <h2 className="text-white text-2xl font-semibold text-center flex flex-row items-center justify-center gap-3"><p>{t("title")}</p>{" "} <p>{guestData?.guest?.guestName}</p></h2>
+        <p>{t("instruction")}</p>
 
-        <h2 className="text-white text-2xl font-semibold text-center flex flex-col items-center justify-center">{eventName}</h2>
+        <h2 className="text-white text-2xl font-semibold text-center flex flex-col items-center justify-center italic">{eventName}</h2>
 
         {!guestData ? (
           <form onSubmit={handleVerifyGuest} className="max-w-[40em] container mx=auto space-y-3 p-6 border border-slate-500 border-opacity-65 rounded-lg shadow-md bg-white/10 backdrop-blur-lg">
