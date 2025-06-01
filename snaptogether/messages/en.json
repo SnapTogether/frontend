@@ -244,7 +244,7 @@
     "verifyButton": "Verify Guest",
     "verifying": "Verifying...",
     "error": "❌ Please enter your full name.",
-    "photosTitle": "📸 Your Uploaded Photos",
+    "photosTitle": "Your Uploaded Photos",
     "noPhotos": "No photos found for this guest.",
     "leaveMessage": "Leave a message for the host",
     "messagePlaceholder": "Write something nice…",
