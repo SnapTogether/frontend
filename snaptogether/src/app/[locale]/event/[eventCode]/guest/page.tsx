@@ -13,6 +13,7 @@ import GuestMessages, { Message } from "@/components/GuestMessages/GuestMessages
 import socket from "@/utils/socket";
 import { Divider } from "@/components/Divider/Divider";
 import { getStoredGuestSession } from "@/utils/getStoredGuestSession";
+import { CornerRightDown } from "lucide-react";
 
 export default function GuestDashboard() {
   const params = useParams();
@@ -176,8 +177,8 @@ export default function GuestDashboard() {
     <div className="guest-dashboard relative h-full flex flex-col">
       <Navbar />
       <div className="w-[95%] mb-[10vh] sm:w-full flex flex-col items-center justify-center pt-[13vh] mx-auto space-y-4">
-        <h2 className="text-white text-2xl font-semibold text-center flex flex-col items-center justify-center gap-3"><p>{t("title")}</p>{" "} <p>{guestData?.guest?.guestName}</p></h2>
-        <p className="text-center">{t("subtitle")}</p>
+        <h2 className="text-white text-2xl font-semibold text-center flex flex-col items-center justify-center gap-3"><p>{t("title")}</p>{" "} <p className="text-sm">{guestData?.guest?.guestName}</p></h2>
+        {/* <p className="text-center">{t("subtitle")}</p> */}
 
         <h2 className="text-white text-2xl font-semibold text-center flex flex-col items-center justify-center italic">{eventName}</h2>
 
@@ -220,12 +221,12 @@ export default function GuestDashboard() {
                         guestId={guestData?.guest?.guestId}
                       />
                     ) : (
-                      <p className="text-gray-300">{t("noPhotos")}</p>
+                      <p className="text-gray-300 text-sm">{t("noPhotos")}</p>
                     )}
                   </div>
                 </div>
               ) : (
-                <p className="text-gray-300">{t("noPhotos")}</p>
+                <p className="relative text-sm text-gray-300">{t("noPhotos")} <CornerRightDown className="absolute bottom-[-12px] right-0 inline-block w-7 h-7 ml-1" /></p>
               )}
 
               {/* ✅ Upload Component */}
@@ -236,7 +237,7 @@ export default function GuestDashboard() {
                 usedStorage={usedStorage}
                 storageLimit={storageLimit}
               />
-            <p className="text-gray-300 text-center">{t("maxFiles")}</p>
+            <p className="text-sm text-gray-300 text-center">{t("maxFiles")}</p>
 
             </div>
 
