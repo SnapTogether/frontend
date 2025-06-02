@@ -83,7 +83,7 @@ export const verifyGuest = async (
       // ✅ Save to localStorage if we're in the browser
       if (typeof window !== "undefined") {
         const now = Date.now();
-        const oneHour = 1000;
+        const oneHour = 60 * 60 * 1000;
       
         const expiresAt = now + oneHour;
       

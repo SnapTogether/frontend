@@ -2,7 +2,7 @@ import { useState } from "react";
 import imageCompression from "browser-image-compression";
 import { getPresignedUrl, uploadPhotosForGuest, uploadToS3 } from "@/api/photo";
 import { useTranslations } from "next-intl";
-import { fetchGuestPhotos } from "@/api/guest";
+import { ImageOff, ImagePlus } from "lucide-react";
 
 export default function Upload({
   eventCode,
@@ -17,6 +17,13 @@ export default function Upload({
   usedStorage: number;
   storageLimit: number;
 }) {
+  type SavedPhoto = {
+    _id?: string;
+    photoId?: string;
+    imageUrl?: string;
+    videoUrl?: string;
+  };
+  
   const [loading, setLoading] = useState(false);
   const [uploadProgress, setUploadProgress] = useState<number>(0);
   const isLimitReached = usedStorage >= storageLimit;
@@ -124,21 +131,25 @@ export default function Upload({
         body: JSON.stringify({
           eventCode,
           guestId,
-          files: uploadedFiles, // ✅ Includes fileSize
+          files: uploadedFiles,
         }),
       });
-  
+    
       if (saveRes.ok) {
-        const updatedPhotos = await fetchGuestPhotos(eventCode, guestId);
-        onPhotosUploaded(updatedPhotos.photos?.map((p) => ({ _id: p._id, url: p.imageUrl })) || []);
-  
-        // ❌ REMOVE this because socket emit is handled by the server
-        // socket.emit("photoUploaded", { eventCode, photos: updatedPhotos });
+        const saved = await saveRes.json();
+    
+        const normalized = (saved.photos || []).map((p: SavedPhoto) => ({
+          _id: p._id ?? p.photoId ?? "",
+          url: p.imageUrl ?? p.videoUrl ?? "",
+        }));        
+    
+        onPhotosUploaded(normalized);
       } else {
         alert(t("uploadFailed"));
         console.error("❌ Saving photo metadata failed");
       }
     }
+    
   
     setLoading(false);
     setUploadProgress(0);
@@ -167,10 +178,11 @@ export default function Upload({
       >
       <span className="w-full h-full !rounded-none font-semibold">
         {isLimitReached
-          ? t("storageFull")
+          ? <div className="flex items-center justify-center gap-3"><ImageOff width={20} height={20} /> {t("storageFull")}</div>
           : loading
           ? `${getProgressText(uploadProgress)} (${uploadProgress}%)`
-          : t("chooseImages")}
+          : <div className="flex items-center justify-center gap-3"><ImagePlus width={20} height={20} /> {t("chooseImages")}</div>
+        }
       </span>
       </label>
 

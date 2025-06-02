@@ -138,12 +138,23 @@ export default function GuestDashboard() {
     setGuestData((prev) => {
       if (!prev) return null;
   
+      const existing = prev.photos || [];
+  
+      // ✅ Normalize newPhotos into { _id, imageUrl } for consistency
+      const normalizedNew = newPhotos.map((photo) => ({
+        _id: photo._id,
+        imageUrl: photo.url,
+      }));
+  
+      // ✅ Merge and avoid duplicates by _id
+      const merged = [
+        ...existing,
+        ...normalizedNew.filter((np) => !existing.some((ep) => ep._id === np._id)),
+      ];
+  
       return {
         ...prev,
-        photos: newPhotos.map((photo) => ({
-          _id: photo._id,
-          imageUrl: photo.url,
-        })),
+        photos: merged,
       };
     });
   };
@@ -212,14 +223,27 @@ export default function GuestDashboard() {
                 <div className="relative w-full">
                   <div className="flex overflow-x-auto scroll-smooth snap-x snap-mandatory gap-3 p-2">
                     {guestData.photos && guestData.photos.length > 0 ? (
-                      <PhotoGallery photos={guestData.photos}
+                      <PhotoGallery
+                        photos={guestData.photos}
                         currentPage={currentPage}
                         setCurrentPage={setCurrentPage}
                         totalPages={totalPages}
                         totalPhotos={totalPhotos}
                         eventCode={eventCode}
                         guestId={guestData?.guest?.guestId}
+                        onDelete={(photoId) => {
+                          // Remove the deleted photo from state immediately
+                          setGuestData((prev) => {
+                            if (!prev) return null;
+
+                            return {
+                              ...prev,
+                              photos: prev.photos?.filter((p) => p._id !== photoId) || [],
+                            };
+                          });
+                        }}
                       />
+
                     ) : (
                       <p className="text-gray-300 text-sm">{t("noPhotos")}</p>
                     )}
