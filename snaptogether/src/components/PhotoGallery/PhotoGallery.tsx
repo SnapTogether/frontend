@@ -55,7 +55,7 @@ const PhotoGallery: React.FC<PhotoGalleryProps> = ({
     setIsModalOpen(true);
   };
 
-  const closeModal = () => {
+  const closeModal = () => { 
     setIsModalOpen(false);
     setSelectedImageIndex(null);
   };
