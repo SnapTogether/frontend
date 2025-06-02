@@ -17,6 +17,13 @@ export default function Upload({
   usedStorage: number;
   storageLimit: number;
 }) {
+  type SavedPhoto = {
+    _id?: string;
+    photoId?: string;
+    imageUrl?: string;
+    videoUrl?: string;
+  };
+  
   const [loading, setLoading] = useState(false);
   const [uploadProgress, setUploadProgress] = useState<number>(0);
   const isLimitReached = usedStorage >= storageLimit;
@@ -131,10 +138,10 @@ export default function Upload({
       if (saveRes.ok) {
         const saved = await saveRes.json();
     
-        const normalized = (saved.photos || []).map((p: any) => ({
-          _id: p._id ?? p.photoId,
-          url: p.imageUrl ?? p.videoUrl,
-        }));
+        const normalized = (saved.photos || []).map((p: SavedPhoto) => ({
+          _id: p._id ?? p.photoId ?? "",
+          url: p.imageUrl ?? p.videoUrl ?? "",
+        }));        
     
         onPhotosUploaded(normalized);
       } else {

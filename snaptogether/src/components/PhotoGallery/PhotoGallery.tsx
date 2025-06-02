@@ -10,6 +10,7 @@ import { deletePhotoForGuest } from "@/api/photo";
 interface Photo {
   _id: string;
   imageUrl: string;
+  photoId?: string;
 }
 
 interface PhotoGalleryProps {
@@ -134,7 +135,7 @@ const PhotoGallery: React.FC<PhotoGalleryProps> = ({
                         <button
                           onClick={(e) => {
                             e.stopPropagation();
-                            const id = (photo as any).photoId || (photo as any)._id;
+                            const id = photo.photoId ?? photo._id;
 
                             if (!id) {
                               console.warn("❌ Missing photoId in photo object:", photo);
