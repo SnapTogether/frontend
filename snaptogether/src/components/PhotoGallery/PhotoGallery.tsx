@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Button from "../Button/Button";
-import { ChevronLeft, ChevronRight, Images } from "lucide-react";
+import { ChevronLeft, ChevronRight, Images, X } from "lucide-react";
 import { useTranslations } from "next-intl";
 import Lightbox from "../Lightbox/Lightbox";
+import { usePathname } from "next/navigation";
+import { deletePhotoForGuest } from "@/api/photo";
 
 interface Photo {
   _id: string;
@@ -26,6 +28,9 @@ const PhotoGallery: React.FC<PhotoGalleryProps> = ({
   currentPage,
   setCurrentPage,
   totalPages,
+  eventCode,
+  guestId,
+  onDelete,
 }) => {
 
 
@@ -34,8 +39,8 @@ const PhotoGallery: React.FC<PhotoGalleryProps> = ({
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
 
-  // const pathname = usePathname();
-  // const isGuestView = pathname.includes("guest");
+  const pathname = usePathname();
+  const isGuestView = pathname.includes("guest");
   
   const nextPage = () => {
     if (currentPage < totalPages) setCurrentPage(currentPage + 1);
@@ -56,26 +61,26 @@ const PhotoGallery: React.FC<PhotoGalleryProps> = ({
   };
 
 
-  // const handleDelete = async (photoId: string) => {
-  //   if (!eventCode || !guestId) {
-  //     console.warn("⚠️ Missing eventCode or guestId for deletion");
-  //     return;
-  //   }
+  const handleDelete = async (photoId: string) => {
+    if (!eventCode || !guestId) {
+      console.warn("⚠️ Missing eventCode or guestId for deletion");
+      return;
+    }
   
-  //   const res = await deletePhotoForGuest(eventCode, guestId, photoId);
+    const res = await deletePhotoForGuest(eventCode, guestId, photoId);
   
-  //   if (res.status === 200) {
+    if (res.status === 200) {
     
-  //     if (onDelete) {
-  //       console.log("📤 Calling onDelete callback");
-  //       onDelete(photoId);
-  //     }
-  //   }
+      if (onDelete) {
+        console.log("📤 Calling onDelete callback", photoId);
+        onDelete(photoId);
+      }
+    }
     
-  //   else {
-  //     console.error("❌ Delete failed:", res.message);
-  //   }
-  // };
+    else {
+      console.error("❌ Delete failed:", res.message);
+    }
+  };
   
 
 
@@ -125,7 +130,7 @@ const PhotoGallery: React.FC<PhotoGalleryProps> = ({
                         unoptimized
                         className="h-full w-full object-cover aspect-square md:aspect-3/2"
                       />
-                      {/* {isGuestView && (
+                      {isGuestView && (
                         <button
                           onClick={(e) => {
                             e.stopPropagation();
@@ -149,7 +154,7 @@ const PhotoGallery: React.FC<PhotoGalleryProps> = ({
                           <X size={14} />
                         </button>
 
-                      )} */}
+                      )}
 
                     </div>
                   )}
