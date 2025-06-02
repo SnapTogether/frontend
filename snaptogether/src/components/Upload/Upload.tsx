@@ -2,7 +2,6 @@ import { useState } from "react";
 import imageCompression from "browser-image-compression";
 import { getPresignedUrl, uploadPhotosForGuest, uploadToS3 } from "@/api/photo";
 import { useTranslations } from "next-intl";
-import { fetchGuestPhotos } from "@/api/guest";
 import { ImageOff, ImagePlus } from "lucide-react";
 
 export default function Upload({
