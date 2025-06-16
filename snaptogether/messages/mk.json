@@ -29,7 +29,7 @@
     "plans": {
       "free": "Бесплатен (100MB)",
       "starter": "Стартер (3GB)",
-      "pro": "Про (10GB)"
+      "pro": "Про (30GB)"
     },
     "paymentInstructions": {
       "starterTitle": "Стартер план",
