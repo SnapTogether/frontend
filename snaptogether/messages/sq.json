@@ -29,7 +29,7 @@
     "plans": {
       "free": "Falas (100MB)",
       "starter": "Fillestar (3GB)",
-      "pro": "Pro (10GB)"
+      "pro": "Pro (30GB)"
     },
     "paymentInstructions": {
       "starterTitle": "Plani Fillestar",
