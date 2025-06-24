@@ -380,7 +380,7 @@ export default function GuestDashboard() {
         </div>
       ) : (
         <p className="relative text-sm text-gray-300">
-          ''
+          
         </p>
       )}
 
