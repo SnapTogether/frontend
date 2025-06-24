@@ -347,7 +347,7 @@ export default function GuestDashboard() {
     <div className="flex flex-col gap-3 text-center p-4 border border-slate-500 border-opacity-65 rounded-lg shadow-md bg-white/10 backdrop-blur-lg w-full">
       <div className="flex items-center justify-center gap-2">
         <User className="w-5 h-5" color="white"/>
-        <h3 className="text-lg font-semibold text-slate-50">{t("tabs.publicTitle")}</h3>
+        <h3 className="text-lg font-semibold text-slate-50">{t("tabs.privateTitle")}</h3>
       </div>
 
       <p className="text-sm text-gray-300">{t("tabs.myUploadsDesc")}</p>
