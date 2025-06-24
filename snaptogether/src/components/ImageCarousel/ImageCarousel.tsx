@@ -27,7 +27,7 @@ export default function ImageCarousel({ images }: ImageCarouselProps) {
   const t = useTranslations("template");
 
   return (
-    <div className="relative w-full max-w-lg mx-auto overflow-hidden rounded-lg shadow-lg flex flex-col items-center justify-center gap-4">
+    <div className="relative w-full max-w-lg mx-auto overflow-hidden rounded-lg flex flex-col items-center justify-center gap-4">
       <h3 className="text-white text-2xl md:text-2xl font-semibold flex flex-row items-center justify-center gap-3">{t("title")}</h3>
 
       {/* Image Wrapper */}

@@ -5,10 +5,10 @@ import { useParams } from "next/navigation";
 import { fetchEventForHost, EventResponse } from "@/api/event";
 import Image from "next/image";
 import Button from "@/components/Button/Button";
-import { BadgeInfo, Calendar, ChevronDown, FolderClosed, Hourglass, Mail, PartyPopper, SmilePlus } from "lucide-react";
+import { BadgeInfo, Calendar, ChevronDown, ChevronUp, FolderClosed, Hourglass, Mail, PartyPopper, SmilePlus } from "lucide-react";
 import Navbar from "@/components/Navbar/Navbar";
 import DownloadZip from "@/components/DownloadZip/DownloadZip";
-import CardImg from '../../../../../../../public/bg4.jpg'
+import CardImg from '../../../../../../../public/carousel/carousel-3.png'
 import PhotoGallery from "@/components/PhotoGallery/PhotoGallery";
 import GuestList from "@/components/GuestList/GuestList";
 import Loader from "@/components/Loader/Loader";
@@ -200,10 +200,10 @@ export default function HostDashboard() {
         <div className="w-full max-w-md">
           <button
             onClick={() => setOpenOverview((prev) => !prev)}
-            className="flex items-center justify-between w-full text-white bg-gray-700 px-4 py-2 rounded transition-colors"
+            className="flex items-center justify-between w-full text-white bg-[#515261] px-4 py-2 rounded-full transition-colors"
           >
             <span className="flex flex-row gap-4 items-center"><FolderClosed size={20} /> {t("eventOverview")}</span>
-            <ChevronDown
+            <ChevronUp
               className={clsx(
                 "transition-transform duration-300",
                 openOverview && "rotate-180"
@@ -247,7 +247,7 @@ export default function HostDashboard() {
           <PartyPopper size={20} /> {t("title")} <b>{eventData?.event?.eventName}</b>
         </h2>
 
-        <div className="event-info relative rounded-lg bg-gray-800 w-full text-center flex flex-col items-start text-white max-w-[21em] gap-3">
+        <div className="event-info relative rounded-lg bg-[#515261] w-full text-center flex flex-col items-start text-white max-w-[21em] gap-3">
           <Image src={CardImg} alt="logo" className="rounded-t-lg h-[10em] object-cover" />
           <h3 className="flex gap-3 font-bold text-lg text-white px-5">
             <BadgeInfo />{t("subtitle")}

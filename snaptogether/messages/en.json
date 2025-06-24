@@ -252,7 +252,23 @@
     "sending": "Sending...",
     "messageSuccess": "✅ Message sent successfully!",
     "messageError": "❌ Failed to send message. Try again later.",
-    "maxFiles": "You can upload only 10 files at a time."
+    "maxFiles": "You can upload only 10 files at a time.",
+    "tabs": {
+      "privateTitle": "Private Photos",
+      "privateDesc": "Photos only visible to event administrators",
+      "publicTitle": "Public Photos",
+      "publicDesc": "Photos visible to all event guests from everyone",
+      "myUploadsTitle": "My Uploads",
+      "myUploadsDesc": "All photos and videos you've uploaded to this event",
+      "noPublicPhotos": "No public photos yet",
+      "noUploads": "You haven't uploaded any photos yet",
+      "hintUploadInOtherTabs": "Upload photos in the Private or Public tabs"
+    },
+    "tabsLabels":{
+      "privateTitle": "Just for us",
+      "publicTitle": "Shared Gallery",
+      "myUploadsTitle": "My uploads"
+    }
   },
   "upload": {
     "storageFull": "Storage Full",

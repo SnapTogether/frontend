@@ -252,7 +252,23 @@
     "sending": "Duke dërguar...",
     "messageSuccess": "✅ Mesazhi u dërgua me sukses!",
     "messageError": "❌ Dështoi dërgimi i mesazhit. Provo përsëri më vonë.",
-    "maxFiles": "Mund të ngarkoni vetëm 10 foto/video njëkohësisht."
+    "maxFiles": "Mund të ngarkoni vetëm 10 foto/video njëkohësisht.",
+    "tabs": {
+      "privateTitle": "Fotot private",
+      "privateDesc": "Fotot që shihen vetëm nga administratorët e ngjarjes",
+      "publicTitle": "Fotot publike",
+      "publicDesc": "Fotot që shihen nga të gjithë të ftuarit e ngjarjes",
+      "myUploadsTitle": "Ngarkimet e mia",
+      "myUploadsDesc": "Të gjitha fotot dhe videot që keni ngarkuar për këtë ngjarje",
+      "noPublicPhotos": "Ende nuk ka foto publike",
+      "noUploads": "Ende nuk keni ngarkuar asnjë foto",
+      "hintUploadInOtherTabs": "Ngarkoni foto në skedat Private ose Publike"
+    },
+    "tabsLabels": {
+      "privateTitle": "Vetëm për ne",
+      "publicTitle": "Galeria e përbashkët",
+      "myUploadsTitle": "Të ngarkuarat e mia"
+    }
   },
   "upload": {
     "storageFull": "Hapësira është e mbushur",

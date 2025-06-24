@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Users, Image as ImageIcon, Star } from "lucide-react";
+import { Users, Image as ImageIcon, Star, TrendingUp } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 type EventStatsProps = {
@@ -20,9 +20,10 @@ export default function EventStats({
     totalGuests > 0 ? (totalPhotos / totalGuests).toFixed(1) : 0;
 
     return (
-    <div className="border w-full max-w-md bg-gray-900 text-white rounded-xl shadow-md p-6 flex flex-col gap-4 items-baseline">
+    <div className=" w-full max-w-md bg-[#515261] text-white rounded-xl shadow-md p-6 flex flex-col gap-4 items-baseline">
       <h3 className="text-white text-2xl font-semibold flex items-center gap-3">
-        📊 {t("title")}
+        <TrendingUp size={20} />
+        {t("title")}
       </h3>
 
       <div className="flex items-center gap-1">
