@@ -20,7 +20,7 @@ export default function Tabs({ tabs, defaultTabId }: { tabs: Tab[], defaultTabId
           {tabs.map((tab) => (
             <li key={tab.id} className="z-30 flex-auto text-center">
               <button
-                className={`z-30 flex items-center justify-center w-full px-0 py-2 text-sm mb-0 transition-all ease-in-out border-0 rounded-md cursor-pointer ${
+                className={`text-[14px] z-30 flex items-center justify-center w-full px-0 py-2 text-sm mb-0 transition-all ease-in-out border-0 rounded-md cursor-pointer ${
                   activeTab === tab.id ? "text-slate-900 bg-white shadow-md" : "text-slate-600 hover:text-slate-800"
                 }`}
                 role="tab"

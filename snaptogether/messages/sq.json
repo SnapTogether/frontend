@@ -265,9 +265,9 @@
       "hintUploadInOtherTabs": "Ngarkoni foto në skedat Private ose Publike"
     },
     "tabsLabels": {
-      "privateTitle": "Vetëm për ne",
-      "publicTitle": "Galeria e përbashkët",
-      "myUploadsTitle": "Të ngarkuarat e mia"
+      "privateTitle": "Për ne",
+      "publicTitle": "Galeria",
+      "myUploadsTitle": "Ngarkime"
     }
   },
   "upload": {
