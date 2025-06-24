@@ -208,7 +208,6 @@ export default function Upload({
             <div className="flex items-center justify-center gap-3">
               <ImagePlus width={20} height={20} /> {t("chooseImages")}
               {/* 🔍 Debug indicator */}
-              <span className="text-xs opacity-50">({isPrivate ? "Private" : "Public"})</span>
             </div>
           )}
         </span>

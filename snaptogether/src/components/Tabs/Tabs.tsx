@@ -10,8 +10,8 @@ export type Tab = {
   content: React.ReactNode
 }
 
-export default function Tabs({ tabs }: { tabs: Tab[] }) {
-  const [activeTab, setActiveTab] = useState(tabs[0]?.id || "")
+export default function Tabs({ tabs, defaultTabId }: { tabs: Tab[], defaultTabId?: string }) {
+  const [activeTab, setActiveTab] = useState(defaultTabId || tabs[0]?.id || "")
 
   return (
     <div className="w-full">

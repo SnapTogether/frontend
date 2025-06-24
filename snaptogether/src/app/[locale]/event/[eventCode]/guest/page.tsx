@@ -422,6 +422,7 @@ export default function GuestDashboard() {
         ) : (
           <div className="flex flex-col items-center justify-center gap-6 text-center container mx-auto max-w-[40em]">
             <Tabs
+              defaultTabId="public"
               tabs={[
                 {
                   id: "private",
