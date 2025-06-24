@@ -10,9 +10,10 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    background: #0F172A;
+    --background: #32344a; /* ✅ Use two dashes to define a custom CSS variable */
   }
 }
+
 
 body {
   color: var(--foreground);
