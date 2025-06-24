@@ -100,7 +100,7 @@ export default function Upload({
           const { photos } = await uploadPhotosForGuest(eventCode, guestId, [file], (percent) => {
             const totalProgress = ((i + percent / 100) / optimizedFiles.length) * 100
             setUploadProgress(Math.round(totalProgress))
-          })
+          },isPrivate)
 
           if (photos && photos.length > 0) {
             uploadedFiles.push({
