@@ -32,7 +32,8 @@ export const uploadPhotosForGuest = async (
   eventCode: string,
   guestId: string,
   files: File[],
-  onProgress?: (progress: number) => void
+  onProgress?: (progress: number) => void,
+  isPrivate: boolean = false
 ): Promise<UploadResponse> => {
   if (!guestId) {
     return {
@@ -44,6 +45,7 @@ export const uploadPhotosForGuest = async (
 
   const formData = new FormData();
   files.forEach((file) => formData.append("media", file));
+  formData.append("isPrivate", String(isPrivate));
 
   try {
     const res = await axios.post(

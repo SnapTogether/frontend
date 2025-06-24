@@ -259,16 +259,16 @@
       "privateDesc": "Фотографии што се видливи само за организаторот на настанот",
       "publicTitle": "Јавни фотографии",
       "publicDesc": "Фотографии што се видливи за сите гости на настанот",
-      "myUploadsTitle": "Мои прикачени",
+      "myUploadsTitle": "Прикачени",
       "myUploadsDesc": "Сите фотографии и видеа што сте ги поставиле на овој настан",
       "noPublicPhotos": "Сè уште нема јавни фотографии",
       "noUploads": "Сè уште немате поставено фотографии",
       "hintUploadInOtherTabs": "Поставете фотографии во табовите Приватни или Јавни"
     },
     "tabsLabels": {
-      "privateTitle": "Само за нас",
+      "privateTitle": "За нас",
       "publicTitle": "Заедничка галерија",
-      "myUploadsTitle": "Мои прикачени"
+      "myUploadsTitle": "Прикачени"
     }
   },
   "upload": {
