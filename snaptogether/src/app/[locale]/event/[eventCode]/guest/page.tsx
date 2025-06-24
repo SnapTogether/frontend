@@ -372,7 +372,7 @@ export default function GuestDashboard() {
                 const publicResponse = await fetchPublicPhotos(eventCode)
                 if (publicResponse.status === 200) {
                   setPublicPhotos(publicResponse.photos || [])
-                }
+                } 
               }}
               showDeleteButtons={true}
             />
