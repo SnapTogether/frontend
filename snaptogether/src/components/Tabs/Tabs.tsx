@@ -9,7 +9,7 @@ export type Tab = {
   label: string
   content: React.ReactNode
 }
-
+ 
 export default function Tabs({ tabs, defaultTabId }: { tabs: Tab[], defaultTabId?: string }) {
   const [activeTab, setActiveTab] = useState(defaultTabId || tabs[0]?.id || "")
 
