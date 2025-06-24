@@ -12,6 +12,7 @@ import {
   fetchPublicPhotos,
   fetchPrivatePhotos,
   fetchGuestPhotos,
+  GuestPhoto,
 } from "@/api/guest"
 import Upload from "@/components/Upload/Upload"
 import Navbar from "@/components/Navbar/Navbar"
@@ -43,9 +44,9 @@ export default function GuestDashboard() {
   const [publicUploadProgress, setPublicUploadProgress] = useState(0)
 
   // Separate photo states for different tabs
-  const [privatePhotos, setPrivatePhotos] = useState<any[]>([])
-  const [publicPhotos, setPublicPhotos] = useState<any[]>([])
-  const [myUploads, setMyUploads] = useState<any[]>([])
+  const [privatePhotos, setPrivatePhotos] = useState<GuestPhoto[]>([])
+  const [publicPhotos, setPublicPhotos] = useState<GuestPhoto[]>([])
+  const [myUploads, setMyUploads] = useState<GuestPhoto[]>([])
 
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string>("")

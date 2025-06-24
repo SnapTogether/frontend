@@ -5,7 +5,7 @@ import { useParams } from "next/navigation";
 import { fetchEventForHost, EventResponse } from "@/api/event";
 import Image from "next/image";
 import Button from "@/components/Button/Button";
-import { BadgeInfo, Calendar, ChevronDown, ChevronUp, FolderClosed, Hourglass, Mail, PartyPopper, SmilePlus } from "lucide-react";
+import { BadgeInfo, Calendar, ChevronUp, FolderClosed, Hourglass, Mail, PartyPopper, SmilePlus } from "lucide-react";
 import Navbar from "@/components/Navbar/Navbar";
 import DownloadZip from "@/components/DownloadZip/DownloadZip";
 import CardImg from '../../../../../../../public/carousel/carousel-3.png'
