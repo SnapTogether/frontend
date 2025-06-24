@@ -372,7 +372,7 @@ export default function GuestDashboard() {
                 const publicResponse = await fetchPublicPhotos(eventCode)
                 if (publicResponse.status === 200) {
                   setPublicPhotos(publicResponse.photos || [])
-                }
+                } 
               }}
               showDeleteButtons={true}
             />
@@ -380,8 +380,7 @@ export default function GuestDashboard() {
         </div>
       ) : (
         <p className="relative text-sm text-gray-300">
-          {t("tabs.noPublicPhotos")}{" "}
-          <CornerRightDown className="absolute bottom-[-12px] right-0 inline-block w-7 h-7 ml-1" />
+          
         </p>
       )}
 
