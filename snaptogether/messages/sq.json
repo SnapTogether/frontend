@@ -267,7 +267,8 @@
     "tabsLabels": {
       "privateTitle": "Për ne",
       "publicTitle": "Galeria",
-      "myUploadsTitle": "Ngarkime"
+      "myUploadsTitle": "Ngarkime",
+      "chooseOne": "Zgjidh një nga opsionet"
     }
   },
   "upload": {

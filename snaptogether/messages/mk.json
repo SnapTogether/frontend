@@ -268,7 +268,8 @@
     "tabsLabels": {
       "privateTitle": "За нас",
       "publicTitle": "Заедничка галерија",
-      "myUploadsTitle": "Прикачени"
+      "myUploadsTitle": "Прикачени",
+      "chooseOne": "Избери една од опциите"
     }
   },
   "upload": {

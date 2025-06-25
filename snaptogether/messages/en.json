@@ -267,7 +267,8 @@
     "tabsLabels":{
       "privateTitle": "Just for us",
       "publicTitle": "Shared Gallery",
-      "myUploadsTitle": "My uploads"
+      "myUploadsTitle": "My uploads",
+      "chooseOne": "Please choose one option"
     }
   },
   "upload": {

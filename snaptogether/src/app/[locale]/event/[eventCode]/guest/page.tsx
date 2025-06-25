@@ -387,7 +387,7 @@ export default function GuestDashboard() {
       <p className="text-sm text-gray-300 text-center">{t("tabs.hintUploadInOtherTabs")}</p>
     </div>
   )
-
+ 
   return (
     <div className="guest-dashboard relative h-full flex flex-col">
       <Navbar />
@@ -400,6 +400,8 @@ export default function GuestDashboard() {
         <h2 className="text-white text-2xl font-semibold text-center flex flex-col items-center justify-center italic">
           {eventName}
         </h2>
+ 
+        <p className="text-sm italic text-slate-100">{t("tabsLabels.chooseOne")}</p>
 
         {!guestData ? (
           <form
@@ -420,7 +422,7 @@ export default function GuestDashboard() {
             {error && <p className="text-red-500 text-sm">{error}</p>}
           </form>
         ) : (
-          <div className="flex flex-col items-center justify-center gap-6 text-center container mx-auto max-w-[40em]">
+          <div className="flex flex-col items-center justify-center gap-6 text-center container mx-auto max-w-[40em] !mt-1">
             <Tabs
               defaultTabId="public"
               tabs={[
@@ -441,7 +443,6 @@ export default function GuestDashboard() {
                 },
               ]}
             />
-
             <Divider width="full" border={true} />
 
             <div className="mx-auto w-full box-border p-4 border border-slate-500 border-opacity-65 rounded-lg shadow-md bg-white/10 backdrop-blur-lg">
