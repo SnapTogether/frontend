@@ -387,7 +387,7 @@ export default function GuestDashboard() {
       <p className="text-sm text-gray-300 text-center">{t("tabs.hintUploadInOtherTabs")}</p>
     </div>
   )
-
+ 
   return (
     <div className="guest-dashboard relative h-full flex flex-col">
       <Navbar />
