@@ -400,7 +400,7 @@ export default function GuestDashboard() {
         <h2 className="text-white text-2xl font-semibold text-center flex flex-col items-center justify-center italic">
           {eventName}
         </h2>
-
+ 
         <p className="text-sm italic text-slate-100">{t("tabsLabels.chooseOne")}</p>
 
         {!guestData ? (
