@@ -39,7 +39,7 @@ export const fetchAllEvents = async (page = 1) => {
 /**
  * Approve payment for a specific event by ID (requires Authorization)
  */
-export const approveEventPayment = async (eventCode: string, locale = 'en') => {
+export const approveEventPayment = async (eventCode: string, locale = 'mk') => {
     const res = await fetch(`${API_BASE_URL}/events/${eventCode}/confirm-payment`, {
       method: "PATCH",
       headers: {

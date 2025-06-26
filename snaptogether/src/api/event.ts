@@ -7,6 +7,7 @@ export interface CreateEventData {
   eventName: string;
   eventDate: string;
   plan: "free" | "starter" | "pro";
+  lang?: string;
 }
 
 // 📝 Response Interface for Event Creation
@@ -53,6 +54,7 @@ export const createEvent = async (
       hostCode: data.hostCode,
       hostLink: data.hostLink,
       guestLink: data.guestLink,
+      locale: data.locale,
     };
   } catch (error) {
     console.error("❌ Network/Server Error:", (error as Error).message);
@@ -98,6 +100,7 @@ export interface EventResponse {
     usedStorage: number;
     storageLimit: number;
     isPaymentConfirmed: boolean;
+    lang?: string;
   };
   error?: string;
 }

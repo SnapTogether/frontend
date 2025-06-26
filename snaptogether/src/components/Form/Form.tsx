@@ -24,6 +24,7 @@ export default function EventForm() {
     watch
   } = useForm<CreateEventData>();
   const locale = useLocale();
+  console.log('locale', locale);
 
   const selectedPlan = watch("plan", "free");
 
