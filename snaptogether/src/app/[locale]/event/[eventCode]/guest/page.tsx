@@ -401,7 +401,11 @@ export default function GuestDashboard() {
           {eventName}
         </h2>
  
-        <p className="text-sm italic text-slate-100">{t("tabsLabels.chooseOne")}</p>
+        {guestData ? (
+          <p className="text-sm italic text-slate-100">{t("tabsLabels.chooseOne")}</p>
+        ) : (
+          <div className="h-5" /> // keeps layout height roughly consistent
+        )}
 
         {!guestData ? (
           <form
