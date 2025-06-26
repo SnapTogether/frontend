@@ -74,7 +74,7 @@ export default function HostDashboard() {
       setError("");
 
       const response = await fetchEventForHost(eventCode, hostCode, currentPage, photosPerPage);
-
+      console.log('event response',response);
       if (response.status !== 200) {
         setError(response.message);
       } else {
