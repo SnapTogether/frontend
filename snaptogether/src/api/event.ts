@@ -18,7 +18,7 @@ export interface CreateEventResponse {
   hostLink?: string;
   guestLink?: string;
   error?: string;
-  locale?: "en" | "mk" | "sq";
+  locale?: "en" | "mk" | "sq" | "tr";
 }
 
 // ✅ API Call: Create a New Event
