@@ -11,7 +11,8 @@
     left: 0;
     width: 100%;
     height: 100vh; /* ensures it always covers the full screen */
-    background-image: url('/carousel/carousel-1.png');
+    /* background-image: url('/carousel/carousel-1.png'); */
+    background-image: url('/carousel/raw.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
