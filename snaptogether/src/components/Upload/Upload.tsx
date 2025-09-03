@@ -2,7 +2,7 @@
 
 import type React from "react"
 import imageCompression from "browser-image-compression"
-import { getPresignedUrl, uploadPhotosForGuest, uploadToS3 } from "@/api/photo"
+import { getPresignedUrl, uploadToS3 } from "@/api/photo"
 import { useTranslations } from "next-intl"
 import { ImageOff, ImagePlus } from "lucide-react"
 
