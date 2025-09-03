@@ -161,25 +161,28 @@ const PhotoGallery: React.FC<PhotoGalleryProps> = ({
           </div>
 
           {/* Pagination Controls */}
-          <div className="mt-4 flex justify-center items-center gap-4">
-            <Button
-              onClick={prevPage}
-              variant="tertiary"
-              disabled={currentPage === 1}
-              className={`px-4 py-2 rounded-md ${currentPage === 1 ? "bg-gray-400" : "bg-blue-500 hover:bg-blue-600 text-white"}`}
-              iconLeft={<ChevronLeft color="white" size={20} />}
-            />
-            <span className="text-white">
-              {currentPage} of {totalPages}
-            </span>
-            <Button
-              onClick={nextPage}
-              variant="tertiary"
-              disabled={currentPage === totalPages}
-              className={`px-4 py-2 rounded-md ${currentPage === totalPages ? "bg-gray-400" : "bg-blue-500 hover:bg-blue-600 text-white"}`}
-              iconLeft={<ChevronRight color="white" size={20} />}
-            />
-          </div>
+          {!isGuestView && (
+            <div className="mt-4 flex justify-center items-center gap-4">
+              <Button
+                onClick={prevPage}
+                variant="tertiary"
+                disabled={currentPage === 1}
+                className={`px-4 py-2 rounded-md ${currentPage === 1 ? "bg-gray-400" : "bg-blue-500 hover:bg-blue-600 text-white"}`}
+                iconLeft={<ChevronLeft color="white" size={20} />}
+              />
+              <span className="text-white">
+                {currentPage} of {totalPages}
+              </span>
+              <Button
+                onClick={nextPage}
+                variant="tertiary"
+                disabled={currentPage === totalPages}
+                className={`px-4 py-2 rounded-md ${currentPage === totalPages ? "bg-gray-400" : "bg-blue-500 hover:bg-blue-600 text-white"}`}
+                iconLeft={<ChevronRight color="white" size={20} />}
+              />
+            </div>
+          )}
+
         </>
       ) : (
         <p className="mt-2 text-gray-400">{t("noPhotos")}</p>
