@@ -87,51 +87,81 @@ export default function Upload({
 
     const uploadedFiles: { imageUrl: string; s3Key: string; fileSize: number }[] = []
 
-    const MAX_DIRECT_UPLOAD_MB = 2.5
 
-    for (let i = 0; i < optimizedFiles.length; i++) {
-      const file = optimizedFiles[i]
-      const isLargeVideo = file.type.startsWith("video/") && file.size > MAX_DIRECT_UPLOAD_MB * 1024 * 1024
+// BEFORE you had: if (isLargeVideo) { ... } else { ... }    
+// const MAX_DIRECT_UPLOAD_MB = 500 // 500 MB
+// for (let i = 0; i < optimizedFiles.length; i++) {
+//   const file = optimizedFiles[i]
+//   const isLargeVideo = file.type.startsWith("video/") && file.size > MAX_DIRECT_UPLOAD_MB * 1024 * 1024
 
-      try {
-        if (isLargeVideo) {
-          console.log(`📡 Uploading ${file.name} via BACKEND (size: ${(file.size / 1024 / 1024).toFixed(2)} MB)`)
+//   try {
+//     if (isLargeVideo) {
+//       console.log(`📡 Uploading ${file.name} via BACKEND (size: ${(file.size / 1024 / 1024).toFixed(2)} MB)`)
 
-          const { photos } = await uploadPhotosForGuest(eventCode, guestId, [file], (percent) => {
-            const totalProgress = ((i + percent / 100) / optimizedFiles.length) * 100
-            setUploadProgress(Math.round(totalProgress))
-          },isPrivate)
+//       const { photos } = await uploadPhotosForGuest(eventCode, guestId, [file], (percent) => {
+//         const totalProgress = ((i + percent / 100) / optimizedFiles.length) * 100
+//         setUploadProgress(Math.round(totalProgress))
+//       },isPrivate)
 
-          if (photos && photos.length > 0) {
-            uploadedFiles.push({
-              imageUrl: photos[0].url,
-              s3Key: photos[0].url.split(".amazonaws.com/")[1],
-              fileSize: file.size,
-            })
-          }
-        } else {
-          console.log(`☁️ Uploading ${file.name} DIRECTLY to S3 (size: ${(file.size / 1024 / 1024).toFixed(2)} MB)`)
+//       if (photos && photos.length > 0) {
+//         uploadedFiles.push({
+//           imageUrl: photos[0].url,
+//           s3Key: photos[0].url.split(".amazonaws.com/")[1],
+//           fileSize: file.size,
+//         })
+//       }
+//     } else {
+//       console.log(`☁️ Uploading ${file.name} DIRECTLY to S3 (size: ${(file.size / 1024 / 1024).toFixed(2)} MB)`)
 
-          const { url, publicUrl, key: s3Key } = await getPresignedUrl(file, eventCode, guestId)
-          await uploadToS3(file, url, (percent) => {
-            const totalProgress = ((i + percent / 100) / optimizedFiles.length) * 100
-            setUploadProgress(Math.round(totalProgress))
-          })
+//       const { url, publicUrl, key: s3Key } = await getPresignedUrl(file, eventCode, guestId)
+//       await uploadToS3(file, url, (percent) => {
+//         const totalProgress = ((i + percent / 100) / optimizedFiles.length) * 100
+//         setUploadProgress(Math.round(totalProgress))
+//       })
 
-          uploadedFiles.push({
-            imageUrl: publicUrl,
-            s3Key,
-            fileSize: file.size,
-          })
-        }
+//       uploadedFiles.push({
+//         imageUrl: publicUrl,
+//         s3Key,
+//         fileSize: file.size,
+//       })
+//     }
 
-        setUploadProgress(Math.round(((i + 1) / optimizedFiles.length) * 100))
-      } catch (err) {
-        console.error("Upload failed:", err)
-        alert(t("uploadFailed"))
-        break
-      }
-    }
+//     setUploadProgress(Math.round(((i + 1) / optimizedFiles.length) * 100))
+//   } catch (err) {
+//     console.error("Upload failed:", err)
+//     alert(t("uploadFailed"))
+//     break
+//   }
+// }
+
+for (let i = 0; i < optimizedFiles.length; i++) {
+  const file = optimizedFiles[i];
+
+  try {
+    // 1) get presigned PUT for this file (works for images AND videos)
+    const { url, publicUrl, key: s3Key } = await getPresignedUrl(file, eventCode, guestId);
+
+    // 2) upload file directly to S3 with progress
+    await uploadToS3(file, url, (percent) => {
+      const totalProgress = ((i + percent / 100) / optimizedFiles.length) * 100;
+      setUploadProgress(Math.round(totalProgress));
+    });
+
+    // 3) collect for /save
+    uploadedFiles.push({
+      imageUrl: publicUrl, // for videos too (you can store as videoUrl server-side if you prefer)
+      s3Key,
+      fileSize: file.size,
+    });
+
+    setUploadProgress(Math.round(((i + 1) / optimizedFiles.length) * 100));
+  } catch (err) {
+    console.error("Upload failed:", err);
+    alert(t("uploadFailed"));
+    break;
+  }
+}
+
 
     console.log("📦 Sending uploadedFiles to backend:", uploadedFiles)
 
