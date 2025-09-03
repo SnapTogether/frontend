@@ -297,51 +297,62 @@ export default function GuestDashboard() {
   )
 
   const publicPhotosTabContent = (
-    <div className="flex flex-col gap-3 text-center p-4 border border-slate-500 border-opacity-65 rounded-lg shadow-md bg-white/10 backdrop-blur-lg w-full">
-      <div className="flex items-center justify-center gap-2">
-        <Globe className="w-5 h-5" color="white"/>
-        <h3 className="text-lg font-semibold text-slate-50">{t("tabs.publicTitle")}</h3>
-      </div>
-
-      <p className="text-sm text-gray-300">{t("tabs.publicDesc")}</p>
-
-      {publicPhotos && publicPhotos.length > 0 ? (
-        <div className="relative w-full">
-          <div className="flex overflow-x-auto scroll-smooth snap-x snap-mandatory gap-3 p-2">
-            <PhotoGallery
-              photos={publicPhotos}
-              currentPage={currentPage}
-              setCurrentPage={setCurrentPage}
-              totalPages={Math.ceil(publicPhotos.length / photosPerPage)}
-              totalPhotos={publicPhotos.length}
-              eventCode={eventCode}
-              guestId={guestData?.guest?.guestId}
-              showDeleteButtons={false}
-            />
-          </div>
+    <div className="max-h-[75vh] flex flex-col gap-3 text-center p-4 border border-slate-500 border-opacity-65 rounded-lg shadow-md bg-white/10 backdrop-blur-lg w-full">
+      {/* Scrollable content */}
+      <div className="flex-1 overflow-y-auto space-y-3">
+        <div className="flex items-center justify-center gap-2">
+          <Globe className="w-5 h-5" color="white" />
+          <h3 className="text-lg font-semibold text-slate-50">
+            {t("tabs.publicTitle")}
+          </h3>
         </div>
-      ) : (
-        <p className="relative text-sm text-gray-300">
-          No public photos yet <CornerRightDown className="absolute bottom-[-12px] right-0 inline-block w-7 h-7 ml-1" />
-        </p>
-      )}
-
-      <Upload
-        eventCode={eventCode}
-        guestId={guestData?.guest?.guestId || ""}
-        onPhotosUploaded={(newPhotos) => handlePhotosUploaded(newPhotos, false)}
-        usedStorage={usedStorage}
-        storageLimit={storageLimit}
-        isPrivate={false}
-        loading={publicUploadLoading}
-        uploadProgress={publicUploadProgress}
-        setLoading={setPublicUploadLoading}
-        setUploadProgress={setPublicUploadProgress}
-      />
-
-      <p className="text-sm text-gray-300 text-center">{t("maxFiles")}</p>
+  
+        <p className="text-sm text-gray-300">{t("tabs.publicDesc")}</p>
+  
+        {publicPhotos && publicPhotos.length > 0 ? (
+          <div className="relative w-full">
+            <div className="flex overflow-x-auto scroll-smooth snap-x snap-mandatory gap-3 p-2">
+              <PhotoGallery
+                photos={publicPhotos}
+                currentPage={currentPage}
+                setCurrentPage={setCurrentPage}
+                totalPages={Math.ceil(publicPhotos.length / photosPerPage)}
+                totalPhotos={publicPhotos.length}
+                eventCode={eventCode}
+                guestId={guestData?.guest?.guestId}
+                showDeleteButtons={false}
+              />
+            </div>
+          </div>
+        ) : (
+          <p className="relative text-sm text-gray-300">
+            No public photos yet{" "}
+            <CornerRightDown className="absolute bottom-[-12px] right-0 inline-block w-7 h-7 ml-1" />
+          </p>
+        )}
+        {/* Optional: bottom padding so last content isn't hidden behind the footer shadow */}
+        <div className="h-2" />
+      </div>
+  
+      {/* Non-scrollable sticky footer (stays at the bottom of the card) */}
+      <section className="border-t border-slate-500/65 pt-3">
+        <Upload
+          eventCode={eventCode}
+          guestId={guestData?.guest?.guestId || ""}
+          onPhotosUploaded={(newPhotos) => handlePhotosUploaded(newPhotos, false)}
+          usedStorage={usedStorage}
+          storageLimit={storageLimit}
+          isPrivate={false}
+          loading={publicUploadLoading}
+          uploadProgress={publicUploadProgress}
+          setLoading={setPublicUploadLoading}
+          setUploadProgress={setPublicUploadProgress}
+        />
+        <p className="text-sm text-gray-300 text-center">{t("maxFiles")}</p>
+      </section>
     </div>
-  )
+  );
+  
 
   const myUploadsTabContent = (
     <div className="flex flex-col gap-3 text-center p-4 border border-slate-500 border-opacity-65 rounded-lg shadow-md bg-white/10 backdrop-blur-lg w-full">
