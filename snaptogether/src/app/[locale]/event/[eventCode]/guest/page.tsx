@@ -24,7 +24,7 @@ import GuestMessages, { type Message } from "@/components/GuestMessages/GuestMes
 import socket from "@/utils/socket"
 import { Divider } from "@/components/Divider/Divider"
 import { getStoredGuestSession } from "@/utils/getStoredGuestSession"
-import { CornerRightDown, Lock, Globe, User } from "lucide-react"
+import { CornerRightDown, Lock, Globe, User, RefreshCcw } from "lucide-react"
 import Tabs from "@/components/Tabs/Tabs"
 
 export default function GuestDashboard() {
@@ -251,7 +251,7 @@ export default function GuestDashboard() {
   const privatePhotosTabContent = (
     <div className="flex flex-col gap-3 text-center p-4 border border-slate-500 border-opacity-65 rounded-lg shadow-md bg-white/10 backdrop-blur-lg w-full">
       <div className="flex items-center justify-center gap-2">
-        <Lock className="w-5 h-5" color="white"/>
+        <Lock className="w-5 h-5" color="white" />
         <h3 className="text-lg font-semibold text-slate-50">{t("tabs.privateTitle")}</h3>
       </div>
 
@@ -297,7 +297,7 @@ export default function GuestDashboard() {
   )
 
   const publicPhotosTabContent = (
-    <div className="max-h-[75vh] flex flex-col gap-3 text-center p-4 border border-slate-500 border-opacity-65 rounded-lg shadow-md bg-white/10 backdrop-blur-lg w-full">
+    <div className="relative max-h-[75vh] flex flex-col gap-3 text-center p-4 border border-slate-500 border-opacity-65 rounded-lg shadow-md bg-white/10 backdrop-blur-lg w-full">
       {/* Scrollable content */}
       <div className="flex-1 overflow-y-auto space-y-3">
         <div className="flex items-center justify-center gap-2">
@@ -306,9 +306,14 @@ export default function GuestDashboard() {
             {t("tabs.publicTitle")}
           </h3>
         </div>
-  
+
+        <RefreshCcw
+          className="h-8 w-8 text-white bg-slate-400/30 rounded-full p-2 absolute top-1 right-3 cursor-pointer hover:bg-slate-400/10"
+          color="white"
+          onClick={() => window.location.reload()} // 👈 reloads the page
+        />
         <p className="text-sm text-gray-300">{t("tabs.publicDesc")}</p>
-  
+
         {publicPhotos && publicPhotos.length > 0 ? (
           <div className="relative w-full">
             <div className="flex overflow-x-auto scroll-smooth snap-x snap-mandatory gap-3 p-2">
@@ -333,7 +338,7 @@ export default function GuestDashboard() {
         {/* Optional: bottom padding so last content isn't hidden behind the footer shadow */}
         <div className="h-2" />
       </div>
-  
+
       {/* Non-scrollable sticky footer (stays at the bottom of the card) */}
       <section className="border-t border-slate-500/65 pt-3">
         <Upload
@@ -352,12 +357,12 @@ export default function GuestDashboard() {
       </section>
     </div>
   );
-  
+
 
   const myUploadsTabContent = (
     <div className="flex flex-col gap-3 text-center p-4 border border-slate-500 border-opacity-65 rounded-lg shadow-md bg-white/10 backdrop-blur-lg w-full">
       <div className="flex items-center justify-center gap-2">
-        <User className="w-5 h-5" color="white"/>
+        <User className="w-5 h-5" color="white" />
         <h3 className="text-lg font-semibold text-slate-50">{t("tabs.privateTitle")}</h3>
       </div>
 
@@ -383,7 +388,7 @@ export default function GuestDashboard() {
                 const publicResponse = await fetchPublicPhotos(eventCode)
                 if (publicResponse.status === 200) {
                   setPublicPhotos(publicResponse.photos || [])
-                } 
+                }
               }}
               showDeleteButtons={true}
             />
@@ -391,14 +396,14 @@ export default function GuestDashboard() {
         </div>
       ) : (
         <p className="relative text-sm text-gray-300">
-          
+
         </p>
       )}
 
       <p className="text-sm text-gray-300 text-center">{t("tabs.hintUploadInOtherTabs")}</p>
     </div>
   )
- 
+
   return (
     <div className="guest-dashboard relative h-full flex flex-col">
       <Navbar />
@@ -411,7 +416,7 @@ export default function GuestDashboard() {
         <h2 className="text-white text-2xl font-semibold text-center flex flex-col items-center justify-center italic">
           {eventName}
         </h2>
- 
+
         {guestData ? (
           <p className="text-sm italic text-slate-100">{t("tabsLabels.chooseOne")}</p>
         ) : (
@@ -443,7 +448,7 @@ export default function GuestDashboard() {
               tabs={[
                 {
                   id: "private",
-                  label:  t("tabsLabels.privateTitle"),
+                  label: t("tabsLabels.privateTitle"),
                   content: privatePhotosTabContent,
                 },
                 {
