@@ -111,7 +111,7 @@ export const AnimatedStepCard = ({
           className="mask-overlay absolute left-0 bottom-0 w-full h-0 z-20 pointer-events-none"
           style={{
             background:
-              'linear-gradient(to top, rgba(15,23,42,1) 0%, rgba(15,23,42,0.8) 40%, rgba(15,23,42,0.4) 70%, rgba(15,23,42,0) 100%)',
+              'linear-gradient(to top, rgba(50, 52, 74, 1) 0%, rgba(50, 52, 74, 0.8) 40%, rgba(50, 52, 74, 0.4) 70%, rgba(50, 52, 74, 0) 100%'
           }}
         />
       </section>
