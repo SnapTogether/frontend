@@ -269,7 +269,9 @@
       "publicTitle": "Shared Gallery",
       "myUploadsTitle": "My uploads",
       "chooseOne": "Please choose one option"
-    }
+    },
+    "load": "Load more",
+    "loading": "Loading..."
   },
   "upload": {
     "storageFull": "Storage Full",
