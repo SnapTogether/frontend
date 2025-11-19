@@ -56,7 +56,14 @@ export default function GuestDashboard() {
   const [guestMessages, setGuestMessages] = useState<Message[]>([])
 
   const [currentPage, setCurrentPage] = useState(1)
+
   const photosPerPage = 20
+
+  // public gallery pagination
+  const [publicPage, setPublicPage] = useState(1)
+  const [publicTotalPages, setPublicTotalPages] = useState(1)
+  const [publicLoadingMore, setPublicLoadingMore] = useState(false)
+
 
   const t = useTranslations("guestDashboard")
 
@@ -65,7 +72,7 @@ export default function GuestDashboard() {
     try {
       const [privateResponse, publicResponse, myUploadsResponse] = await Promise.all([
         fetchPrivatePhotos(eventCode, guestId),
-        fetchPublicPhotos(eventCode),
+        fetchPublicPhotos(eventCode, 1, photosPerPage),      // 👈 page 1 only
         fetchGuestPhotos(eventCode, guestId),
       ])
 
@@ -75,6 +82,8 @@ export default function GuestDashboard() {
 
       if (publicResponse.status === 200) {
         setPublicPhotos(publicResponse.photos || [])
+        setPublicPage(publicResponse.pagination?.page ?? 1)
+        setPublicTotalPages(publicResponse.pagination?.totalPages ?? 1)
       }
 
       if (myUploadsResponse.status === 200) {
@@ -84,6 +93,30 @@ export default function GuestDashboard() {
       console.error("Error loading photos:", error)
     }
   }
+
+  const loadMorePublicPhotos = async () => {
+    if (publicLoadingMore) return
+    if (publicPage >= publicTotalPages) return
+
+    setPublicLoadingMore(true)
+    try {
+      const nextPage = publicPage + 1
+      const res = await fetchPublicPhotos(eventCode, nextPage, photosPerPage)
+
+      if (res.status === 200) {
+        const newPhotos: GuestPhoto[] = res.photos ?? []  // ✅ always an array
+        setPublicPhotos(prev => [...prev, ...newPhotos])
+        setPublicPage(res.pagination?.page ?? nextPage)
+        setPublicTotalPages(res.pagination?.totalPages ?? publicTotalPages)
+      }
+    } catch (err) {
+      console.error("Error loading more public photos:", err)
+    } finally {
+      setPublicLoadingMore(false)
+    }
+  }
+
+
 
   useEffect(() => {
     const stored = getStoredGuestSession()
@@ -327,7 +360,18 @@ export default function GuestDashboard() {
                 guestId={guestData?.guest?.guestId}
                 showDeleteButtons={false}
               />
+              {publicPage < publicTotalPages && (
+                <button
+                  onClick={loadMorePublicPhotos}
+                  disabled={publicLoadingMore}
+                  className="w-fit mx-auto mt-3 px-4 py-2 bg-white/20 text-white rounded-lg disabled:opacity-50"
+                >
+                  {publicLoadingMore ? t("loading") : t("load") }
+                </button>
+              )}
+
             </div>
+
           </div>
         ) : (
           <p className="relative text-sm text-gray-300">
@@ -370,7 +414,7 @@ export default function GuestDashboard() {
 
       {myUploads && myUploads.length > 0 ? (
         <div className="relative w-full">
-          <div className="flex overflow-x-auto scroll-smooth snap-x snap-mandatory gap-3 p-2">
+          <div className="flex flex-col overflow-x-auto scroll-smooth snap-x snap-mandatory gap-3 p-2">
             <PhotoGallery
               photos={myUploads}
               currentPage={currentPage}
@@ -388,7 +432,7 @@ export default function GuestDashboard() {
                 const publicResponse = await fetchPublicPhotos(eventCode)
                 if (publicResponse.status === 200) {
                   setPublicPhotos(publicResponse.photos || [])
-                } 
+                }
               }}
               showDeleteButtons={true}
             />
