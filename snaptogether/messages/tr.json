@@ -269,7 +269,9 @@
         "publicTitle": "Paylaşılan Galeri",
         "myUploadsTitle": "Yüklemelerim",
         "chooseOne": "Lütfen bir seçenek belirleyin"
-      }
+      },
+      "load": "Yükle",
+      "loading": "Daha fazla yükle..."
     },
     "upload": {
       "storageFull": "Depolama Dolu",

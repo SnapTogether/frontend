@@ -269,7 +269,9 @@
       "publicTitle": "Galeria",
       "myUploadsTitle": "Ngarkime",
       "chooseOne": "Zgjidh një nga opsionet"
-    }
+    },
+    "load": "Shiko më shumë",
+    "loading": "Po ngarkohet..."
   },
   "upload": {
     "storageFull": "Hapësira është e mbushur",
