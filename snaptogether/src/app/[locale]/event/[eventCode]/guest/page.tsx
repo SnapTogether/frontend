@@ -349,7 +349,7 @@ export default function GuestDashboard() {
 
         {publicPhotos && publicPhotos.length > 0 ? (
           <div className="relative w-full">
-            <div className="flex overflow-x-auto scroll-smooth snap-x snap-mandatory gap-3 p-2">
+            <div className="flex flex-col overflow-x-auto scroll-smooth snap-x snap-mandatory gap-3 p-2">
               <PhotoGallery
                 photos={publicPhotos}
                 currentPage={currentPage}
