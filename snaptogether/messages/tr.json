@@ -27,9 +27,9 @@
       "failedMessage": "❌ Etkinlik oluşturulamadı. Lütfen tekrar deneyin.",
       "plan": "Plan Seçin",
       "plans": {
-        "free": "Ücretsiz (100 MB)",
-        "starter": "Başlangıç (3 GB)",
-        "pro": "Pro (30 GB)"
+        "free": "Ücretsiz",
+        "starter": "Başlangıç (1200den)",
+        "pro": "Premium (1800den)"
       },
       "paymentInstructions": {
         "starterTitle": "Başlangıç Planı",
@@ -271,7 +271,21 @@
         "chooseOne": "Lütfen bir seçenek belirleyin"
       },
       "load": "Yükle",
-      "loading": "Daha fazla yükle..."
+      "loading": "Daha fazla yükle...",
+      "categories": {
+        "bride_groom": "Gelin & Damat",
+        "family": "Aile",
+        "kids": "Çocuklar",
+        "dance_floor": "Dans Pisti",
+        "details": "Detaylar",
+        "food_cake": "Yemek & Pasta",
+        "group": "Grup Fotoğrafları",
+        "couples": "Çiftler",
+        "venue": "Mekan / Salon",
+        "selfie": "Selfie",
+        "outdoor": "Açık Alan",
+        "other": "Diğer"
+      }
     },
     "upload": {
       "storageFull": "Depolama Dolu",

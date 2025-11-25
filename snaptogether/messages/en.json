@@ -27,9 +27,9 @@
     "failedMessage": "❌ Failed to create event. Please try again.",
     "plan": "Select Plan",
     "plans": {
-      "free": "Free (100MB)",
-      "starter": "Starter (3GB)",
-      "pro": "Pro (30GB)"
+      "free": "Free",
+      "starter": "Starter (1200den)",
+      "pro": "Premium (1800den)"
     },
     "paymentInstructions": {
       "starterTitle": "Starter Plan",
@@ -38,8 +38,8 @@
       "bankName": "Bank Name: Uni Bank",
       "accountNumber": "Account Number:",
       "iban": "IBAN: MK07250120000012345",
-      "amountStarter": "Amount: 20$",
-      "amountPro": "Amount: 60$",
+      "amountStarter": "Amount: 1200den",
+      "amountPro": "Amount: 1800den",
       "purpose": "Purpose: SnapTogether Event Access",
       "note": "Once payment is received, you will gain full access to the dashboard. You’ll be notified by email."
     },
@@ -271,7 +271,21 @@
       "chooseOne": "Please choose one option"
     },
     "load": "Load more",
-    "loading": "Loading..."
+    "loading": "Loading...",
+    "categories": {
+      "bride_groom": "Bride & Groom",
+      "family": "Family",
+      "kids": "Kids",
+      "dance_floor": "Dance Floor",
+      "details": "Details",
+      "food_cake": "Food & Cake",
+      "group": "Group Photos",
+      "couples": "Couples",
+      "venue": "Venue / Hall",
+      "selfie": "Selfie",
+      "outdoor": "Outdoor",
+      "other": "Other"
+    }
   },
   "upload": {
     "storageFull": "Storage Full",
