@@ -100,8 +100,8 @@ export default function EventForm() {
               defaultValue="free"
             >
               <option value="free">{t("plans.free")}</option>
-              <option value="starter">{t("plans.starter")} 20$</option>
-              <option value="pro">{t("plans.pro")} 60$</option>
+              <option value="starter">{t("plans.starter")}</option>
+              <option value="pro">{t("plans.pro")}</option>
             </select>
 
             {/* Show error if plan not selected */}

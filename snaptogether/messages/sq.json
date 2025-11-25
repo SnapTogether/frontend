@@ -28,8 +28,8 @@
     "plan": "Zgjidh Planin",
     "plans": {
       "free": "Falas (100MB)",
-      "starter": "Fillestar (3GB)",
-      "pro": "Pro (30GB)"
+      "starter": "Fillestar (1200den)",
+      "pro": "Premium (1800den)"
     },
     "paymentInstructions": {
       "starterTitle": "Plani Fillestar",
@@ -38,8 +38,8 @@
       "bankName": "Emri i bankës: XYZ Bank",
       "accountNumber": "Numri i llogarisë:",
       "iban": "IBAN: MK07250120000012345",
-      "amountStarter": "Shuma: 20$",
-      "amountPro": "Shuma: 60$",
+      "amountStarter": "Shuma: 1200den",
+      "amountPro": "Shuma: 1800den",
       "purpose": "Qëllimi: Akses në ngjarjen SnapTogether",
       "note": "Pasi të konfirmohet pagesa, do të keni qasje të plotë në panelin e kontrollit. Do të njoftoheni me email."
     },
@@ -271,7 +271,21 @@
       "chooseOne": "Zgjidh një nga opsionet"
     },
     "load": "Shiko më shumë",
-    "loading": "Po ngarkohet..."
+    "loading": "Po ngarkohet...",
+    "categories": {
+      "bride_groom": "Nusja & Dhëndri",
+      "family": "Familja",
+      "kids": "Fëmijë",
+      "dance_floor": "Pista e vallëzimit",
+      "details": "Detaje",
+      "food_cake": "Ushqim & Torta",
+      "group": "Foto në grup",
+      "couples": "Çifte",
+      "venue": "Lokal / Sallë",
+      "selfie": "Selfie",
+      "outdoor": "Jashtë",
+      "other": "Të tjera"
+    }
   },
   "upload": {
     "storageFull": "Hapësira është e mbushur",
