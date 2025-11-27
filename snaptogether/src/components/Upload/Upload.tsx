@@ -79,7 +79,7 @@ export default function Upload({
               maxSizeMB: 2,
               maxWidthOrHeight: 1080,
               useWebWorker: true,
-              fileType: "image/webp",
+              fileType: "image/jpeg",
             })
           : file,
       ),

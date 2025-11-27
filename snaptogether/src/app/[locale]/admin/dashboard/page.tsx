@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { fetchAllEvents, approveEventPayment } from '@/api/admin';
 import { useLocale } from 'next-intl';
@@ -30,18 +30,21 @@ export default function AdminDashboardPage() {
   const locale = useLocale(); // ✅ clean and reliable
 
 
-  const loadEvents = async (pageToLoad = 1) => {
-    try {
-      const data = await fetchAllEvents(pageToLoad);
-      setEvents(data.events);
-      setPagination(data.pagination);
-    } catch (err) {
+  const loadEvents = useCallback(
+    async (pageToLoad: number = 1) => {
+      try {
+        const data = await fetchAllEvents(pageToLoad);
+        setEvents(data.events);
+        setPagination(data.pagination);
+      } catch (err) {
         console.error('Failed to load events:', err);
         setError('Unauthorized or failed to fetch events.');
         localStorage.removeItem('adminToken');
         router.push('/admin/login');
-      }      
-  };
+      }
+    },
+    [router]
+  );
 
   useEffect(() => {
     const token = localStorage.getItem('adminToken');
@@ -50,7 +53,7 @@ export default function AdminDashboardPage() {
     } else {
       loadEvents(page);
     }
-  }, [router, page]);
+  }, [router, page, loadEvents]);
 
   const handleApprove = async (eventCode: string) => {
     await approveEventPayment(eventCode, locale);

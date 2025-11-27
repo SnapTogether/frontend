@@ -25,6 +25,7 @@ import clsx from "clsx";
 import Footer from "@/app/[locale]/footer/page";
 import GuestMessagesTable from "@/components/GuestMessagesTable/GuestMessagesTable";
 
+
 export default function HostDashboard() {
   const params = useParams();
   const eventCode = params.eventCode as string;

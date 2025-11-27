@@ -8,6 +8,8 @@ export interface GuestPhoto {
   _id: string; // ✅ Ensure _id exists
   photoId?: string;
   imageUrl: string;
+  categories?: string[];
+  rekognitionLabels?: { Name: string; Confidence: number }[];
 }
 
 export interface GuestResponse {
@@ -179,17 +181,18 @@ export const fetchPublicPhotos = async (
         status: res.status,
         message: data.message || "Public photos fetched successfully",
         photos:
-          data.photos?.map((photo: { _id: string; imageUrl: string }) => ({
+          data.photos?.map((photo: GuestPhoto) => ({
             _id: photo._id,
             imageUrl: photo.imageUrl,
+            categories: photo.categories || [], // 🔥 important line
           })) || [],
-          pagination: data.pagination
+        pagination: data.pagination
           ? {
-            page: data.pagination.page,
-            limit: data.pagination.limit,
-            totalPhotos: data.pagination.totalPhotos,
-            totalPages: data.pagination.totalPages,
-          }
+              page: data.pagination.page,
+              limit: data.pagination.limit,
+              totalPhotos: data.pagination.totalPhotos,
+              totalPages: data.pagination.totalPages,
+            }
           : undefined,
       };
     } catch (jsonError) {
