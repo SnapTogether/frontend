@@ -1,7 +1,7 @@
 "use client"
 
 import type React from "react"
-import { useState } from "react"
+import { use, useMemo, useState } from "react"
 import Image from "next/image"
 import Button from "../Button/Button"
 import { ChevronLeft, ChevronRight, Images, X } from "lucide-react"
@@ -14,6 +14,7 @@ interface Photo {
   _id: string
   imageUrl: string
   photoId?: string
+  categories?: string[]
 }
 
 interface PhotoGalleryProps {
@@ -45,6 +46,30 @@ const PhotoGallery: React.FC<PhotoGalleryProps> = ({
 
   const pathname = usePathname()
   const isGuestView = pathname.includes("guest")
+
+  const [selectedCategory, setSelectedCategory] = useState<"all" | string>("all")
+
+  const categories = useMemo(() => {
+    const raw = Array.from(
+      new Set(photos.flatMap((p) => p.categories ?? [])),
+    )
+
+    const OTHER_KEY = "other"
+    const withoutOther = raw.filter((cat) => cat !== OTHER_KEY)
+    const hasOther = raw.includes(OTHER_KEY)
+
+    return hasOther ? [...withoutOther, OTHER_KEY] : withoutOther
+  }, [photos])
+
+  console.log("categories", categories)
+
+  const filteredPhotos = useMemo(
+    () =>
+      selectedCategory === "all"
+        ? photos
+        : photos.filter((p) => p.categories?.includes(selectedCategory)),
+    [photos, selectedCategory],
+  )
 
   const nextPage = () => {
     if (currentPage < totalPages) setCurrentPage(currentPage + 1)
@@ -83,17 +108,61 @@ const PhotoGallery: React.FC<PhotoGalleryProps> = ({
   }
 
   const t = useTranslations("photoGallery")
+  const g = useTranslations("guestDashboard")
+
+  const categoryLabelMap: Record<string, string> = {
+    people: g("categories.people"),
+    bride_groom: g("categories.bride_groom"),
+    family: g("categories.family"),
+    kids: g("categories.kids"),
+    dance_floor: g("categories.dance_floor"),
+    details: g("categories.details"),
+    food_cake: g("categories.food_cake"),
+    birthday_party: g("categories.birthday_party"),
+    group: g("categories.group"),
+    couples: g("categories.couples"),
+    venue: g("categories.venue"),
+    selfie: g("categories.selfie"),
+    outdoor: g("categories.outdoor"),
+    animals_pets: g("categories.animals_pets"),
+    other: g("categories.other"),
+  };
+
 
   return (
     <div className="photos text-center container mx-auto">
       <h3 className="text-white text-xl md:text-2xl font-semibold my-6 flex items-center justify-center gap-3 capitalize font-mulish">
         <Images size={20} /> {t("title")}
       </h3>
-      {photos.length > 0 ? (
+      {!isGuestView && categories.length > 0 && (
+        <div className="flex flex-wrap justify-center gap-2 mb-3">
+          <button
+            type="button"
+            onClick={() => setSelectedCategory("all")}
+            className={`px-3 py-1 rounded-full text-xs border 
+              ${selectedCategory === "all" ? "bg-white text-slate-900" : "bg-transparent text-white"}`}
+          >
+            All
+          </button>
+
+          {categories.map((cat) => (
+            <button
+              key={cat}
+              type="button"
+              onClick={() => setSelectedCategory(cat)}
+              className={`px-3 py-1 rounded-full text-xs border 
+                ${selectedCategory === cat ? "bg-white text-slate-900" : "bg-transparent text-white"}`}
+            >
+              {categoryLabelMap[cat] ?? cat}
+            </button>
+          ))}
+        </div>
+      )}
+      {filteredPhotos.length > 0 ? (
         <>
           {/* ✅ Masonry Grid Layout with Repeating Pattern */}
           <div className="grid grid-cols-12 gap-2 mt-2">
-            {photos.map((photo, index) => {
+            {filteredPhotos.map((photo, index) => {
               const row = Math.floor(index / 3)
               let colSpan = "col-span-4 sm:col-span-4"
 
@@ -193,7 +262,7 @@ const PhotoGallery: React.FC<PhotoGalleryProps> = ({
         <Lightbox
           key={selectedImageIndex}
           isOpen={isModalOpen}
-          images={photos}
+          images={filteredPhotos}
           selectedIndex={selectedImageIndex}
           onClose={closeModal}
         />

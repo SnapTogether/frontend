@@ -2,7 +2,7 @@
 
 import type React from "react"
 
-import { useEffect, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import { useParams } from "next/navigation"
 import {
   verifyGuest,
@@ -36,6 +36,7 @@ export default function GuestDashboard() {
   const [usedStorage, setUsedStorage] = useState<number>(0)
   const [storageLimit, setStorageLimit] = useState<number>(0)
   const [eventName, setEventName] = useState<string>("")
+  const [selectedCategory, setSelectedCategory] = useState<"all" | string>("all")
 
   // Separate upload states for each tab
   const [privateUploadLoading, setPrivateUploadLoading] = useState(false)
@@ -116,7 +117,30 @@ export default function GuestDashboard() {
     }
   }
 
+  const publicCategories = useMemo(() => {
+    const raw = Array.from(
+      new Set(publicPhotos.flatMap((p) => p.categories ?? [])),
+    )
 
+    const OTHER_KEY = "other"
+
+    const withoutOther = raw.filter((cat) => cat !== OTHER_KEY)
+    const hasOther = raw.includes(OTHER_KEY)
+
+    // Optional: sort the rest alphabetically (or leave as-is)
+    // withoutOther.sort((a, b) => a.localeCompare(b))
+
+    return hasOther ? [...withoutOther, OTHER_KEY] : withoutOther
+  }, [publicPhotos])
+
+
+  const filteredPublicPhotos = useMemo(
+    () =>
+      selectedCategory === "all"
+        ? publicPhotos
+        : publicPhotos.filter((p) => p.categories?.includes(selectedCategory)),
+    [publicPhotos, selectedCategory],
+  )
 
   useEffect(() => {
     const stored = getStoredGuestSession()
@@ -280,6 +304,25 @@ export default function GuestDashboard() {
     }
   }, [eventCode, guestData?.guest?.guestId])
 
+  const categoryLabelMap: Record<string, string> = {
+    people: t("categories.people"),
+    bride_groom: t("categories.bride_groom"),
+    family: t("categories.family"),
+    kids: t("categories.kids"),
+    dance_floor: t("categories.dance_floor"),
+    details: t("categories.details"),
+    food_cake: t("categories.food_cake"),
+    birthday_party: t("categories.birthday_party"),
+    group: t("categories.group"),
+    couples: t("categories.couples"),
+    venue: t("categories.venue"),
+    selfie: t("categories.selfie"),
+    outdoor: t("categories.outdoor"),
+    animals_pets: t("categories.animals_pets"),
+    other: t("categories.other"),
+  };
+
+
   // Tab content components
   const privatePhotosTabContent = (
     <div className="flex flex-col gap-3 text-center p-4 border border-slate-500 border-opacity-65 rounded-lg shadow-md bg-white/10 backdrop-blur-lg w-full">
@@ -349,31 +392,57 @@ export default function GuestDashboard() {
 
         {publicPhotos && publicPhotos.length > 0 ? (
           <div className="relative w-full">
+            {/* 🔹 Category chips */}
+            {publicCategories.length > 0 && (
+              <div className="flex flex-wrap justify-center gap-2 mb-3">
+                <button
+                  type="button"
+                  onClick={() => setSelectedCategory("all")}
+                  className={`px-3 py-1 rounded-full text-xs border 
+            ${selectedCategory === "all" ? "bg-white text-slate-900" : "bg-transparent text-white"}`}
+                >
+                  All
+                </button>
+
+                {publicCategories.map((cat) => (
+                  <button
+                    key={cat}
+                    type="button"
+                    onClick={() => setSelectedCategory(cat)}
+                    className={`px-3 py-1 rounded-full text-xs border 
+              ${selectedCategory === cat ? "bg-white text-slate-900" : "bg-transparent text-white"}`}
+                  >
+                    {categoryLabelMap?.[cat] ?? cat}
+                  </button>
+                ))}
+              </div>
+            )}
+
             <div className="flex flex-col overflow-x-auto scroll-smooth snap-x snap-mandatory gap-3 p-2">
               <PhotoGallery
-                photos={publicPhotos}
+                photos={filteredPublicPhotos}
                 currentPage={currentPage}
                 setCurrentPage={setCurrentPage}
-                totalPages={Math.ceil(publicPhotos.length / photosPerPage)}
-                totalPhotos={publicPhotos.length}
+                totalPages={Math.ceil(filteredPublicPhotos.length / photosPerPage)}
+                totalPhotos={filteredPublicPhotos.length}
                 eventCode={eventCode}
                 guestId={guestData?.guest?.guestId}
                 showDeleteButtons={false}
               />
+
               {publicPage < publicTotalPages && (
                 <button
                   onClick={loadMorePublicPhotos}
                   disabled={publicLoadingMore}
                   className="w-fit mx-auto mt-3 px-4 py-2 bg-white/20 text-white rounded-lg disabled:opacity-50"
                 >
-                  {publicLoadingMore ? t("loading") : t("load") }
+                  {publicLoadingMore ? t("loading") : t("load")}
                 </button>
               )}
-
             </div>
-
           </div>
         ) : (
+
           <p className="relative text-sm text-gray-300">
             No public photos yet{" "}
             <CornerRightDown className="absolute bottom-[-12px] right-0 inline-block w-7 h-7 ml-1" />
