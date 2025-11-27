@@ -142,7 +142,7 @@ const PhotoGallery: React.FC<PhotoGalleryProps> = ({
             className={`px-3 py-1 rounded-full text-xs border 
               ${selectedCategory === "all" ? "bg-white text-slate-900" : "bg-transparent text-white"}`}
           >
-            All
+            {g("categories.all")}
           </button>
 
           {categories.map((cat) => (

@@ -401,7 +401,7 @@ export default function GuestDashboard() {
                   className={`px-3 py-1 rounded-full text-xs border 
             ${selectedCategory === "all" ? "bg-white text-slate-900" : "bg-transparent text-white"}`}
                 >
-                  All
+                  {t("categories.all")}
                 </button>
 
                 {publicCategories.map((cat) => (

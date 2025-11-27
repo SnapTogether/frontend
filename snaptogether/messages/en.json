@@ -273,6 +273,7 @@
     "load": "Load more",
     "loading": "Loading...",
     "categories": {
+      "all": "All Photos",
       "people": "People",
       "bride_groom": "Bride & Groom",
       "family": "Family",

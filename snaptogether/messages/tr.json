@@ -273,6 +273,7 @@
     "load": "Yükle",
     "loading": "Daha fazla yükle...",
     "categories": {
+      "all": "Tüm Fotoğraflar",
       "people": "İnsanlar",
       "bride_groom": "Gelin & Damat",
       "family": "Aile",
