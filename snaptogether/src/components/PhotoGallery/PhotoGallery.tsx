@@ -1,7 +1,7 @@
 "use client"
 
 import type React from "react"
-import { use, useMemo, useState } from "react"
+import { useMemo, useState } from "react"
 import Image from "next/image"
 import Button from "../Button/Button"
 import { ChevronLeft, ChevronRight, Images, X } from "lucide-react"
