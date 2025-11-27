@@ -181,7 +181,7 @@ export const fetchPublicPhotos = async (
         status: res.status,
         message: data.message || "Public photos fetched successfully",
         photos:
-          data.photos?.map((photo: any) => ({
+          data.photos?.map((photo: GuestPhoto) => ({
             _id: photo._id,
             imageUrl: photo.imageUrl,
             categories: photo.categories || [], // 🔥 important line
