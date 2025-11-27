@@ -264,7 +264,7 @@
       "noUploads": "You haven't uploaded any photos yet",
       "hintUploadInOtherTabs": "Upload photos in the Private or Public tabs"
     },
-    "tabsLabels":{
+    "tabsLabels": {
       "privateTitle": "Just for us",
       "publicTitle": "Shared Gallery",
       "myUploadsTitle": "My uploads",
@@ -273,17 +273,20 @@
     "load": "Load more",
     "loading": "Loading...",
     "categories": {
+      "people": "People",
       "bride_groom": "Bride & Groom",
       "family": "Family",
       "kids": "Kids",
       "dance_floor": "Dance Floor",
       "details": "Details",
       "food_cake": "Food & Cake",
+      "birthday_party": "Birthday Party",
       "group": "Group Photos",
       "couples": "Couples",
       "venue": "Venue / Hall",
       "selfie": "Selfie",
       "outdoor": "Outdoor",
+      "animals_pets": "Animals & Pets",
       "other": "Other"
     }
   },

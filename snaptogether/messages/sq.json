@@ -273,17 +273,20 @@
     "load": "Shiko më shumë",
     "loading": "Po ngarkohet...",
     "categories": {
+      "people": "Njerëz",
       "bride_groom": "Nusja & Dhëndri",
       "family": "Familja",
       "kids": "Fëmijë",
       "dance_floor": "Pista e vallëzimit",
       "details": "Detaje",
       "food_cake": "Ushqim & Torta",
+      "birthday_party": "Festa e ditëlindjes",
       "group": "Foto në grup",
       "couples": "Çifte",
       "venue": "Lokal / Sallë",
       "selfie": "Selfie",
       "outdoor": "Jashtë",
+      "animals_pets": "Животни & Миленичиња",
       "other": "Të tjera"
     }
   },

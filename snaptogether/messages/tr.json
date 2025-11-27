@@ -1,333 +1,335 @@
 {
-    "nav": {
-      "home": "Ana Sayfa",
-      "about": "Hakkımızda",
-      "pricing": "Fiyatlandırma",
-      "help": "Yardım",
-      "contact": "İletişim"
+  "nav": {
+    "home": "Ana Sayfa",
+    "about": "Hakkımızda",
+    "pricing": "Fiyatlandırma",
+    "help": "Yardım",
+    "contact": "İletişim"
+  },
+  "home": {
+    "msg1": "Misafirleriniz. Onların anıları. Tek unutulmaz hikaye.",
+    "msg2": "Misafirlerinizi hikaye anlatıcıya çevirin.",
+    "msg3": "Özel gününüzün her açıdan kaydını tutun.",
+    "getStarted": "Etkinlik Oluştur"
+  },
+  "eventForm": {
+    "title": "Yeni Etkinlik Oluştur",
+    "name": "Ad Soyad",
+    "email": "E‑posta",
+    "eventName": "Etkinlik Adı",
+    "eventDate": "Etkinlik Tarihi",
+    "fullNameRequired": "Ad soyad gerekli",
+    "emailRequired": "E‑posta gerekli",
+    "eventNameRequired": "Etkinlik adı gerekli",
+    "eventDateRequired": "Etkinlik tarihi gerekli",
+    "createEvent": "Etkinliği Oluştur",
+    "creatingEvent": "Oluşturuluyor...",
+    "failedMessage": "❌ Etkinlik oluşturulamadı. Lütfen tekrar deneyin.",
+    "plan": "Plan Seçin",
+    "plans": {
+      "free": "Ücretsiz",
+      "starter": "Başlangıç (1200den)",
+      "pro": "Premium (1800den)"
     },
-    "home": {
-      "msg1": "Misafirleriniz. Onların anıları. Tek unutulmaz hikaye.",
-      "msg2": "Misafirlerinizi hikaye anlatıcıya çevirin.",
-      "msg3": "Özel gününüzün her açıdan kaydını tutun.",
-      "getStarted": "Etkinlik Oluştur"
+    "paymentInstructions": {
+      "starterTitle": "Başlangıç Planı",
+      "proTitle": "Pro Planı",
+      "message": "Lütfen ödemeyi aşağıdaki banka hesabına yapın:",
+      "bankName": "Banka Adı: Uni Bank",
+      "accountNumber": "Hesap Numarası:",
+      "iban": "IBAN: MK07250120000012345",
+      "amountStarter": "Tutar: 20 $",
+      "amountPro": "Tutar: 60 $",
+      "purpose": "Amaç: SnapTogether Etkinlik Erişimi",
+      "note": "Ödeme alındıktan sonra kontrol paneline tam erişim kazanacaksınız. E‑posta ile bilgilendirileceksiniz."
     },
-    "eventForm": {
-      "title": "Yeni Etkinlik Oluştur",
-      "name": "Ad Soyad",
-      "email": "E‑posta",
-      "eventName": "Etkinlik Adı",
-      "eventDate": "Etkinlik Tarihi",
-      "fullNameRequired": "Ad soyad gerekli",
-      "emailRequired": "E‑posta gerekli",
-      "eventNameRequired": "Etkinlik adı gerekli",
-      "eventDateRequired": "Etkinlik tarihi gerekli",
-      "createEvent": "Etkinliği Oluştur",
-      "creatingEvent": "Oluşturuluyor...",
-      "failedMessage": "❌ Etkinlik oluşturulamadı. Lütfen tekrar deneyin.",
-      "plan": "Plan Seçin",
-      "plans": {
-        "free": "Ücretsiz",
-        "starter": "Başlangıç (1200den)",
-        "pro": "Premium (1800den)"
-      },
-      "paymentInstructions": {
-        "starterTitle": "Başlangıç Planı",
-        "proTitle": "Pro Planı",
-        "message": "Lütfen ödemeyi aşağıdaki banka hesabına yapın:",
-        "bankName": "Banka Adı: Uni Bank",
-        "accountNumber": "Hesap Numarası:",
-        "iban": "IBAN: MK07250120000012345",
-        "amountStarter": "Tutar: 20 $",
-        "amountPro": "Tutar: 60 $",
-        "purpose": "Amaç: SnapTogether Etkinlik Erişimi",
-        "note": "Ödeme alındıktan sonra kontrol paneline tam erişim kazanacaksınız. E‑posta ile bilgilendirileceksiniz."
-      },
-      "plansDescriptions": {
-        "free": "Gece dışarı çıkmak gibi gündelik etkinlikler için ideal.",
-        "starter": "Doğum günleri veya açılışlar için harika.",
-        "pro": "Düğünler, konferanslar veya büyük partiler için mükemmel."
-      }
+    "plansDescriptions": {
+      "free": "Gece dışarı çıkmak gibi gündelik etkinlikler için ideal.",
+      "starter": "Doğum günleri veya açılışlar için harika.",
+      "pro": "Düğünler, konferanslar veya büyük partiler için mükemmel."
+    }
+  },
+  "dashboard": {
+    "title": "Ev Sahibi Paneli –",
+    "subtitle": "Etkinlik Detayları",
+    "plan": "Plan",
+    "countdown": "{daysLeft} gün kaldı, fotoğraflar otomatik silinecek.",
+    "eventOverview": "Etkinlik Genel Bakışı"
+  },
+  "zipBtn": {
+    "title": "ZIP İndir",
+    "subtitle": "ZIP oluşturuluyor...",
+    "downloading": "İndiriliyor...",
+    "generating": "ZIP oluşturuluyor... lütfen bekleyin"
+  },
+  "qrBtn": {
+    "host": "Ev Sahibi QR Kodu",
+    "guest": "Misafir QR Kodu"
+  },
+  "photoGallery": {
+    "title": "Galeri",
+    "noPhotos": "Henüz yüklenen fotoğraf yok."
+  },
+  "template": {
+    "title": "Poster Şablonları",
+    "requestBtn": "Şablon Seç"
+  },
+  "guest-photos": {
+    "title": "Fotoğraflar",
+    "noPhotos": "Bu misafir tarafından fotoğraf yüklenmedi.",
+    "back": "Misafirlere Geri Dön"
+  },
+  "templateRequest": {
+    "title": "Özel Şablon Talebi",
+    "namePlaceholder": "Adınız",
+    "mobilePlaceholder": "Telefon Numaranız",
+    "eventNamePlaceholder": "Etkinlik Adı",
+    "addressPlaceholder": "Adresiniz",
+    "messagePlaceholder": "Mesaj (Şablon taleplerinizle ilgili detaylar)",
+    "submit": {
+      "loading": "Gönderiliyor...",
+      "default": "Şablon İste"
     },
-    "dashboard": {
-      "title": "Ev Sahibi Paneli –",
-      "subtitle": "Etkinlik Detayları",
-      "plan": "Plan",
-      "countdown": "{daysLeft} gün kaldı, fotoğraflar otomatik silinecek.",
-      "eventOverview": "Etkinlik Genel Bakışı"
+    "options": {
+      "weddingClassic": "Klasik Düğün",
+      "birthdayFun": "Neşeli Doğum Günü",
+      "corporateEvent": "Kurumsal Etkinlik"
+    }
+  },
+  "helpPage": {
+    "title": "Size nasıl yardımcı olabiliriz?",
+    "contactPrompt": "Hala yardıma mı ihtiyacınız var?",
+    "contactEmail": "Bize ulaşın: snaptogether25@gmail.com"
+  },
+  "faq": [
+    {
+      "question": "SnapTogether nedir?",
+      "answer": "SnapTogether, misafirlerin QR kodu tarayarak etkinlik fotoğrafları yüklemesine imkan veren bir paylaşım aracıdır."
     },
-    "zipBtn": {
-      "title": "ZIP İndir",
-      "subtitle": "ZIP oluşturuluyor...",
-      "downloading": "İndiriliyor...",
-      "generating": "ZIP oluşturuluyor... lütfen bekleyin"
+    {
+      "question": "Misafir olarak nasıl fotoğraf yüklerim?",
+      "answer": "Ev sahibinin verdiği QR kodunu tarayın, adınızı girin ve favori etkinlik fotoğraflarınızı yükleyin – hesap gerekmez."
     },
-    "qrBtn": {
-      "host": "Ev Sahibi QR Kodu",
-      "guest": "Misafir QR Kodu"
+    {
+      "question": "Hesap oluşturmam gerekiyor mu?",
+      "answer": "Hayır. Misafirlerin hesap oluşturmasına gerek yok. Ev sahipleri sadece tek seferlik bir etkinlik bağlantısı oluşturur."
     },
-    "photoGallery": {
-      "title": "Galeri",
-      "noPhotos": "Henüz yüklenen fotoğraf yok."
+    {
+      "question": "Fotoğraflar nerede depolanıyor?",
+      "answer": "Tüm resimler güvenli bir şekilde bulutta saklanır ve ev sahibi tarafından erişilebilir durumdadır."
     },
-    "template": {
-      "title": "Poster Şablonları",
-      "requestBtn": "Şablon Seç"
+    {
+      "question": "Ücretsiz, Başlangıç ve Pro planlarının farkı nedir?",
+      "answer": "Ücretsiz: sınırlı depolama, video yok. Başlangıç: daha fazla depolama ve destek. Pro: maksimum depolama, video ve markalama."
     },
-    "guest-photos": {
-      "title": "Fotoğraflar",
-      "noPhotos": "Bu misafir tarafından fotoğraf yüklenmedi.",
-      "back": "Misafirlere Geri Dön"
-    },
-    "templateRequest": {
-      "title": "Özel Şablon Talebi",
-      "namePlaceholder": "Adınız",
-      "mobilePlaceholder": "Telefon Numaranız",
-      "eventNamePlaceholder": "Etkinlik Adı",
-      "addressPlaceholder": "Adresiniz",
-      "messagePlaceholder": "Mesaj (Şablon taleplerinizle ilgili detaylar)",
-      "submit": {
-        "loading": "Gönderiliyor...",
-        "default": "Şablon İste"
-      },
-      "options": {
-        "weddingClassic": "Klasik Düğün",
-        "birthdayFun": "Neşeli Doğum Günü",
-        "corporateEvent": "Kurumsal Etkinlik"
-      }
-    },
-    "helpPage": {
-      "title": "Size nasıl yardımcı olabiliriz?",
-      "contactPrompt": "Hala yardıma mı ihtiyacınız var?",
-      "contactEmail": "Bize ulaşın: snaptogether25@gmail.com"
-    },
-    "faq": [
+    {
+      "question": "Fotoğraflarım ne kadar süreyle erişilebilir?",
+      "answer": "Yüklenen medya, etkinlikten sonra ücretsiz planda 7 gün, ücretli planlarda 30 gün boyunca saklanır."
+    }
+  ],
+  "aboutPage": {
+    "title": "SnapTogether Hakkında",
+    "subtitle": "SnapTogether, misafirlerinizden fotoğraf ve video toplamanın basit yolu — uygulama gerektirmeden.",
+    "sections": [
       {
-        "question": "SnapTogether nedir?",
-        "answer": "SnapTogether, misafirlerin QR kodu tarayarak etkinlik fotoğrafları yüklemesine imkan veren bir paylaşım aracıdır."
+        "title": "Anları Kolayca Yakala",
+        "description": "SnapTogether ile misafirlerinizin çektiği tüm özel anları kolayca toplayabilirsiniz."
       },
       {
-        "question": "Misafir olarak nasıl fotoğraf yüklerim?",
-        "answer": "Ev sahibinin verdiği QR kodunu tarayın, adınızı girin ve favori etkinlik fotoğraflarınızı yükleyin – hesap gerekmez."
+        "title": "Etkinliğinizi Anında Oluşturun",
+        "description": "Düğün, doğum günü, açılış veya her türlü kutlama için web sitemizde etkinlik oluşturun ve hemen özel QR kodunuzu alın."
       },
       {
-        "question": "Hesap oluşturmam gerekiyor mu?",
-        "answer": "Hayır. Misafirlerin hesap oluşturmasına gerek yok. Ev sahipleri sadece tek seferlik bir etkinlik bağlantısı oluşturur."
+        "title": "Misafir Paylaşımı Kolay",
+        "description": "Bu QR kodu misafirlerinizle paylaşın. Tarayınca, etkinlik sırasında çektikleri fotoğrafları kolayca yükleyebilirler — uygulama yok, hesap yok, sadece hızlı paylaşım."
       },
       {
-        "question": "Fotoğraflar nerede depolanıyor?",
-        "answer": "Tüm resimler güvenli bir şekilde bulutta saklanır ve ev sahibi tarafından erişilebilir durumdadır."
-      },
-      {
-        "question": "Ücretsiz, Başlangıç ve Pro planlarının farkı nedir?",
-        "answer": "Ücretsiz: sınırlı depolama, video yok. Başlangıç: daha fazla depolama ve destek. Pro: maksimum depolama, video ve markalama."
-      },
-      {
-        "question": "Fotoğraflarım ne kadar süreyle erişilebilir?",
-        "answer": "Yüklenen medya, etkinlikten sonra ücretsiz planda 7 gün, ücretli planlarda 30 gün boyunca saklanır."
+        "title": "Bir Anı Galerisi",
+        "description": "Ev sahibi olarak, tüm fotoğrafları tek bir yerde alırsınız; her açıdan anılar — misafirlerin telefonlarından direkt."
       }
     ],
-    "aboutPage": {
-      "title": "SnapTogether Hakkında",
-      "subtitle": "SnapTogether, misafirlerinizden fotoğraf ve video toplamanın basit yolu — uygulama gerektirmeden.",
-      "sections": [
-        {
-          "title": "Anları Kolayca Yakala",
-          "description": "SnapTogether ile misafirlerinizin çektiği tüm özel anları kolayca toplayabilirsiniz."
-        },
-        {
-          "title": "Etkinliğinizi Anında Oluşturun",
-          "description": "Düğün, doğum günü, açılış veya her türlü kutlama için web sitemizde etkinlik oluşturun ve hemen özel QR kodunuzu alın."
-        },
-        {
-          "title": "Misafir Paylaşımı Kolay",
-          "description": "Bu QR kodu misafirlerinizle paylaşın. Tarayınca, etkinlik sırasında çektikleri fotoğrafları kolayca yükleyebilirler — uygulama yok, hesap yok, sadece hızlı paylaşım."
-        },
-        {
-          "title": "Bir Anı Galerisi",
-          "description": "Ev sahibi olarak, tüm fotoğrafları tek bir yerde alırsınız; her açıdan anılar — misafirlerin telefonlarından direkt."
-        }
-      ],
-      "guidanceTitle": "Yönergeler",
-      "guidanceSteps": [
-        {
-          "title": "Dil seçin ve başlayın!",
-          "description": ""
-        },
-        {
-          "title": "Formu doldurun, plan seçin",
-          "description": ""
-        },
-        {
-          "title": "Tüm fotoğrafları ZIP olarak indirin ve depolama kullanımını takip edin",
-          "description": ""
-        },
-        {
-          "title": "QR kodunu tarayın ve galeriyi kontrol edin",
-          "description": ""
-        },
-        {
-          "title": "QR kodunu taradıktan sonra misafir isimlerini girsin",
-          "description": "Aynı isimle sonraki girişte oturum açabilir."
-        },
-        {
-          "title": "Etkinlikten favori fotoğraflarınızı yükleyin",
-          "description": ""
-        }
-      ]
-    },
-    "StorageBar": {
-      "label": "Depolama",
-      "limitReached": "Depolama sınırına ulaşıldı. Daha fazla yüklemek için plan yükseltin.",
-      "halfUsed": "Depolamanın yarısı kullanıldı."
-    },
-    "pricingPage": {
-      "title": "Planınızı seçin",
-      "note": "Uygulamaya gerek yok. Planınızı istediğiniz zaman değiştirebilirsiniz.",
-      "plans": {
-        "free": {
-          "name": "Ücretsiz",
-          "features": [
-            "100 MB’a kadar depolama",
-            "Sınırsız misafir",
-            "7 gün sonra otomatik silinir",
-            "Yaklaşık 100 fotoğraf saklanır"
-          ]
-        },
-        "starter": {
-          "name": "Başlangıç",
-          "features": [
-            "3 GB’a kadar depolama",
-            "Sınırsız misafir",
-            "30 gün sonra otomatik silinir",
-            "Yaklaşık 3.000 fotoğraf saklanır"
-          ]
-        },
-        "pro": {
-          "name": "Pro",
-          "features": [
-            "10 GB’a kadar depolama",
-            "Sınırsız misafir",
-            "60 gün sonra otomatik silinir",
-            "Yaklaşık 10.000 fotoğraf saklanır"
-          ]
-        }
-      }
-    },
-    "privacyPage": {
-      "title": "Gizlilik Politikası",
-      "content": "SnapTogether gizliliğinizi korumaya kararlıdır.\n\nSadece ad, etkinlik kimliği ve yüklenen medya (fotoğraf veya video) gibi gerekli kişisel bilgileri toplar ve saklarız. Kişisel verilerinizi üçüncü taraflarla paylaşmaz veya satmayız.\n\nYüklenen içerikler güvenli bir şekilde depolanır ve planınıza göre otomatik olarak silinir. İçeriğinizin mülkiyeti sizde kalır; silinmesini istemeniz halinde bizimle iletişime geçebilirsiniz.\n\nGüvenli protokoller ve şifreleme kullanırız; verileriniz güvenli bulut altyapısında barınır.\n\nGizlilikle ilgili sorularınız için bize şunu adresinden ulaşabilirsiniz: support@snaptogether.cloud."
-    },
-    "termsPage": {
-      "title": "Kullanım Şartları",
-      "content": "SnapTogether’ı kullanarak, hizmeti yasalara uygun ve sorumlu bir şekilde kullanmayı kabul etmiş olursunuz. Aşağıdakiler yasaktır:\n\n- Telif hakkı, gizlilik veya başka hakları ihlal eden içerik paylaşmak\n- Saldırgan, zararlı veya yasa dışı içerik paylaşmak\n- Başkalarının haklarını ihlal eden içerik paylaşmak\n\nSnapTogether uygunsuz gördüğü içeriği kaldırma, hesapları askıya alma veya sonlandırma hakkını saklı tutar.",
-      "usagePolicy": "Kabul Edilebilir Kullanım Politikası",
-      "usageContent": "SnapTogether hizmetlerini kötüye kullanmamalısınız. Kötüye kullanım örnekleri:\n\n- Saldırgan, yasal olmayan veya zararlı içerik yüklemek\n- Hizmetin işleyişine müdahale etmek ya da tersine mühendislik yapmak\n- Sahtecilik veya platformu amacı dışında kullanmak\n\nİhlaller, geri ödeme yapılmaksızın erişiminin askıya alınması veya sonlandırılmasıyla sonuçlanabilir.",
-      "paddleNoticeTitle": "Paddle Açıklaması",
-      "paddleNoticeContent": "Sipariş işlemlerimiz çevrim içi satıcımız Paddle.com aracılığıyla gerçekleştirilir. Tüm siparişlerin tüccar kaydı Paddle.com üzerindedir. Paddle müşteri hizmetlerini sağlar ve iadeleri yönetir."
-    },
-    "refundPage": {
-      "title": "İade Politikası",
-      "content": "SnapTogether, aşağıdaki koşulları karşılayan taleplerde 7 gün içinde tam iade sunar:\n\n- Etkinlik henüz başlamamış olmalı, ve\n- Misafirler tarafından hiçbir yükleme yapılmamış olmalı.\n\nYüklemeler başladıktan veya etkinlik tarihi geçtikten sonra iade yapılamaz.\n\nHerhangi bir teknik sorun yaşarsanız, lütfen hemen şuraya yazın: support@snaptogether.cloud.\n\nİade onayı alındıktan sonra 5–7 iş günü içinde işlenmesi hedeflenir."
-    },
-    "contactPage": {
-      "title": "Bizimle İletişime Geçin",
-      "description": "Yardım ya da sorunuz mu var? Sizden haber almak isteriz.",
-      "emailLabel": "İletişim adresimiz:",
-      "supportPrompt": "Sıkça Sorulan Sorular sayfamıza göz atın.",
-      "goToFaq": "SSS’ye Git"
-    },
-    "guestDashboard": {
-      "title": "🎟️ Misafir Paneli",
-      "instruction": "✨ Adınızı girin ve etkinlikten anılarınızı paylaşın!",
-      "inputPlaceholder": "Ad Soyad",
-      "verifyButton": "Misafiri Doğrula",
-      "verifying": "Doğrulanıyor...",
-      "error": "❌ Lütfen adınızı tam girin.",
-      "photosTitle": "Yüklediğiniz Fotoğraflar",
-      "noPhotos": "Bu misafir için fotoğraf bulunamadı.",
-      "leaveMessage": "Ev sahibine mesaj bırak",
-      "messagePlaceholder": "Güzel bir şey yazın…",
-      "send": "Gönder",
-      "sending": "Gönderiliyor...",
-      "messageSuccess": "✅ Mesaj başarıyla gönderildi!",
-      "messageError": "❌ Mesaj gönderilemedi. Daha sonra tekrar deneyin.",
-      "maxFiles": "Bir kerede en fazla 10 dosya yükleyebilirsiniz.",
-      "tabs": {
-        "privateTitle": "Özel Fotoğraflar",
-        "privateDesc": "Yalnızca etkinlik yöneticileri görebilir",
-        "publicTitle": "Herkese Açık Fotoğraflar",
-        "publicDesc": "Tüm misafirler tarafından görülebilir",
-        "myUploadsTitle": "Benim Yüklediklerim",
-        "myUploadsDesc": "Bu etkinliğe yüklediğiniz tüm medya",
-        "noPublicPhotos": "Henüz herkese açık fotoğraf yok",
-        "noUploads": "Henüz fotoğraf yüklemediniz",
-        "hintUploadInOtherTabs": "Fotoğraf yüklemek için Özel veya Herkese Açık sekmeleri kullanın"
+    "guidanceTitle": "Yönergeler",
+    "guidanceSteps": [
+      {
+        "title": "Dil seçin ve başlayın!",
+        "description": ""
       },
-      "tabsLabels":{
-        "privateTitle": "Sadece bize",
-        "publicTitle": "Paylaşılan Galeri",
-        "myUploadsTitle": "Yüklemelerim",
-        "chooseOne": "Lütfen bir seçenek belirleyin"
+      {
+        "title": "Formu doldurun, plan seçin",
+        "description": ""
       },
-      "load": "Yükle",
-      "loading": "Daha fazla yükle...",
-      "categories": {
-        "bride_groom": "Gelin & Damat",
-        "family": "Aile",
-        "kids": "Çocuklar",
-        "dance_floor": "Dans Pisti",
-        "details": "Detaylar",
-        "food_cake": "Yemek & Pasta",
-        "group": "Grup Fotoğrafları",
-        "couples": "Çiftler",
-        "venue": "Mekan / Salon",
-        "selfie": "Selfie",
-        "outdoor": "Açık Alan",
-        "other": "Diğer"
+      {
+        "title": "Tüm fotoğrafları ZIP olarak indirin ve depolama kullanımını takip edin",
+        "description": ""
+      },
+      {
+        "title": "QR kodunu tarayın ve galeriyi kontrol edin",
+        "description": ""
+      },
+      {
+        "title": "QR kodunu taradıktan sonra misafir isimlerini girsin",
+        "description": "Aynı isimle sonraki girişte oturum açabilir."
+      },
+      {
+        "title": "Etkinlikten favori fotoğraflarınızı yükleyin",
+        "description": ""
       }
-    },
-    "upload": {
-      "storageFull": "Depolama Dolu",
-      "uploading": "Yükleniyor",
-      "chooseImages": "Resim Seçin",
-      "maxFiles": "Bir kerede en fazla 10 dosya yükleyebilirsiniz.",
-      "missingGuestId": "❌ Misafir Kimliği gerekiyor.",
-      "uploadFailed": "❌ Yükleme başarısız. Tekrar deneyin!",
-      "startingUpload": "Şimdi başlıyoruz...",
-      "warmingUp": "Hazırlanıyor...",
-      "inProgress": "Yükleniyor...",
-      "almostThere": "Az kaldı...",
-      "nearlyDone": "Neredeyse bitti!",
-      "finishingUp": "Son dokunuşlar...",
-      "done": "Tamamlandı!"
-    },
-    "eventStats": {
-      "title": "Etkinlik İstatistikleri",
-      "guests": "misafir katkıda bulundu",
-      "photos": "toplam fotoğraf yüklendi",
-      "mvp": "En aktif misafir",
-      "avg": "Misafir başına ortalama yükleme"
-    },
-    "guestMessages": {
-      "deleteMessage": "Sil",
-      "messages": "Mesajlar"
-    },
-    "guestMessagesTable": {
-      "noMessages": "Henüz misafir mesajı yok.",
-      "guestMessages": "Misafir Mesajları",
-      "noMessagesFromGuest": "Bu misafirden mesaj yok."
-    },
-    "guestList": {
-      "title": "Misafirler",
-      "noGuests": "Henüz misafir yok."
-    },
-    "footer": {
-      "rights": "Tüm hakları saklıdır.",
-      "privacy": "Gizlilik Politikası",
-      "terms": "Kullanım Şartları",
-      "contact": "İletişim",
-      "refund": "İade Politikası"
+    ]
+  },
+  "StorageBar": {
+    "label": "Depolama",
+    "limitReached": "Depolama sınırına ulaşıldı. Daha fazla yüklemek için plan yükseltin.",
+    "halfUsed": "Depolamanın yarısı kullanıldı."
+  },
+  "pricingPage": {
+    "title": "Planınızı seçin",
+    "note": "Uygulamaya gerek yok. Planınızı istediğiniz zaman değiştirebilirsiniz.",
+    "plans": {
+      "free": {
+        "name": "Ücretsiz",
+        "features": [
+          "100 MB’a kadar depolama",
+          "Sınırsız misafir",
+          "7 gün sonra otomatik silinir",
+          "Yaklaşık 100 fotoğraf saklanır"
+        ]
+      },
+      "starter": {
+        "name": "Başlangıç",
+        "features": [
+          "3 GB’a kadar depolama",
+          "Sınırsız misafir",
+          "30 gün sonra otomatik silinir",
+          "Yaklaşık 3.000 fotoğraf saklanır"
+        ]
+      },
+      "pro": {
+        "name": "Pro",
+        "features": [
+          "10 GB’a kadar depolama",
+          "Sınırsız misafir",
+          "60 gün sonra otomatik silinir",
+          "Yaklaşık 10.000 fotoğraf saklanır"
+        ]
+      }
     }
+  },
+  "privacyPage": {
+    "title": "Gizlilik Politikası",
+    "content": "SnapTogether gizliliğinizi korumaya kararlıdır.\n\nSadece ad, etkinlik kimliği ve yüklenen medya (fotoğraf veya video) gibi gerekli kişisel bilgileri toplar ve saklarız. Kişisel verilerinizi üçüncü taraflarla paylaşmaz veya satmayız.\n\nYüklenen içerikler güvenli bir şekilde depolanır ve planınıza göre otomatik olarak silinir. İçeriğinizin mülkiyeti sizde kalır; silinmesini istemeniz halinde bizimle iletişime geçebilirsiniz.\n\nGüvenli protokoller ve şifreleme kullanırız; verileriniz güvenli bulut altyapısında barınır.\n\nGizlilikle ilgili sorularınız için bize şunu adresinden ulaşabilirsiniz: support@snaptogether.cloud."
+  },
+  "termsPage": {
+    "title": "Kullanım Şartları",
+    "content": "SnapTogether’ı kullanarak, hizmeti yasalara uygun ve sorumlu bir şekilde kullanmayı kabul etmiş olursunuz. Aşağıdakiler yasaktır:\n\n- Telif hakkı, gizlilik veya başka hakları ihlal eden içerik paylaşmak\n- Saldırgan, zararlı veya yasa dışı içerik paylaşmak\n- Başkalarının haklarını ihlal eden içerik paylaşmak\n\nSnapTogether uygunsuz gördüğü içeriği kaldırma, hesapları askıya alma veya sonlandırma hakkını saklı tutar.",
+    "usagePolicy": "Kabul Edilebilir Kullanım Politikası",
+    "usageContent": "SnapTogether hizmetlerini kötüye kullanmamalısınız. Kötüye kullanım örnekleri:\n\n- Saldırgan, yasal olmayan veya zararlı içerik yüklemek\n- Hizmetin işleyişine müdahale etmek ya da tersine mühendislik yapmak\n- Sahtecilik veya platformu amacı dışında kullanmak\n\nİhlaller, geri ödeme yapılmaksızın erişiminin askıya alınması veya sonlandırılmasıyla sonuçlanabilir.",
+    "paddleNoticeTitle": "Paddle Açıklaması",
+    "paddleNoticeContent": "Sipariş işlemlerimiz çevrim içi satıcımız Paddle.com aracılığıyla gerçekleştirilir. Tüm siparişlerin tüccar kaydı Paddle.com üzerindedir. Paddle müşteri hizmetlerini sağlar ve iadeleri yönetir."
+  },
+  "refundPage": {
+    "title": "İade Politikası",
+    "content": "SnapTogether, aşağıdaki koşulları karşılayan taleplerde 7 gün içinde tam iade sunar:\n\n- Etkinlik henüz başlamamış olmalı, ve\n- Misafirler tarafından hiçbir yükleme yapılmamış olmalı.\n\nYüklemeler başladıktan veya etkinlik tarihi geçtikten sonra iade yapılamaz.\n\nHerhangi bir teknik sorun yaşarsanız, lütfen hemen şuraya yazın: support@snaptogether.cloud.\n\nİade onayı alındıktan sonra 5–7 iş günü içinde işlenmesi hedeflenir."
+  },
+  "contactPage": {
+    "title": "Bizimle İletişime Geçin",
+    "description": "Yardım ya da sorunuz mu var? Sizden haber almak isteriz.",
+    "emailLabel": "İletişim adresimiz:",
+    "supportPrompt": "Sıkça Sorulan Sorular sayfamıza göz atın.",
+    "goToFaq": "SSS’ye Git"
+  },
+  "guestDashboard": {
+    "title": "🎟️ Misafir Paneli",
+    "instruction": "✨ Adınızı girin ve etkinlikten anılarınızı paylaşın!",
+    "inputPlaceholder": "Ad Soyad",
+    "verifyButton": "Misafiri Doğrula",
+    "verifying": "Doğrulanıyor...",
+    "error": "❌ Lütfen adınızı tam girin.",
+    "photosTitle": "Yüklediğiniz Fotoğraflar",
+    "noPhotos": "Bu misafir için fotoğraf bulunamadı.",
+    "leaveMessage": "Ev sahibine mesaj bırak",
+    "messagePlaceholder": "Güzel bir şey yazın…",
+    "send": "Gönder",
+    "sending": "Gönderiliyor...",
+    "messageSuccess": "✅ Mesaj başarıyla gönderildi!",
+    "messageError": "❌ Mesaj gönderilemedi. Daha sonra tekrar deneyin.",
+    "maxFiles": "Bir kerede en fazla 10 dosya yükleyebilirsiniz.",
+    "tabs": {
+      "privateTitle": "Özel Fotoğraflar",
+      "privateDesc": "Yalnızca etkinlik yöneticileri görebilir",
+      "publicTitle": "Herkese Açık Fotoğraflar",
+      "publicDesc": "Tüm misafirler tarafından görülebilir",
+      "myUploadsTitle": "Benim Yüklediklerim",
+      "myUploadsDesc": "Bu etkinliğe yüklediğiniz tüm medya",
+      "noPublicPhotos": "Henüz herkese açık fotoğraf yok",
+      "noUploads": "Henüz fotoğraf yüklemediniz",
+      "hintUploadInOtherTabs": "Fotoğraf yüklemek için Özel veya Herkese Açık sekmeleri kullanın"
+    },
+    "tabsLabels": {
+      "privateTitle": "Sadece bize",
+      "publicTitle": "Paylaşılan Galeri",
+      "myUploadsTitle": "Yüklemelerim",
+      "chooseOne": "Lütfen bir seçenek belirleyin"
+    },
+    "load": "Yükle",
+    "loading": "Daha fazla yükle...",
+    "categories": {
+      "people": "İnsanlar",
+      "bride_groom": "Gelin & Damat",
+      "family": "Aile",
+      "kids": "Çocuklar",
+      "dance_floor": "Dans Pisti",
+      "details": "Detaylar",
+      "food_cake": "Yemek & Pasta",
+      "birthday_party": "Doğum Günü Partisi",
+      "group": "Grup Fotoğrafları",
+      "couples": "Çiftler",
+      "venue": "Mekan / Salon",
+      "selfie": "Selfie",
+      "outdoor": "Açık Alan",
+      "animals_pets": "Животни & Миленичиња",
+      "other": "Diğer"
+    }
+  },
+  "upload": {
+    "storageFull": "Depolama Dolu",
+    "uploading": "Yükleniyor",
+    "chooseImages": "Resim Seçin",
+    "maxFiles": "Bir kerede en fazla 10 dosya yükleyebilirsiniz.",
+    "missingGuestId": "❌ Misafir Kimliği gerekiyor.",
+    "uploadFailed": "❌ Yükleme başarısız. Tekrar deneyin!",
+    "startingUpload": "Şimdi başlıyoruz...",
+    "warmingUp": "Hazırlanıyor...",
+    "inProgress": "Yükleniyor...",
+    "almostThere": "Az kaldı...",
+    "nearlyDone": "Neredeyse bitti!",
+    "finishingUp": "Son dokunuşlar...",
+    "done": "Tamamlandı!"
+  },
+  "eventStats": {
+    "title": "Etkinlik İstatistikleri",
+    "guests": "misafir katkıda bulundu",
+    "photos": "toplam fotoğraf yüklendi",
+    "mvp": "En aktif misafir",
+    "avg": "Misafir başına ortalama yükleme"
+  },
+  "guestMessages": {
+    "deleteMessage": "Sil",
+    "messages": "Mesajlar"
+  },
+  "guestMessagesTable": {
+    "noMessages": "Henüz misafir mesajı yok.",
+    "guestMessages": "Misafir Mesajları",
+    "noMessagesFromGuest": "Bu misafirden mesaj yok."
+  },
+  "guestList": {
+    "title": "Misafirler",
+    "noGuests": "Henüz misafir yok."
+  },
+  "footer": {
+    "rights": "Tüm hakları saklıdır.",
+    "privacy": "Gizlilik Politikası",
+    "terms": "Kullanım Şartları",
+    "contact": "İletişim",
+    "refund": "İade Politikası"
   }
-  
+}
