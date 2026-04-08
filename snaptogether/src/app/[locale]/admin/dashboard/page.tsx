@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useEffectEvent, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { fetchAllEvents, approveEventPayment } from '@/api/admin';
 import { useLocale } from 'next-intl';
@@ -26,39 +26,55 @@ export default function AdminDashboardPage() {
     totalEvents: 0,
     limit: 10,
   });
+  const [refreshCounter, setRefreshCounter] = useState(0);
 
   const locale = useLocale(); // ✅ clean and reliable
 
+  const applyEvents = useEffectEvent((payload: { events: AdminEvent[]; pagination: typeof pagination }) => {
+    setEvents(payload.events);
+    setPagination(payload.pagination);
+    setError('');
+  });
 
-  const loadEvents = useCallback(
-    async (pageToLoad: number = 1) => {
-      try {
-        const data = await fetchAllEvents(pageToLoad);
-        setEvents(data.events);
-        setPagination(data.pagination);
-      } catch (err) {
-        console.error('Failed to load events:', err);
-        setError('Unauthorized or failed to fetch events.');
-        localStorage.removeItem('adminToken');
-        router.push('/admin/login');
-      }
-    },
-    [router]
-  );
+  const handleFetchError = useEffectEvent(() => {
+    setError('Unauthorized or failed to fetch events.');
+    localStorage.removeItem('adminToken');
+    router.push('/admin/login');
+  });
 
   useEffect(() => {
     const token = localStorage.getItem('adminToken');
     if (!token) {
       router.push('/admin/login');
     } else {
-      loadEvents(page);
-    }
-  }, [router, page, loadEvents]);
+      let cancelled = false;
+      (async () => {
+        try {
+          const data = await fetchAllEvents(page);
+          if (!cancelled) {
+            applyEvents({ events: data.events, pagination: data.pagination });
+          }
+        } catch (err) {
+          console.error('Failed to load events:', err);
+          if (!cancelled) {
+            handleFetchError();
+          }
+        }
+      })();
 
-  const handleApprove = async (eventCode: string) => {
-    await approveEventPayment(eventCode, locale);
-    loadEvents(page);
-  };
+      return () => {
+        cancelled = true;
+      };
+    }
+  }, [router, page, refreshCounter]);
+
+  const handleApprove = useCallback(
+    async (eventCode: string) => {
+      await approveEventPayment(eventCode, locale);
+      setRefreshCounter((prev) => prev + 1);
+    },
+    [locale]
+  );
 
   return (
     <div className="min-h-screen bg-gray-100 p-6">

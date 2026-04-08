@@ -22,7 +22,6 @@ interface LightboxProps {
 
 const Lightbox: React.FC<LightboxProps> = ({ isOpen, images, selectedIndex, onClose }) => {
   const [currentSlide, setCurrentSlide] = useState(selectedIndex)
-  const [mounted, setMounted] = useState(false)
   const overlayRef = useRef<HTMLDivElement>(null);
 
   const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
@@ -33,15 +32,10 @@ const Lightbox: React.FC<LightboxProps> = ({ isOpen, images, selectedIndex, onCl
     loop: false,
   })
 
-  // Ensure component is mounted before rendering portal
-  useEffect(() => {
-    setMounted(true)
-  }, [])
-
   useEffect(() => {
     if (isOpen && instanceRef.current) {
       instanceRef.current.moveToIdx(selectedIndex, true)
-      setCurrentSlide(selectedIndex)
+      // Keen slider's slideChanged callback will update currentSlide
     }
   }, [isOpen, selectedIndex, instanceRef])
 
@@ -75,7 +69,7 @@ const Lightbox: React.FC<LightboxProps> = ({ isOpen, images, selectedIndex, onCl
     }
   }, [isOpen, onClose])
 
-  if (!isOpen || !images.length || !mounted) return null
+  if (typeof document === "undefined" || !isOpen || !images.length) return null
 
   const downloadImage = async () => {
     const image = images[currentSlide]

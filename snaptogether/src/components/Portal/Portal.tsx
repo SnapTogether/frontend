@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, type ReactPortal } from "react";
+import { type ReactPortal } from "react";
 import { createPortal } from "react-dom";
 
 interface PortalProps {
@@ -8,11 +8,9 @@ interface PortalProps {
 }
 
 export function Portal({ children }: PortalProps): ReactPortal | null {
-  const [isMounted, setIsMounted] = useState(false);
+  if (typeof document === "undefined") {
+    return null;
+  }
 
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
-  return isMounted ? createPortal(children, document.body) : null;
+  return createPortal(children, document.body);
 }

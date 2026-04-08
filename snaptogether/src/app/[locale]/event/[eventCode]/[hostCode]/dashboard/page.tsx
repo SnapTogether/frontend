@@ -36,6 +36,8 @@ export default function HostDashboard() {
   const [error, setError] = useState<string>("");
   const [daysLeft, setDaysLeft] = useState<number | null>(null);
 
+  const isClient = typeof window !== "undefined";
+
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1)
   const [totalPhotos, setTotalPhotos] = useState(1);
@@ -172,11 +174,11 @@ export default function HostDashboard() {
   }, [eventCode, hostCode, currentPage]); // ✅ Keeps dependencies the same
 
 
-  if (loading)
+  if (!isClient || loading)
     return (
       <div className="w-screen h-screen">
         <Loader />
-      </div>
+      </div> 
     );
   if (error) return <p style={{ color: "red" }}>{error}</p>;
 
@@ -249,7 +251,7 @@ export default function HostDashboard() {
         </h2>
 
         <div className="event-info relative rounded-lg bg-[#515261] w-full text-center flex flex-col items-start text-white max-w-[21em] gap-3">
-          <Image src={CardImg} alt="logo" className="rounded-t-lg h-[10em] object-cover" />
+          <Image src={CardImg} alt="logo" className="rounded-t-lg h-[10em] object-cover" loading="eager" />
           <h3 className="flex gap-3 font-bold text-lg text-white px-5">
             <BadgeInfo />{t("subtitle")}
           </h3>

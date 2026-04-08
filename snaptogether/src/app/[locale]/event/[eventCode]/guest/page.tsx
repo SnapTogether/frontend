@@ -2,7 +2,7 @@
 
 import type React from "react"
 
-import { useEffect, useMemo, useState } from "react"
+import { useCallback, useEffect, useMemo, useState } from "react"
 import { useParams } from "next/navigation"
 import {
   verifyGuest,
@@ -69,7 +69,7 @@ export default function GuestDashboard() {
   const t = useTranslations("guestDashboard")
 
   // Load photos for all tabs
-  const loadAllPhotos = async (guestId: string) => {
+  const loadAllPhotos = useCallback(async (guestId: string) => {
     try {
       const [privateResponse, publicResponse, myUploadsResponse] = await Promise.all([
         fetchPrivatePhotos(eventCode, guestId),
@@ -93,7 +93,7 @@ export default function GuestDashboard() {
     } catch (error) {
       console.error("Error loading photos:", error)
     }
-  }
+  }, [eventCode])
 
   const loadMorePublicPhotos = async () => {
     if (publicLoadingMore) return
@@ -180,7 +180,7 @@ export default function GuestDashboard() {
         }
       })
     }
-  }, [eventCode])
+  }, [eventCode, loadAllPhotos])
 
   const handleVerifyGuest = async (e?: React.FormEvent) => {
     e?.preventDefault()

@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter, usePathname } from 'next/navigation';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useEffectEvent } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { useLocale, useTranslations } from 'next-intl';
@@ -32,9 +32,13 @@ const Home = () => {
     router.push(`/${locale}/form`);
   };
 
+  const resetTransition = useEffectEvent(() => {
+    setTransitioning(false);
+  });
+
   useEffect(() => {
     if (pathname === '/form') {
-      setTransitioning(false);
+      resetTransition();
     }
   }, [pathname]);
 

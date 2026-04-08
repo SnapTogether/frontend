@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useEffectEvent, useState } from "react";
 import Button from "../Button/Button";
 import {  X } from "lucide-react";
 import { useTranslations } from "next-intl";
@@ -27,14 +27,17 @@ const GuestMessages: React.FC<GuestMessagesProps> = ({
   const [deletingText, setDeletingText] = useState<string | null>(null);
   const t = useTranslations("guestMessages");
 
-  useEffect(() => {
+  const syncMessages = useEffectEvent((incomingMessages: Message[]) => {
     setLocalMessages((prev) => {
-      const newMessages = messages.filter(
-        (msg) =>
-          !prev.some((existing) => existing.text === msg.text) // prevent same text
+      const newMessages = incomingMessages.filter(
+        (msg) => !prev.some((existing) => existing.text === msg.text)
       );
       return [...prev, ...newMessages];
     });
+  });
+
+  useEffect(() => {
+    syncMessages(messages);
   }, [messages]);
   
   
