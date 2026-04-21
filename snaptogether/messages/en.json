@@ -29,7 +29,7 @@
     "plans": {
       "free": "Free",
       "starter": "Starter (1200den)",
-      "pro": "Premium (1800den)"
+      "pro": "Premium (2000den)"
     },
     "paymentInstructions": {
       "starterTitle": "Starter Plan",
@@ -39,7 +39,7 @@
       "accountNumber": "Account Number:",
       "iban": "IBAN: MK07250120000012345",
       "amountStarter": "Amount: 1200den",
-      "amountPro": "Amount: 1800den",
+      "amountPro": "Amount: 2000den",
       "purpose": "Purpose: SnapTogether Event Access",
       "note": "Once payment is received, you will gain full access to the dashboard. You’ll be notified by email."
     },

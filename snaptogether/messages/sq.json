@@ -29,7 +29,7 @@
     "plans": {
       "free": "Falas (100MB)",
       "starter": "Fillestar (1200den)",
-      "pro": "Premium (1800den)"
+      "pro": "Premium (2000den)"
     },
     "paymentInstructions": {
       "starterTitle": "Plani Fillestar",
@@ -39,7 +39,7 @@
       "accountNumber": "Numri i llogarisë:",
       "iban": "IBAN: MK07250120000012345",
       "amountStarter": "Shuma: 1200den",
-      "amountPro": "Shuma: 1800den",
+      "amountPro": "Shuma: 2000den",
       "purpose": "Qëllimi: Akses në ngjarjen SnapTogether",
       "note": "Pasi të konfirmohet pagesa, do të keni qasje të plotë në panelin e kontrollit. Do të njoftoheni me email."
     },
