@@ -12,18 +12,11 @@ import {
   Camera,
 } from "lucide-react";
 import Image from "next/image";
-import { use, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import InviteRSVP from "./InviteRSVP";
 import BackgroundMusic from "./BackgroundMusic";
 import { useTranslations } from "next-intl";
 import LanguageSwitcher from "@/components/LanguageSwitcher/LanguageSwitcher";
-
-type InvitePageProps = {
-  params: Promise<{
-    locale: string;
-    eventCode: string;
-  }>;
-};
 
 type TimeLeft = {
   days: number;
@@ -64,8 +57,7 @@ function FadeIn({ children }: { children: React.ReactNode }) {
   );
 }
 
-export default function InvitePage({ params }: InvitePageProps) {
-  const { eventCode } = use(params);
+export default function InvitePage() {
   const t = useTranslations("invite.page");
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [introStarted, setIntroStarted] = useState(false);
@@ -77,15 +69,6 @@ export default function InvitePage({ params }: InvitePageProps) {
   const timelineIcons = [MapPinned, Music3, Wine, UtensilsCrossed, Globe];
   const partyAddress = "Салон Example, Скопје";
   const partyMapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(partyAddress)}`;
-  const validSlugs = ["wedding-m-m"];
-
-  if (!validSlugs.includes(eventCode)) {
-  return (
-    <main className="flex min-h-screen items-center justify-center bg-[#fbf7ef] px-6 text-center">
-      <p className="text-lg text-[#5d8068]">Поканата не постои</p>
-    </main>
-  );
-}
  
   useEffect(() => {
     const timer = setInterval(() => setTimeLeft(getTimeLeft(weddingDate)), 1000);
