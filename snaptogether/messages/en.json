@@ -332,5 +332,125 @@
     "terms": "Terms of Use",
     "contact": "Contact",
     "refund": "Refund Policy"
+  },
+  "invite": {
+    "page": {
+      "intro": {
+        "playAria": "Play intro video"
+      },
+      "background": {
+        "alt": "romantic background"
+      },
+      "hero": {
+        "imageAlt": "hero",
+        "kicker": "WE ARE GETTING MARRIED",
+        "couple": "Marija & Marko",
+        "date": "29 . 11 . 2026"
+      },
+      "countdown": {
+        "days": "days",
+        "hours": "hours",
+        "minutes": "minutes",
+        "seconds": "seconds",
+        "note": "We can't wait to celebrate this day together with you."
+      },
+      "dateRow": {
+        "kicker": "SAVE THE DATE",
+        "day": "SATURDAY",
+        "dayNumber": "29",
+        "month": "NOVEMBER"
+      },
+      "ceremony": {
+        "title": "Ceremony",
+        "text": "20:30 – St. Bogorodica Church, Skopje"
+      },
+      "party": {
+        "title": "Reception",
+        "text": "21:30 – “Example” Hall"
+      },
+      "secondImage": {
+        "alt": "second"
+      },
+      "timeline": {
+        "items": [
+          {
+            "time": "20:00",
+            "label": "Guest arrival"
+          },
+          {
+            "time": "20:30",
+            "label": "First dance"
+          },
+          {
+            "time": "21:30",
+            "label": "Toasts"
+          },
+          {
+            "time": "00:00",
+            "label": "Party"
+          }
+        ]
+      },
+      "rsvp": {
+        "title": "RSVP",
+        "text": "Your presence means a lot to us"
+      },
+      "share": {
+        "title": "Share Moments",
+        "line1": "Share your photos from the event",
+        "line2": "Scan QR code or upload directly"
+      },
+      "gallery": {
+        "title": "Gallery",
+        "text": "View all photos from the wedding"
+      },
+      "buttons": {
+        "howToGetThere": "HOW TO GET THERE",
+        "confirmAttendance": "CONFIRM ATTENDANCE",
+        "uploadPhotos": "UPLOAD PHOTOS",
+        "openGallery": "OPEN GALLERY"
+      }
+    },
+    "rsvp": {
+      "title": "Confirm Attendance",
+      "description": {
+        "line1": "Please confirm your attendance by 01.07",
+        "line2": "for you and your plus one if you have one.",
+        "line3": "We can't wait to celebrate with you!"
+      },
+      "yes": "Yes",
+      "no": "No",
+      "fields": {
+        "selectPlaceholder": "Select...",
+        "fullName": {
+          "label": "Full name",
+          "placeholder": "Enter your full name"
+        },
+        "attending": {
+          "label": "Will you attend?"
+        },
+        "withPartner": {
+          "label": "Are you bringing a partner?"
+        },
+        "partnerName": {
+          "label": "Partner full name",
+          "placeholder": "Enter full name"
+        },
+        "notes": {
+          "label": "Additional information",
+          "placeholder": "Write something for us..."
+        }
+      },
+      "buttons": {
+        "submit": "SEND RESPONSE",
+        "submitting": "SENDING...",
+        "close": "CLOSE"
+      },
+      "thanks": "Thank you!",
+      "success": "Your response has been sent successfully. Thank you!",
+      "closeAria": "Close",
+      "imageTopAlt": "RSVP top",
+      "imageBottomAlt": "RSVP bottom"
+    }
   }
 }
