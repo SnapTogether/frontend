@@ -10,7 +10,6 @@ import {
   UtensilsCrossed,
   Globe,
   Camera,
-  Play,
 } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
