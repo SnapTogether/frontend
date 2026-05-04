@@ -139,7 +139,7 @@ export default function InvitePage() {
 
           <article className="bg-[#fbf7ef] font-serif text-[#5f866b] shadow-[0_8px_24px_rgba(0,0,0,0.15)]">
             <div className="relative h-[420px] w-full">
-              <Image src="/carousel/carousel-3.png" alt={t("hero.imageAlt")} fill className="object-cover" priority />
+              <Image src="/carousel/carousel-3.webp" alt={t("hero.imageAlt")} fill className="object-cover" priority />
               <div className="absolute inset-0 bg-gradient-to-t from-black/42 via-transparent to-transparent" />
               <div className="absolute bottom-[56px] left-0 right-0 text-center text-[#f7f2e8]">
                 <p className="text-[11px] tracking-[0.22em]">{t("hero.kicker")}</p>
