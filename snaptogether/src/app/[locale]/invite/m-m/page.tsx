@@ -10,6 +10,7 @@ import {
   UtensilsCrossed,
   Globe,
   Camera,
+  Play,
 } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
@@ -111,11 +112,25 @@ export default function InvitePage() {
             className="absolute inset-0 cursor-pointer focus:outline-none"
             aria-label={t("intro.playAria")}
           >
+            {!introStarted && (
+              <div className="absolute inset-0 z-10 mx-auto max-w-[360px] overflow-hidden">
+                <Image
+                  src="/invite/placeholder.png"
+                  alt={t("hero.imageAlt")}
+                  fill
+                  priority
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-black/20" />
+                
+              </div>
+            )}
             <video
               ref={videoRef}
-              className="h-full w-full object-cover max-w-[360px] mx-auto"
+              className={`h-full w-full object-cover max-w-[360px] mx-auto ${introStarted ? "opacity-100" : "opacity-0"}`}
               playsInline
               preload="auto"
+              poster="/invite/placeholder.png"
               onEnded={handleVideoEnd}
             >
               <source src="/invite/opening-intro.mov" type="video/quicktime" />
