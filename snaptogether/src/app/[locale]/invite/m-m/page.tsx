@@ -16,7 +16,6 @@ import { useEffect, useRef, useState } from "react";
 import InviteRSVP from "./InviteRSVP";
 import BackgroundMusic from "./BackgroundMusic";
 import { useTranslations } from "next-intl";
-import LanguageSwitcher from "@/components/LanguageSwitcher/LanguageSwitcher";
 
 type TimeLeft = {
   days: number;
