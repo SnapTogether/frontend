@@ -327,6 +327,20 @@
     "title": "Гости",
     "noGuests": "Сè уште нема гости."
   },
+  "seatingTables": {
+    "searchLabel": "Пребарај гостин",
+    "searchPlaceholder": "Пребарај тука!",
+    "clearSearch": "Исчисти пребарување",
+    "openMenu": "Отвори мени",
+    "tableLabel": "МАСА",
+    "table": "Маса",
+    "resultsCount": "{count, plural, one {Прикажан е 1 резултат} other {Прикажани се # резултати}}",
+    "noResults": "Не е пронајден гостин. Пребарај по име, презиме или број на маса.",
+    "defaultSubtitle": "Пронајди ја твојата маса",
+    "guestListLabel": "Листа на гости и маси",
+    "foundSeat": "Твојата маса е пронајдена!",
+    "ok": "Во ред"
+  },
   "footer": {
     "rights": "Сите права се задржани.",
     "privacy": "Политика за приватност",

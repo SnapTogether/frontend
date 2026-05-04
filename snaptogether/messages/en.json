@@ -326,6 +326,20 @@
     "title": "Guests",
     "noGuests": "No guests yet."
   },
+  "seatingTables": {
+    "searchLabel": "Search guest name",
+    "searchPlaceholder": "Search here!",
+    "clearSearch": "Clear search",
+    "openMenu": "Open menu",
+    "tableLabel": "TABLE",
+    "table": "Table",
+    "resultsCount": "{count, plural, one {Showing 1 result} other {Showing # results}}",
+    "noResults": "No guest found. Try searching by first name, surname, or table number.",
+    "defaultSubtitle": "Find your table",
+    "guestListLabel": "Guest seating list",
+    "foundSeat": "Found Your Seat!",
+    "ok": "OK"
+  },
   "footer": {
     "rights": "All rights reserved.",
     "privacy": "Privacy Policy",

@@ -326,6 +326,20 @@
     "title": "Të ftuarit",
     "noGuests": "Ende nuk ka të ftuar."
   },
+  "seatingTables": {
+    "searchLabel": "Kërko emrin e mysafirit",
+    "searchPlaceholder": "Kërko këtu!",
+    "clearSearch": "Pastro kërkimin",
+    "openMenu": "Hap menunë",
+    "tableLabel": "TAVOLINA",
+    "table": "Tavolina",
+    "resultsCount": "{count, plural, one {Po shfaqet 1 rezultat} other {Po shfaqen # rezultate}}",
+    "noResults": "Nuk u gjet mysafir. Kërko sipas emrit, mbiemrit ose numrit të tavolinës.",
+    "defaultSubtitle": "Gjej tavolinën tënde",
+    "guestListLabel": "Lista e mysafirëve dhe tavolinave",
+    "foundSeat": "Tavolina jote u gjet!",
+    "ok": "Në rregull"
+  },
   "footer": {
     "rights": "Të gjitha të drejtat e rezervuara.",
     "privacy": "Politika e privatësisë",
