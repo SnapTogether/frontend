@@ -326,6 +326,20 @@
     "title": "Misafirler",
     "noGuests": "Henüz misafir yok."
   },
+  "seatingTables": {
+    "searchLabel": "Misafir adını ara",
+    "searchPlaceholder": "Burada ara!",
+    "clearSearch": "Aramayı temizle",
+    "openMenu": "Menüyü aç",
+    "tableLabel": "MASA",
+    "table": "Masa",
+    "resultsCount": "{count, plural, one {1 sonuç gösteriliyor} other {# sonuç gösteriliyor}}",
+    "noResults": "Misafir bulunamadı. Ad, soyad veya masa numarası ile arayın.",
+    "defaultSubtitle": "Masanı bul",
+    "guestListLabel": "Misafir masa listesi",
+    "foundSeat": "Masanız bulundu!",
+    "ok": "Tamam"
+  },
   "footer": {
     "rights": "Tüm hakları saklıdır.",
     "privacy": "Gizlilik Politikası",
