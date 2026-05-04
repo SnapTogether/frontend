@@ -96,7 +96,6 @@ export default function InvitePage() {
   return (
     <main className="min-h-screen bg-[#d4d6d0]">
       <BackgroundMusic isOpen={showInvite} src="/invite/intro-song.mp3" />
-      <LanguageSwitcher className="fixed right-2 top-2 z-[100] scale-75 origin-top-right rounded-full bg-black/30 px-1.5 py-1 backdrop-blur-sm" />
 
       {!showInvite && (
         <motion.section
