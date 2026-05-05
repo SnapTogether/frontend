@@ -12,36 +12,16 @@ import {
   Camera,
 } from "lucide-react";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import InviteRSVP from "./InviteRSVP";
 import BackgroundMusic from "./BackgroundMusic";
 import { useTranslations } from "next-intl";
 
-type TimeLeft = {
-  days: number;
-  hours: number;
-  minutes: number;
-  seconds: number;
-};
-
-const weddingDate = new Date("2026-06-27T20:30:00");
 const tornTopPath =
   "M0,26 C16,14 28,34 44,20 C59,7 73,31 88,18 C104,4 119,30 136,16 C152,3 170,28 188,15 C206,2 224,27 242,14 C260,3 276,24 292,12 C306,2 315,15 320,11 L320,34 L0,34 Z";
 const tornBottomPath =
   "M0,22 C12,9 27,30 42,17 C56,5 72,29 88,15 C104,2 121,27 138,14 C155,1 173,26 191,13 C209,2 227,24 244,12 C262,3 278,23 294,11 C306,3 315,16 320,12 L320,34 L0,34 Z";
 const thinDividerClass = "mx-auto mt-8 w-[140px] border-t border-[#9cb09f]";
-
-function getTimeLeft(targetDate: Date): TimeLeft {
-  const diff = targetDate.getTime() - Date.now();
-  if (diff <= 0) return { days: 0, hours: 0, minutes: 0, seconds: 0 };
-
-  return {
-    days: Math.floor(diff / (1000 * 60 * 60 * 24)),
-    hours: Math.floor((diff / (1000 * 60 * 60)) % 24),
-    minutes: Math.floor((diff / (1000 * 60)) % 60),
-    seconds: Math.floor((diff / 1000) % 60),
-  };
-}
 
 function FadeIn({ children }: { children: React.ReactNode }) {
   return (
@@ -64,16 +44,10 @@ export default function InvitePage() {
   const [introFading, setIntroFading] = useState(false);
   const [showInvite, setShowInvite] = useState(false);
   const [showRSVP, setShowRSVP] = useState(false);
-  const [timeLeft, setTimeLeft] = useState<TimeLeft>(() => getTimeLeft(weddingDate));
   const timelineItems = t.raw("timeline.items") as Array<{ time: string; label: string }>;
   const timelineIcons = [MapPinned, Music3, Wine, UtensilsCrossed, Globe];
   const partyAddress = "Лешок, 1204 Теарце, Северна Македонија, Tearce, North Macedonia, 1204";
   const partyMapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(partyAddress)}`;
- 
-  useEffect(() => {
-    const timer = setInterval(() => setTimeLeft(getTimeLeft(weddingDate)), 1000);
-    return () => clearInterval(timer);
-  }, []);
 
   const handleStartIntro = async () => {
     if (introStarted) return;
