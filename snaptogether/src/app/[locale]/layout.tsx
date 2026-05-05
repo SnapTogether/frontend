@@ -77,6 +77,7 @@ export default async function RootLayout({
   if (!hasLocale(routing.locales, locale)) {
     notFound();
   }
+  const messages = (await import(`../../../messages/${locale}.json`)).default;
 
   return (
     <html lang={locale}>
@@ -104,7 +105,7 @@ export default async function RootLayout({
       >
         {/* ✅ Wrap the entire app inside Portal to prevent SSR issues */}
         <PrimeReactProvider>
-          <NextIntlClientProvider>
+          <NextIntlClientProvider locale={locale} messages={messages}>
             <Portal>{children}</Portal>
           </NextIntlClientProvider>
         </PrimeReactProvider>

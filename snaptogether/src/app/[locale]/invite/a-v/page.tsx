@@ -13,9 +13,10 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import { useRef, useState } from "react";
-import InviteRSVP from "./InviteRSVP";
 import BackgroundMusic from "./BackgroundMusic";
 import { useTranslations } from "next-intl";
+
+const TALLY_FORM_URL = "https://tally.so/r/Me8QzE";
 
 const tornTopPath =
   "M0,26 C16,14 28,34 44,20 C59,7 73,31 88,18 C104,4 119,30 136,16 C152,3 170,28 188,15 C206,2 224,27 242,14 C260,3 276,24 292,12 C306,2 315,15 320,11 L320,34 L0,34 Z";
@@ -310,7 +311,29 @@ export default function InvitePage() {
       )}
 
       <AnimatePresence>
-        {showRSVP && <InviteRSVP open={showRSVP} onClose={() => setShowRSVP(false)} />}
+        {showRSVP && (
+          <motion.div
+            className="fixed inset-0 z-[200] bg-[#fbf7ef]"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <button
+              type="button"
+              onClick={() => setShowRSVP(false)}
+              className="fixed right-4 top-4 z-[210] flex h-10 w-10 items-center justify-center rounded-full bg-[#fbf7ef]/90 text-[#5f866b] shadow-md"
+              aria-label="Close RSVP form"
+            >
+              ×
+            </button>
+
+            <iframe
+              src={TALLY_FORM_URL}
+              title="Wedding RSVP"
+              className="h-full w-full border-0"
+            />
+          </motion.div>
+        )}
       </AnimatePresence>
     </main>
   );
