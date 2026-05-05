@@ -12,36 +12,16 @@ import {
   Camera,
 } from "lucide-react";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import InviteRSVP from "./InviteRSVP";
 import BackgroundMusic from "./BackgroundMusic";
 import { useTranslations } from "next-intl";
 
-type TimeLeft = {
-  days: number;
-  hours: number;
-  minutes: number;
-  seconds: number;
-};
-
-const weddingDate = new Date("2026-11-29T20:30:00");
 const tornTopPath =
   "M0,26 C16,14 28,34 44,20 C59,7 73,31 88,18 C104,4 119,30 136,16 C152,3 170,28 188,15 C206,2 224,27 242,14 C260,3 276,24 292,12 C306,2 315,15 320,11 L320,34 L0,34 Z";
 const tornBottomPath =
   "M0,22 C12,9 27,30 42,17 C56,5 72,29 88,15 C104,2 121,27 138,14 C155,1 173,26 191,13 C209,2 227,24 244,12 C262,3 278,23 294,11 C306,3 315,16 320,12 L320,34 L0,34 Z";
 const thinDividerClass = "mx-auto mt-8 w-[140px] border-t border-[#9cb09f]";
-
-function getTimeLeft(targetDate: Date): TimeLeft {
-  const diff = targetDate.getTime() - Date.now();
-  if (diff <= 0) return { days: 0, hours: 0, minutes: 0, seconds: 0 };
-
-  return {
-    days: Math.floor(diff / (1000 * 60 * 60 * 24)),
-    hours: Math.floor((diff / (1000 * 60 * 60)) % 24),
-    minutes: Math.floor((diff / (1000 * 60)) % 60),
-    seconds: Math.floor((diff / 1000) % 60),
-  };
-}
 
 function FadeIn({ children }: { children: React.ReactNode }) {
   return (
@@ -60,19 +40,14 @@ export default function InvitePage() {
   const t = useTranslations("invite.page");
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [introStarted, setIntroStarted] = useState(false);
+  const [introWhiteFade, setIntroWhiteFade] = useState(false);
   const [introFading, setIntroFading] = useState(false);
   const [showInvite, setShowInvite] = useState(false);
   const [showRSVP, setShowRSVP] = useState(false);
-  const [timeLeft, setTimeLeft] = useState<TimeLeft>(() => getTimeLeft(weddingDate));
   const timelineItems = t.raw("timeline.items") as Array<{ time: string; label: string }>;
   const timelineIcons = [MapPinned, Music3, Wine, UtensilsCrossed, Globe];
-  const partyAddress = "Салон Example, Скопје";
+  const partyAddress = "Лешок, 1204 Теарце, Северна Македонија, Tearce, North Macedonia, 1204";
   const partyMapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(partyAddress)}`;
- 
-  useEffect(() => {
-    const timer = setInterval(() => setTimeLeft(getTimeLeft(weddingDate)), 1000);
-    return () => clearInterval(timer);
-  }, []);
 
   const handleStartIntro = async () => {
     if (introStarted) return;
@@ -90,6 +65,16 @@ export default function InvitePage() {
       window.scrollTo({ top: 0, left: 0, behavior: "auto" });
       setShowInvite(true);
     }, 420);
+  };
+
+  const handleIntroTimeUpdate = () => {
+    const video = videoRef.current;
+    if (!video || introWhiteFade) return;
+
+    const remaining = video.duration - video.currentTime;
+    if (Number.isFinite(remaining) && remaining <= 0.5) {
+      setIntroWhiteFade(true);
+    }
   };
 
   return (
@@ -112,14 +97,13 @@ export default function InvitePage() {
             {!introStarted && (
               <div className="absolute inset-0 z-10 mx-auto max-w-[360px] overflow-hidden">
                 <Image
-                  src="/invite/placeholder.png"
+                  src="/invite/placeholder-envelope.webp"
                   alt={t("hero.imageAlt")}
                   fill
                   priority
                   className="object-cover"
                 />
                 <div className="absolute inset-0 bg-black/20" />
-                
               </div>
             )}
             <video
@@ -127,12 +111,18 @@ export default function InvitePage() {
               className={`h-full w-full object-cover max-w-[360px] mx-auto ${introStarted ? "opacity-100" : "opacity-0"}`}
               playsInline
               preload="auto"
-              poster="/invite/placeholder.png"
+              poster="/invite/placeholder-envelope.webp"
+              onTimeUpdate={handleIntroTimeUpdate}
               onEnded={handleVideoEnd}
             >
-              <source src="/invite/opening-intro.mov" type="video/quicktime" />
-              <source src="/invite/opening-intro.mov" type="video/mp4" />
+              <source src="/invite/opening-intro.mp4" type="video/mp4" />
             </video>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: introWhiteFade ? 1 : 0 }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
+              className="pointer-events-none absolute inset-0 mx-auto max-w-[360px] bg-white"
+            />
           </button>
         </motion.section>
       )}
@@ -141,7 +131,7 @@ export default function InvitePage() {
         <motion.section
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.25 }}
+          transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
           className="relative mx-auto w-full max-w-[360px]"
         >
           <div className="pointer-events-none fixed inset-0 -z-10">
@@ -149,10 +139,16 @@ export default function InvitePage() {
             <div className="absolute inset-0 bg-black/35 backdrop-blur-[3px]" />
           </div>
 
-          <article className="bg-[#fbf7ef] font-serif text-[#5f866b] shadow-[0_8px_24px_rgba(0,0,0,0.15)]">
+          <motion.article
+            initial={{ opacity: 0, y: 26, scale: 0.985 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.72, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
+            className="bg-[#fbf7ef] font-serif text-[#5f866b] shadow-[0_8px_24px_rgba(0,0,0,0.15)]"
+          >
             <div className="relative h-[420px] w-full">
-              <Image src="/carousel/carousel-3.webp" alt={t("hero.imageAlt")} fill className="object-cover" priority />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/42 via-transparent to-transparent" />
+              <Image src="/invite/wedding-image.webp" alt={t("hero.imageAlt")} fill className="object-cover" priority />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/12 to-transparent" />
+              <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black/38 to-transparent" />
               <div className="absolute bottom-[56px] left-0 right-0 text-center text-[#f7f2e8]">
                 <p className="text-[11px] tracking-[0.22em]">{t("hero.kicker")}</p>
                 <p className="mt-1 font-['var(--font-gochi-hand)'] text-[58px] leading-[0.88]">{t("hero.couple")}</p>
@@ -173,7 +169,7 @@ export default function InvitePage() {
               transition={{ duration: 0.95, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
             >
               <div className="px-7 pt-2 text-center">
-                <div className="mt-2.5 grid grid-cols-4">
+                {/* <div className="mt-2.5 grid grid-cols-4">
                   {[
                     [timeLeft.days, t("countdown.days")],
                     [timeLeft.hours, t("countdown.hours")],
@@ -186,8 +182,8 @@ export default function InvitePage() {
                     </div>
                   ))}
                 </div>
-                <br></br>
-                <p className="mx-auto mt-4 max-w-[230px] text-[14px] leading-[1.4] text-[#5d8068]">{t("countdown.note")}</p>
+                <br></br> */}
+                <p className="mx-auto mt-4 max-w-[230px] text-[16px] leading-[1.4] text-[#5d8068]">{t("countdown.note")}</p>
               </div>
             </motion.div>
 
@@ -243,7 +239,7 @@ export default function InvitePage() {
                   <path d={tornTopPath} fill="#fbf7ef" />
                 </svg>
               </div>
-              <Image src="/carousel/carousel-2.png" alt={t("secondImage.alt")} fill className="object-cover" />
+              <Image src="/invite/ajka.webp" alt={t("secondImage.alt")} fill className="object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent" />
               <div className="absolute inset-x-0 bottom-[0px] z-20 h-[34px]">
                 <svg viewBox="0 0 320 34" preserveAspectRatio="none" className="h-full w-full">
@@ -309,7 +305,7 @@ export default function InvitePage() {
               <div className="mt-6 px-7 pb-16 text-center"></div>
             </FadeIn>
             
-          </article>
+          </motion.article>
         </motion.section>
       )}
 

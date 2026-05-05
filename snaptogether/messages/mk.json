@@ -359,8 +359,8 @@
       "hero": {
         "imageAlt": "главна слика",
         "kicker": "СЕ ВЕНЧАВАМЕ",
-        "couple": "Марија & Марко",
-        "date": "29 . 11 . 2026"
+        "couple": "Aulona & Visar",
+        "date": "САБ 27 ЈУНИ 2026"
       },
       "countdown": {
         "days": "дена",
@@ -371,9 +371,9 @@
       },
       "dateRow": {
         "kicker": "SAVE THE DATE",
-        "day": "САБОТА",
-        "dayNumber": "29",
-        "month": "НОЕМВРИ"
+        "day": "САБ",
+        "dayNumber": "27",
+        "month": "ЈУНИ"
       },
       "ceremony": {
         "title": "Церемонија",
@@ -381,7 +381,7 @@
       },
       "party": {
         "title": "Прослава",
-        "text": "21:30 – Салон “Example”"
+        "text": "21:30 – Ajka Wedding Center"
       },
       "secondImage": {
         "alt": "втора слика"
@@ -422,7 +422,7 @@
     
       "buttons": {
         "howToGetThere": "КАКО ДА СТИГНЕТЕ",
-        "confirmAttendance": "ПОТВРДИ ПРИСУСТВO",
+        "confirmAttendance": "ПОТВРДИ ПРИСУСТВО",
         "uploadPhotos": "ПРИКАЧИ ФОТОГРАФИИ",
         "openGallery": "ОТВОРИ ГАЛЕРИЈА"
       }

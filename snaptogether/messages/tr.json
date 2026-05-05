@@ -358,8 +358,8 @@
       "hero": {
         "imageAlt": "hero",
         "kicker": "WE ARE GETTING MARRIED",
-        "couple": "Lucia & Juan",
-        "date": "29 . 11 . 2026"
+        "couple": "Aulona & Visar",
+        "date": "SAT 27 JUNE 2026"
       },
       "countdown": {
         "days": "days",
@@ -370,9 +370,9 @@
       },
       "dateRow": {
         "kicker": "SAVE THE DATE",
-        "day": "SATURDAY",
-        "dayNumber": "29",
-        "month": "NOVEMBER"
+        "day": "SAT",
+        "dayNumber": "27",
+        "month": "JUNE"
       },
       "ceremony": {
         "title": "Ceremony",
@@ -380,7 +380,7 @@
       },
       "party": {
         "title": "Reception",
-        "text": "21:30 – “Example” Hall"
+        "text": "21:30 – Ajka Wedding Center"
       },
       "secondImage": {
         "alt": "second"
