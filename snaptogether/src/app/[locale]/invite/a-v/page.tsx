@@ -298,8 +298,14 @@ export default function InvitePage() {
                   <br />
                   {t("share.line2")}
                 </p>
-                <div className="mx-auto mt-4 flex h-[94px] w-[94px] items-center justify-center rounded-md border border-[#98aa9d] bg-[#f7f1e7]">
-                  <Camera className="h-12 w-12 text-[#7f9987]" strokeWidth={1.4} />
+                <div className="mx-auto mt-4 flex h-[94px] w-[94px] items-center justify-center overflow-hidden rounded-md border border-[#98aa9d] bg-[#f7f1e7]">
+                  <Image
+                    src="/invite/snaptogether-gray-logo.png"
+                    alt="SnapTogether logo"
+                    width={94}
+                    height={94}
+                    className="h-full w-full object-cover"
+                  />
                 </div>
                 <button className="mt-4 h-[34px] w-[150px] rounded-full bg-[#5f866b] text-[11px] tracking-[0.12em] text-[#f9f6ef]">{t("buttons.uploadPhotos")}</button>
               </div>
