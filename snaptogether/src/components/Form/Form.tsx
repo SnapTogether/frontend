@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { useLocale } from "next-intl";
 import Input from "../Input/Input";
 import { createEvent, CreateEventData } from "@/api/event";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/i18n/navigation";
 import Button from "../Button/Button";
 import { useTranslations } from "next-intl";
 import PendingPaymentNotice from "../PendingPaymentNotice/PendingPaymentNotice";
@@ -24,7 +24,6 @@ export default function EventForm() {
     watch
   } = useForm<CreateEventData>();
   const locale = useLocale();
-  console.log('locale', locale);
 
   const selectedPlan = watch("plan", "free");
 
