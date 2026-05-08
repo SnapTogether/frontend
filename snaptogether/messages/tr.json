@@ -326,11 +326,164 @@
     "title": "Misafirler",
     "noGuests": "Henüz misafir yok."
   },
+  "seatingTables": {
+    "searchLabel": "Misafir adını ara",
+    "searchPlaceholder": "Burada ara!",
+    "clearSearch": "Aramayı temizle",
+    "openMenu": "Menüyü aç",
+    "tableLabel": "MASA",
+    "table": "Masa",
+    "resultsCount": "{count, plural, one {1 sonuç gösteriliyor} other {# sonuç gösteriliyor}}",
+    "noResults": "Misafir bulunamadı. Ad, soyad veya masa numarası ile arayın.",
+    "defaultSubtitle": "Masanı bul",
+    "guestListLabel": "Misafir masa listesi",
+    "foundSeat": "Masanız bulundu!",
+    "ok": "Tamam"
+  },
   "footer": {
     "rights": "Tüm hakları saklıdır.",
     "privacy": "Gizlilik Politikası",
     "terms": "Kullanım Şartları",
     "contact": "İletişim",
     "refund": "İade Politikası"
+  },
+  "invite": {
+    "page": {
+      "intro": {
+        "playAria": "Play intro video"
+      },
+      "background": {
+        "alt": "romantic background"
+      },
+      "hero": {
+        "imageAlt": "hero",
+        "kicker": "WE ARE GETTING MARRIED",
+        "couple": "Aulona & Visar",
+        "date": "SAT 27 JUNE 2026"
+      },
+      "countdown": {
+        "days": "days",
+        "hours": "hours",
+        "minutes": "minutes",
+        "seconds": "seconds",
+        "note": "We can't wait to celebrate this day together with you."
+      },
+      "dateRow": {
+        "kicker": "SAVE THE DATE",
+        "day": "SAT",
+        "dayNumber": "27",
+        "month": "JUNE"
+      },
+      "ceremony": {
+        "title": "Ceremony",
+        "text": "20:30 – St. Bogorodica Church, Skopje"
+      },
+      "party": {
+        "title": "Reception",
+        "text": "21:30 – Ajka Wedding Center"
+      },
+      "secondImage": {
+        "alt": "second"
+      },
+      "timeline": {
+        "items": [
+          {
+            "time": "20:00",
+            "label": "Guest arrival"
+          },
+          {
+            "time": "20:30",
+            "label": "Ceremony"
+          },
+          {
+            "time": "21:30",
+            "label": "Toasts"
+          },
+          {
+            "time": "22:00",
+            "label": "First dinner course"
+          },
+          {
+            "time": "00:00",
+            "label": "Party"
+          }
+        ]
+      },
+      "rsvp": {
+        "title": "RSVP",
+        "text": "Your presence means a lot to us"
+      },
+      "location": {
+        "title": "Location",
+        "text": "View the exact location"
+      },
+      "share": {
+        "title": "Share Moments",
+        "line1": "Share your photos from the event",
+        "line2": "Scan QR code or upload directly"
+      },
+      "gallery": {
+        "title": "Gallery",
+        "text": "View all photos from the wedding"
+      },
+      "music": {
+        "title": "Music",
+        "text": "Add a song that should never be missing"
+      },
+      "instagram": {
+        "title": "Instagram",
+        "text": "Follow and tag us so we can keep all the memories",
+        "handle": "@SAMEVENCHAVAME"
+      },
+      "buttons": {
+        "howToGetThere": "HOW TO GET THERE",
+        "confirmAttendance": "CONFIRM ATTENDANCE",
+        "openMap": "OPEN MAP",
+        "uploadPhotos": "UPLOAD PHOTOS",
+        "openGallery": "OPEN GALLERY",
+        "listenPlaylist": "LISTEN TO PLAYLIST"
+      }
+    },
+    "rsvp": {
+      "title": "Confirm Attendance",
+      "description": {
+        "line1": "Please confirm your attendance by 01.07",
+        "line2": "for you and your plus one if you have one.",
+        "line3": "We can't wait to celebrate with you!"
+      },
+      "yes": "Yes",
+      "no": "No",
+      "fields": {
+        "selectPlaceholder": "Select...",
+        "fullName": {
+          "label": "Full name",
+          "placeholder": "Enter your full name"
+        },
+        "attending": {
+          "label": "Will you attend?"
+        },
+        "withPartner": {
+          "label": "Are you bringing a partner?"
+        },
+        "partnerName": {
+          "label": "Partner full name",
+          "placeholder": "Enter full name"
+        },
+        "notes": {
+          "label": "Additional information",
+          "placeholder": "Write something for us..."
+        }
+      },
+      "buttons": {
+        "submit": "SEND RESPONSE",
+        "submitting": "GÖNDERİLİYOR...",
+        "close": "CLOSE"
+      },
+      "thanks": "Thank you!",
+      "success": "Yanıtınız başarıyla gönderildi. Teşekkür ederiz!",
+      "closeAria": "Kapat",
+      "imageTopAlt": "RSVP top",
+      "imageBottomAlt": "RSVP bottom"
+    }
   }
 }
