@@ -15,7 +15,7 @@ import LanguageSwitcher from '@/components/LanguageSwitcher/LanguageSwitcher';
 import Logo from '../../../public/logo/snaptogether-logo-text-peach.svg';
 import AnimatedStepsWrapper from '@/components/AnimatedStepsWrapper/AnimatedStepsWrapper';
 import { ChevronDown } from 'lucide-react';
-
+ 
 const Home = () => {
   const router = useRouter();
   const pathname = usePathname();
