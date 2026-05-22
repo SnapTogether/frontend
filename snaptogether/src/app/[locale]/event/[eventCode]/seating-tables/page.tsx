@@ -1,7 +1,7 @@
 "use client";
 
 import { FormEvent, useMemo, useState } from "react";
-import { Menu, Search, X } from "lucide-react";
+import { Search, X } from "lucide-react";
 import { useParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import seatingTables from "@/data/seatingTables.json";
