@@ -12,6 +12,10 @@ type SeatingGuest = {
   table: number;
 };
 
+type SeatingGuestEntry = SeatingGuest & {
+  id: string;
+};
+
 type SeatingEvent = {
   title: string;
   guests: SeatingGuest[];
@@ -54,9 +58,18 @@ export default function SeatingTablesPage() {
   const eventData = data.events[eventCode] || data.events.default;
 
   const [query, setQuery] = useState("");
-  const [selectedGuest, setSelectedGuest] = useState<SeatingGuest | null>(null);
+  const [selectedGuest, setSelectedGuest] = useState<SeatingGuestEntry | null>(null);
 
-  const guests = useMemo(() => [...eventData.guests].sort(sortBySurname), [eventData.guests]);
+  const guests = useMemo(
+    () =>
+      eventData.guests
+        .map((guest, index) => ({
+          ...guest,
+          id: `${eventCode}-${index}`,
+        }))
+        .sort(sortBySurname),
+    [eventCode, eventData.guests],
+  );
   const normalizedQuery = normalizeValue(query);
   const tableSearchAliases = useMemo(() => [t("table"), t("tableLabel"), "table"], [t]);
 
@@ -78,7 +91,7 @@ export default function SeatingTablesPage() {
   }, [guests, normalizedQuery, tableSearchAliases]);
 
   const groupedGuests = useMemo(() => {
-    return guests.reduce<Record<string, SeatingGuest[]>>((groups, guest) => {
+    return guests.reduce<Record<string, SeatingGuestEntry[]>>((groups, guest) => {
       const initial = getSurnameInitial(guest.name);
 
       if (!groups[initial]) {
@@ -105,21 +118,6 @@ export default function SeatingTablesPage() {
   return (
     <main className={styles.page}>
       <div className={styles.shell}>
-        <div className={styles.phoneBar} aria-hidden="true">
-          <span>13:43</span>
-          <span className={styles.statusIcons}>
-            <span>5G</span>
-            <span className={styles.signal}>
-              <span />
-              <span />
-              <span />
-            </span>
-            <span className={styles.battery}>
-              <span className={styles.batteryFill} />
-            </span>
-          </span>
-        </div>
-
         <header className={styles.header}>
           <h1 className={styles.brand}>{eventData.title}</h1>
           <button className={styles.menuButton} type="button" aria-label={t("openMenu")}>
@@ -163,7 +161,7 @@ export default function SeatingTablesPage() {
                   className={styles.resultButton}
                   type="button"
                   onClick={() => setSelectedGuest(guest)}
-                  key={guest.name}
+                  key={guest.id}
                 >
                   <span className={styles.resultName}>{guest.name}</span>
                   <span className={styles.resultTable}>
@@ -187,10 +185,10 @@ export default function SeatingTablesPage() {
               <h2 className={styles.letter}>{initial}</h2>
               <ul className={styles.guestList}>
                 {groupGuests.map((guest) => {
-                  const isHighlighted = searchResults.some((result) => result.name === guest.name);
+                  const isHighlighted = searchResults.some((result) => result.id === guest.id);
 
                   return (
-                    <li key={guest.name}>
+                    <li key={guest.id}>
                       <button
                         className={styles.guestButton}
                         type="button"

@@ -113,6 +113,795 @@
           "table": 3
         }
       ]
+    },
+    "a-z": {
+      "title": "Static Event",
+      "guests": [
+        {
+          "name": "Косте",
+          "table": 13
+        },
+        {
+          "name": "Сандра",
+          "table": 13
+        },
+        {
+          "name": "Ивана",
+          "table": 13
+        },
+        {
+          "name": "Сања",
+          "table": 13
+        },
+        {
+          "name": "Соња",
+          "table": 13
+        },
+        {
+          "name": "Мишо",
+          "table": 13
+        },
+        {
+          "name": "Надица",
+          "table": 13
+        },
+        {
+          "name": "Сузана",
+          "table": 13
+        },
+        {
+          "name": "Јорде",
+          "table": 13
+        },
+        {
+          "name": "Михаела",
+          "table": 13
+        },
+        {
+          "name": "Нина",
+          "table": 16
+        },
+        {
+          "name": "Маја",
+          "table": 16
+        },
+        {
+          "name": "Јован",
+          "table": 16
+        },
+        {
+          "name": "Марко",
+          "table": 16
+        },
+        {
+          "name": "Гина",
+          "table": 16
+        },
+        {
+          "name": "Марија",
+          "table": 16
+        },
+        {
+          "name": "Дејан",
+          "table": 16
+        },
+        {
+          "name": "Маки",
+          "table": 16
+        },
+        {
+          "name": "Љупче",
+          "table": 16
+        },
+        {
+          "name": "Дуле",
+          "table": 8
+        },
+        {
+          "name": "Татијана",
+          "table": 8
+        },
+        {
+          "name": "Весна Параќин",
+          "table": 8
+        },
+        {
+          "name": "Ана",
+          "table": 8
+        },
+        {
+          "name": "Ацо",
+          "table": 8
+        },
+        {
+          "name": "Јелена",
+          "table": 8
+        },
+        {
+          "name": "Анета",
+          "table": 11
+        },
+        {
+          "name": "Никола",
+          "table": 11
+        },
+        {
+          "name": "Филип",
+          "table": 11
+        },
+        {
+          "name": "Радмила",
+          "table": 11
+        },
+        {
+          "name": "Ивица",
+          "table": 11
+        },
+        {
+          "name": "Баге",
+          "table": 11
+        },
+        {
+          "name": "Ања",
+          "table": 11
+        },
+        {
+          "name": "Стефан",
+          "table": 11
+        },
+        {
+          "name": "Ѓорѓи",
+          "table": 12
+        },
+        {
+          "name": "Горде",
+          "table": 12
+        },
+        {
+          "name": "Марко",
+          "table": 12
+        },
+        {
+          "name": "Михаил",
+          "table": 12
+        },
+        {
+          "name": "Ацко",
+          "table": 12
+        },
+        {
+          "name": "Данче",
+          "table": 12
+        },
+        {
+          "name": "Цеце",
+          "table": 12
+        },
+        {
+          "name": "Мирко",
+          "table": 12
+        },
+        {
+          "name": "Владо",
+          "table": 43
+        },
+        {
+          "name": "Фанка",
+          "table": 43
+        },
+        {
+          "name": "Ивица",
+          "table": 43
+        },
+        {
+          "name": "Наташа",
+          "table": 43
+        },
+        {
+          "name": "Жаре",
+          "table": 43
+        },
+        {
+          "name": "Дона",
+          "table": 43
+        },
+        {
+          "name": "Дарко",
+          "table": 43
+        },
+        {
+          "name": "Среќко",
+          "table": 43
+        },
+        {
+          "name": "Весна",
+          "table": 42
+        },
+        {
+          "name": "Ице",
+          "table": 42
+        },
+        {
+          "name": "Марина",
+          "table": 42
+        },
+        {
+          "name": "Тина",
+          "table": 42
+        },
+        {
+          "name": "Сафет",
+          "table": 42
+        },
+        {
+          "name": "Едис",
+          "table": 42
+        },
+        {
+          "name": "Душица",
+          "table": 42
+        },
+        {
+          "name": "Матеа",
+          "table": 42
+        },
+        {
+          "name": "Алекс",
+          "table": 45
+        },
+        {
+          "name": "Милена",
+          "table": 45
+        },
+        {
+          "name": "Елена",
+          "table": 45
+        },
+        {
+          "name": "Ива",
+          "table": 45
+        },
+        {
+          "name": "Славчо",
+          "table": 45
+        },
+        {
+          "name": "Михаела",
+          "table": 45
+        },
+        {
+          "name": "Вук",
+          "table": 45
+        },
+        {
+          "name": "Теа",
+          "table": 45
+        },
+        {
+          "name": "Симон",
+          "table": 45
+        },
+        {
+          "name": "Војче",
+          "table": 37
+        },
+        {
+          "name": "Душица",
+          "table": 37
+        },
+        {
+          "name": "Ице",
+          "table": 37
+        },
+        {
+          "name": "Наташа",
+          "table": 37
+        },
+        {
+          "name": "Мики",
+          "table": 37
+        },
+        {
+          "name": "Анета",
+          "table": 37
+        },
+        {
+          "name": "Анета Веска",
+          "table": 37
+        },
+        {
+          "name": "Maxi",
+          "table": 36
+        },
+        {
+          "name": "Susanna",
+          "table": 36
+        },
+        {
+          "name": "Artur",
+          "table": 36
+        },
+        {
+          "name": "Ira",
+          "table": 36
+        },
+        {
+          "name": "Evgenia",
+          "table": 36
+        },
+        {
+          "name": "Nico",
+          "table": 36
+        },
+        {
+          "name": "Christin",
+          "table": 40
+        },
+        {
+          "name": "Houssein",
+          "table": 40
+        },
+        {
+          "name": "Aleya",
+          "table": 40
+        },
+        {
+          "name": "Amara",
+          "table": 40
+        },
+        {
+          "name": "Andrey",
+          "table": 40
+        },
+        {
+          "name": "Valentina",
+          "table": 40
+        },
+        {
+          "name": "Стојанче",
+          "table": 32
+        },
+        {
+          "name": "Даниела",
+          "table": 32
+        },
+        {
+          "name": "Сања",
+          "table": 32
+        },
+        {
+          "name": "Роберт",
+          "table": 32
+        },
+        {
+          "name": "Сара",
+          "table": 32
+        },
+        {
+          "name": "Маја",
+          "table": 32
+        },
+        {
+          "name": "Кире",
+          "table": 32
+        },
+        {
+          "name": "Марија",
+          "table": 32
+        },
+        {
+          "name": "Љубиша",
+          "table": 32
+        },
+        {
+          "name": "Christina",
+          "table": 31
+        },
+        {
+          "name": "Edi",
+          "table": 31
+        },
+        {
+          "name": "Luda",
+          "table": 31
+        },
+        {
+          "name": "Nikita",
+          "table": 31
+        },
+        {
+          "name": "Миле",
+          "table": 38
+        },
+        {
+          "name": "Данче",
+          "table": 38
+        },
+        {
+          "name": "Васко Генерал",
+          "table": 38
+        },
+        {
+          "name": "Снеже",
+          "table": 38
+        },
+        {
+          "name": "Ѓоре",
+          "table": 38
+        },
+        {
+          "name": "Бети",
+          "table": 38
+        },
+        {
+          "name": "Мирка",
+          "table": 38
+        },
+        {
+          "name": "Костадинка",
+          "table": 38
+        },
+        {
+          "name": "Ласман",
+          "table": 28
+        },
+        {
+          "name": "Бети",
+          "table": 28
+        },
+        {
+          "name": "Горан Христов",
+          "table": 28
+        },
+        {
+          "name": "Маре",
+          "table": 28
+        },
+        {
+          "name": "Љубиша",
+          "table": 28
+        },
+        {
+          "name": "Валентина",
+          "table": 28
+        },
+        {
+          "name": "Блашко",
+          "table": 28
+        },
+        {
+          "name": "Христина",
+          "table": 28
+        },
+        {
+          "name": "Винцер",
+          "table": 27
+        },
+        {
+          "name": "Тања",
+          "table": 27
+        },
+        {
+          "name": "Мартина",
+          "table": 27
+        },
+        {
+          "name": "Пере",
+          "table": 27
+        },
+        {
+          "name": "Благица Бае",
+          "table": 27
+        },
+        {
+          "name": "Викторија",
+          "table": 27
+        },
+        {
+          "name": "Жарко",
+          "table": 33
+        },
+        {
+          "name": "Јасмина",
+          "table": 33
+        },
+        {
+          "name": "Драган",
+          "table": 33
+        },
+        {
+          "name": "Сања",
+          "table": 33
+        },
+        {
+          "name": "Васко",
+          "table": 33
+        },
+        {
+          "name": "Наташа",
+          "table": 33
+        },
+        {
+          "name": "Ќазо",
+          "table": 33
+        },
+        {
+          "name": "Бети",
+          "table": 33
+        },
+        {
+          "name": "Маца",
+          "table": 18
+        },
+        {
+          "name": "Зоки",
+          "table": 18
+        },
+        {
+          "name": "Весна",
+          "table": 18
+        },
+        {
+          "name": "Мила",
+          "table": 18
+        },
+        {
+          "name": "Моника",
+          "table": 18
+        },
+        {
+          "name": "Наде",
+          "table": 18
+        },
+        {
+          "name": "Ѕвонко",
+          "table": 18
+        },
+        {
+          "name": "Јове",
+          "table": 18
+        },
+        {
+          "name": "Бобан",
+          "table": 18
+        },
+        {
+          "name": "Силвана",
+          "table": 18
+        },
+        {
+          "name": "Брци",
+          "table": 19
+        },
+        {
+          "name": "Ивана",
+          "table": 19
+        },
+        {
+          "name": "Цоци",
+          "table": 19
+        },
+        {
+          "name": "Бане",
+          "table": 19
+        },
+        {
+          "name": "Раденко",
+          "table": 19
+        },
+        {
+          "name": "Даниел",
+          "table": 19
+        },
+        {
+          "name": "Наташа",
+          "table": 19
+        },
+        {
+          "name": "Ана",
+          "table": 21
+        },
+        {
+          "name": "Боби",
+          "table": 21
+        },
+        {
+          "name": "Милан",
+          "table": 21
+        },
+        {
+          "name": "Дамјан",
+          "table": 21
+        },
+        {
+          "name": "Никола",
+          "table": 21
+        },
+        {
+          "name": "Кике",
+          "table": 21
+        },
+        {
+          "name": "Nelli",
+          "table": 26
+        },
+        {
+          "name": "Olga",
+          "table": 26
+        },
+        {
+          "name": "Viktor",
+          "table": 26
+        },
+        {
+          "name": "Lilia",
+          "table": 26
+        },
+        {
+          "name": "Alexander",
+          "table": 26
+        },
+        {
+          "name": "Irina",
+          "table": 26
+        },
+        {
+          "name": "Жаре",
+          "table": 3
+        },
+        {
+          "name": "Жана",
+          "table": 3
+        },
+        {
+          "name": "Бубе",
+          "table": 3
+        },
+        {
+          "name": "Жана",
+          "table": 3
+        },
+        {
+          "name": "Митко",
+          "table": 3
+        },
+        {
+          "name": "Летка",
+          "table": 3
+        },
+        {
+          "name": "Весна Београд",
+          "table": 3
+        },
+        {
+          "name": "Здравко",
+          "table": 3
+        },
+        {
+          "name": "Миќо",
+          "table": 3
+        },
+        {
+          "name": "Верица",
+          "table": 3
+        },
+        {
+          "name": "Цаце Прилеп",
+          "table": 7
+        },
+        {
+          "name": "Пеце",
+          "table": 7
+        },
+        {
+          "name": "Горан Чајка",
+          "table": 7
+        },
+        {
+          "name": "Маца",
+          "table": 7
+        },
+        {
+          "name": "Лени",
+          "table": 7
+        },
+        {
+          "name": "Тони",
+          "table": 7
+        },
+        {
+          "name": "Деница",
+          "table": 7
+        },
+        {
+          "name": "Бети",
+          "table": 7
+        },
+        {
+          "name": "Марко",
+          "table": 7
+        },
+        {
+          "name": "Марица",
+          "table": 1
+        },
+        {
+          "name": "Бранка",
+          "table": 1
+        },
+        {
+          "name": "Влатко",
+          "table": 1
+        },
+        {
+          "name": "Слаѓана",
+          "table": 1
+        },
+        {
+          "name": "Кум Горан",
+          "table": 1
+        },
+        {
+          "name": "Кум Дарко",
+          "table": 1
+        },
+        {
+          "name": "Свето",
+          "table": 2
+        },
+        {
+          "name": "Гоца",
+          "table": 2
+        },
+        {
+          "name": "Михаела",
+          "table": 2
+        },
+        {
+          "name": "Мире",
+          "table": 2
+        },
+        {
+          "name": "Јадре",
+          "table": 2
+        },
+        {
+          "name": "Иле",
+          "table": 2
+        },
+        {
+          "name": "Горан Бакал",
+          "table": 2
+        },
+        {
+          "name": "Ѓурѓа",
+          "table": 2
+        },
+        {
+          "name": "Маце",
+          "table": 6
+        },
+        {
+          "name": "Ане",
+          "table": 6
+        },
+        {
+          "name": "Michi",
+          "table": 6
+        },
+        {
+          "name": "Kai",
+          "table": 6
+        },
+        {
+          "name": "Елена",
+          "table": 6
+        },
+        {
+          "name": "Рафаела",
+          "table": 6
+        }
+      ]
     }
   }
 }
