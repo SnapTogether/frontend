@@ -330,7 +330,6 @@
     "searchLabel": "Kërko emrin e mysafirit",
     "searchPlaceholder": "Kërko këtu!",
     "clearSearch": "Pastro kërkimin",
-    "openMenu": "Hap menunë",
     "tableLabel": "TAVOLINA",
     "table": "Tavolina",
     "resultsCount": "{count, plural, one {Po shfaqet 1 rezultat} other {Po shfaqen # rezultate}}",

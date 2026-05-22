@@ -330,7 +330,6 @@
     "searchLabel": "Search guest name",
     "searchPlaceholder": "Search here!",
     "clearSearch": "Clear search",
-    "openMenu": "Open menu",
     "tableLabel": "TABLE",
     "table": "Table",
     "resultsCount": "{count, plural, one {Showing 1 result} other {Showing # results}}",

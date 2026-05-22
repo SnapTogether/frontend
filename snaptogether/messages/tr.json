@@ -330,7 +330,6 @@
     "searchLabel": "Misafir adını ara",
     "searchPlaceholder": "Burada ara!",
     "clearSearch": "Aramayı temizle",
-    "openMenu": "Menüyü aç",
     "tableLabel": "MASA",
     "table": "Masa",
     "resultsCount": "{count, plural, one {1 sonuç gösteriliyor} other {# sonuç gösteriliyor}}",

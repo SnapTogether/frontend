@@ -331,7 +331,6 @@
     "searchLabel": "Пребарај гостин",
     "searchPlaceholder": "Пребарај тука!",
     "clearSearch": "Исчисти пребарување",
-    "openMenu": "Отвори мени",
     "tableLabel": "МАСА",
     "table": "Маса",
     "resultsCount": "{count, plural, one {Прикажан е 1 резултат} other {Прикажани се # резултати}}",
