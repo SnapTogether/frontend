@@ -35,20 +35,17 @@ function normalizeValue(value: string) {
     .replace(/[\u0300-\u036f]/g, "");
 }
 
-function getSurnameInitial(name: string) {
-  const parts = name.trim().split(/\s+/);
-  const surname = parts[parts.length - 1] || name;
-
-  return surname.charAt(0).toLocaleUpperCase("mk-MK");
-}
-
-function sortBySurname(a: SeatingGuest, b: SeatingGuest) {
+function sortByName(a: SeatingGuest, b: SeatingGuest) {
   const aParts = a.name.trim().split(/\s+/);
   const bParts = b.name.trim().split(/\s+/);
   const aSurname = aParts[aParts.length - 1] || a.name;
   const bSurname = bParts[bParts.length - 1] || b.name;
 
   return aSurname.localeCompare(bSurname, "mk-MK") || a.name.localeCompare(b.name, "mk-MK");
+}
+
+function sortByTable(a: SeatingGuest, b: SeatingGuest) {
+  return a.table - b.table || sortByName(a, b);
 }
 
 export default function SeatingTablesPage() {
@@ -67,7 +64,7 @@ export default function SeatingTablesPage() {
           ...guest,
           id: `${eventCode}-${index}`,
         }))
-        .sort(sortBySurname),
+        .sort(sortByTable),
     [eventCode, eventData.guests],
   );
   const normalizedQuery = normalizeValue(query);
@@ -92,19 +89,19 @@ export default function SeatingTablesPage() {
 
   const groupedGuests = useMemo(() => {
     return guests.reduce<Record<string, SeatingGuestEntry[]>>((groups, guest) => {
-      const initial = getSurnameInitial(guest.name);
+      const table = String(guest.table);
 
-      if (!groups[initial]) {
-        groups[initial] = [];
+      if (!groups[table]) {
+        groups[table] = [];
       }
 
-      groups[initial].push(guest);
+      groups[table].push(guest);
 
       return groups;
     }, {});
   }, [guests]);
 
-  const groupedEntries = Object.entries(groupedGuests).sort(([a], [b]) => a.localeCompare(b, "mk-MK"));
+  const groupedEntries = Object.entries(groupedGuests).sort(([a], [b]) => Number(a) - Number(b));
   const firstResult = searchResults[0];
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
@@ -177,9 +174,9 @@ export default function SeatingTablesPage() {
         )}
 
         <section className={styles.list} aria-label={t("guestListLabel")}>
-          {groupedEntries.map(([initial, groupGuests]) => (
-            <div key={initial}>
-              <h2 className={styles.letter}>{initial}</h2>
+          {groupedEntries.map(([table, groupGuests]) => (
+            <div key={table}>
+              <h2 className={styles.letter}>{table}</h2>
               <ul className={styles.guestList}>
                 {groupGuests.map((guest) => {
                   const isHighlighted = searchResults.some((result) => result.id === guest.id);
