@@ -120,9 +120,6 @@ export default function SeatingTablesPage() {
       <div className={styles.shell}>
         <header className={styles.header}>
           <h1 className={styles.brand}>{eventData.title}</h1>
-          <button className={styles.menuButton} type="button" aria-label={t("openMenu")}>
-            <Menu size={18} strokeWidth={1.6} />
-          </button>
         </header>
 
         <form className={styles.searchRow} onSubmit={handleSubmit}>
