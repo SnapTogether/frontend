@@ -51,8 +51,8 @@ function sortByTable(a: SeatingGuest, b: SeatingGuest) {
 export default function SeatingTablesPage() {
   const params = useParams<{ eventCode: string }>();
   const t = useTranslations("seatingTables");
-  const eventCode = String(params.eventCode || "default");
-  const eventData = data.events[eventCode] || data.events.default;
+  const eventCode = String(params.eventCode || "elena-simon");
+  const eventData = data.events[eventCode] || data.events["elena-simon"];
 
   const [query, setQuery] = useState("");
   const [selectedGuest, setSelectedGuest] = useState<SeatingGuestEntry | null>(null);
