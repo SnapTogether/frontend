@@ -56,6 +56,7 @@ export default function SeatingTablesPage() {
 
   const [query, setQuery] = useState("");
   const [selectedGuest, setSelectedGuest] = useState<SeatingGuestEntry | null>(null);
+  const [isSeatingPlanOpen, setIsSeatingPlanOpen] = useState(false);
 
   const guests = useMemo(
     () =>
@@ -118,6 +119,21 @@ export default function SeatingTablesPage() {
         <header className={styles.header}>
           <h1 className={styles.brand}>{eventData.title}</h1>
         </header>
+
+        <figure className={styles.seatingPlan}>
+          <button
+            className={styles.seatingPlanButton}
+            type="button"
+            onClick={() => setIsSeatingPlanOpen(true)}
+            aria-label="Open seating table plan"
+          >
+            <img
+              className={styles.seatingPlanImage}
+              src="/seating-table/seating-plan.avif"
+              alt="Seating table plan"
+            />
+          </button>
+        </figure>
 
         <form className={styles.searchRow} onSubmit={handleSubmit}>
           <label className={styles.searchBox}>
@@ -219,6 +235,32 @@ export default function SeatingTablesPage() {
             <button className={styles.okButton} type="button" onClick={() => setSelectedGuest(null)}>
               {t("ok")}
             </button>
+          </div>
+        </div>
+      ) : null}
+
+      {isSeatingPlanOpen ? (
+        <div
+          className={styles.backdrop}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Seating table plan"
+          onClick={() => setIsSeatingPlanOpen(false)}
+        >
+          <div className={styles.planModal} onClick={(event) => event.stopPropagation()}>
+            <button
+              className={styles.planCloseButton}
+              type="button"
+              onClick={() => setIsSeatingPlanOpen(false)}
+              aria-label="Close seating table plan"
+            >
+              <X size={20} />
+            </button>
+            <img
+              className={styles.planModalImage}
+              src="/seating-table/seating-plan.avif"
+              alt="Seating table plan"
+            />
           </div>
         </div>
       ) : null}
