@@ -2,7 +2,7 @@
 
 import { PointerEvent, useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { Gift, Heart, Music2, RotateCcw, Sparkles, Volume2, VolumeX, X } from "lucide-react";
+import { Gift, Heart, RotateCcw, Sparkles, Volume2, X } from "lucide-react";
 
 type Point = {
   x: number;
@@ -41,7 +41,6 @@ export default function BirthdayMPage() {
   const [isRevealed, setIsRevealed] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
   const [isAudioPlaying, setIsAudioPlaying] = useState(false);
-  const [audioNeedsTap, setAudioNeedsTap] = useState(false);
   const selectedImage = selectedImageIndex === null ? null : birthdayImages[selectedImageIndex];
 
   const fadeAudio = useCallback((targetVolume: number, duration: number, onComplete?: () => void) => {
@@ -83,11 +82,9 @@ export default function BirthdayMPage() {
       audio.volume = 0;
       songFadeOutStartedRef.current = false;
       await audio.play();
-      setAudioNeedsTap(false);
       setIsAudioPlaying(true);
       fadeAudio(songMaxVolume, audioFadeMs);
     } catch {
-      setAudioNeedsTap(true);
       setIsAudioPlaying(false);
     }
   }, [fadeAudio]);
@@ -325,9 +322,18 @@ export default function BirthdayMPage() {
     audio.addEventListener("ended", handleEnded);
     startBirthdaySong();
 
+    const startAfterFirstInteraction = () => {
+      startBirthdaySong();
+    };
+
+    window.addEventListener("pointerdown", startAfterFirstInteraction, { capture: true, once: true });
+    window.addEventListener("keydown", startAfterFirstInteraction, { once: true });
+
     return () => {
       audio.removeEventListener("timeupdate", handleTimeUpdate);
       audio.removeEventListener("ended", handleEnded);
+      window.removeEventListener("pointerdown", startAfterFirstInteraction, { capture: true });
+      window.removeEventListener("keydown", startAfterFirstInteraction);
 
       if (audioFadeRef.current !== null) {
         window.clearInterval(audioFadeRef.current);
@@ -385,18 +391,16 @@ export default function BirthdayMPage() {
           </div>
         )}
 
-        <button
-          type="button"
-          aria-label={isAudioPlaying ? "Turn birthday song off" : "Play birthday song"}
-          onClick={isAudioPlaying ? stopBirthdaySong : startBirthdaySong}
-          className={`fixed right-4 top-4 z-30 inline-flex h-11 w-11 items-center justify-center rounded-full border text-white shadow-lg backdrop-blur transition focus:outline-none focus:ring-2 focus:ring-[#f8c77e] ${
-            audioNeedsTap
-              ? "border-[#f8c77e]/70 bg-[#f8c77e]/24"
-              : "border-white/18 bg-white/10 hover:bg-white/18"
-          }`}
-        >
-          {isAudioPlaying ? <Volume2 size={20} aria-hidden="true" /> : audioNeedsTap ? <Music2 size={20} aria-hidden="true" /> : <VolumeX size={20} aria-hidden="true" />}
-        </button>
+        {isAudioPlaying && (
+          <button
+            type="button"
+            aria-label="Turn birthday song off"
+            onClick={stopBirthdaySong}
+            className="fixed right-4 top-4 z-30 inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/18 bg-white/10 text-white shadow-lg backdrop-blur transition hover:bg-white/18 focus:outline-none focus:ring-2 focus:ring-[#f8c77e]"
+          >
+            <Volume2 size={20} aria-hidden="true" />
+          </button>
+        )}
 
         <section className="relative z-10 grid w-full max-w-5xl items-center gap-5 sm:gap-8 lg:grid-cols-[0.8fr_1.2fr]">
           <div className="text-center lg:text-left">
