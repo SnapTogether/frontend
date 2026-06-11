@@ -1,7 +1,8 @@
 "use client";
 
 import { PointerEvent, useCallback, useEffect, useRef, useState } from "react";
-import { Gift, Heart, RotateCcw, Sparkles } from "lucide-react";
+import Image from "next/image";
+import { Gift, Heart, Music2, RotateCcw, Sparkles, Volume2, VolumeX, X } from "lucide-react";
 
 type Point = {
   x: number;
@@ -17,14 +18,92 @@ const confettiPieces = Array.from({ length: 34 }, (_, index) => ({
   size: `${7 + (index % 4) * 2}px`,
 }));
 
+const birthdayImages = [
+  { src: "/m/fini.jpeg", alt: "Birthday memory 1" },
+  { src: "/m/m.jpeg", alt: "Birthday memory 2" },
+  { src: "/m/kaki.jpeg", alt: "Birthday memory 3" },
+];
+
+const songSrc = "/m/m-song.mp3";
+const songMaxVolume = 0.48;
+const audioFadeMs = 2200;
+
 export default function BirthdayMPage() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const isScratchingRef = useRef(false);
   const lastPointRef = useRef<Point | null>(null);
   const progressCheckRef = useRef<number | null>(null);
   const revealedRef = useRef(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const audioFadeRef = useRef<number | null>(null);
+  const songFadeOutStartedRef = useRef(false);
   const [scratchProgress, setScratchProgress] = useState(0);
   const [isRevealed, setIsRevealed] = useState(false);
+  const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
+  const [isAudioPlaying, setIsAudioPlaying] = useState(false);
+  const [audioNeedsTap, setAudioNeedsTap] = useState(false);
+  const selectedImage = selectedImageIndex === null ? null : birthdayImages[selectedImageIndex];
+
+  const fadeAudio = useCallback((targetVolume: number, duration: number, onComplete?: () => void) => {
+    const audio = audioRef.current;
+
+    if (!audio) {
+      return;
+    }
+
+    if (audioFadeRef.current !== null) {
+      window.clearInterval(audioFadeRef.current);
+      audioFadeRef.current = null;
+    }
+
+    const startVolume = audio.volume;
+    const startedAt = window.performance.now();
+
+    audioFadeRef.current = window.setInterval(() => {
+      const elapsed = window.performance.now() - startedAt;
+      const progress = Math.min(elapsed / duration, 1);
+      audio.volume = startVolume + (targetVolume - startVolume) * progress;
+
+      if (progress >= 1 && audioFadeRef.current !== null) {
+        window.clearInterval(audioFadeRef.current);
+        audioFadeRef.current = null;
+        onComplete?.();
+      }
+    }, 40);
+  }, []);
+
+  const startBirthdaySong = useCallback(async () => {
+    const audio = audioRef.current;
+
+    if (!audio) {
+      return;
+    }
+
+    try {
+      audio.volume = 0;
+      songFadeOutStartedRef.current = false;
+      await audio.play();
+      setAudioNeedsTap(false);
+      setIsAudioPlaying(true);
+      fadeAudio(songMaxVolume, audioFadeMs);
+    } catch {
+      setAudioNeedsTap(true);
+      setIsAudioPlaying(false);
+    }
+  }, [fadeAudio]);
+
+  const stopBirthdaySong = useCallback(() => {
+    const audio = audioRef.current;
+
+    if (!audio) {
+      return;
+    }
+
+    fadeAudio(0, 900, () => {
+      audio.pause();
+      setIsAudioPlaying(false);
+    });
+  }, [fadeAudio]);
 
   const drawScratchCover = useCallback(() => {
     const canvas = canvasRef.current;
@@ -219,6 +298,67 @@ export default function BirthdayMPage() {
     };
   }, [drawScratchCover]);
 
+  useEffect(() => {
+    const audio = new Audio(songSrc);
+    audio.preload = "auto";
+    audio.volume = 0;
+    audioRef.current = audio;
+
+    const handleTimeUpdate = () => {
+      if (!Number.isFinite(audio.duration) || songFadeOutStartedRef.current) {
+        return;
+      }
+
+      if (audio.duration - audio.currentTime <= 4) {
+        songFadeOutStartedRef.current = true;
+        fadeAudio(0, 3500);
+      }
+    };
+
+    const handleEnded = () => {
+      setIsAudioPlaying(false);
+      audio.currentTime = 0;
+      audio.volume = 0;
+    };
+
+    audio.addEventListener("timeupdate", handleTimeUpdate);
+    audio.addEventListener("ended", handleEnded);
+    startBirthdaySong();
+
+    return () => {
+      audio.removeEventListener("timeupdate", handleTimeUpdate);
+      audio.removeEventListener("ended", handleEnded);
+
+      if (audioFadeRef.current !== null) {
+        window.clearInterval(audioFadeRef.current);
+      }
+
+      audio.pause();
+      audioRef.current = null;
+    };
+  }, [fadeAudio, startBirthdaySong]);
+
+  useEffect(() => {
+    if (selectedImageIndex === null) {
+      return;
+    }
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setSelectedImageIndex(null);
+      }
+    };
+    const originalOverflow = document.body.style.overflow;
+
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = originalOverflow;
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [selectedImageIndex]);
+
   return (
     <main className="min-h-screen overflow-hidden bg-[#10131f] text-white">
       <div className="relative flex min-h-screen items-start justify-center px-4 py-5 sm:items-center sm:px-6 sm:py-8">
@@ -244,6 +384,19 @@ export default function BirthdayMPage() {
             ))}
           </div>
         )}
+
+        <button
+          type="button"
+          aria-label={isAudioPlaying ? "Turn birthday song off" : "Play birthday song"}
+          onClick={isAudioPlaying ? stopBirthdaySong : startBirthdaySong}
+          className={`fixed right-4 top-4 z-30 inline-flex h-11 w-11 items-center justify-center rounded-full border text-white shadow-lg backdrop-blur transition focus:outline-none focus:ring-2 focus:ring-[#f8c77e] ${
+            audioNeedsTap
+              ? "border-[#f8c77e]/70 bg-[#f8c77e]/24"
+              : "border-white/18 bg-white/10 hover:bg-white/18"
+          }`}
+        >
+          {isAudioPlaying ? <Volume2 size={20} aria-hidden="true" /> : audioNeedsTap ? <Music2 size={20} aria-hidden="true" /> : <VolumeX size={20} aria-hidden="true" />}
+        </button>
 
         <section className="relative z-10 grid w-full max-w-5xl items-center gap-5 sm:gap-8 lg:grid-cols-[0.8fr_1.2fr]">
           <div className="text-center lg:text-left">
@@ -302,7 +455,7 @@ export default function BirthdayMPage() {
 
                   <div className="flex items-center justify-center gap-2 text-center text-[11px] font-bold text-[#7a475c] sm:text-sm">
                     <span className="h-px w-6 bg-[#7a475c]/30 sm:w-10" />
-                    From someone grateful to know you and thinks about you on your birthday and every day.
+                    From someone grateful to know you and thinks about you on your birthday.
                     <span className="h-px w-6 bg-[#7a475c]/30 sm:w-10" />
                   </div>
                 </div>
@@ -335,9 +488,62 @@ export default function BirthdayMPage() {
                 </button>
               </div>
             </div>
+
+            <div className="mt-3 grid grid-cols-3 gap-2 sm:mt-4 sm:gap-3">
+              {birthdayImages.map((image, index) => (
+                <button
+                  key={image.src}
+                  type="button"
+                  aria-label={`Open ${image.alt}`}
+                  onClick={() => setSelectedImageIndex(index)}
+                  className="relative aspect-square overflow-hidden rounded-xl border border-white/18 bg-white/10 shadow-lg transition duration-200 hover:scale-[1.02] hover:border-[#f8c77e]/70 focus:outline-none focus:ring-2 focus:ring-[#f8c77e]"
+                >
+                  <Image
+                    src={image.src}
+                    alt={image.alt}
+                    fill
+                    sizes="(max-width: 640px) 30vw, 160px"
+                    className="object-cover"
+                  />
+                </button>
+              ))}
+            </div>
           </div>
         </section>
       </div>
+
+      {selectedImage && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-[#080a12]/92 px-4 py-6 backdrop-blur-md"
+          role="dialog"
+          aria-modal="true"
+          aria-label={selectedImage.alt}
+          onClick={() => setSelectedImageIndex(null)}
+        >
+          <button
+            type="button"
+            aria-label="Close image"
+            onClick={() => setSelectedImageIndex(null)}
+            className="absolute right-4 top-4 z-10 inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-white/12 text-white shadow-lg transition hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-[#f8c77e]"
+          >
+            <X size={22} aria-hidden="true" />
+          </button>
+
+          <div
+            className="relative h-[78vh] w-full max-w-3xl overflow-hidden rounded-2xl border border-white/16 bg-black/35 shadow-2xl"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <Image
+              src={selectedImage.src}
+              alt={selectedImage.alt}
+              fill
+              sizes="100vw"
+              className="object-contain"
+              priority
+            />
+          </div>
+        </div>
+      )}
 
       <style jsx global>{`
         @keyframes birthdayConfettiFall {
