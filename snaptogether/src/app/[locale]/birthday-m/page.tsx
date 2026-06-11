@@ -431,10 +431,10 @@ export default function BirthdayMPage() {
           <div className="relative mx-auto w-full max-w-[560px]">
             <div className="absolute -inset-1 rounded-[22px] bg-gradient-to-br from-[#f8c77e] via-[#f472b6] to-[#67e8f9] opacity-65 blur-xl sm:rounded-[28px]" />
             <div className="relative overflow-hidden rounded-[20px] border border-white/18 bg-[#171b2a]/92 p-3 shadow-2xl backdrop-blur sm:rounded-[26px] sm:p-5">
-              <div className="relative aspect-[4/5] min-h-[350px] overflow-hidden rounded-2xl border border-white/16 bg-gradient-to-br from-[#fff8e8] via-[#ffe3ee] to-[#def7ff] text-[#221827] shadow-inner min-[390px]:min-h-[390px] sm:aspect-[5/4] sm:min-h-[420px] sm:rounded-[20px]">
+              <div className="relative h-[350px] w-full overflow-hidden rounded-2xl border border-white/16 bg-gradient-to-br from-[#fff8e8] via-[#ffe3ee] to-[#def7ff] text-[#221827] shadow-inner min-[390px]:h-[390px] sm:h-[500px] lg:h-[560px] sm:rounded-[20px]">
                 <div className="absolute inset-0 opacity-80 [background-image:linear-gradient(rgba(34,24,39,0.045)_1px,transparent_1px),linear-gradient(90deg,rgba(34,24,39,0.045)_1px,transparent_1px)] [background-size:26px_26px]" />
 
-                <div className="relative flex h-full flex-col justify-between p-4 sm:p-8">
+                <div className="relative flex h-full flex-col justify-between gap-3 p-4 sm:gap-4 sm:p-7 lg:p-8">
                   <div className="flex items-center justify-between text-[#7a475c]">
                     <Sparkles size={20} aria-hidden="true" />
                     <span className="rounded-full bg-white/70 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.16em] text-[#7a475c] sm:text-xs sm:tracking-[0.18em]">
@@ -443,21 +443,21 @@ export default function BirthdayMPage() {
                     <Heart size={20} fill="currentColor" aria-hidden="true" />
                   </div>
 
-                  <div className="mx-auto max-w-md text-center">
-                    <div className="font-[var(--font-fleur-de-leah)] text-3xl leading-none text-[#9a2f58] min-[390px]:text-5xl sm:text-7xl">
-                      Happy Birthday
+                  <div className="mx-auto w-full max-w-[30rem] text-center">
+                    <div className="font-[var(--font-fleur-de-leah)] text-3xl leading-[0.92] text-[#9a2f58] min-[390px]:text-5xl sm:text-6xl lg:text-7xl">
+                      <span className="block">Happy</span>
+                      <span className="block">Birthday</span>
                     </div>
-                    <div className="mt-1 text-3xl font-semibold text-[#403c42] sm:mt-2 sm:text-5xl">Mineta !</div>
-                    <p className="mt-3 text-xs leading-5 text-[#443344] sm:mt-5 sm:text-base sm:leading-7">
+                    <div className="mt-1 text-3xl font-semibold text-[#403c42] sm:mt-2 sm:text-4xl lg:text-5xl">Mineta !</div>
+                    <p className="mx-auto mt-3 max-w-[28rem] text-xs leading-5 text-[#443344] sm:mt-4 sm:text-sm sm:leading-6 lg:text-base lg:leading-7">
                       I hope this day gives back even a little of the warmth, loyalty, and love you give to the people around you.
-                      You are one of a kind person who fills my heart with pure love even on the darkest and unhopeful days.
                     </p>
-                    <p className="mt-2 text-xs font-semibold leading-5 text-[#6f3952] sm:mt-4 sm:text-base sm:leading-7">
+                    <p className="mx-auto mt-2 max-w-[28rem] text-xs font-semibold leading-5 text-[#6f3952] sm:mt-3 sm:text-sm sm:leading-6 lg:text-base lg:leading-7">
                       Wishing you more laughter, healing days, bigger dreams, and all the happines and love you deserve.
                     </p>
                   </div>
 
-                  <div className="flex items-center justify-center gap-2 text-center text-[11px] font-bold text-[#7a475c] sm:text-sm">
+                  <div className="mx-auto flex max-w-[28rem] items-center justify-center gap-2 text-center text-[11px] font-bold leading-4 text-[#7a475c] sm:text-xs lg:text-sm">
                     <span className="h-px w-6 bg-[#7a475c]/30 sm:w-10" />
                     From someone grateful to know you and thinks about you on your birthday.
                     <span className="h-px w-6 bg-[#7a475c]/30 sm:w-10" />
