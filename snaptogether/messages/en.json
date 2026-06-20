@@ -465,5 +465,14 @@
       "imageTopAlt": "RSVP top",
       "imageBottomAlt": "RSVP bottom"
     }
+  },
+  "weddingWelcome": {
+    "languageLabel": "Choose language",
+    "titleAria": "Welcome to Our Wedding",
+    "welcomeTo": "Welcome to",
+    "our": "Our",
+    "wedding": "Wedding",
+    "viewGallery": "View Gallery",
+    "findMyTable": "Find My Table"
   }
 }

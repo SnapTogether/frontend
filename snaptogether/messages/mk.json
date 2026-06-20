@@ -467,5 +467,14 @@
       "imageTopAlt": "RSVP горна слика",
       "imageBottomAlt": "RSVP долна слика"
     }
+  },
+  "weddingWelcome": {
+    "languageLabel": "Избери јазик",
+    "titleAria": "Добредојдовте на нашата свадба",
+    "welcomeTo": "Добредојдовте на",
+    "our": "Нашата",
+    "wedding": "Свадба",
+    "viewGallery": "Види галерија",
+    "findMyTable": "Најди маса"
   }
 }

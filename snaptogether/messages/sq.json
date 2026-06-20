@@ -484,5 +484,14 @@
       "imageTopAlt": "RSVP top",
       "imageBottomAlt": "RSVP bottom"
     }
+  },
+  "weddingWelcome": {
+    "languageLabel": "Zgjidh gjuhën",
+    "titleAria": "Mirë se vini në dasmën tonë",
+    "welcomeTo": "Mirë se vini në",
+    "our": "Dasmën",
+    "wedding": "Tonë",
+    "viewGallery": "Shiko galerinë",
+    "findMyTable": "Gjej tavolinën"
   }
 }

@@ -484,5 +484,14 @@
       "imageTopAlt": "RSVP top",
       "imageBottomAlt": "RSVP bottom"
     }
+  },
+  "weddingWelcome": {
+    "languageLabel": "Dil seç",
+    "titleAria": "Düğünümüze hoş geldiniz",
+    "welcomeTo": "Düğünümüze",
+    "our": "Hoş",
+    "wedding": "Geldiniz",
+    "viewGallery": "Galeriyi gör",
+    "findMyTable": "Masamı bul"
   }
 }
