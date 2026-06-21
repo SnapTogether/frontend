@@ -5,12 +5,12 @@ import Navbar from "@/components/Navbar/Navbar";
 import Footer from "../footer/page";
 import { faqItems } from "@/utils/faqItems";
 import { useTranslations } from "next-intl";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, type Variants } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import Image from "next/image";
 import Mockup from "@/../public/logo/mockup.png";
 
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: {},
   show: {
     transition: {
@@ -19,7 +19,7 @@ const containerVariants = {
   },
 };
 
-const fadeInUpItem = {
+const fadeInUpItem: Variants = {
   hidden: { opacity: 0, y: 40 },
   show: {
     opacity: 1,

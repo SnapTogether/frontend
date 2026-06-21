@@ -4,7 +4,7 @@ import { Card } from "@/components/Card/Card";
 import Navbar from "@/components/Navbar/Navbar";
 import { cardData } from "@/utils/cardData";
 import Image, { StaticImageData } from "next/image";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, type Variants } from "framer-motion";
 import { useRef } from "react";
 import { useTranslations } from "next-intl";
 
@@ -22,7 +22,7 @@ type Section = {
   };
   
 // Animation config
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: {},
   show: {
     transition: {
@@ -31,7 +31,7 @@ const containerVariants = {
   },
 };
 
-const fadeInUpItem = {
+const fadeInUpItem: Variants = {
   hidden: { opacity: 0, y: 40 },
   show: {
     opacity: 1,
