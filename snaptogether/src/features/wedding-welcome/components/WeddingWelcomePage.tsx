@@ -20,7 +20,7 @@ const languages = [
 export function WeddingWelcomePage() {
   const locale = useLocale();
   const t = useTranslations("weddingWelcome");
-  const galleryHref = `https://www.snaptogether.cloud/${locale}/event/4fffb2/guest`;
+  const galleryHref = "https://www.snaptogether.cloud/en/event/0bdb65/guest";
   const activeLanguage = languages.find((language) => language.code === locale) ?? languages[0];
   const inactiveLanguages = languages.filter((language) => language.code !== locale);
 
