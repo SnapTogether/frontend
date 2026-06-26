@@ -1164,6 +1164,1027 @@
           "table": 29
         }
       ]
+    },
+    "aulona-visar": {
+      "title": "Aulona & Visar",
+      "guests": [
+        {
+          "name": "Agim Buklla",
+          "table": 33
+        },
+        {
+          "name": "Safete Buklla",
+          "table": 33
+        },
+        {
+          "name": "Ilir Palloshi",
+          "table": 33
+        },
+        {
+          "name": "Flutura Palloshi",
+          "table": 33
+        },
+        {
+          "name": "Luljeta Abazi",
+          "table": 33
+        },
+        {
+          "name": "Vildane Palloshi",
+          "table": 33
+        },
+        {
+          "name": "Erzen Hasani",
+          "table": 33
+        },
+        {
+          "name": "Shendvere Hasani",
+          "table": 33
+        },
+        {
+          "name": "Sadik Palloshi",
+          "table": 8
+        },
+        {
+          "name": "Anita Palloshi",
+          "table": 8
+        },
+        {
+          "name": "Edina Haxhiabduli Mustafa",
+          "table": 8
+        },
+        {
+          "name": "Faredin Mustafa",
+          "table": 8
+        },
+        {
+          "name": "Ernest Memeti",
+          "table": 8
+        },
+        {
+          "name": "Florina Memeti",
+          "table": 8
+        },
+        {
+          "name": "Dorin Haxhiabduli",
+          "table": 8
+        },
+        {
+          "name": "Skender Palloshi",
+          "table": 5
+        },
+        {
+          "name": "Drita Palloshi",
+          "table": 5
+        },
+        {
+          "name": "Agron Palloshi",
+          "table": 5
+        },
+        {
+          "name": "Linda Palloshi",
+          "table": 5
+        },
+        {
+          "name": "Drita Haxhiabduli",
+          "table": 5
+        },
+        {
+          "name": "Shukrije Palloshi",
+          "table": 5
+        },
+        {
+          "name": "Nexhdet Palloshi",
+          "table": 5
+        },
+        {
+          "name": "Seide Abazi",
+          "table": 14
+        },
+        {
+          "name": "Arbena Memeti",
+          "table": 14
+        },
+        {
+          "name": "Edlira Disha",
+          "table": 14
+        },
+        {
+          "name": "Liridon Disha",
+          "table": 14
+        },
+        {
+          "name": "Zamira Ruçi",
+          "table": 14
+        },
+        {
+          "name": "Klaudio Ruçi",
+          "table": 14
+        },
+        {
+          "name": "Jerina Memeti",
+          "table": 14
+        },
+        {
+          "name": "Ertan Rustemi",
+          "table": 14
+        },
+        {
+          "name": "Laura Saraçi",
+          "table": 11
+        },
+        {
+          "name": "Burim Saraçi",
+          "table": 11
+        },
+        {
+          "name": "Rilind Qamili",
+          "table": 11
+        },
+        {
+          "name": "Argjira Qamili",
+          "table": 11
+        },
+        {
+          "name": "Tomor Saraçi",
+          "table": 11
+        },
+        {
+          "name": "Ardita Saraçi",
+          "table": 11
+        },
+        {
+          "name": "Bekim Saraçi",
+          "table": 11
+        },
+        {
+          "name": "Bekim +1",
+          "table": 11
+        },
+        {
+          "name": "Elmedina Abdullahi",
+          "table": 11
+        },
+        {
+          "name": "Elvira Hasani",
+          "table": 32
+        },
+        {
+          "name": "Afrim Macula",
+          "table": 32
+        },
+        {
+          "name": "Vali Macula",
+          "table": 32
+        },
+        {
+          "name": "Xhemile",
+          "table": 32
+        },
+        {
+          "name": "Sevem",
+          "table": 32
+        },
+        {
+          "name": "Lili",
+          "table": 32
+        },
+        {
+          "name": "Selver Hasani",
+          "table": 32
+        },
+        {
+          "name": "Fitnete Hasani",
+          "table": 32
+        },
+        {
+          "name": "Arian Hasani",
+          "table": 41
+        },
+        {
+          "name": "Idila Hasani",
+          "table": 41
+        },
+        {
+          "name": "Renea Hasani",
+          "table": 41
+        },
+        {
+          "name": "Elza Hasani",
+          "table": 41
+        },
+        {
+          "name": "Genc Hasani",
+          "table": 41
+        },
+        {
+          "name": "Andi Hasani",
+          "table": 41
+        },
+        {
+          "name": "Lidra Hasani",
+          "table": 41
+        },
+        {
+          "name": "AVM Totle",
+          "table": 41
+        },
+        {
+          "name": "Skender Hasani",
+          "table": 26
+        },
+        {
+          "name": "Violeta Hasani",
+          "table": 26
+        },
+        {
+          "name": "Agron Hasani",
+          "table": 26
+        },
+        {
+          "name": "Gent Hasani",
+          "table": 26
+        },
+        {
+          "name": "Tringa Hasani",
+          "table": 26
+        },
+        {
+          "name": "Agon çeta",
+          "table": 26
+        },
+        {
+          "name": "Armelina çeta",
+          "table": 26
+        },
+        {
+          "name": "Burak Ramadani",
+          "table": 3
+        },
+        {
+          "name": "Tuba Ramadani",
+          "table": 3
+        },
+        {
+          "name": "Xhelal Mustafa",
+          "table": 3
+        },
+        {
+          "name": "Nerma Mustafa",
+          "table": 3
+        },
+        {
+          "name": "Amir Ramadani",
+          "table": 3
+        },
+        {
+          "name": "Medina Ramadani",
+          "table": 3
+        },
+        {
+          "name": "Veton Lushi",
+          "table": 3
+        },
+        {
+          "name": "Sibel Lushi",
+          "table": 3
+        },
+        {
+          "name": "Pajtim Thaçi",
+          "table": 20
+        },
+        {
+          "name": "Valdeta Thaçi",
+          "table": 20
+        },
+        {
+          "name": "Bajram Rexha",
+          "table": 20
+        },
+        {
+          "name": "Mrika Rexha",
+          "table": 20
+        },
+        {
+          "name": "Ilir Rexha",
+          "table": 20
+        },
+        {
+          "name": "Arta Rexha",
+          "table": 20
+        },
+        {
+          "name": "Sazan Thaçi",
+          "table": 20
+        },
+        {
+          "name": "Anida Thaçi",
+          "table": 20
+        },
+        {
+          "name": "Leutrim Mehmedi",
+          "table": 21
+        },
+        {
+          "name": "Besa Mehmedi",
+          "table": 21
+        },
+        {
+          "name": "Sulejman Aliu",
+          "table": 21
+        },
+        {
+          "name": "Vlera Aliu",
+          "table": 21
+        },
+        {
+          "name": "Muhamed Idrizi",
+          "table": 21
+        },
+        {
+          "name": "Ilirjana Idrizi",
+          "table": 21
+        },
+        {
+          "name": "Gent Qamili",
+          "table": 21
+        },
+        {
+          "name": "Mireme Qamili",
+          "table": 21
+        },
+        {
+          "name": "Milot Hasimja",
+          "table": 29
+        },
+        {
+          "name": "Klarita Demiri",
+          "table": 29
+        },
+        {
+          "name": "Artan Thaci",
+          "table": 29
+        },
+        {
+          "name": "Dani Luma",
+          "table": 29
+        },
+        {
+          "name": "Goni Luma",
+          "table": 29
+        },
+        {
+          "name": "Bejza Luma",
+          "table": 29
+        },
+        {
+          "name": "Leutrim Qamili",
+          "table": 29
+        },
+        {
+          "name": "Besar Baftiari",
+          "table": 6
+        },
+        {
+          "name": "Jehona Baftiari",
+          "table": 6
+        },
+        {
+          "name": "Berin Baftiari",
+          "table": 6
+        },
+        {
+          "name": "Yll Rusi",
+          "table": 6
+        },
+        {
+          "name": "Bushra Rusi",
+          "table": 6
+        },
+        {
+          "name": "Driton Rusi",
+          "table": 6
+        },
+        {
+          "name": "Edita Rusi",
+          "table": 6
+        },
+        {
+          "name": "Valon Sulejmani",
+          "table": 6
+        },
+        {
+          "name": "Gruja Valon Sulejmani",
+          "table": 6
+        },
+        {
+          "name": "Veton Palloshi",
+          "table": 30
+        },
+        {
+          "name": "Drenusha Palloshi",
+          "table": 30
+        },
+        {
+          "name": "Ilir Sulejmani",
+          "table": 30
+        },
+        {
+          "name": "Hafsa Sulejmani",
+          "table": 30
+        },
+        {
+          "name": "Premtim Qerimi",
+          "table": 30
+        },
+        {
+          "name": "gruja Premtim Qerimi",
+          "table": 30
+        },
+        {
+          "name": "Biki",
+          "table": 30
+        },
+        {
+          "name": "Megi",
+          "table": 30
+        },
+        {
+          "name": "Agon Shaqiri",
+          "table": 12
+        },
+        {
+          "name": "melisa Shaqiri",
+          "table": 12
+        },
+        {
+          "name": "Arbin Muaremi",
+          "table": 12
+        },
+        {
+          "name": "Atifete Muaremi",
+          "table": 12
+        },
+        {
+          "name": "Bardhyl Kasami",
+          "table": 12
+        },
+        {
+          "name": "Dorina Kasami",
+          "table": 12
+        },
+        {
+          "name": "Adis Velija",
+          "table": 12
+        },
+        {
+          "name": "Gruja adis Velija",
+          "table": 12
+        },
+        {
+          "name": "Lorenza Memeti",
+          "table": 16
+        },
+        {
+          "name": "Nita Ramadani",
+          "table": 16
+        },
+        {
+          "name": "Erika Ramadani",
+          "table": 16
+        },
+        {
+          "name": "Dea Palloshi",
+          "table": 16
+        },
+        {
+          "name": "Era Palloshi",
+          "table": 16
+        },
+        {
+          "name": "Amra Palloshi",
+          "table": 16
+        },
+        {
+          "name": "Blenar Baftiari",
+          "table": 16
+        },
+        {
+          "name": "Berk Rustemi",
+          "table": 16
+        },
+        {
+          "name": "Shpresim Ibraimi",
+          "table": 4
+        },
+        {
+          "name": "Nderim Imami",
+          "table": 4
+        },
+        {
+          "name": "Tanja Imami",
+          "table": 4
+        },
+        {
+          "name": "Ognen Garevski",
+          "table": 4
+        },
+        {
+          "name": "Gabriela Garevski",
+          "table": 4
+        },
+        {
+          "name": "Erhan Mustafa",
+          "table": 4
+        },
+        {
+          "name": "Linda Mustafa",
+          "table": 4
+        },
+        {
+          "name": "Inxhi Mustafa",
+          "table": 4
+        },
+        {
+          "name": "Vjollca Muhedini",
+          "table": 10
+        },
+        {
+          "name": "Besart Muhedini",
+          "table": 10
+        },
+        {
+          "name": "Abdulla Buklla",
+          "table": 10
+        },
+        {
+          "name": "Ermira Buklla",
+          "table": 10
+        },
+        {
+          "name": "Erblin Ajeti",
+          "table": 10
+        },
+        {
+          "name": "Besa Ajeti",
+          "table": 10
+        },
+        {
+          "name": "Ridvan Shabani",
+          "table": 10
+        },
+        {
+          "name": "Vesa Buklla",
+          "table": 35
+        },
+        {
+          "name": "Hasan Buklla",
+          "table": 35
+        },
+        {
+          "name": "Benet Buklla",
+          "table": 35
+        },
+        {
+          "name": "Qemal Jonuzi",
+          "table": 35
+        },
+        {
+          "name": "Hana Jonuzi",
+          "table": 35
+        },
+        {
+          "name": "Platin Beqiri",
+          "table": 35
+        },
+        {
+          "name": "Ermira Beqiri",
+          "table": 35
+        },
+        {
+          "name": "Endrit Beqiri",
+          "table": 35
+        },
+        {
+          "name": "Amire Beqiri",
+          "table": 35
+        },
+        {
+          "name": "Enis Jakupi",
+          "table": 43
+        },
+        {
+          "name": "Jetmire Jakupi",
+          "table": 43
+        },
+        {
+          "name": "Idaver Huseini",
+          "table": 43
+        },
+        {
+          "name": "Shkendija Huseini",
+          "table": 43
+        },
+        {
+          "name": "Shinasi Zejneli",
+          "table": 43
+        },
+        {
+          "name": "Shinasi Zejneli +1",
+          "table": 43
+        },
+        {
+          "name": "Hristina Spasevska",
+          "table": 43
+        },
+        {
+          "name": "Ace Spasevski",
+          "table": 43
+        },
+        {
+          "name": "Kushtrim Alegro",
+          "table": 17
+        },
+        {
+          "name": "Flamur Alegro",
+          "table": 17
+        },
+        {
+          "name": "Arber Alegro",
+          "table": 17
+        },
+        {
+          "name": "Violina Alegro",
+          "table": 17
+        },
+        {
+          "name": "Fotograf 1 TV koha",
+          "table": 17
+        },
+        {
+          "name": "Fotograf 2 TV koha",
+          "table": 17
+        },
+        {
+          "name": "Video 1 TV koha",
+          "table": 17
+        },
+        {
+          "name": "Video 2 TV koha",
+          "table": 17
+        },
+        {
+          "name": "Video 3 TV koha",
+          "table": 17
+        },
+        {
+          "name": "Erdit Alili",
+          "table": 15
+        },
+        {
+          "name": "Aleksandar Krleski",
+          "table": 15
+        },
+        {
+          "name": "Emilija Naumoska",
+          "table": 15
+        },
+        {
+          "name": "Simona Nikolova",
+          "table": 15
+        },
+        {
+          "name": "Stojan Spasevski",
+          "table": 15
+        },
+        {
+          "name": "Elena Spasevska",
+          "table": 15
+        },
+        {
+          "name": "Aleksandra Dimitrieska",
+          "table": 15
+        },
+        {
+          "name": "Martina Bojarovska",
+          "table": 15
+        },
+        {
+          "name": "Vanesa Petkova",
+          "table": 15
+        },
+        {
+          "name": "Rametulla Kuçi",
+          "table": 39
+        },
+        {
+          "name": "Fjola Kuçi",
+          "table": 39
+        },
+        {
+          "name": "Fatmire Isaki",
+          "table": 39
+        },
+        {
+          "name": "Arben Isaki",
+          "table": 39
+        },
+        {
+          "name": "Arbresha Rexha",
+          "table": 39
+        },
+        {
+          "name": "Lirim Rexha",
+          "table": 39
+        },
+        {
+          "name": "Nehat doktor Baftiari",
+          "table": 42
+        },
+        {
+          "name": "Shpresa Baftiari",
+          "table": 42
+        },
+        {
+          "name": "Drita osman Sulejmani",
+          "table": 42
+        },
+        {
+          "name": "Hyrem Gurra",
+          "table": 42
+        },
+        {
+          "name": "Syndyz",
+          "table": 42
+        },
+        {
+          "name": "Cele Emurllai",
+          "table": 42
+        },
+        {
+          "name": "Omer",
+          "table": 42
+        },
+        {
+          "name": "Omer +1",
+          "table": 42
+        },
+        {
+          "name": "Kreshnik Karemani",
+          "table": 7
+        },
+        {
+          "name": "Liridona Karemani",
+          "table": 7
+        },
+        {
+          "name": "Valon Emshi",
+          "table": 7
+        },
+        {
+          "name": "Valon +1",
+          "table": 7
+        },
+        {
+          "name": "Ilir Bela",
+          "table": 7
+        },
+        {
+          "name": "Fatos Emurllai",
+          "table": 7
+        },
+        {
+          "name": "Fatos +1",
+          "table": 7
+        },
+        {
+          "name": "Festim Ademi",
+          "table": 7
+        },
+        {
+          "name": "Festim +1",
+          "table": 7
+        },
+        {
+          "name": "Patris Palloshi",
+          "table": 13
+        },
+        {
+          "name": "Genci Rustemi",
+          "table": 13
+        },
+        {
+          "name": "Lian Saraçi",
+          "table": 13
+        },
+        {
+          "name": "Viola Saraçi",
+          "table": 13
+        },
+        {
+          "name": "Beg Palloshi",
+          "table": 13
+        },
+        {
+          "name": "Lorina Disha",
+          "table": 13
+        },
+        {
+          "name": "Dorina Disha",
+          "table": 13
+        },
+        {
+          "name": "Leonid Memeti",
+          "table": 13
+        },
+        {
+          "name": "Barlet Memeti",
+          "table": 13
+        },
+        {
+          "name": "Ylli Memeti",
+          "table": 13
+        },
+        {
+          "name": "Ador Ibraimi",
+          "table": 9
+        },
+        {
+          "name": "Eda Ibraimi",
+          "table": 9
+        },
+        {
+          "name": "Agim Ibraimi",
+          "table": 9
+        },
+        {
+          "name": "Suzana Memeti",
+          "table": 9
+        },
+        {
+          "name": "Faton Memeti",
+          "table": 9
+        },
+        {
+          "name": "Enesa Memeti",
+          "table": 9
+        },
+        {
+          "name": "Umer Fetai",
+          "table": 9
+        },
+        {
+          "name": "Besa Ramadani",
+          "table": 9
+        },
+        {
+          "name": "Musti Ramadani",
+          "table": 9
+        },
+        {
+          "name": "Adea Vejseli",
+          "table": 27
+        },
+        {
+          "name": "Andi Hoxha",
+          "table": 27
+        },
+        {
+          "name": "Vanesa Mulliqi",
+          "table": 27
+        },
+        {
+          "name": "Lyra Hoxha",
+          "table": 27
+        },
+        {
+          "name": "Elena Hoxha",
+          "table": 27
+        },
+        {
+          "name": "Njomza Ibraimi",
+          "table": 27
+        },
+        {
+          "name": "Arlinda Tairi",
+          "table": 27
+        },
+        {
+          "name": "Era Veliu",
+          "table": 27
+        },
+        {
+          "name": "Vlora Vejseli",
+          "table": 36
+        },
+        {
+          "name": "Rina Hoxha",
+          "table": 36
+        },
+        {
+          "name": "Mebusane Softa Hoxha",
+          "table": 36
+        },
+        {
+          "name": "Bujar Hoxha",
+          "table": 36
+        },
+        {
+          "name": "Edona Spahija Hoxha",
+          "table": 36
+        },
+        {
+          "name": "Nezafete Sejdiu",
+          "table": 36
+        },
+        {
+          "name": "Nexhmije Sejdiu",
+          "table": 36
+        },
+        {
+          "name": "Diana Qarkaxhija",
+          "table": 36
+        },
+        {
+          "name": "Mybera Zhubi",
+          "table": 36
+        },
+        {
+          "name": "Faruk Zhubi",
+          "table": 36
+        },
+        {
+          "name": "Mirie Vejseli",
+          "table": 38
+        },
+        {
+          "name": "Suzana Vejseli",
+          "table": 38
+        },
+        {
+          "name": "Rexhep Vejseli",
+          "table": 38
+        },
+        {
+          "name": "Ernest Vejseli",
+          "table": 38
+        },
+        {
+          "name": "Fatmire Vejseli",
+          "table": 38
+        },
+        {
+          "name": "Marta Vejseli Hidri",
+          "table": 38
+        },
+        {
+          "name": "Burim Hidri",
+          "table": 38
+        },
+        {
+          "name": "Lirije Vejseli",
+          "table": 38
+        },
+        {
+          "name": "Erjon Vejseli",
+          "table": 38
+        },
+        {
+          "name": "Arta Xhemaili",
+          "table": 40
+        },
+        {
+          "name": "Majan Vejseli",
+          "table": 40
+        },
+        {
+          "name": "Ron Vejseli",
+          "table": 40
+        },
+        {
+          "name": "Valentin Vejseli",
+          "table": 40
+        },
+        {
+          "name": "Egzona Zendeli Vejseli",
+          "table": 40
+        },
+        {
+          "name": "Elina Vejseli",
+          "table": 40
+        },
+        {
+          "name": "Donika Deari",
+          "table": 40
+        },
+        {
+          "name": "Herolinda Deari",
+          "table": 40
+        },
+        {
+          "name": "Began Deari",
+          "table": 40
+        }
+      ]
     }
   }
 }

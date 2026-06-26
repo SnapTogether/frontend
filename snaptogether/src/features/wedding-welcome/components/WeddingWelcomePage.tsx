@@ -8,8 +8,6 @@ import turkey from "../../../../public/turkey.png";
 import uk from "../../../../public/unitedkingdom.png";
 import styles from "./WeddingWelcomePage.module.css";
 
-const seatingHref = "/seating/abc123";
-
 const languages = [
   { code: "en", label: "EN", flag: uk, alt: "United Kingdom flag" },
   { code: "mk", label: "MK", flag: macedonia, alt: "Macedonia flag" },
@@ -20,7 +18,8 @@ const languages = [
 export function WeddingWelcomePage() {
   const locale = useLocale();
   const t = useTranslations("weddingWelcome");
-  const galleryHref = "https://www.snaptogether.cloud/en/event/0bdb65/guest";
+  const galleryHref = `https://www.snaptogether.cloud/${locale}/event/0bdb65/guest`;
+  const seatingHref = `/${locale}/event/aulona-visar/seating-tables`;
   const activeLanguage = languages.find((language) => language.code === locale) ?? languages[0];
   const inactiveLanguages = languages.filter((language) => language.code !== locale);
 

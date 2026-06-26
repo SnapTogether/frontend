@@ -26,26 +26,39 @@ type SeatingData = {
 };
 
 const data = seatingTables as SeatingData;
+const albanianCollator = new Intl.Collator("sq-AL", { sensitivity: "base" });
 
 function normalizeValue(value: string) {
   return value
     .trim()
-    .toLocaleLowerCase("mk-MK")
+    .toLocaleLowerCase("sq-AL")
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "");
 }
 
-function sortByName(a: SeatingGuest, b: SeatingGuest) {
-  const aParts = a.name.trim().split(/\s+/);
-  const bParts = b.name.trim().split(/\s+/);
-  const aSurname = aParts[aParts.length - 1] || a.name;
-  const bSurname = bParts[bParts.length - 1] || b.name;
+function getSortableSurname(name: string) {
+  const parts = name.trim().split(/\s+/);
 
-  return aSurname.localeCompare(bSurname, "mk-MK") || a.name.localeCompare(b.name, "mk-MK");
+  for (let index = parts.length - 1; index >= 0; index -= 1) {
+    if (/\p{L}/u.test(parts[index])) {
+      return parts[index];
+    }
+  }
+
+  return name;
 }
 
-function sortByTable(a: SeatingGuest, b: SeatingGuest) {
-  return a.table - b.table || sortByName(a, b);
+function getAlphabetGroup(name: string) {
+  const surname = getSortableSurname(name);
+  const firstLetter = surname.match(/\p{L}/u)?.[0];
+
+  return firstLetter ? firstLetter.toLocaleUpperCase("sq-AL") : "#";
+}
+
+function sortByAlbanianName(a: SeatingGuest, b: SeatingGuest) {
+  const surnameCompare = albanianCollator.compare(getSortableSurname(a.name), getSortableSurname(b.name));
+
+  return surnameCompare || albanianCollator.compare(a.name, b.name) || a.table - b.table;
 }
 
 export default function SeatingTablesPage() {
@@ -56,7 +69,6 @@ export default function SeatingTablesPage() {
 
   const [query, setQuery] = useState("");
   const [selectedGuest, setSelectedGuest] = useState<SeatingGuestEntry | null>(null);
-  const [isSeatingPlanOpen, setIsSeatingPlanOpen] = useState(false);
 
   const guests = useMemo(
     () =>
@@ -65,7 +77,7 @@ export default function SeatingTablesPage() {
           ...guest,
           id: `${eventCode}-${index}`,
         }))
-        .sort(sortByTable),
+        .sort(sortByAlbanianName),
     [eventCode, eventData.guests],
   );
   const normalizedQuery = normalizeValue(query);
@@ -90,19 +102,24 @@ export default function SeatingTablesPage() {
 
   const groupedGuests = useMemo(() => {
     return guests.reduce<Record<string, SeatingGuestEntry[]>>((groups, guest) => {
-      const table = String(guest.table);
+      const letter = getAlphabetGroup(guest.name);
 
-      if (!groups[table]) {
-        groups[table] = [];
+      if (!groups[letter]) {
+        groups[letter] = [];
       }
 
-      groups[table].push(guest);
+      groups[letter].push(guest);
 
       return groups;
     }, {});
   }, [guests]);
 
-  const groupedEntries = Object.entries(groupedGuests).sort(([a], [b]) => Number(a) - Number(b));
+  const groupedEntries = Object.entries(groupedGuests).sort(([a], [b]) => {
+    if (a === "#") return 1;
+    if (b === "#") return -1;
+
+    return albanianCollator.compare(a, b);
+  });
   const firstResult = searchResults[0];
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
@@ -119,21 +136,6 @@ export default function SeatingTablesPage() {
         <header className={styles.header}>
           <h1 className={styles.brand}>{eventData.title}</h1>
         </header>
-
-        <figure className={styles.seatingPlan}>
-          <button
-            className={styles.seatingPlanButton}
-            type="button"
-            onClick={() => setIsSeatingPlanOpen(true)}
-            aria-label="Open seating table plan"
-          >
-            <img
-              className={styles.seatingPlanImage}
-              src="/seating-table/seating-plan.avif"
-              alt="Seating table plan"
-            />
-          </button>
-        </figure>
 
         <form className={styles.searchRow} onSubmit={handleSubmit}>
           <label className={styles.searchBox}>
@@ -190,9 +192,9 @@ export default function SeatingTablesPage() {
         )}
 
         <section className={styles.list} aria-label={t("guestListLabel")}>
-          {groupedEntries.map(([table, groupGuests]) => (
-            <div key={table}>
-              <h2 className={styles.letter}>{table}</h2>
+          {groupedEntries.map(([letter, groupGuests]) => (
+            <div key={letter}>
+              <h2 className={styles.letter}>{letter}</h2>
               <ul className={styles.guestList}>
                 {groupGuests.map((guest) => {
                   const isHighlighted = searchResults.some((result) => result.id === guest.id);
@@ -235,32 +237,6 @@ export default function SeatingTablesPage() {
             <button className={styles.okButton} type="button" onClick={() => setSelectedGuest(null)}>
               {t("ok")}
             </button>
-          </div>
-        </div>
-      ) : null}
-
-      {isSeatingPlanOpen ? (
-        <div
-          className={styles.backdrop}
-          role="dialog"
-          aria-modal="true"
-          aria-label="Seating table plan"
-          onClick={() => setIsSeatingPlanOpen(false)}
-        >
-          <div className={styles.planModal} onClick={(event) => event.stopPropagation()}>
-            <button
-              className={styles.planCloseButton}
-              type="button"
-              onClick={() => setIsSeatingPlanOpen(false)}
-              aria-label="Close seating table plan"
-            >
-              <X size={20} />
-            </button>
-            <img
-              className={styles.planModalImage}
-              src="/seating-table/seating-plan.avif"
-              alt="Seating table plan"
-            />
           </div>
         </div>
       ) : null}
