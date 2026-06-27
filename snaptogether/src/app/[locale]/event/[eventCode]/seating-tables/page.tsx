@@ -36,10 +36,10 @@ function normalizeValue(value: string) {
     .replace(/[\u0300-\u036f]/g, "");
 }
 
-function getSortableSurname(name: string) {
+function getSortableFirstName(name: string) {
   const parts = name.trim().split(/\s+/);
 
-  for (let index = parts.length - 1; index >= 0; index -= 1) {
+  for (let index = 0; index < parts.length; index += 1) {
     if (/\p{L}/u.test(parts[index])) {
       return parts[index];
     }
@@ -49,16 +49,16 @@ function getSortableSurname(name: string) {
 }
 
 function getAlphabetGroup(name: string) {
-  const surname = getSortableSurname(name);
-  const firstLetter = surname.match(/\p{L}/u)?.[0];
+  const firstName = getSortableFirstName(name);
+  const firstLetter = firstName.match(/\p{L}/u)?.[0];
 
   return firstLetter ? firstLetter.toLocaleUpperCase("sq-AL") : "#";
 }
 
 function sortByAlbanianName(a: SeatingGuest, b: SeatingGuest) {
-  const surnameCompare = albanianCollator.compare(getSortableSurname(a.name), getSortableSurname(b.name));
+  const firstNameCompare = albanianCollator.compare(getSortableFirstName(a.name), getSortableFirstName(b.name));
 
-  return surnameCompare || albanianCollator.compare(a.name, b.name) || a.table - b.table;
+  return firstNameCompare || albanianCollator.compare(a.name, b.name) || a.table - b.table;
 }
 
 export default function SeatingTablesPage() {
