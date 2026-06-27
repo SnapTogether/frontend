@@ -1169,11 +1169,7 @@
       "title": "Aulona & Visar",
       "guests": [
         {
-          "name": "Agim Buklla",
-          "table": 33
-        },
-        {
-          "name": "Safete Buklla",
+          "name": "Vildane Palloshi",
           "table": 33
         },
         {
@@ -1186,10 +1182,6 @@
         },
         {
           "name": "Luljeta Abazi",
-          "table": 33
-        },
-        {
-          "name": "Vildane Palloshi",
           "table": 33
         },
         {
@@ -1229,6 +1221,10 @@
           "table": 8
         },
         {
+          "name": "Drita Haxhiabduli",
+          "table": 8
+        },
+        {
           "name": "Skender Palloshi",
           "table": 5
         },
@@ -1245,15 +1241,11 @@
           "table": 5
         },
         {
-          "name": "Drita Haxhiabduli",
+          "name": "Agim Buklla",
           "table": 5
         },
         {
-          "name": "Shukrije Palloshi",
-          "table": 5
-        },
-        {
-          "name": "Nexhdet Palloshi",
+          "name": "Safete Buklla",
           "table": 5
         },
         {
@@ -1317,7 +1309,7 @@
           "table": 11
         },
         {
-          "name": "Bekim +1",
+          "name": "Mirlinda Saraçi",
           "table": 11
         },
         {
@@ -1513,6 +1505,10 @@
           "table": 21
         },
         {
+          "name": "Besian Rustemi",
+          "table": 21
+        },
+        {
           "name": "Milot Hasimja",
           "table": 29
         },
@@ -1538,6 +1534,10 @@
         },
         {
           "name": "Leutrim Qamili",
+          "table": 29
+        },
+        {
+          "name": "LILI",
           "table": 29
         },
         {
@@ -1573,7 +1573,7 @@
           "table": 6
         },
         {
-          "name": "Gruja Valon Sulejmani",
+          "name": "Valon +1",
           "table": 6
         },
         {
@@ -1597,7 +1597,7 @@
           "table": 30
         },
         {
-          "name": "gruja Premtim Qerimi",
+          "name": "Premtim +1",
           "table": 30
         },
         {
@@ -1613,7 +1613,7 @@
           "table": 12
         },
         {
-          "name": "melisa Shaqiri",
+          "name": "Melisa Shaqiri",
           "table": 12
         },
         {
@@ -1637,7 +1637,7 @@
           "table": 12
         },
         {
-          "name": "Gruja adis Velija",
+          "name": "Adis +1",
           "table": 12
         },
         {
@@ -1789,7 +1789,7 @@
           "table": 43
         },
         {
-          "name": "Shinasi Zejneli +1",
+          "name": "Shinasi +1",
           "table": 43
         },
         {
@@ -1801,19 +1801,27 @@
           "table": 43
         },
         {
-          "name": "Kushtrim Alegro",
+          "name": "Festim Ademi",
+          "table": 43
+        },
+        {
+          "name": "Festim +1",
+          "table": 43
+        },
+        {
+          "name": "Alegro Band",
           "table": 17
         },
         {
-          "name": "Flamur Alegro",
+          "name": "Alegro Band",
           "table": 17
         },
         {
-          "name": "Arber Alegro",
+          "name": "Alegro Band",
           "table": 17
         },
         {
-          "name": "Violina Alegro",
+          "name": "Alegro Band",
           "table": 17
         },
         {
@@ -1957,11 +1965,11 @@
           "table": 7
         },
         {
-          "name": "Festim Ademi",
+          "name": "Islam Imeri",
           "table": 7
         },
         {
-          "name": "Festim +1",
+          "name": "Islam +1",
           "table": 7
         },
         {
