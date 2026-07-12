@@ -5,6 +5,11 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        source: '/mk/event/09e1b5/guest',
+        destination: '/mk/event/860fca/guest',
+        permanent: false,
+      },
+      {
         source: '/event/:path*',
         destination: '/mk/event/:path*',
         permanent: false,
