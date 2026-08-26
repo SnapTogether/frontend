@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useState } from "react";
 
 const TALLY_FORM_URL = "https://tally.so/r/WOVp1J";
+const GALLERY_URL = "https://www.snaptogether.cloud/mk/event/bbf4a2/guest";
 const MAPS_URL =
   "https://www.google.com/maps/search/?api=1&query=" +
   encodeURIComponent("Парк Панорама, Делчево, Северна Македонија");
@@ -130,10 +131,18 @@ export default function AngelaNikolaInvitePage() {
 
         <section className="bg-[#526358] px-8 py-12 text-center text-[#f7f3e9]">
           <Camera className="mx-auto h-8 w-8 text-[#d1bd8e]" strokeWidth={1.2} />
-          <h2 className="mt-3 font-serif text-3xl">Споделете ги моментите</h2>
+          <h2 className="mt-3 font-serif text-3xl text-white">Споделете ги моментите</h2>
           <p className="mx-auto mt-3 max-w-[280px] text-sm leading-relaxed text-[#e1e4de]">
             Фотографиите од прославата ќе може да ги споделите во нашата свадбена галерија.
           </p>
+          <a
+            href={GALLERY_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-6 inline-flex h-11 items-center justify-center rounded-full border border-[#d1bd8e] px-7 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#f7f3e9] transition hover:bg-[#d1bd8e] hover:text-[#435248]"
+          >
+            Отвори ја галеријата
+          </a>
           <p className="mt-9 font-serif text-2xl text-[#e7d6ae]">Ангела &amp; Никола</p>
           <p className="mt-2 text-[10px] uppercase tracking-[0.28em] text-[#c5cec7]">26 · 09 · 2026</p>
         </section>
