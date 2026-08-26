@@ -3,7 +3,8 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { CalendarDays, Camera, Clock3, Heart, MapPin, X } from "lucide-react";
 import Image from "next/image";
-import { useState } from "react";
+import { useRef, useState } from "react";
+import BackgroundMusic from "../a-v/BackgroundMusic";
 
 const TALLY_FORM_URL = "https://tally.so/r/WOVp1J";
 const GALLERY_URL = "https://www.snaptogether.cloud/mk/event/bbf4a2/guest";
@@ -25,10 +26,67 @@ function FadeIn({ children }: { children: React.ReactNode }) {
 }
 
 export default function AngelaNikolaInvitePage() {
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const [introStarted, setIntroStarted] = useState(false);
+  const [showInvite, setShowInvite] = useState(false);
   const [showRSVP, setShowRSVP] = useState(false);
+
+  const startIntro = async () => {
+    if (introStarted) return;
+    setIntroStarted(true);
+    try {
+      await videoRef.current?.play();
+    } catch {
+      setIntroStarted(false);
+    }
+  };
+
+  if (!showInvite) {
+    return (
+      <main className="min-h-screen bg-[#d9d5c8]">
+        <button
+          type="button"
+          onClick={startIntro}
+          className="relative mx-auto block min-h-screen w-full max-w-[430px] overflow-hidden bg-[#fbfaf5] focus:outline-none"
+          aria-label="Отвори ја поканата"
+        >
+          {!introStarted && (
+            <>
+              <Image
+                src="/invite/placeholder-envelope.webp"
+                alt="Отвори ја свадбената покана"
+                fill
+                priority
+                className="object-cover"
+              />
+              <div className="absolute inset-x-0 bottom-12 z-10 text-center">
+                <span className="inline-flex rounded-full bg-[#fbfaf5]/90 px-6 py-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#53685a] shadow-md">
+                  Допрете за да ја отворите поканата
+                </span>
+              </div>
+            </>
+          )}
+          <video
+            ref={videoRef}
+            className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-300 ${introStarted ? "opacity-100" : "opacity-0"}`}
+            playsInline
+            preload="auto"
+            poster="/invite/placeholder-envelope.webp"
+            onEnded={() => {
+              window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+              setShowInvite(true);
+            }}
+          >
+            <source src="/invite/opening-intro.mp4" type="video/mp4" />
+          </video>
+        </button>
+      </main>
+    );
+  }
 
   return (
     <main className="min-h-screen bg-[#d9d5c8] py-0 text-[#42544a] sm:py-8">
+      <BackgroundMusic isOpen={showInvite} src="/invite/intro-song.mp3" />
       <div className="pointer-events-none fixed inset-0">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,#f7f3e9_0%,#d9d5c8_55%,#aeb6a7_100%)]" />
         <div className="absolute inset-0 opacity-[0.035] [background-image:url('/a-n-image.jpg')] bg-cover bg-center" />
