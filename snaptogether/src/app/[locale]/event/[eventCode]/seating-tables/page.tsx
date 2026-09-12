@@ -9,11 +9,12 @@ import styles from "./SeatingTables.module.css";
 
 type SeatingGuest = {
   name: string;
-  table: number;
+  table: number | string;
 };
 
 type SeatingGuestEntry = SeatingGuest & {
   id: string;
+  order: number;
 };
 
 type SeatingEvent = {
@@ -26,7 +27,7 @@ type SeatingData = {
 };
 
 const data = seatingTables as SeatingData;
-const albanianCollator = new Intl.Collator("sq-AL", { sensitivity: "base" });
+const DEFAULT_EVENT_CODE = "wedding-md";
 
 function normalizeValue(value: string) {
   return value
@@ -36,36 +37,35 @@ function normalizeValue(value: string) {
     .replace(/[\u0300-\u036f]/g, "");
 }
 
-function getSortableFirstName(name: string) {
-  const parts = name.trim().split(/\s+/);
-
-  for (let index = 0; index < parts.length; index += 1) {
-    if (/\p{L}/u.test(parts[index])) {
-      return parts[index];
-    }
+function getTableSortValue(table: SeatingGuest["table"]) {
+  if (typeof table === "number") {
+    return table;
   }
 
-  return name;
+  const normalizedTable = normalizeValue(table);
+
+  if (normalizedTable.includes("главна") || normalizedTable.includes("main")) {
+    return -1;
+  }
+
+  const parsedTable = Number(table);
+
+  return Number.isFinite(parsedTable) ? parsedTable : Number.MAX_SAFE_INTEGER;
 }
 
-function getAlphabetGroup(name: string) {
-  const firstName = getSortableFirstName(name);
-  const firstLetter = firstName.match(/\p{L}/u)?.[0];
-
-  return firstLetter ? firstLetter.toLocaleUpperCase("sq-AL") : "#";
+function sortByTable(a: SeatingGuestEntry, b: SeatingGuestEntry) {
+  return getTableSortValue(a.table) - getTableSortValue(b.table) || a.order - b.order;
 }
 
-function sortByAlbanianName(a: SeatingGuest, b: SeatingGuest) {
-  const firstNameCompare = albanianCollator.compare(getSortableFirstName(a.name), getSortableFirstName(b.name));
-
-  return firstNameCompare || albanianCollator.compare(a.name, b.name) || a.table - b.table;
+function getTableDisplay(table: SeatingGuest["table"], tableLabel: string) {
+  return typeof table === "number" ? `${tableLabel} ${table}` : table;
 }
 
 export default function SeatingTablesPage() {
   const params = useParams<{ eventCode: string }>();
   const t = useTranslations("seatingTables");
-  const eventCode = String(params.eventCode || "elena-simon");
-  const eventData = data.events[eventCode] || data.events["elena-simon"];
+  const eventCode = String(params.eventCode || DEFAULT_EVENT_CODE);
+  const eventData = data.events[eventCode] || data.events[DEFAULT_EVENT_CODE];
 
   const [query, setQuery] = useState("");
   const [selectedGuest, setSelectedGuest] = useState<SeatingGuestEntry | null>(null);
@@ -76,12 +76,13 @@ export default function SeatingTablesPage() {
         .map((guest, index) => ({
           ...guest,
           id: `${eventCode}-${index}`,
+          order: index,
         }))
-        .sort(sortByAlbanianName),
+        .sort(sortByTable),
     [eventCode, eventData.guests],
   );
   const normalizedQuery = normalizeValue(query);
-  const tableSearchAliases = useMemo(() => [t("table"), t("tableLabel"), "table"], [t]);
+  const tableSearchAliases = useMemo(() => [t("table"), t("tableLabel"), "table", "маса"], [t]);
 
   const searchResults = useMemo(() => {
     if (!normalizedQuery) {
@@ -90,36 +91,33 @@ export default function SeatingTablesPage() {
 
     return guests.filter((guest) => {
       const normalizedName = normalizeValue(guest.name);
+      const normalizedTable = normalizeValue(String(guest.table));
+      const tableDisplay = normalizeValue(getTableDisplay(guest.table, t("tableLabel")));
       const matchesTable = tableSearchAliases.some((alias) =>
         normalizeValue(`${alias} ${guest.table}`).includes(normalizedQuery),
       );
 
       return normalizedName.includes(normalizedQuery)
         || matchesTable
-        || String(guest.table) === normalizedQuery;
+        || tableDisplay.includes(normalizedQuery)
+        || normalizedTable === normalizedQuery;
     });
-  }, [guests, normalizedQuery, tableSearchAliases]);
+  }, [guests, normalizedQuery, tableSearchAliases, t]);
 
   const groupedGuests = useMemo(() => {
-    return guests.reduce<Record<string, SeatingGuestEntry[]>>((groups, guest) => {
-      const letter = getAlphabetGroup(guest.name);
+    return guests.reduce<Array<{ table: SeatingGuest["table"]; guests: SeatingGuestEntry[] }>>((groups, guest) => {
+      const currentGroup = groups[groups.length - 1];
 
-      if (!groups[letter]) {
-        groups[letter] = [];
+      if (!currentGroup || currentGroup.table !== guest.table) {
+        groups.push({ table: guest.table, guests: [guest] });
+      } else {
+        currentGroup.guests.push(guest);
       }
 
-      groups[letter].push(guest);
-
       return groups;
-    }, {});
+    }, []);
   }, [guests]);
 
-  const groupedEntries = Object.entries(groupedGuests).sort(([a], [b]) => {
-    if (a === "#") return 1;
-    if (b === "#") return -1;
-
-    return albanianCollator.compare(a, b);
-  });
   const firstResult = searchResults[0];
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
@@ -177,7 +175,7 @@ export default function SeatingTablesPage() {
                 >
                   <span className={styles.resultName}>{guest.name}</span>
                   <span className={styles.resultTable}>
-                    {t("tableLabel")} {guest.table}
+                    {getTableDisplay(guest.table, t("tableLabel"))}
                   </span>
                 </button>
               ))
@@ -192,9 +190,9 @@ export default function SeatingTablesPage() {
         )}
 
         <section className={styles.list} aria-label={t("guestListLabel")}>
-          {groupedEntries.map(([letter, groupGuests]) => (
-            <div key={letter}>
-              <h2 className={styles.letter}>{letter}</h2>
+          {groupedGuests.map(({ table, guests: groupGuests }) => (
+            <div key={String(table)}>
+              <h2 className={styles.tableTitle}>{getTableDisplay(table, t("table"))}</h2>
               <ul className={styles.guestList}>
                 {groupGuests.map((guest) => {
                   const isHighlighted = searchResults.some((result) => result.id === guest.id);
@@ -210,7 +208,7 @@ export default function SeatingTablesPage() {
                           {guest.name}
                         </span>
                         <span className={styles.guestTable}>
-                          {t("tableLabel")} {guest.table}
+                          {getTableDisplay(guest.table, t("tableLabel"))}
                         </span>
                       </button>
                     </li>
@@ -231,8 +229,10 @@ export default function SeatingTablesPage() {
             </h2>
             <div className={styles.seatCard}>
               <p className={styles.modalGuest}>{selectedGuest.name}</p>
-              <p className={styles.seatNumber}>{selectedGuest.table}</p>
-              <p className={styles.seatLabel}>{t("table")}</p>
+              <p className={`${styles.seatNumber} ${typeof selectedGuest.table === "number" ? "" : styles.seatName}`}>
+                {selectedGuest.table}
+              </p>
+              {typeof selectedGuest.table === "number" ? <p className={styles.seatLabel}>{t("table")}</p> : null}
             </div>
             <button className={styles.okButton} type="button" onClick={() => setSelectedGuest(null)}>
               {t("ok")}

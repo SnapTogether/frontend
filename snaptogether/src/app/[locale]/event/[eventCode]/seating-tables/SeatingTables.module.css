@@ -147,7 +147,7 @@
   padding-bottom: 20px;
 }
 
-.letter {
+.tableTitle {
   margin: 0 0 8px;
   font-family: Georgia, "Times New Roman", serif;
   font-size: 2.05rem;
@@ -273,6 +273,13 @@
   font-family: var(--font-fleur-de-leah), Georgia, serif;
   font-size: clamp(5.7rem, 28vw, 8.5rem);
   line-height: 0.72;
+}
+
+.seatName {
+  padding: 12px 0 4px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2.15rem, 13vw, 3.2rem);
+  line-height: 0.95;
 }
 
 .seatLabel {
